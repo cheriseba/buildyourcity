@@ -1,0 +1,24 @@
+{
+  "name": "Build your city",
+  "short_name": "CityBuilder",
+  "description": "Build your city - installierbare Web-App",
+  "start_url": "./gameone.html",
+  "scope": "./",
+  "id": "./gameone.html",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "./app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./tiles/tile0.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ]
+}

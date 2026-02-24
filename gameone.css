@@ -1,0 +1,380 @@
+html {
+  font-size: 100%;
+} /*16px*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100dvh;
+  margin: 0 0;
+  color: #1d2429;
+  overflow: hidden;
+  width: 100vw;
+
+  font-family: "M PLUS 1 Code", sans-serif;
+  font-family: "Press Start 2P", cursive;
+  background-color: black;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 50px;
+  margin-bottom: 10vw;
+}
+.flex-item {
+  align-self: center;
+  flex-direction: column;
+}
+
+.game-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 100vw;
+  flex: 1;
+  min-height: 0;
+  padding: 12px 16px 16px;
+  box-sizing: border-box;
+}
+
+.canvas-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.page-title {
+  color: rgb(255, 255, 255);
+  margin: 2px 0 4px;
+  font-size: clamp(14px, 2.2vw, 34px);
+  font-weight: 500;
+  text-align: center;
+}
+
+.page-footer {
+  color: white;
+  opacity: 0.9;
+  font-size: clamp(9px, 1.1vw, 14px);
+  margin: 6px 0 12px;
+  text-align: center;
+}
+
+.mode-switch {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  padding-top: 0;
+  margin-bottom: 8px;
+}
+
+.mode-button {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 11px;
+  min-height: 40px;
+  touch-action: manipulation;
+}
+
+.mode-button.active {
+  border-color: red;
+  color: red;
+}
+
+.tile-panel {
+  width: 180px;
+  height: 100%;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.04);
+  box-sizing: border-box;
+}
+
+.tile-button {
+  width: 72px;
+  height: 72px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.tile-button img {
+  width: 64px;
+  height: 64px;
+  display: block;
+  margin: 3px;
+  image-rendering: pixelated;
+}
+
+.tile-button.selected {
+  border: 2px solid red;
+}
+
+body.random-mode .tile-button {
+  pointer-events: none;
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (min-width: 901px) {
+  .tile-panel {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+  }
+
+  .tile-panel::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .tile-panel::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .tile-panel::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+  }
+
+  .tile-panel:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.34);
+  }
+
+  #left-palette {
+    direction: rtl;
+  }
+
+  #left-palette > * {
+    direction: ltr;
+  }
+}
+
+a {
+  display: flex;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  font-weight: 100;
+  font-size: 4vw;
+}
+
+a:hover {
+  color: red;
+  font-weight: bolder;
+}
+
+.text {
+  color: red;
+
+  font-weight: 500;
+  font-size: 2vw;
+  display: flex;
+
+  justify-content: center;
+  text-align: center;
+  line-height: 200%;
+  margin: 12px 0 4px;
+}
+
+.discription {
+  color: white;
+
+  font-weight: 300;
+  font-size: 1.5vw;
+  display: flex;
+
+  justify-content: center;
+  text-align: center;
+  line-height: 200%;
+  margin: 0 0 8px;
+}
+
+.Information {
+  color: white;
+  margin-bottom: 100px;
+  font-weight: 400;
+  font-size: 0.9vw;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  line-height: 200%;
+}
+
+.linebreak {
+  margin-top: 50vw;
+}
+
+.btn-1 {
+  background: white;
+  color: black;
+  border-radius: 30px;
+  transition: transform 0.3 ease;
+}
+
+.btn-1::after {
+  content: "";
+  position: absolute;
+  opacity: 0.3;
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  left: 110%;
+  bottom: 0;
+  z-index: -1;
+  transition: transform 0.3 ease;
+}
+
+.btn-1:hover {
+  transform: translate(-12px, -12px);
+}
+
+.btn-1:hover::after {
+  transform: translate(6px, 6px);
+}
+
+.btn-1:hover::before {
+  transform: translate(12px, 12px);
+}
+
+@media (max-width: 900px) {
+  body {
+    overflow: hidden;
+    height: 100dvh;
+  }
+
+  .game-layout {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100vw;
+    min-height: 0;
+    padding: 6px 8px 8px;
+  }
+
+  .canvas-column {
+    width: 100%;
+  }
+
+  .mode-switch {
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding-top: 0;
+    padding-inline: 8px;
+    margin-bottom: 6px;
+  }
+
+  .mode-button {
+    font-size: clamp(10px, 2.8vw, 12px);
+    padding: 8px 10px;
+    min-height: 42px;
+    flex: 1;
+  }
+
+  .page-title {
+    font-size: clamp(22px, 6.6vw, 40px);
+    line-height: 1.1;
+    margin: 2px 0 4px;
+  }
+
+  .page-footer {
+    font-size: clamp(11px, 3.4vw, 18px);
+    margin: 2px 0 8px;
+  }
+
+  .flex-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #left-palette {
+    display: none;
+  }
+
+  #right-palette {
+    width: min(96vw, 760px);
+    height: auto;
+    min-height: 84px;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    justify-content: flex-start;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+  }
+
+  #right-palette::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tile-button {
+    width: 64px;
+    height: 64px;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    touch-action: manipulation;
+  }
+
+  .tile-button img {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (max-width: 700px) {
+  #right-palette { min-height: 76px; }
+
+  .tile-button {
+    width: 58px;
+    height: 58px;
+  }
+
+  .tile-button img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  #right-palette { min-height: 68px; }
+
+  .tile-button {
+    width: 52px;
+    height: 52px;
+  }
+
+  .tile-button img {
+    width: 44px;
+    height: 44px;
+  }
+}
