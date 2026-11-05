@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Bau deine Nordstadt">
+
+  <title>YOU WASTE YOUR TIME</title>
+
+<link href="style.css?v=20261025-9" rel="stylesheet">
+<link rel="apple-touch-icon" href="tiles/tile0.png">
+
+</head>
+
+
+
+<body>
+
+<!-- Einbetten: <iframe src="index.html" style="width:100%;height:min(90vh,800px);border:0" loading="lazy" title="Bau deine Nordstadt"></iframe> -->
+<main class="app">
+  <div id="intro" class="intro" role="dialog" aria-labelledby="intro-title">
+    <div class="intro-content">
+      <h1 id="intro-title" class="intro-title">Bau deine Nordstadt</h1>
+      <p class="intro-idle-hint">Tippe, um weiterzubauen</p>
+      <button id="intro-start" class="intro-start" type="button">Tutorial starten</button>
+      <button id="intro-skip" class="intro-skip" type="button">Direkt loslegen</button>
+    </div>
+  </div>
+
+  <div id="tutorial" class="tutorial" role="region" aria-label="Geführtes Tutorial" hidden>
+    <div id="tutorial-focus" class="tutorial-focus" aria-hidden="true"></div>
+    <div class="tutorial-card">
+      <div class="tutorial-heading">
+        <p class="tutorial-progress" id="tutorial-progress"></p>
+        <h2 id="tutorial-title"></h2>
+      </div>
+      <p class="tutorial-copy" id="tutorial-copy"></p>
+      <div class="tutorial-actions">
+        <button id="tutorial-close" class="tutorial-secondary" type="button">&Uuml;berspringen</button>
+        <button id="tutorial-next" class="intro-start" type="button">Weiter</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="info" class="intro info" role="dialog" aria-label="Info" hidden>
+    <div class="intro-content">
+      <p class="info-text">Ein Projekt von<br><br>Mia Mogl<br>und<br>Cherise Barthel</p>
+      <p class="intro-idle-hint info-close">Tippe zum Schlie&szlig;en</p>
+    </div>
+  </div>
+  <section class="stage" title="2022 project from mia mogl &amp; cheriff">
+    <div id="sketch">
+      <div class="menu">
+        <button id="menu-toggle" class="tool-button" type="button" aria-expanded="false" aria-controls="menu-panel" aria-label="Menue">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+        <div id="menu-panel" class="menu-panel" role="menu" hidden>
+          <button id="zoom-in" class="mode-button menu-item" type="button" role="menuitem">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>Reinzoomen</span>
+          </button>
+          <button id="zoom-out" class="mode-button menu-item" type="button" role="menuitem">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>Rauszoomen</span>
+          </button>
+          <button id="zoom-fit" class="mode-button menu-item" type="button" role="menuitem">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Ausrichten</span>
+          </button>
+          <button id="tutorial-open" class="mode-button menu-item" type="button" role="menuitem">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.5 9a2.5 2.5 0 1 1 4.2 1.8c-1.1 1-1.7 1.4-1.7 3M12 17.5v.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>Tutorial</span>
+          </button>
+          <span class="menu-divider" aria-hidden="true"></span>
+          <button id="mode-meadow" class="mode-button menu-item" type="button" role="menuitem">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12a7 7 0 1 0 2.2-5.1M5 4v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Reset</span>
+          </button>
+          <span class="menu-divider" aria-hidden="true"></span>
+          <button id="save-image" class="mode-button menu-item" type="button" role="menuitem">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            <span>Speichern</span>
+          </button>
+          <span class="menu-divider" aria-hidden="true"></span>
+          <button id="info-toggle" class="mode-button menu-item" type="button" role="menuitem">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.5" r="1.3" fill="currentColor"/></svg>
+            <span>Info</span>
+          </button>
+        </div>
+      </div>
+      <button id="undo-button" class="tool-button undo-button" type="button" aria-label="Rückgängig" title="Rückgängig (Strg+Z)" disabled>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5M4 9h10.5a5.5 5.5 0 0 1 0 11H11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <nav class="dock tile-panel" id="left-palette" aria-label="Tiles"></nav>
+</main>
+<script
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"
+      integrity="sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    
+    
+    <script src="csv.js?v=20261025-9"></script>
+    <script src="grid.js?v=20261025-9"></script>
+    <script src="tile.js?v=20261025-9"></script>
+    <script src="game.js?v=20261025-9"></script>
+
+    
+  </body>
+
+ 
+
+
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

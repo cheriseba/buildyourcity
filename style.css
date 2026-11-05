@@ -1,0 +1,859 @@
+﻿@font-face {
+  font-family: "Press Start 2P";
+  src: url("fonts/press-start-2p.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --bg-1: #0b1020;
+  --bg-2: #1b1440;
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.16);
+  --text: #eef1ff;
+  --accent: #7c9cff;
+  --accent-2: #b46cff;
+  --radius: 16px;
+  --tile: 56px;
+  --btn: 48px;
+  --dock-pad: 8px;
+  --dock-h: calc(var(--tile) + 16px + 2 * var(--dock-pad) + 2px);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: var(--bg, linear-gradient(135deg, var(--bg-1), var(--bg-2)));
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  height: 100dvh;
+}
+
+/* Handy Portrait / Tablet Portrait: Dock unten */
+.app {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.intro {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  background: radial-gradient(ellipse at center, rgba(8, 10, 28, 0.78) 0%, rgba(8, 10, 28, 0.55) 70%, rgba(8, 10, 28, 0.4) 100%);
+  cursor: pointer;
+  transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.intro[hidden] {
+  display: none;
+}
+
+.intro.fading {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-content {
+  max-width: 36rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(14px, 2.5vh, 28px);
+  animation: intro-rise 0.7s ease-out both;
+}
+
+.intro-title {
+  margin: 0;
+  font-family: "Press Start 2P", ui-monospace, monospace;
+  font-size: clamp(1.4rem, 4.2vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  text-shadow: 0.08em 0.08em 0 var(--accent-2), 0.16em 0.16em 0 rgba(0, 0, 0, 0.45);
+  text-wrap: balance;
+}
+
+.intro-start {
+  min-height: var(--btn);
+  padding: 0 calc(var(--btn) * 0.8);
+  border: 0;
+  border-radius: 0;
+  background: var(--accent);
+  color: #0b1020;
+  font-family: "Press Start 2P", ui-monospace, monospace;
+  font-size: clamp(0.7rem, calc(var(--btn) * 0.28), 1.4rem);
+  font-weight: 400;
+  cursor: pointer;
+  box-shadow: 0.3em 0.3em 0 var(--accent-2);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.intro-start:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 0.45em 0.45em 0 var(--accent-2);
+}
+
+.intro-start:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0.1em 0.1em 0 var(--accent-2);
+}
+
+.intro-start:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.intro-skip,
+.tutorial-secondary {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.intro-skip:hover,
+.tutorial-secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.intro.idle .intro-skip {
+  display: none;
+}
+
+.tutorial {
+  position: fixed;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+}
+
+.tutorial[hidden] {
+  display: none;
+}
+
+.tutorial-card {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: min(560px, calc(100vw - 24px));
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  background: rgba(20, 24, 50, 0.72);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.tutorial-focus {
+  position: absolute;
+  border: 3px solid #b46cff;
+  border-radius: 10px;
+  box-shadow: 0 0 0 3px rgba(180, 108, 255, 0.3), 0 0 24px rgba(180, 108, 255, 0.8);
+  animation: tutorial-target-pulse 1.15s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.tutorial-focus[hidden] {
+  display: none;
+}
+
+.tutorial-heading {
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tutorial-progress {
+  flex: none;
+  margin: 0;
+  color: #b7c6ff;
+  font-family: "Press Start 2P", ui-monospace, monospace;
+  font-size: 0.6rem;
+  line-height: 1.7;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tutorial-card h2 {
+  margin: 0;
+  font-family: "Press Start 2P", ui-monospace, monospace;
+  font-size: clamp(0.82rem, 1vw, 1rem);
+  line-height: 1.8;
+}
+
+.tutorial-copy {
+  margin: 0;
+  color: rgba(238, 241, 255, 0.88);
+  font-family: "Press Start 2P", ui-monospace, monospace;
+  font-size: clamp(0.72rem, 0.85vw, 0.88rem);
+  line-height: 1.8;
+}
+
+.tutorial-actions,
+.tutorial-navigation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tutorial-actions {
+  justify-content: flex-end;
+  margin: 0;
+}
+
+.tutorial-actions button {
+  min-height: 42px;
+  padding: 9px 12px;
+  font-family: "Press Start 2P", ui-monospace, monospace;
+  font-size: 0.58rem;
+  line-height: 1.6;
+}
+
+.tutorial-navigation .intro-start {
+  min-height: 44px;
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 1rem;
+  box-shadow: none;
+}
+
+.tutorial-secondary:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.tutorial :focus-visible,
+.intro-skip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.tutorial-target {
+  position: relative;
+  z-index: 7 !important;
+  outline: 3px solid #b46cff !important;
+  outline-offset: 4px;
+  animation: tutorial-target-pulse 1.15s ease-in-out infinite;
+}
+
+@keyframes tutorial-target-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px rgba(180, 108, 255, 0.35), 0 0 18px rgba(180, 108, 255, 0.65);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(180, 108, 255, 0.14), 0 0 30px rgba(180, 108, 255, 0.9);
+  }
+}
+
+.intro-idle-hint {
+  display: none;
+  margin: 0;
+  font-family: "Press Start 2P", ui-monospace, monospace;
+  font-size: clamp(0.65rem, 1.4vw, 1.1rem);
+  line-height: 1.6;
+  text-shadow: 0.12em 0.12em 0 rgba(0, 0, 0, 0.6);
+  animation: hint-blink 1.4s steps(2, jump-none) infinite;
+}
+
+@keyframes hint-blink {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* Nach Inaktivitaet: nur Titel und Hinweis, leichter abgedunkelt */
+.intro.idle {
+  background: rgba(8, 10, 28, 0.45);
+}
+
+.intro.idle .intro-start {
+  display: none;
+}
+
+.intro.idle .intro-idle-hint {
+  display: block;
+}
+
+@keyframes intro-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.toolbar {
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.mode-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--btn);
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+  font-size: calc(var(--btn) * 0.3);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.mode-button svg {
+  width: calc(var(--btn) * 0.42);
+  height: 20px;
+  flex: none;
+}
+
+.mode-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.mode-button:active {
+  transform: scale(0.95);
+}
+
+.mode-button:focus-visible,
+.tile-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.mode-button.pulse {
+  animation: pulse 0.5s ease-out;
+}
+
+@keyframes pulse {
+  0% {
+    background: var(--accent);
+    box-shadow: 0 0 0 0 rgba(124, 156, 255, 0.6);
+  }
+  100% {
+    background: transparent;
+    box-shadow: 0 0 0 14px rgba(124, 156, 255, 0);
+  }
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+}
+
+#sketch {
+  position: absolute;
+  inset: 0;
+}
+
+#sketch canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dock {
+  position: absolute;
+  z-index: 3;
+  left: calc(8px + var(--safe-l));
+  right: calc(8px + var(--safe-r));
+  bottom: calc(12px + var(--safe-b));
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: var(--dock-pad);
+  background: rgba(20, 24, 50, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Links fixiert: Wiese + Suche */
+.dock-fixed {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 8px;
+  border-right: 1px solid var(--glass-border);
+}
+
+.dock-scroll {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  overscroll-behavior: contain;
+  touch-action: pan-x;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+}
+
+.dock-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.cat-group,
+.cat-items {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cat-group {
+  padding-block: 4px;
+}
+
+.cat-items[hidden] {
+  display: none;
+}
+
+.cat-group.open {
+  padding-inline: 8px;
+  border-radius: 16px;
+  background: rgba(124, 156, 255, 0.12);
+}
+
+.cat-button {
+  position: relative;
+}
+
+.cat-chevron {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: clamp(22px, calc(var(--tile) * 0.34), 34px);
+  height: clamp(22px, calc(var(--tile) * 0.34), 34px);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  transition: transform 0.2s;
+}
+
+.cat-chevron svg {
+  width: 62%;
+  height: 62%;
+}
+
+.cat-group.open .cat-chevron {
+  transform: rotate(180deg);
+}
+
+/* Suche: schwebt ueber der Slidebar, rechts */
+.dock-search {
+  position: absolute;
+  right: 4px;
+  bottom: calc(100% + 8px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-toggle {
+  flex: none;
+  width: var(--btn);
+  height: var(--btn);
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  background: rgba(20, 24, 50, 0.7);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.search-toggle:hover,
+.search-toggle[aria-expanded="true"] {
+  background: var(--accent);
+}
+
+.search-toggle svg {
+  width: 26px;
+  height: 26px;
+  flex: none;
+}
+
+.tile-search {
+  width: min(70vw, 280px);
+  height: max(var(--btn), 44px);
+  padding: 0 14px;
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  background: rgba(20, 24, 50, 0.85);
+  color: #fff;
+  font: inherit;
+}
+
+.tile-search[hidden] {
+  display: none;
+}
+
+.palette-empty {
+  flex: none;
+  padding: 0 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.tile-button {
+  flex: none;
+  width: calc(var(--tile) + 16px);
+  height: calc(var(--tile) + 16px);
+  padding: 8px;
+  scroll-snap-align: center;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: transform 0.15s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.tile-button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+.tile-button:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.tile-button.selected {
+  border-color: var(--accent);
+  background: rgba(124, 156, 255, 0.22);
+  box-shadow: 0 0 18px rgba(124, 156, 255, 0.6);
+  transform: scale(1.08);
+}
+
+/* Rueckgaengig-Knopf unter dem Burger-Menue */
+.undo-button {
+  position: absolute;
+  top: calc(12px + var(--btn) + 8px + var(--safe-t));
+  right: calc(12px + var(--safe-r));
+  z-index: 3;
+}
+
+.undo-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  top: calc(16px + var(--safe-t));
+  z-index: 20;
+  transform: translate(-50%, -12px);
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(20, 24, 50, 0.92);
+  border: 1px solid var(--glass-border);
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Aufklappmenue oben rechts */
+.menu {
+  position: absolute;
+  top: calc(12px + var(--safe-t));
+  right: calc(12px + var(--safe-r));
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.tool-button {
+  display: grid;
+  place-items: center;
+  width: var(--btn);
+  height: var(--btn);
+  padding: 0;
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  background: rgba(20, 24, 50, 0.7);
+  color: var(--text);
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: background 0.2s, transform 0.15s;
+}
+
+.tool-button svg {
+  width: calc(var(--btn) * 0.5);
+  height: calc(var(--btn) * 0.5);
+}
+
+.tool-button:hover {
+  background: rgba(60, 70, 130, 0.85);
+}
+
+.tool-button:active {
+  transform: scale(0.92);
+}
+
+.tool-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.tool-button.pulse {
+  animation: pulse 0.5s ease-out;
+}
+
+.menu-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 14em;
+  max-height: calc(100dvh - var(--btn) - 40px - var(--safe-t) - var(--safe-b));
+  overflow-y: auto;
+  padding: 6px;
+  background: rgba(20, 24, 50, 0.88);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  transform-origin: top right;
+  animation: menu-open 0.18s ease-out;
+}
+
+.menu-panel[hidden] {
+  display: none;
+}
+
+.menu-item {
+  justify-content: flex-start;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.menu-divider {
+  height: 1px;
+  margin: 4px 10px;
+  background: var(--glass-border);
+}
+
+.mode-button.armed {
+  background: #d9456b;
+}
+
+@keyframes menu-open {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Info-Overlay: Pixel-Schrift, Schliessen per Tipp */
+.info-text {
+  margin: 0;
+  font-family: "Press Start 2P", ui-monospace, monospace;
+  font-size: clamp(0.8rem, 2.2vw, 1.6rem);
+  line-height: 2;
+  text-shadow: 0.12em 0.12em 0 var(--accent-2), 0.24em 0.24em 0 rgba(0, 0, 0, 0.45);
+}
+
+.info .intro-idle-hint {
+  display: block;
+}
+
+#sketch canvas {
+  cursor: grab;
+}
+
+#sketch canvas.dragging,
+.dock-scroll.dragging {
+  cursor: grabbing;
+}
+
+.dock-scroll.dragging {
+  scroll-snap-type: none;
+}
+
+/* Dock unten auf allen Formaten; auf grossen Bildschirmen zentriert */
+@media (min-width: 900px) and (min-height: 521px) {
+  :root {
+    --tile: clamp(72px, min(5vw, 10vh), 120px);
+    --btn: clamp(56px, min(3.6vw, 7vh), 84px);
+    --dock-pad: clamp(10px, 1vw, 18px);
+  }
+
+  .dock {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: min(calc(100% - 32px), 1600px);
+    gap: clamp(8px, 0.8vw, 14px);
+  }
+
+  .dock-scroll {
+    scroll-snap-type: none;
+    overflow-anchor: none;
+  }
+
+  .dock-scroll .tile-button {
+    scroll-snap-align: none;
+  }
+
+  .tool-button {
+    font-size: calc(var(--btn) * 0.55);
+  }
+
+  .tutorial-card {
+    width: min(700px, calc(100vw - 32px));
+    padding: 26px 28px;
+    gap: 18px;
+  }
+
+  .tutorial-progress {
+    font-size: 0.78rem;
+  }
+
+  .tutorial-card h2 {
+    font-size: clamp(1.2rem, 1.4vw, 1.55rem);
+  }
+
+  .tutorial-copy {
+    font-size: clamp(1rem, 1.1vw, 1.2rem);
+    line-height: 1.9;
+  }
+
+  .tutorial-actions button {
+    min-height: 54px;
+    padding: 13px 17px;
+    font-size: 0.75rem;
+  }
+
+}
+
+@media (orientation: landscape) and (max-height: 520px) {
+  :root {
+    --tile: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tutorial-card {
+    left: 8px;
+    width: min(440px, calc(100vw - 16px));
+    padding: 12px 14px;
+    transform: none;
+    gap: 8px;
+  }
+
+  .tutorial-card h2 {
+    font-size: 0.62rem;
+  }
+
+  .tutorial-copy {
+    font-size: 0.56rem;
+    line-height: 1.85;
+  }
+
+  .tutorial-actions,
+  .tutorial-navigation {
+    gap: 5px;
+  }
+
+  .tutorial-secondary,
+  .tutorial-navigation .intro-start {
+    min-height: 34px;
+    padding: 7px 9px;
+    font-size: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+[data-editor-only][hidden] {
+  display: none !important;
+}
