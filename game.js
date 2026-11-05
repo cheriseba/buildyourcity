@@ -62,6 +62,7 @@ function gameSetup() {
   updateViewportLayout();
   initCamera();
   bindUndo();
+  bindUiHide();
   enableDockDrag();
 }
 
@@ -104,6 +105,7 @@ function resetCamera() {
 }
 
 function zoomAt(px, py, newScale, immediate) {
+  setUiHidden(false);
   const t = camTarget;
   const worldX = t.x + px / t.scale;
   const worldY = t.y + py / t.scale;
@@ -118,7 +120,16 @@ function zoomAt(px, py, newScale, immediate) {
   }
 }
 
+// Oberflaeche ausblenden; jede Kamerabewegung (Verschieben, Zoomen) blendet sie wieder ein.
+function setUiHidden(hidden) {
+  const app = document.querySelector(".app");
+  if (app) {
+    app.classList.toggle("ui-hidden", hidden);
+  }
+}
+
 function panBy(dx, dy, immediate) {
+  setUiHidden(false);
   camTarget.x -= dx / camTarget.scale;
   camTarget.y -= dy / camTarget.scale;
   clampCamera(camTarget);
@@ -216,11 +227,14 @@ function handleTap(px, py, withCtrl) {
       }
     } else {
       const def = tileDefs[selectedPaletteIndex];
-      const result = board.place(tile, img[selectedPaletteIndex], def, img[MEADOW_TILE_INDEX]);
+      const selectedImage = img[selectedPaletteIndex];
+      if (def.type === "OVER" && tile.overlay === selectedImage) {
+        return;
+      }
+
+      const result = board.place(tile, selectedImage, def, img[MEADOW_TILE_INDEX]);
       if (result === "locked") {
         showToast("Dieses Tile ist fest");
-      } else if (result === "overlay") {
-        showToast("Hier liegt bereits ein OVER");
       } else if (result !== true) {
         showToast("Hier ist nicht genug Platz");
       } else {
@@ -793,6 +807,26 @@ function showToast(message) {
   toast.classList.add("show");
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
+}
+
+function bindUiHide() {
+  const button = document.getElementById("ui-hide");
+  if (!button) {
+    return;
+  }
+
+  button.addEventListener("click", () => {
+    const panel = document.getElementById("menu-panel");
+    const toggle = document.getElementById("menu-toggle");
+    if (panel) {
+      panel.hidden = true;
+    }
+    if (toggle) {
+      toggle.setAttribute("aria-expanded", "false");
+    }
+    button.blur();
+    setUiHidden(true);
+  });
 }
 
 function bindUndo() {

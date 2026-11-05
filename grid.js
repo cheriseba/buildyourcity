@@ -310,10 +310,6 @@ class Board {
       if (this.isLocked(tile)) {
         return "locked";
       }
-      if (def.type === "OVER" && tile.overlay) {
-        return "overlay";
-      }
-
       const snap = this.snapshot();
       tile.locked = false;
       if (tile.owner) {

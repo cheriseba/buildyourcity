@@ -594,12 +594,34 @@ body {
   transform: scale(1.08);
 }
 
-/* Rueckgaengig-Knopf unter dem Burger-Menue */
-.undo-button {
+/* Oberflaeche-ausblenden-Knopf unter dem Burger-Menue, darunter Rueckgaengig */
+.ui-hide-button {
   position: absolute;
   top: calc(12px + var(--btn) + 8px + var(--safe-t));
   right: calc(12px + var(--safe-r));
   z-index: 3;
+}
+
+.undo-button {
+  position: absolute;
+  top: calc(12px + (var(--btn) + 8px) * 2 + var(--safe-t));
+  right: calc(12px + var(--safe-r));
+  z-index: 3;
+}
+
+.menu,
+.ui-hide-button,
+.undo-button,
+.dock {
+  transition: opacity 0.25s, background 0.2s, transform 0.15s;
+}
+
+.app.ui-hidden .menu,
+.app.ui-hidden .ui-hide-button,
+.app.ui-hidden .undo-button,
+.app.ui-hidden .dock {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .undo-button:disabled {

@@ -39,11 +39,18 @@ class Tile {
     this.overlay = null;
   }
 
+  // Skaliert nach Breite (Seitenverhaeltnis bleibt), Unterkante bleibt auf der Zelle:
+  // hoehere Bilder ragen nach oben ueber das Tile hinaus statt gestaucht zu werden.
+  drawImage(img) {
+    const h = (img.height * TILE_IMG) / img.width;
+    image(img, this.x, this.y + TILE_IMG - h, TILE_IMG, h);
+  }
+
   show() {
-    image(this.ground, this.x, this.y, TILE_IMG, TILE_IMG);
+    this.drawImage(this.ground);
 
     if (this.overlay) {
-      image(this.overlay, this.x, this.y, TILE_IMG, TILE_IMG);
+      this.drawImage(this.overlay);
     }
   }
 
@@ -81,7 +88,7 @@ class Building {
 
   show() {
     for (const cell of this.cells) {
-      image(cell.ground, cell.x, cell.y, TILE_IMG, TILE_IMG);
+      cell.drawImage(cell.ground);
     }
 
     image(this.image, this.x, this.y, this.drawW, this.drawH);
