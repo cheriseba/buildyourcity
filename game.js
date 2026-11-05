@@ -971,7 +971,7 @@ function openTutorial() {
     { type: "board", point: "cat", title: "Untergrund \u00e4ndern", text: "Klicke auf dasselbe Katzenfeld, um den Untergrund zu \u00e4ndern." },
     { type: "board", point: "cat", title: "Katze entfernen", text: "Doppelklicke oder doppeltippe auf das Feld. Die Katze verschwindet, der Asphalt bleibt." },
     { type: "menu", title: "Men\u00fc \u00f6ffnen", text: "\u00d6ffne das Men\u00fc oben rechts." },
-    { type: "save", title: "Speichern", text: "Klicke auf Speichern, um deine Stadt als Bild herunterzuladen." },
+    { type: "save", title: "Speichern", text: "Klicke auf Speichern, um deine Stadt zu teilen oder als Bild herunterzuladen." },
     { type: "reset", title: "Reset", text: "Klicke zweimal auf Reset, um das Spielfeld wirklich zur\u00fcckzusetzen." },
   ];
 
@@ -1266,7 +1266,15 @@ function openTutorial() {
     return;
   }
 
-  saveButton.addEventListener("click", () => {
+  const downloadImage = (blob, filename) => {
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+  };
+
+  saveButton.addEventListener("click", async () => {
     const panel = document.getElementById("menu-panel");
     const toggle = document.getElementById("menu-toggle");
     if (panel) {
@@ -1276,17 +1284,36 @@ function openTutorial() {
       toggle.setAttribute("aria-expanded", "false");
     }
 
+    const filename = `nordstadt-${new Date().toISOString().slice(0, 10)}.png`;
+
     try {
-      gameCanvas.elt.toBlob((blob) => {
-        if (!blob) {
-          return;
+      const blob = await new Promise((resolve, reject) => {
+        try {
+          gameCanvas.elt.toBlob(resolve, "image/png");
+        } catch (error) {
+          reject(error);
         }
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = `nordstadt-${new Date().toISOString().slice(0, 10)}.png`;
-        link.click();
-        setTimeout(() => URL.revokeObjectURL(link.href), 1000);
-      }, "image/png");
+      });
+      if (!blob) {
+        alert("Das Bild konnte nicht erstellt werden.");
+        return;
+      }
+
+      const file = new File([blob], filename, { type: "image/png" });
+      if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], title: "Meine Nordstadt" });
+        } catch (error) {
+          if (error.name === "AbortError") {
+            return;
+          }
+          alert("Teilen nicht moeglich. Das Bild wird stattdessen heruntergeladen.");
+          downloadImage(blob, filename);
+        }
+        return;
+      }
+
+      downloadImage(blob, filename);
     } catch (error) {
       alert("Speichern nicht moeglich. Bitte die Seite ueber einen Webserver oeffnen.");
     }
