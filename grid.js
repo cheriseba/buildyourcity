@@ -15,6 +15,14 @@ const EDITOR_MODE = new URLSearchParams(window.location.search).has("editor");
 const BOARD_ROWS = 66;
 const BOARD_COLS_EVEN = 17;
 const BOARD_COLS_ODD = 16;
+// Zusaetzliche Spalten links/rechts; nur auf Desktop erreichbar (Koordinaten gx/gy der Bestandszellen bleiben gleich)
+const EXTRA_COLS = 4;
+const DESKTOP_MIN_WIDTH = 900;
+
+// Seitlicher Spielraum der Welt in px (0 auf kleinen Bildschirmen)
+function worldPad() {
+  return window.innerWidth >= DESKTOP_MIN_WIDTH ? EXTRA_COLS * CELL_W : 0;
+}
 
 // Obere linke Bildposition einer Zelle in Weltkoordinaten
 function gridToScreen(gx, gy) {
@@ -194,7 +202,8 @@ class Board {
   // Passt das Gebaeude komplett in die sichtbare Welt (0..BASE_CANVAS_SIZE)?
   fitsWorld(anchor, w, h, image) {
     const probe = new Building(anchor, w, h, image);
-    if (probe.y < 0 || probe.x < 0 || probe.x + probe.drawW > BASE_CANVAS_SIZE) {
+    const pad = worldPad();
+    if (probe.y < -pad || probe.y + probe.drawH > BASE_CANVAS_SIZE + pad || probe.x < -pad || probe.x + probe.drawW > BASE_CANVAS_SIZE + pad) {
       return false;
     }
 
@@ -203,7 +212,7 @@ class Board {
         const cell = this.get(anchor.gx + dx, anchor.gy + dy);
         const cx = cell.x + CELL_CENTER_X;
         const cy = cell.y + CELL_CENTER_Y;
-        if (cx - CELL_W / 2 < 0 || cx + CELL_W / 2 > BASE_CANVAS_SIZE || cy - CELL_H / 2 < 0 || cy + CELL_H / 2 > BASE_CANVAS_SIZE) {
+        if (cx - CELL_W / 2 < -pad || cx + CELL_W / 2 > BASE_CANVAS_SIZE + pad || cy - CELL_H / 2 < -pad || cy + CELL_H / 2 > BASE_CANVAS_SIZE + pad) {
           return false;
         }
       }
@@ -372,11 +381,12 @@ function buildBoard(initialImage) {
   board.buildings.clear();
   board.history = [];
 
-  for (let row = 0; row < BOARD_ROWS; row++) {
+  // Zeilen oben/unten ergaenzen, damit das Feld (Desktop) quadratisch ist: EXTRA_COLS*64 px = EXTRA_COLS*4 Zeilen
+  for (let row = -EXTRA_COLS * 4; row < BOARD_ROWS + EXTRA_COLS * 4; row++) {
     const even = row % 2 === 0;
     const cols = even ? BOARD_COLS_EVEN : BOARD_COLS_ODD;
 
-    for (let k = 0; k < cols; k++) {
+    for (let k = -EXTRA_COLS; k < cols + EXTRA_COLS; k++) {
       const gx = even ? row / 2 + k : (row + 1) / 2 + k;
       const gy = even ? row / 2 + 1 - k : (row + 1) / 2 - k;
       board.set(new Tile(gx, gy, initialImage));

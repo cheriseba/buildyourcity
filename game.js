@@ -84,17 +84,19 @@ function measureView() {
   view.h = Math.max(1, Math.floor(rect.height));
   view.insetTop = topbar && getComputedStyle(topbar).display !== "none" ? Math.max(0, topbar.getBoundingClientRect().bottom - rect.top) : 0;
   view.insetBottom = dock ? Math.max(0, rect.bottom - dock.getBoundingClientRect().top) : 0;
-  view.minScale = Math.max(view.w, view.h) / BASE_CANVAS_SIZE;
+  view.minScale = Math.max(view.w / (BASE_CANVAS_SIZE + 2 * worldPad()), view.h / (BASE_CANVAS_SIZE + 2 * worldPad()));
 }
 
 function clampCamera(c) {
   c.scale = Math.min(Math.max(MAX_SCALE, view.minScale), Math.max(view.minScale, c.scale));
-  c.x = Math.min(BASE_CANVAS_SIZE - view.w / c.scale, Math.max(0, c.x));
-  c.y = Math.min(BASE_CANVAS_SIZE - (view.h - view.insetBottom) / c.scale, Math.max(-view.insetTop / c.scale, c.y));
+  const pad = worldPad();
+  c.x = Math.min(BASE_CANVAS_SIZE + pad - view.w / c.scale, Math.max(-pad, c.x));
+  c.y = Math.min(BASE_CANVAS_SIZE + pad - (view.h - view.insetBottom) / c.scale, Math.max(-pad - view.insetTop / c.scale, c.y));
 }
 
 function startScale() {
-  return Math.max(view.minScale, window.innerWidth >= 900 ? 1.5 : 1.25);
+  // Desktop: deutlich hineingezoomt, damit man in alle Richtungen scrollen kann
+  return window.innerWidth >= 900 ? Math.max(2, view.minScale * 1.5) : Math.max(view.minScale, 1.25);
 }
 
 function resetCamera() {
@@ -198,23 +200,29 @@ function handleTap(px, py, withCtrl) {
     return;
   }
 
+  // Doppelklick entfernt schrittweise: erst das Overlay (Katze), dann den Boden/das Gebaeude (zurueck auf Wiese)
   const now = performance.now();
+  const hasObject = Boolean(tile.overlay || tile.owner || tile.ground !== img[MEADOW_TILE_INDEX]);
   if (
-    tile.overlay &&
+    hasObject &&
     lastOverlayTap &&
     lastOverlayTap.key === tile.key &&
     now - lastOverlayTap.time <= 350
   ) {
     lastOverlayTap = null;
-    const result = board.eraseOverlay(tile);
-    if (result === "locked") {
+    if (tile.overlay) {
+      const result = board.eraseOverlay(tile);
+      if (result === "locked") {
+        showToast("Dieses Tile ist fest");
+      } else if (result) {
+        notifyTutorialAction("overlay-removed", { tile });
+      }
+    } else if (!board.erase(tile, img[MEADOW_TILE_INDEX])) {
       showToast("Dieses Tile ist fest");
-    } else if (result) {
-      notifyTutorialAction("overlay-removed", { tile });
     }
     return;
   }
-  lastOverlayTap = tile.overlay ? { key: tile.key, time: now } : null;
+  lastOverlayTap = hasObject ? { key: tile.key, time: now } : null;
 
   if (selectedPaletteIndex !== null && img[selectedPaletteIndex]) {
     // Die Wiese ist der "Radierer": entfernt auch ein Overlay
@@ -1003,7 +1011,7 @@ function openTutorial() {
     { type: "board", point: "cat", title: "Katze platzieren", text: "Setze die Katze auf ein freies Feld." },
     { type: "tile", category: "13_Stadtboden", file: "Asphalt_1.png", title: "Parkplatz-Untergrund w\u00e4hlen", text: "W\u00e4hle Asphalt. Ein UNDER-Tile \u00e4ndert den Boden unter der Katze." },
     { type: "board", point: "cat", title: "Untergrund \u00e4ndern", text: "Klicke auf dasselbe Katzenfeld, um den Untergrund zu \u00e4ndern." },
-    { type: "board", point: "cat", title: "Katze entfernen", text: "Doppelklicke oder doppeltippe auf das Feld. Die Katze verschwindet, der Asphalt bleibt." },
+    { type: "board", point: "cat", title: "Katze entfernen", text: "Doppelklicke oder doppeltippe auf das Feld. Die Katze verschwindet, der Asphalt bleibt. Ein weiterer Doppelklick setzt das Feld auf Wiese." },
     { type: "menu", title: "Men\u00fc \u00f6ffnen", text: "\u00d6ffne das Men\u00fc oben rechts." },
     { type: "save", title: "Speichern", text: "Klicke auf Speichern, um deine Stadt zu teilen oder als Bild herunterzuladen." },
     { type: "reset", title: "Reset", text: "Klicke zweimal auf Reset, um das Spielfeld wirklich zur\u00fcckzusetzen." },
