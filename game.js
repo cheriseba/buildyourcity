@@ -16,7 +16,20 @@ const MEADOW_TILE_INDEX = 0;
 let tileDefs = [];
 let tileCategories = [];
 let lastOverlayTap = null;
+const RECENT_CATEGORY_NAME = "Zuletzt benutzt";
+const RECENT_LIMIT = 24;
+let recentTileIndices = [];
 let tutorialActionHandler = null;
+
+// Character-Mode
+let gameMode = "build"; // "build" oder "character"
+let modeSwitch = null;
+let touchController = null;
+let characterManager = null;
+let currentCharacter = null;
+let characterSelectionScreen = null;
+const CHARACTER_TILE_SIZE = 32; // Gleicher Maßstab wie Tiles
+const CHARACTER_MOVE_SPEED = 0.5; // Bewegungsverzögerung: höhere Werte = langsamer, min. 0.1 (10 frames pro Schritt)
 
 function notifyTutorialAction(action, detail) {
   if (tutorialActionHandler) {
@@ -46,9 +59,56 @@ function gamePreload() {
   tileDefs.forEach((def, i) => {
     img[i] = loadImage(def.url);
   });
+  
+  // Lade Character-Assets
+  if (characterManager) {
+    characterManager.preloadAll();
+  }
 }
 
 function gameSetup() {
+  // Create a debug console overlay
+  const debugConsole = document.createElement("div");
+  debugConsole.id = "debug-console";
+  debugConsole.style.cssText = `
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 400px;
+    height: 200px;
+    background: rgba(0,0,0,0.8);
+    color: #0f0;
+    font-family: monospace;
+    font-size: 11px;
+    padding: 10px;
+    border: 1px solid #0f0;
+    z-index: 10000;
+    overflow-y: auto;
+    display: none;
+  `;
+  document.body.appendChild(debugConsole);
+  
+  // Override console.log
+  const originalLog = console.log;
+  console.log = function(...args) {
+    originalLog.apply(console, args);
+    const message = args.map(arg => {
+      if (typeof arg === 'string') return arg;
+      try { return JSON.stringify(arg); } catch(e) { return String(arg); }
+    }).join(' ');
+    const line = document.createElement("div");
+    line.textContent = new Date().toLocaleTimeString() + ": " + message;
+    debugConsole.appendChild(line);
+    debugConsole.scrollTop = debugConsole.scrollHeight;
+  };
+  
+  // Show debug console on Ctrl+Shift+D
+  window.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.shiftKey && e.code === "KeyD") {
+      debugConsole.style.display = debugConsole.style.display === "none" ? "block" : "none";
+    }
+  });
+  
   measureView();
   gameCanvas = createCanvas(view.w, view.h);
   gameCanvas.parent("sketch");
@@ -59,6 +119,7 @@ function gameSetup() {
   noSmooth();
   createTilePalette();
   createModeSwitch();
+  initCharacterMode();
   updateViewportLayout();
   initCamera();
   bindUndo();
@@ -143,9 +204,23 @@ function panBy(dx, dy, immediate) {
 
 function gameDraw() {
   const ease = 0.25;
-  cam.x += (camTarget.x - cam.x) * ease;
-  cam.y += (camTarget.y - cam.y) * ease;
+  const following = gameMode === "character" && currentCharacter;
+  if (following) {
+    updateCharacterMovement();
+    currentCharacter.display();
+    camTarget.x = currentCharacter.x + currentCharacter.drawW / 2 - view.w / (2 * camTarget.scale);
+    camTarget.y = currentCharacter.y + currentCharacter.drawH / 2 - view.h / (2 * camTarget.scale);
+    clampCamera(camTarget);
+  }
   cam.scale += (camTarget.scale - cam.scale) * ease;
+  if (following) {
+    // Position ohne Verzoegerung, damit der Charakter exakt zentriert bleibt
+    cam.x = camTarget.x;
+    cam.y = camTarget.y;
+  } else {
+    cam.x += (camTarget.x - cam.x) * ease;
+    cam.y += (camTarget.y - cam.y) * ease;
+  }
 
   background(70);
 
@@ -156,12 +231,45 @@ function gameDraw() {
   const viewW = view.w / cam.scale;
   const viewH = view.h / cam.scale;
 
-  // tiles: Zellen und Gebaeude in Zeichenreihenfolge (hinten zuerst, vorne zuletzt), siehe Board.drawOrder().
-  for (const t of tiles) {
-    if (t.x + t.drawW < cam.x || t.x > cam.x + viewW || t.y + t.drawH < cam.y || t.y > cam.y + viewH) {
-      continue;
+  // Update Character-Bewegung (wenn im Character-Modus)
+  if (gameMode === "character" && currentCharacter) {
+    // WICHTIG: display() aufrufen BEVOR drawOrder() berechnet wird!
+    // Das aktualisiert x, y, drawW, drawH für die korrekte Tiefensortierung
+    currentCharacter.display();
+
+
+    // Rebuild tiles mit Character eingebunden für korrekte z-order Sortierung
+    const drawList = board.drawOrder(currentCharacter);
+    for (const t of drawList) {
+      if (t.x + t.drawW < cam.x || t.x > cam.x + viewW || t.y + t.drawH < cam.y || t.y > cam.y + viewH) {
+        continue;
+      }
+      
+      if (t === currentCharacter) {
+        // Character ist bereits in drawList eingefügt, aber wir rendern ihn nicht nochmal
+        // Die x, y, drawW, drawH sind schon aktualisiert von display() oben
+        // Wir zeichnen ihn direkt mit dem bereits ausgewählten Bild
+        let currentImage;
+        if (currentCharacter.isMoving) {
+          currentImage = currentCharacter.lastDirection === "front" ? currentCharacter.images.animFront : currentCharacter.images.animBack;
+        } else {
+          currentImage = currentCharacter.lastDirection === "front" ? currentCharacter.images.idleFront : currentCharacter.images.idleBack;
+        }
+        if (currentImage) {
+          image(currentImage, currentCharacter.x, currentCharacter.y, currentCharacter.drawW, currentCharacter.drawH);
+        }
+      } else {
+        t.show();
+      }
     }
-    t.show();
+  } else {
+    // Build Mode - nur Tiles
+    for (const t of tiles) {
+      if (t.x + t.drawW < cam.x || t.x > cam.x + viewW || t.y + t.drawH < cam.y || t.y > cam.y + viewH) {
+        continue;
+      }
+      t.show();
+    }
   }
 
   pop();
@@ -190,13 +298,25 @@ function canvasPoint(event) {
 }
 
 function handleTap(px, py, withCtrl) {
+  console.log(`[handleTap] Click at canvas (${px}, ${py}), gameMode=${gameMode}`);
+  
   const worldX = cam.x + px / cam.scale;
   const worldY = cam.y + py / cam.scale;
+  console.log(`[handleTap] World coords: (${worldX}, ${worldY})`);
 
   const cell = screenToGrid(worldX, worldY);
+  console.log(`[handleTap] Grid cell from screenToGrid: (${cell.gx}, ${cell.gy})`);
+  
   const tile = board.get(cell.gx, cell.gy);
+  console.log(`[handleTap] Tile at grid position:`, tile ? `(${tile.gx}, ${tile.gy})` : 'NOT FOUND');
 
   if (!tile) {
+    console.log(`[handleTap] No tile at grid position`);
+    return;
+  }
+
+  // CHARACTER-MODUS: Taps auf das Board haben keine Wirkung
+  if (gameMode !== "build") {
     return;
   }
 
@@ -329,7 +449,9 @@ function initCamera() {
   });
 
   const endPointer = (event, cancelled) => {
+    console.log(`[endPointer] cancelled=${cancelled}, moved=${moved}, wasMultiTouch=${wasMultiTouch}`);
     if (!pointers.has(event.pointerId)) {
+      console.log(`[endPointer] pointer not found`);
       return;
     }
 
@@ -340,8 +462,11 @@ function initCamera() {
       canvasElement.classList.remove("dragging");
 
       if (!cancelled && !moved && !wasMultiTouch) {
+        console.log(`[endPointer] calling handleTap`);
         const point = canvasPoint(event);
         handleTap(point.x, point.y, event.ctrlKey);
+      } else {
+        console.log(`[endPointer] NOT calling handleTap: cancelled=${cancelled}, moved=${moved}, wasMultiTouch=${wasMultiTouch}`);
       }
     }
   };
@@ -491,22 +616,77 @@ function createTilePalette() {
     return { el, head, items };
   });
 
+  // "Zuletzt benutzt": Reihenfolge wird nur beim Oeffnen eingefroren, nicht waehrend der Nutzung
+  const recentEl = document.createElement("div");
+  recentEl.className = "cat-group cat-recent";
+
+  const recentHead = document.createElement("button");
+  recentHead.className = "tile-button cat-button cat-button-recent";
+  recentHead.type = "button";
+  recentHead.title = RECENT_CATEGORY_NAME;
+  recentHead.setAttribute("aria-label", RECENT_CATEGORY_NAME);
+  recentHead.setAttribute("aria-expanded", "false");
+  recentHead.innerHTML =
+    '<svg class="recent-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M12 7v5.5l3.5 2" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square"/></svg><span class="cat-chevron"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+
+  const recentItems = document.createElement("div");
+  recentItems.className = "cat-items";
+  recentItems.hidden = true;
+
+  recentEl.append(recentHead, recentItems);
+  const recentGroup = {
+    el: recentEl,
+    head: recentHead,
+    items: recentItems,
+    refresh: () => {
+      if (recentTileIndices.length === 0) {
+        const empty = document.createElement("span");
+        empty.className = "palette-empty";
+        empty.textContent = "Noch nichts benutzt";
+        recentItems.replaceChildren(empty);
+      } else {
+        recentItems.replaceChildren(...recentTileIndices.map(makeTileButton));
+        syncPaletteSelection();
+      }
+    }
+  };
+  groups.unshift(recentGroup);
+
+  // Geoeffnete Kategorie: Tiles erscheinen in einer Reihe ueber der Leiste
+  const flyout = document.createElement("div");
+  flyout.className = "cat-flyout";
+  flyout.hidden = true;
+
   const setOpen = (group, open) => {
     group.el.classList.toggle("open", open);
     group.items.hidden = !open;
     group.head.setAttribute("aria-expanded", String(open));
+    if (open) {
+      if (group.refresh) {
+        group.refresh();
+      }
+      flyout.replaceChildren(group.items);
+      flyout.hidden = false;
+      flyout.scrollLeft = 0;
+    } else if (group.items.parentElement !== group.el) {
+      group.el.appendChild(group.items);
+    }
+  };
+
+  const closeAll = () => {
+    groups.forEach((group) => setOpen(group, false));
+    flyout.hidden = true;
   };
 
   groups.forEach((group) => {
     group.head.addEventListener("click", () => {
+      if (!searchInput.hidden) {
+        toggleSearch(false);
+      }
       const open = !group.el.classList.contains("open");
-      const headLeft = group.head.getBoundingClientRect().left;
-      groups.forEach((other) => setOpen(other, other === group && open));
-
+      closeAll();
       if (open) {
-        requestAnimationFrame(() => {
-          scroller.scrollLeft += group.head.getBoundingClientRect().left - headLeft;
-        });
+        setOpen(group, true);
       }
     });
   });
@@ -514,6 +694,10 @@ function createTilePalette() {
   const render = () => {
     const query = normalize(searchInput.value.trim());
     const terms = query.split(/\s+/).filter(Boolean);
+
+    if (query) {
+      closeAll();
+    }
 
     if (!query) {
       scroller.replaceChildren(...groups.map((group) => group.el));
@@ -543,6 +727,7 @@ function createTilePalette() {
     searchButton.classList.toggle("selected", show);
 
     if (show) {
+      closeAll();
       searchInput.focus();
     } else {
       searchInput.value = "";
@@ -558,7 +743,7 @@ function createTilePalette() {
     }
   });
 
-  leftPalette.append(searchBar, fixed, scroller);
+  leftPalette.append(searchBar, flyout, fixed, scroller);
   render();
 }
 
@@ -573,10 +758,239 @@ function syncPaletteSelection() {
 function selectPaletteTile(index) {
   lastOverlayTap = null;
   selectedPaletteIndex = selectedPaletteIndex === index ? null : index;
+  if (selectedPaletteIndex !== null && index !== MEADOW_TILE_INDEX) {
+    recentTileIndices = [index, ...recentTileIndices.filter((i) => i !== index)].slice(0, RECENT_LIMIT);
+  }
   syncPaletteSelection();
   notifyTutorialAction("palette-selected", { index, def: tileDefs[index] });
 }
 
+// === CHARACTER-MODE FUNKTIONEN ===
+
+let characterSelectionBar = null;
+
+function initCharacterMode() {
+  // Initialisiere Character Manager
+  if (!characterManager) {
+    characterManager = new CharacterManager();
+    loadCharacters();
+  }
+  
+  const mainElement = document.querySelector("main.app");
+  if (mainElement) {
+    modeSwitch = new ModeSwitch(mainElement);
+    modeSwitch.onChange((mode) => switchGameMode(mode));
+  }
+  
+  // Keyboard input für WASD
+  document.addEventListener("keydown", handleCharacterMovementKey);
+  document.addEventListener("keyup", handleCharacterMovementKeyUp);
+}
+
+let keysPressed = { w: false, a: false, s: false, d: false };
+
+function handleCharacterMovementKey(event) {
+  if (gameMode !== "character" || !currentCharacter) return;
+  
+  const key = event.key.toLowerCase();
+  if (key === 'w' || key === 'arrowup') {
+    keysPressed.w = true;
+    event.preventDefault();
+  }
+  if (key === 's' || key === 'arrowdown') {
+    keysPressed.s = true;
+    event.preventDefault();
+  }
+  if (key === 'a' || key === 'arrowleft') {
+    keysPressed.a = true;
+    event.preventDefault();
+  }
+  if (key === 'd' || key === 'arrowright') {
+    keysPressed.d = true;
+    event.preventDefault();
+  }
+}
+
+function handleCharacterMovementKeyUp(event) {
+  const key = event.key.toLowerCase();
+  if (key === 'w' || key === 'arrowup') keysPressed.w = false;
+  if (key === 's' || key === 'arrowdown') keysPressed.s = false;
+  if (key === 'a' || key === 'arrowleft') keysPressed.a = false;
+  if (key === 'd' || key === 'arrowright') keysPressed.d = false;
+}
+
+function updateCharacterMovement() {
+  if (gameMode !== "character" || !currentCharacter) {
+    return;
+  }
+  
+  // Update laufende Bewegungs-Animation
+  currentCharacter.updateMovement();
+  
+  // Desktop: WASD - aber nur Bewegung starten wenn nicht bereits in Bewegung
+  if (!currentCharacter.isMoving) {
+    if (keysPressed.w) currentCharacter.startMovement("up-right");
+    else if (keysPressed.s) currentCharacter.startMovement("down-left");
+    else if (keysPressed.a) currentCharacter.startMovement("up-left");
+    else if (keysPressed.d) currentCharacter.startMovement("down-right");
+  }
+  
+  // Mobile: Touch-Controller (nur wenn nicht null)
+  if (touchController && touchController.isMobile && !currentCharacter.isMoving) {
+    const mobileInput = touchController.getInput();
+    
+    if (Math.abs(mobileInput.x) > 0.3 || Math.abs(mobileInput.y) > 0.3) {
+      // Bestimme die Richtung basierend auf Joystick-Input
+      let direction;
+      if (Math.abs(mobileInput.y) > Math.abs(mobileInput.x)) {
+        // Vertikal hat Vorrang
+        direction = mobileInput.y < 0 ? "up-right" : "down-left";
+      } else {
+        // Horizontal
+        direction = mobileInput.x < 0 ? "up-left" : "down-right";
+      }
+      currentCharacter.startMovement(direction);
+    }
+  }
+}
+
+const CHARACTER_DEFS = [
+  { name: "Basketball Bird", folder: "basketballbird" },
+  { name: "Charakter 2", folder: "character2" },
+  { name: "Charakter 3", folder: "nocheincharacter" },
+  { name: "Charakter 4", folder: "vierterchar" }
+];
+
+function loadCharacters() {
+  for (const char of CHARACTER_DEFS) {
+    characterManager.addCharacter(char.name, `character/${char.folder}`);
+  }
+}
+
+function switchGameMode(newMode) {
+  gameMode = newMode;
+  
+  if (gameMode === "build") {
+    enableBuildMode();
+    if (characterSelectionBar) {
+      characterSelectionBar.hide();
+    }
+    currentCharacter = null;
+    keysPressed = { w: false, a: false, s: false, d: false };
+    if (touchController) {
+      touchController.destroy();
+      touchController = null;
+    }
+  } else if (gameMode === "character") {
+    disableBuildMode();
+    showCharacterSelection();
+    // Im Erkunden-Modus standardmaessig nah heranzoomen (manuell weiter aenderbar)
+    camTarget.scale = Math.max(window.innerWidth >= 900 ? 4 : 3, view.minScale);
+    clampCamera(camTarget);
+  }
+}
+
+function enableBuildMode() {
+  const leftPalette = document.getElementById("left-palette");
+  if (leftPalette) {
+    leftPalette.style.display = "";
+  }
+  selectedBoardTileIndices.clear();
+}
+
+function disableBuildMode() {
+  const leftPalette = document.getElementById("left-palette");
+  if (leftPalette) {
+    leftPalette.style.display = "none";
+  }
+  selectedBoardTileIndices.clear();
+  selectedPaletteIndex = null;
+}
+
+// Der Charakter ist nach der Wahl fest; ein Wechsel geht nur ueber Bauen -> Erkunden.
+function showCharacterSelection() {
+  const characters = CHARACTER_DEFS.map((def) => ({
+    name: def.name,
+    previewImage: `character/${def.folder}/vorn.png`
+  }));
+  
+  const mainElement = document.querySelector("main.app");
+  if (!characterSelectionBar) {
+    characterSelectionBar = new CharacterSelectionBar(mainElement, characters);
+  }
+  
+  const backToBuild = () => {
+    if (modeSwitch) {
+      modeSwitch.setMode("build");
+    }
+  };
+  
+  // Warnhinweis zuerst; erst nach "Verstanden" folgt die Charakterauswahl
+  characterSelectionBar.showNotice(
+    () =>
+      characterSelectionBar.show((selectedName) => placeCharacterAtViewCenter(selectedName), backToBuild),
+    backToBuild
+  );
+}
+
+// Begehbares Tile (UNDER, ohne Overlay/Gebaeude) moeglichst nah an der Mitte des sichtbaren Bereichs
+function findSpawnTile(character) {
+  const centerX = cam.x + view.w / cam.scale / 2;
+  const centerY = cam.y + view.h / cam.scale / 2;
+  const hasWalkableNeighbor = (tile) =>
+    [[1, 0], [-1, 0], [0, 1], [0, -1]].some(([dx, dy]) => character.canWalkOn(tile.gx + dx, tile.gy + dy));
+  
+  let best = null;
+  let bestIsolated = null;
+  let bestDist = Infinity;
+  let bestIsolatedDist = Infinity;
+  
+  for (const tile of board.cells.values()) {
+    if (!character.canWalkOn(tile.gx, tile.gy)) {
+      continue;
+    }
+    const dist = Math.hypot(tile.x + CELL_CENTER_X - centerX, tile.y + CELL_CENTER_Y - centerY);
+    if (hasWalkableNeighbor(tile)) {
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = tile;
+      }
+    } else if (dist < bestIsolatedDist) {
+      bestIsolatedDist = dist;
+      bestIsolated = tile;
+    }
+  }
+  
+  return best || bestIsolated;
+}
+
+function placeCharacterAtViewCenter(characterName) {
+  if (!characterManager.selectCharacter(characterName)) {
+    return;
+  }
+  
+  const character = characterManager.currentCharacter;
+  const spawn = findSpawnTile(character);
+  
+  if (!spawn) {
+    showToast("Kein begehbares Feld gefunden!");
+    if (modeSwitch) {
+      modeSwitch.setMode("build");
+    }
+    return;
+  }
+  
+  currentCharacter = character;
+  currentCharacter.init(CHARACTER_TILE_SIZE, spawn.gx, spawn.gy);
+  
+  const mainElement = document.querySelector("main.app");
+  if (mainElement) {
+    if (touchController) {
+      touchController.destroy();
+    }
+    touchController = new TouchController(mainElement, 120, 120);
+  }
+}
 
 function createModeSwitch() {
   const meadowButton = document.getElementById("mode-meadow");
@@ -676,8 +1090,11 @@ function createModeSwitch() {
   });
 }
 function enableDockDrag() {
-  const dock = document.getElementById("palette-scroll");
+  enableDragScroll(document.getElementById("palette-scroll"));
+  enableDragScroll(document.querySelector("#left-palette .cat-flyout"));
+}
 
+function enableDragScroll(dock) {
   if (!dock || dock.dataset.dragBound === "1") {
     return;
   }
@@ -879,6 +1296,10 @@ window.addEventListener("keydown", (event) => {
 
 // Die CSV-Dateien muessen vor p5 geladen sein; p5 wird deshalb erst danach gestartet.
 async function startGame() {
+  // Initialisiere Character-Manager früh, damit Assets in gamePreload geladen werden
+  characterManager = new CharacterManager();
+  loadCharacters();
+  
   try {
     const manifest = await loadManifest();
     ({ tileDefs, tileCategories } = buildTileDefs(manifest));
@@ -982,6 +1403,14 @@ if (document.readyState === "complete") {
 
 function openTutorial() {
   const tutorial = document.getElementById("tutorial");
+  if (tutorial && !tutorial.hidden) {
+    return;
+  }
+
+  // Das Tutorial arbeitet mit der Tile-Leiste; die gibt es nur im Baumodus
+  if (gameMode !== "build" && modeSwitch) {
+    modeSwitch.setMode("build");
+  }
   const palette = document.getElementById("left-palette");
   const scroller = document.getElementById("palette-scroll");
   const focus = document.getElementById("tutorial-focus");
@@ -1000,14 +1429,14 @@ function openTutorial() {
   }
 
   const steps = [
-    { type: "category", category: "1_Hauslinks", title: "Kategorie \u00f6ffnen", text: "\u00d6ffne eine Tile-Kategorie in der Leiste." },
-    { type: "scroll", title: "Leiste scrollen", text: "Schiebe die Leiste waagerecht weiter. Am PC kannst du ziehen oder das Mausrad nutzen." },
+    { type: "category", category: "1_Hauslinks", title: "Kategorie \u00f6ffnen", text: "\u00d6ffne eine Tile-Kategorie in der Leiste. Die Tiles klappen dar\u00fcber auf." },
+    { type: "scroll", title: "Leiste scrollen", text: "Schiebe die aufgeklappte Leiste seitlich weiter. Am PC kannst du ziehen oder das Mausrad nutzen." },
     { type: "tile", category: "1_Hauslinks", file: "Altbau_1.png", title: "Haus ausw\u00e4hlen", text: "W\u00e4hle das markierte Haus aus." },
     { type: "board", point: "center", title: "Haus platzieren", text: "Setze das Haus auf ein freies Feld." },
     { type: "meadow", title: "Wiese ausw\u00e4hlen", text: "W\u00e4hle links die Wiese. Sie setzt ein Feld zur\u00fcck." },
     { type: "board", point: "house", title: "Durch Wiese ersetzen", text: "Klicke auf dasselbe Feld, um das Haus durch Wiese zu ersetzen." },
     { type: "undo", title: "R\u00fcckg\u00e4ngig", text: "Dr\u00fccke den markierten Pfeil, um das Haus wiederherzustellen." },
-    { type: "tile", category: "21_Tiere", file: "Katze_1.png", noFocus: true, title: "Katze ausw\u00e4hlen", text: "Auf B\u00f6den kannst du auch Objekte und Tiere platzieren. Suche die Katze in der Leiste; die passende Kategorie \u00f6ffnet sich automatisch." },
+    { type: "tile", category: "21_Tiere", file: "Katze_1.png", title: "Katze ausw\u00e4hlen", text: "Auf B\u00f6den kannst du auch Objekte und Tiere platzieren. Die passende Kategorie \u00f6ffnet sich automatisch." },
     { type: "board", point: "cat", title: "Katze platzieren", text: "Setze die Katze auf ein freies Feld." },
     { type: "tile", category: "13_Stadtboden", file: "Asphalt_1.png", title: "Parkplatz-Untergrund w\u00e4hlen", text: "W\u00e4hle Asphalt. Ein UNDER-Tile \u00e4ndert den Boden unter der Katze." },
     { type: "board", point: "cat", title: "Untergrund \u00e4ndern", text: "Klicke auf dasselbe Katzenfeld, um den Untergrund zu \u00e4ndern." },
@@ -1024,7 +1453,16 @@ function openTutorial() {
   let activeTarget = null;
   let scrollStart = 0;
   let scrollIntent = false;
+  let scrollTarget = null;
   let pointerStart = null;
+  const flyout = palette.querySelector(".cat-flyout");
+  const scrollables = [flyout, scroller].filter(Boolean);
+  const overflows = (el) => el.scrollWidth > el.clientWidth + 8;
+  const pickScrollTarget = () => scrollables.find((el) => !el.hidden && overflows(el)) || null;
+
+  // Altes Auswahl-Toggle darf das Tutorial nicht blockieren
+  selectedPaletteIndex = null;
+  syncPaletteSelection();
 
   const categoryButton = (name) =>
     [...palette.querySelectorAll(".cat-button")].find((button) => button.title === name) || null;
@@ -1095,6 +1533,10 @@ function openTutorial() {
   };
 
   const render = () => {
+    // Scroll-Schritt entfaellt, wenn nichts zu scrollen ist (z. B. grosse Bildschirme)
+    while (steps[step].type === "scroll" && !pickScrollTarget()) {
+      step++;
+    }
     const current = steps[step];
     if (activeTarget) {
       activeTarget.classList.remove("tutorial-target");
@@ -1113,9 +1555,13 @@ function openTutorial() {
     let point = null;
     if (current.type === "category") {
       target = categoryButton(current.category);
+      if (target && target.getAttribute("aria-expanded") === "true") {
+        target.click();
+      }
     } else if (current.type === "scroll") {
-      target = scroller;
-      scrollStart = scroller.scrollLeft;
+      target = pickScrollTarget();
+      scrollTarget = target;
+      scrollStart = target.scrollLeft;
       scrollIntent = false;
     } else if (current.type === "tile") {
       openCategory(current.category);
@@ -1148,7 +1594,7 @@ function openTutorial() {
       if (!current.noFocus) {
         activeTarget = target;
         target.classList.add("tutorial-target");
-        target.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+        target.scrollIntoView({ behavior: "auto", block: "nearest", inline: "nearest" });
         if (current.type !== "save" && current.type !== "reset") {
           const rect = target.getBoundingClientRect();
           focus.style.left = `${rect.left - 5}px`;
@@ -1185,11 +1631,13 @@ function openTutorial() {
     close.removeEventListener("click", finish);
     next.removeEventListener("click", finish);
     palette.removeEventListener("click", onPaletteClick);
-    scroller.removeEventListener("pointerdown", onPointerDown);
+    scrollables.forEach((el) => {
+      el.removeEventListener("pointerdown", onPointerDown);
+      el.removeEventListener("wheel", onWheel);
+      el.removeEventListener("scroll", onScroll);
+    });
     window.removeEventListener("pointermove", onPointerMove);
     window.removeEventListener("pointerup", onPointerUp);
-    scroller.removeEventListener("wheel", onWheel);
-    scroller.removeEventListener("scroll", onScroll);
     document.removeEventListener("click", onDocumentClick);
     window.removeEventListener("resize", render);
     window.removeEventListener("keydown", onKeydown);
@@ -1205,7 +1653,7 @@ function openTutorial() {
   };
 
   const onPointerDown = (event) => {
-    scrollStart = scroller.scrollLeft;
+    scrollStart = scrollTarget ? scrollTarget.scrollLeft : 0;
     pointerStart = { x: event.clientX, y: event.clientY };
     scrollIntent = false;
   };
@@ -1218,13 +1666,10 @@ function openTutorial() {
     pointerStart = null;
   };
   const onWheel = () => {
-    if (!scrollIntent) {
-      scrollStart = scroller.scrollLeft;
-    }
     scrollIntent = true;
   };
-  const onScroll = () => {
-    if (steps[step].type === "scroll" && scrollIntent && Math.abs(scroller.scrollLeft - scrollStart) > 24) {
+  const onScroll = (event) => {
+    if (steps[step].type === "scroll" && scrollIntent && event.target === scrollTarget && Math.abs(scrollTarget.scrollLeft - scrollStart) > 24) {
       step++;
       scrollIntent = false;
       render();
@@ -1290,11 +1735,13 @@ function openTutorial() {
   close.addEventListener("click", finish);
   next.addEventListener("click", finish);
   palette.addEventListener("click", onPaletteClick);
-  scroller.addEventListener("pointerdown", onPointerDown);
+  scrollables.forEach((el) => {
+    el.addEventListener("pointerdown", onPointerDown);
+    el.addEventListener("wheel", onWheel, { passive: true });
+    el.addEventListener("scroll", onScroll, { passive: true });
+  });
   window.addEventListener("pointermove", onPointerMove);
   window.addEventListener("pointerup", onPointerUp);
-  scroller.addEventListener("wheel", onWheel, { passive: true });
-  scroller.addEventListener("scroll", onScroll, { passive: true });
   document.addEventListener("click", onDocumentClick);
   window.addEventListener("resize", render);
   window.addEventListener("keydown", onKeydown);

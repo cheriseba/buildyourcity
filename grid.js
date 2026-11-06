@@ -66,9 +66,23 @@ class Board {
   // Zeichenliste mit Gebaeuden: Basis ist die Tiefensortierung der freien Zellen. Fuer Gebaeude gilt zusaetzlich:
   // a liegt hinter b, wenn a komplett kleinere gx- oder gy-Werte hat. Diese Paare (nur bei sich ueberlappenden
   // Bildern) werden per topologischer Sortierung erzwungen.
-  drawOrder() {
-    const depth = (o) => o.maxX + o.maxY;
-    const items = [...this.sorted().filter((tile) => !tile.owner), ...this.buildings].sort(
+  drawOrder(characterToRender = null) {
+    const depth = (o) => {
+      // Character: vorderste Zelle, die er gerade beruehrt (aufrunden) plus Offset. So steht er beim Laufen
+      // zwischen zwei Zellen vor beiden Tiles und wird von keinem Nachbar-Tile ueberdeckt.
+      if (characterToRender && o === characterToRender) {
+        return Math.ceil(o.gx - 1e-6) + Math.ceil(o.gy - 1e-6) + 0.5;
+      }
+      return o.maxX + o.maxY;
+    };
+    const drawItems = [...this.sorted().filter((tile) => !tile.owner), ...this.buildings];
+    
+    // Füge den Character hinzu
+    if (characterToRender) {
+      drawItems.push(characterToRender);
+    }
+    
+    const items = drawItems.sort(
       (a, b) => depth(a) - depth(b) || a.minX - b.minX || a.minY - b.minY
     );
     const n = items.length;
