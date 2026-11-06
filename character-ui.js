@@ -6,20 +6,9 @@ class TouchController {
     this.height = height;
     this.radius = width / 2;
     
-    this.isDragging = false;
-    this.centerX = 0;
-    this.centerY = 0;
-    this.currentX = 0;
-    this.currentY = 0;
-    
-    // Startposition = Mitte, sonst laeuft der Character sofort los (Eingabe waere -1/-1)
-    this.centerX = width / 2;
-    this.centerY = height / 2;
-    this.currentX = this.centerX;
-    this.currentY = this.centerY;
-
-    this.canvas = null;
-    this.ctx = null;
+    this.direction = null;
+    this.activePointerId = null;
+    this.pad = null;
     this.isMobile = this.detectMobile();
     
     if (this.isMobile) {
@@ -35,135 +24,63 @@ class TouchController {
   }
   
   init() {
-    this.canvas = document.createElement("canvas");
-    this.canvas.width = this.width;
-    this.canvas.height = this.height;
-    this.canvas.classList.add("touch-controller");
-    this.canvas.style.cssText = `
-      position: fixed;
-      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-      right: calc(24px + env(safe-area-inset-right, 0px));
-      width: ${this.width}px;
-      height: ${this.height}px;
-      z-index: 3;
-      touch-action: none;
-      image-rendering: pixelated;
-    `;
+    // Rautenfoermige Anordnung passend zur isometrischen Ansicht
+    const buttons = [
+      { dir: "up-left", arrow: "↖", col: 1, row: 1 },
+      { dir: "up-right", arrow: "↗", col: 2, row: 1 },
+      { dir: "down-left", arrow: "↙", col: 1, row: 2 },
+      { dir: "down-right", arrow: "↘", col: 2, row: 2 }
+    ];
     
-    this.container.appendChild(this.canvas);
-    this.ctx = this.canvas.getContext("2d");
-    this.ctx.imageSmoothingEnabled = false;
+    this.pad = document.createElement("div");
+    this.pad.classList.add("touch-controller");
+    this.pad.setAttribute("role", "group");
+    this.pad.setAttribute("aria-label", "Laufen");
+    this.pad.style.width = `${this.width}px`;
+    this.pad.style.height = `${this.height}px`;
     
-    const opts = { passive: false };
-    this.canvas.addEventListener("touchstart", this.onTouchStart.bind(this), opts);
-    this.canvas.addEventListener("touchmove", this.onTouchMove.bind(this), opts);
-    this.canvas.addEventListener("touchend", this.onTouchEnd.bind(this), opts);
-    this.canvas.addEventListener("touchcancel", this.onTouchEnd.bind(this), opts);
-    
-    this.draw();
-  }
-  
-  onTouchStart(e) {
-    e.preventDefault();
-    this.isDragging = true;
-    this.touchId = e.changedTouches[0].identifier;
-    this.updatePosition(e.changedTouches[0]);
-  }
-  
-  onTouchMove(e) {
-    if (!this.isDragging) return;
-    e.preventDefault();
-    const touch = Array.from(e.touches).find((t) => t.identifier === this.touchId);
-    if (touch) this.updatePosition(touch);
-  }
-  
-  onTouchEnd(e) {
-    e.preventDefault();
-    this.isDragging = false;
-    this.currentX = this.centerX;
-    this.currentY = this.centerY;
-  }
-  
-  updatePosition(event) {
-    const rect = this.canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    
-    const dx = x - this.centerX;
-    const dy = y - this.centerY;
-    const distance = Math.sqrt(dx * dx + dy * dy);
-    
-    if (distance > this.radius) {
-      const angle = Math.atan2(dy, dx);
-      this.currentX = this.centerX + Math.cos(angle) * this.radius;
-      this.currentY = this.centerY + Math.sin(angle) * this.radius;
-    } else {
-      this.currentX = x;
-      this.currentY = y;
-    }
-  }
-  
-  getInput() {
-    if (!this.isMobile) return { x: 0, y: 0 };
-    
-    const dx = this.currentX - this.centerX;
-    const dy = this.currentY - this.centerY;
-    const magnitude = Math.sqrt(dx * dx + dy * dy);
-    
-    if (magnitude === 0) {
-      return { x: 0, y: 0 };
+    for (const { dir, arrow, col, row } of buttons) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.classList.add("touch-controller-button");
+      btn.textContent = arrow;
+      btn.dataset.dir = dir;
+      btn.setAttribute("aria-label", dir);
+      btn.style.gridColumn = col;
+      btn.style.gridRow = row;
+      btn.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        this.activePointerId = e.pointerId;
+        this.direction = dir;
+        btn.setPointerCapture?.(e.pointerId);
+        btn.classList.add("active");
+      });
+      const release = (e) => {
+        if (e.pointerId !== this.activePointerId) return;
+        this.activePointerId = null;
+        this.direction = null;
+        btn.classList.remove("active");
+      };
+      btn.addEventListener("pointerup", release);
+      btn.addEventListener("pointercancel", release);
+      btn.addEventListener("contextmenu", (e) => e.preventDefault());
+      this.pad.appendChild(btn);
     }
     
-    const normalizedX = dx / this.radius;
-    const normalizedY = dy / this.radius;
-    
-    return {
-      x: Math.max(-1, Math.min(1, normalizedX)),
-      y: Math.max(-1, Math.min(1, normalizedY))
-    };
+    this.container.appendChild(this.pad);
   }
   
-  draw() {
-    if (!this.canvas) return;
-    
-    const ctx = this.ctx;
-    const px = 4;
-    const snap = (v) => Math.round(v / px) * px;
-    ctx.clearRect(0, 0, this.width, this.height);
-    
-    // Pixel-Platte: dunkler Rahmen, heller Innenrand
-    ctx.fillStyle = "#0b1020";
-    ctx.fillRect(0, 0, this.width, this.height);
-    ctx.fillStyle = "#eef1ff";
-    ctx.fillRect(px, px, this.width - 2 * px, this.height - 2 * px);
-    ctx.fillStyle = "#1b1f45";
-    ctx.fillRect(2 * px, 2 * px, this.width - 4 * px, this.height - 4 * px);
-    
-    // Fadenkreuz
-    ctx.fillStyle = "rgba(238, 241, 255, 0.25)";
-    ctx.fillRect(snap(this.centerX) - px / 2, 3 * px, px, this.height - 6 * px);
-    ctx.fillRect(3 * px, snap(this.centerY) - px / 2, this.width - 6 * px, px);
-    
-    // Knopf
-    const size = snap(this.radius * 0.6);
-    const kx = snap(this.currentX - size / 2);
-    const ky = snap(this.currentY - size / 2);
-    ctx.fillStyle = "#0b1020";
-    ctx.fillRect(kx - px, ky - px, size + 2 * px, size + 2 * px);
-    ctx.fillStyle = this.isDragging ? "#b46cff" : "#7c9cff";
-    ctx.fillRect(kx, ky, size, size);
-    ctx.fillStyle = "rgba(255, 255, 255, 0.45)";
-    ctx.fillRect(kx, ky, size, px);
-    ctx.fillRect(kx, ky, px, size);
-    
-    requestAnimationFrame(() => this.draw());
+  // Aktuell gehaltene Richtung ("up-left", "up-right", "down-left", "down-right") oder null
+  getDirection() {
+    return this.isMobile ? this.direction : null;
   }
   
   destroy() {
-    if (this.canvas && this.canvas.parentNode) {
-      this.canvas.parentNode.removeChild(this.canvas);
+    if (this.pad && this.pad.parentNode) {
+      this.pad.parentNode.removeChild(this.pad);
     }
-    this.canvas = null;
+    this.pad = null;
+    this.direction = null;
   }
 }
 

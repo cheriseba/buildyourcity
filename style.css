@@ -625,9 +625,27 @@ body {
   z-index: 3;
 }
 
+.respawn-button {
+  position: absolute;
+  top: calc(12px + var(--btn) + 8px + var(--safe-t));
+  right: calc(12px + var(--safe-r));
+  z-index: 3;
+}
+
+/* Erkunden-Modus: Auge und Rueckgaengig weg; Respawn nur dort sichtbar */
+.app.explore-mode .ui-hide-button,
+.app.explore-mode .undo-button {
+  display: none;
+}
+
+.respawn-button[hidden] {
+  display: none;
+}
+
 .menu,
 .ui-hide-button,
 .undo-button,
+.respawn-button,
 .dock {
   transition: opacity 0.25s, background 0.2s, transform 0.15s;
 }
@@ -635,6 +653,7 @@ body {
 .app.ui-hidden .menu,
 .app.ui-hidden .ui-hide-button,
 .app.ui-hidden .undo-button,
+.app.ui-hidden .respawn-button,
 .app.ui-hidden .dock {
   opacity: 0;
   pointer-events: none;
@@ -1535,4 +1554,37 @@ body {
 
 [data-editor-only][hidden] {
   display: none !important;
+}
+
+/* Touch-Steuerung: diagonale Pfeiltasten fuer die isometrische Ansicht */
+.touch-controller {
+  position: fixed;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  right: calc(24px + env(safe-area-inset-right, 0px));
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.touch-controller-button {
+  border: 4px solid #0b1020;
+  background: #1b1f45;
+  color: #eef1ff;
+  font-size: 34px;
+  line-height: 1;
+  padding: 0;
+  box-shadow: inset 0 0 0 4px #eef1ff;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.touch-controller-button.active {
+  background: #7c9cff;
+  color: #0b1020;
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 
 <head>
@@ -9,11 +9,48 @@
   <meta name="theme-color" content="#0b1020">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Bau deine Nordstadt">
+  <meta name="apple-mobile-web-app-title" content="Build your city">
 
-  <title>YOU WASTE YOUR TIME</title>
+  <title>Build your city</title>
 
-<link href="style.css?v=20261106-11" rel="stylesheet">
+<link rel="preload" href="icons/Thumbnail-small.jpg" as="image">
+<link rel="preload" href="fonts/press-start-2p.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  /* Ladebildschirm: inline, damit er sofort erscheint, noch bevor Skripte und Tiles geladen sind */
+  #loader {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4vh;
+    padding: 8px;
+    background: #0b1020;
+    color: #fff;
+    text-align: center;
+    transition: opacity 0.5s ease, visibility 0.5s;
+  }
+  #loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+  #loader img { width: min(98vw, 62vh * 2.13); max-height: 62vh; object-fit: contain; image-rendering: pixelated; }
+  #loader h1 {
+    margin: 0;
+    font-family: "Press Start 2P", ui-monospace, monospace;
+    font-size: clamp(1.2rem, 4vw, 3rem);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  #loader p {
+    margin: 0;
+    font-family: "Press Start 2P", ui-monospace, monospace;
+    font-size: clamp(0.6rem, 1.6vw, 1rem);
+    opacity: 0.7;
+    animation: loader-blink 1.2s steps(2, start) infinite;
+  }
+  @keyframes loader-blink { 50% { opacity: 0.15; } }
+</style>
+<link href="style.css?v=20261106-14" rel="stylesheet">
 <link rel="apple-touch-icon" href="tiles/tile0.png">
 
 </head>
@@ -22,11 +59,17 @@
 
 <body>
 
+<div id="loader" role="status" aria-live="polite">
+  <img src="icons/Thumbnail-small.jpg" alt="" width="1200" height="563" decoding="async" fetchpriority="high">
+  <h1>Build your city</h1>
+  <p>Lädt …</p>
+</div>
+
 <!-- Einbetten: <iframe src="index.html" style="width:100%;height:min(90vh,800px);border:0" loading="lazy" title="Bau deine Nordstadt"></iframe> -->
 <main class="app">
   <div id="intro" class="intro" role="dialog" aria-labelledby="intro-title">
     <div class="intro-content">
-      <h1 id="intro-title" class="intro-title">Bau deine Nordstadt</h1>
+      <h1 id="intro-title" class="intro-title">Build your city</h1>
       <p class="intro-idle-hint">Tippe, um weiterzubauen</p>
       <button id="intro-start" class="intro-start" type="button">Tutorial starten</button>
       <button id="intro-skip" class="intro-skip" type="button">Direkt loslegen</button>
@@ -100,6 +143,9 @@
       <button id="undo-button" class="tool-button undo-button" type="button" aria-label="Rückgängig" title="Rückgängig (Strg+Z)" disabled>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5M4 9h10.5a5.5 5.5 0 0 1 0 11H11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
+      <button id="respawn-button" class="tool-button respawn-button" type="button" aria-label="Neu platzieren" title="Neu platzieren (falls du feststeckst)" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>
+      </button>
     </div>
   </section>
 
@@ -117,11 +163,17 @@
     <script src="csv.js?v=20261025-9"></script>
     <script src="grid.js?v=20261105-1"></script>
     <script src="tile.js?v=20261105-1"></script>
-    <script src="character.js?v=20261106-1"></script>
+    <script src="walk.js?v=20261106-2"></script>
+    <script src="character.js?v=20261106-2"></script>
     <script src="character-ui.js?v=20261106-5"></script>
-    <script src="game.js?v=20261106-10"></script>
+    <script src="game.js?v=20261106-15"></script>
 
     
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+      }
+    </script>
   </body>
 
  

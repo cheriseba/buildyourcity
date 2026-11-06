@@ -93,6 +93,7 @@ function gameSetup() {
   const originalLog = console.log;
   console.log = function(...args) {
     originalLog.apply(console, args);
+    if (debugConsole.style.display === "none") return;
     const message = args.map(arg => {
       if (typeof arg === 'string') return arg;
       try { return JSON.stringify(arg); } catch(e) { return String(arg); }
@@ -111,6 +112,8 @@ function gameSetup() {
   });
   
   measureView();
+  // Pixel-Art braucht keine 3x-Aufloesung; spart auf Handys etwa die Haelfte der Zeichenarbeit
+  pixelDensity(Math.min(window.devicePixelRatio || 1, 2));
   gameCanvas = createCanvas(view.w, view.h);
   gameCanvas.parent("sketch");
 
@@ -126,7 +129,7 @@ function gameSetup() {
   updateViewportLayout();
   initCamera();
   bindUndo();
-  bindUiHide();
+  bindRespawn();
   enableDockDrag();
 }
 
@@ -205,7 +208,26 @@ function panBy(dx, dy, immediate) {
   }
 }
 
+// Im Ruhezustand (Bauen, keine Eingabe, Kamera still) nur 10 statt 60 Bilder pro Sekunde zeichnen.
+let lastInputAt = 0;
+let currentFps = 60;
+["pointerdown", "pointermove", "keydown", "wheel", "touchstart"].forEach((type) => {
+  window.addEventListener(type, () => { lastInputAt = performance.now(); }, { passive: true, capture: true });
+});
+
+function updateFrameRate() {
+  const settled =
+    Math.abs(camTarget.x - cam.x) < 0.05 && Math.abs(camTarget.y - cam.y) < 0.05 && Math.abs(camTarget.scale - cam.scale) < 0.001;
+  const idle = gameMode !== "character" && settled && performance.now() - lastInputAt > 1500;
+  const fps = idle ? 10 : 60;
+  if (fps !== currentFps) {
+    currentFps = fps;
+    frameRate(fps);
+  }
+}
+
 function gameDraw() {
+  updateFrameRate();
   const ease = 0.25;
   const following = gameMode === "character" && currentCharacter && characterCameraFollowing;
   if (following) {
@@ -254,6 +276,10 @@ function gameDraw() {
         const currentImage = currentCharacter.getDisplayImage();
         if (currentImage && currentImage.width > 0 && currentImage.height > 0) {
           image(currentImage, currentCharacter.x, currentCharacter.y, currentCharacter.drawW, currentCharacter.drawH);
+        }
+        // Unter einer Bruecke: deren Overlay nochmal ueber den Charakter zeichnen
+        for (const cell of coveringCells(currentCharacter.gx, currentCharacter.gy, currentCharacter.height)) {
+          cell.drawImage(cell.overlay);
         }
       } else {
         t.show();
@@ -841,19 +867,9 @@ function updateCharacterMovement() {
   
   // Mobile: Touch-Controller (nur wenn nicht null)
   if (touchController && touchController.isMobile && !currentCharacter.isMoving) {
-    const mobileInput = touchController.getInput();
-    
-    if (Math.abs(mobileInput.x) > 0.3 || Math.abs(mobileInput.y) > 0.3) {
+    const direction = touchController.getDirection();
+    if (direction) {
       characterCameraFollowing = true;
-      // Bestimme die Richtung basierend auf Joystick-Input
-      let direction;
-      if (Math.abs(mobileInput.y) > Math.abs(mobileInput.x)) {
-        // Vertikal hat Vorrang
-        direction = mobileInput.y < 0 ? "up-right" : "down-left";
-      } else {
-        // Horizontal
-        direction = mobileInput.x < 0 ? "up-left" : "down-right";
-      }
       currentCharacter.startMovement(direction);
     }
   }
@@ -888,6 +904,11 @@ async function loadCharacters() {
 function switchGameMode(newMode) {
   gameMode = newMode;
   characterCameraFollowing = true;
+  setUiHidden(false);
+  const app = document.querySelector(".app");
+  if (app) {
+    app.classList.toggle("explore-mode", gameMode === "character");
+  }
   
   if (gameMode === "build") {
     enableBuildMode();
@@ -895,6 +916,7 @@ function switchGameMode(newMode) {
       characterSelectionBar.hide();
     }
     currentCharacter = null;
+    setRespawnButtonVisible(false);
     keysPressed = { w: false, a: false, s: false, d: false };
     if (touchController) {
       touchController.destroy();
@@ -952,35 +974,36 @@ function showCharacterSelection() {
   );
 }
 
-// Begehbares Tile (UNDER, ohne Overlay/Gebaeude) moeglichst nah an der Mitte des sichtbaren Bereichs
-function findSpawnTile(character) {
+// Spawn-Punkt: Wege bevorzugt, dann Strassen/Boden, nah an der Mitte des sichtbaren Bereichs (siehe walk.js)
+let spawnHistory = [];
+
+function findSpawnTile(avoid = []) {
   const centerX = cam.x + view.w / cam.scale / 2;
   const centerY = cam.y + view.h / cam.scale / 2;
-  const hasWalkableNeighbor = (tile) =>
-    [[1, 0], [-1, 0], [0, 1], [0, -1]].some(([dx, dy]) => character.canWalkOn(tile.gx + dx, tile.gy + dy));
-  
-  let best = null;
-  let bestIsolated = null;
-  let bestDist = Infinity;
-  let bestIsolatedDist = Infinity;
-  
-  for (const tile of board.cells.values()) {
-    if (!character.canWalkOn(tile.gx, tile.gy)) {
-      continue;
-    }
-    const dist = Math.hypot(tile.x + CELL_CENTER_X - centerX, tile.y + CELL_CENTER_Y - centerY);
-    if (hasWalkableNeighbor(tile)) {
-      if (dist < bestDist) {
-        bestDist = dist;
-        best = tile;
-      }
-    } else if (dist < bestIsolatedDist) {
-      bestIsolatedDist = dist;
-      bestIsolated = tile;
-    }
+  return pickSpawnCell(centerX, centerY, avoid);
+}
+
+// Respawn-Knopf: Charakter an einer anderen Stelle neu platzieren, falls er festsitzt
+function respawnCharacter() {
+  if (gameMode !== "character" || !currentCharacter) {
+    return;
   }
-  
-  return best || bestIsolated;
+  const here = { gx: Math.round(currentCharacter.targetGx), gy: Math.round(currentCharacter.targetGy) };
+  const spawn = findSpawnTile([here, ...spawnHistory]);
+  if (!spawn) {
+    showToast("Kein anderes begehbares Feld gefunden!");
+    return;
+  }
+  spawnHistory = [...spawnHistory.slice(-4), here, { gx: spawn.gx, gy: spawn.gy }];
+  currentCharacter.init(CHARACTER_TILE_SIZE, spawn.gx, spawn.gy);
+  characterCameraFollowing = true;
+}
+
+function setRespawnButtonVisible(visible) {
+  const button = document.getElementById("respawn-button");
+  if (button) {
+    button.hidden = !visible;
+  }
 }
 
 function placeCharacterAtViewCenter(characterName) {
@@ -989,7 +1012,7 @@ function placeCharacterAtViewCenter(characterName) {
   }
   
   const character = characterManager.currentCharacter;
-  const spawn = findSpawnTile(character);
+  const spawn = findSpawnTile();
   
   if (!spawn) {
     showToast("Kein begehbares Feld gefunden!");
@@ -1001,13 +1024,15 @@ function placeCharacterAtViewCenter(characterName) {
   
   currentCharacter = character;
   currentCharacter.init(CHARACTER_TILE_SIZE, spawn.gx, spawn.gy);
+  spawnHistory = [{ gx: spawn.gx, gy: spawn.gy }];
+  setRespawnButtonVisible(true);
   
   const mainElement = document.querySelector("main.app");
   if (mainElement) {
     if (touchController) {
       touchController.destroy();
     }
-    touchController = new TouchController(mainElement, 120, 120);
+    touchController = new TouchController(mainElement, 140, 140);
   }
 }
 
@@ -1363,6 +1388,16 @@ function bindUiHide() {
   });
 }
 
+function bindRespawn() {
+  const button = document.getElementById("respawn-button");
+  if (button) {
+    button.addEventListener("click", () => {
+      respawnCharacter();
+      button.blur();
+    });
+  }
+}
+
 function bindUndo() {
   const button = document.getElementById("undo-button");
   if (!button) {
@@ -1386,7 +1421,7 @@ function bindUndo() {
   document.addEventListener("pointerup", () => setTimeout(sync, 0));
   document.addEventListener("click", () => setTimeout(sync, 0));
   window.addEventListener("keydown", (event) => {
-    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "z" && !(event.target instanceof HTMLInputElement)) {
+    if (gameMode === "build" && (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "z" && !(event.target instanceof HTMLInputElement)) {
       event.preventDefault();
       button.click();
     }
@@ -1413,6 +1448,7 @@ async function startGame() {
     const manifest = await loadManifest();
     ({ tileDefs, tileCategories } = buildTileDefs(manifest));
     window.TILE_MANIFEST = manifest;
+    await loadWalkRules();
   } catch (error) {
     console.error(error);
     document.body.insertAdjacentHTML(
@@ -1424,7 +1460,18 @@ async function startGame() {
 
   window.preload = gamePreload;
   window.setup = gameSetup;
-  window.draw = gameDraw;
+  let loaderHidden = false;
+  window.draw = () => {
+    gameDraw();
+    if (!loaderHidden) {
+      loaderHidden = true;
+      const loader = document.getElementById("loader");
+      if (loader) {
+        loader.classList.add("done");
+        setTimeout(() => loader.remove(), 600);
+      }
+    }
+  };
   window.windowResized = gameWindowResized;
   new p5();
 }

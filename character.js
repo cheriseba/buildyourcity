@@ -1,3 +1,6 @@
+// Bildversatz nach oben in px bei Hoehe 1 (auf der Bruecke); bei Bedarf anpassen
+const BRIDGE_HEIGHT = 24;
+
 // Character-Klasse für den Character-Modus
 class GameCharacter {
   constructor(characterDefPath) {
@@ -43,6 +46,9 @@ class GameCharacter {
     this.targetGy = gridY;
     this.isMoving = false;
     this.moveProgress = 0;
+    this.height = 0;
+    this.moveFromHeight = 0;
+    this.moveToHeight = 0;
     this.lastDirection = "front";
   }
   
@@ -50,26 +56,19 @@ class GameCharacter {
   startMovement(direction) {
     if (this.isMoving) return;  // Bereits in Bewegung
     
-    let newGx = this.targetGx;
-    let newGy = this.targetGy;
+    const dir = WALK_DIRS[direction];
+    if (!dir) return;
     
-    // Die vier visuellen Nachbarn im isometrischen Grid:
-    // Oben-links: gx++, gy (unverändert)
-    // Oben-rechts: gx--, gy (unverändert)
-    // Unten-links: gx (unverändert), gy++
-    // Unten-rechts: gx (unverändert), gy--
+    const newGx = this.targetGx + dir.dx;
+    const newGy = this.targetGy + dir.dy;
     
-    switch (direction) {
-      case "up-right":   newGy--; break;   // Oben-rechts
-      case "up-left":    newGx--; break;   // Oben-links
-      case "down-left":  newGy++; break;   // Unten-links
-      case "down-right": newGx++; break;   // Unten-rechts
-    }
-    
-    // Prüfe ob Ziel-Tile begehbar ist
-    if (!this.canWalkOn(newGx, newGy)) {
+    // Regeln aus tiles-walk.csv bzw. Standard (nur freier UNDER-Boden); Hoehenwechsel nur ueber Rampen
+    const step = planWalkStep(this.targetGx, this.targetGy, dir, this.height);
+    if (!step) {
       return;  // Kann nicht dahin gehen
     }
+    this.moveFromHeight = step.fromH;
+    this.moveToHeight = step.toH;
     
     // Setze lastDirection für Animation
     if (direction === "up-left" || direction === "up-right") {
@@ -96,6 +95,7 @@ class GameCharacter {
       // Bewegung abgeschlossen
       this.gx = this.targetGx;
       this.gy = this.targetGy;
+      this.height = this.moveToHeight;
       this.isMoving = false;
       this.moveProgress = 0;
     } else {
@@ -105,22 +105,13 @@ class GameCharacter {
       
       this.gx = startGx + (this.targetGx - startGx) * this.moveProgress;
       this.gy = startGy + (this.targetGy - startGy) * this.moveProgress;
+      this.height = this.moveFromHeight + (this.moveToHeight - this.moveFromHeight) * this.moveProgress;
     }
   }
   
-  // Prüfe ob man auf diesem Tile laufen kann (UNDER Tiles, kein blockierendes OVER, kein Building)
+  // Kann der Charakter hier auf Bodenhoehe stehen (Spawn)? Regeln siehe walk.js
   canWalkOn(gridX, gridY) {
-    // Hole das Tile vom Board
-    const tile = board.get(gridX, gridY);
-    
-    // Nur begehbar wenn:
-    // 1. UNDER Tile (der Grund)
-    // 2. Kein Overlay (OVER Tile darauf)
-    // 3. Nicht von einem Building besetzt
-    return tile && 
-           tile.groundType === "UNDER" && 
-           !tile.overlay && 
-           !tile.owner;  // Gebäude/Buildings blockieren
+    return canStandOnGround(board.get(gridX, gridY));
   }
   
   // Properties für Tiefensortierung (z-order) wie Buildings
@@ -146,7 +137,7 @@ class GameCharacter {
   display() {
     const screenPos = gridToScreen(this.gx, this.gy);
     const pixelX = screenPos.x + CELL_CENTER_X - this.tileSize / 2;
-    const pixelY = screenPos.y + CELL_CENTER_Y - this.tileSize / 2;
+    const pixelY = screenPos.y + CELL_CENTER_Y - this.tileSize / 2 - this.height * BRIDGE_HEIGHT;
     
     // Diese Properties werden für das Rendering-System benötigt (z-order sorting)
     this.x = pixelX;
