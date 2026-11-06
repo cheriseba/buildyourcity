@@ -142,6 +142,9 @@ class Board {
 
   refresh() {
     tiles = this.drawOrder();
+    if (typeof scheduleSave === "function") {
+      scheduleSave();
+    }
   }
 
   // Feste Tiles (Startlayout) lassen sich nicht aendern; im Editor-Modus (?editor) schon.
@@ -180,6 +183,11 @@ class Board {
       return false;
     }
 
+    this.restore(snap);
+    return true;
+  }
+
+  restore(snap) {
     this.buildings.clear();
     for (const [key, ground, groundType, overlay, locked] of snap.cells) {
       const cell = this.cells.get(key);
@@ -195,7 +203,6 @@ class Board {
     }
 
     this.refresh();
-    return true;
   }
 
   addBuilding(anchor, w, h, image, locked = false) {

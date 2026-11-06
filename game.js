@@ -116,6 +116,8 @@ function gameSetup() {
 
   buildBoard(img[MEADOW_TILE_INDEX]);
   applyStartLayout();
+  loadSavedGame();
+  saveEnabled = true;
 
   noSmooth();
   createTilePalette();
@@ -1227,6 +1229,96 @@ function exportLayout() {
   link.click();
   setTimeout(() => URL.revokeObjectURL(link.href), 1000);
 }
+
+// Autosave im Browser (localStorage): bleibt erhalten, solange der Browser-Speicher nicht geloescht wird
+const SAVE_KEY = "nordi-savegame-v1";
+let saveEnabled = false;
+let saveTimer = null;
+
+function tileId(image) {
+  const def = tileDefs[img.indexOf(image)];
+  return def ? `${def.category}/${def.file}` : null;
+}
+
+function saveGame() {
+  if (!saveEnabled || EDITOR_MODE) {
+    return;
+  }
+
+  try {
+    const snap = board.snapshot();
+    const data = {
+      v: 1,
+      cells: snap.cells
+        .map(([key, ground, groundType, overlay, locked]) => [key, tileId(ground), groundType, overlay ? tileId(overlay) : null, locked])
+        .filter(([, ground, , overlay, locked]) => ground !== tileId(img[MEADOW_TILE_INDEX]) || overlay || locked),
+      buildings: snap.buildings.map(([gx, gy, w, h, image, locked]) => [gx, gy, w, h, tileId(image), locked]),
+    };
+    localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+  } catch (e) {
+    console.warn("Speichern fehlgeschlagen", e);
+  }
+}
+
+function scheduleSave() {
+  if (!saveEnabled) {
+    return;
+  }
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveGame, 400);
+}
+
+function loadSavedGame() {
+  if (EDITOR_MODE) {
+    return;
+  }
+
+  try {
+    const raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) {
+      return;
+    }
+
+    const data = JSON.parse(raw);
+    const byId = new Map(tileDefs.map((def, i) => [`${def.category}/${def.file}`, img[i]]));
+    const snap = board.snapshot();
+    const meadow = img[MEADOW_TILE_INDEX];
+
+    for (const cell of snap.cells) {
+      cell[1] = meadow;
+      cell[2] = "UNDER";
+      cell[3] = null;
+      cell[4] = false;
+    }
+    const cellMap = new Map(snap.cells.map((c) => [c[0], c]));
+
+    for (const [key, ground, groundType, overlay, locked] of data.cells) {
+      const cell = cellMap.get(key);
+      if (cell && byId.has(ground)) {
+        cell[1] = byId.get(ground);
+        cell[2] = groundType;
+        cell[3] = overlay ? byId.get(overlay) || null : null;
+        cell[4] = locked;
+      }
+    }
+
+    snap.buildings = data.buildings
+      .filter(([gx, gy, , , id]) => board.get(gx, gy) && byId.has(id))
+      .map(([gx, gy, w, h, id, locked]) => [gx, gy, w, h, byId.get(id), locked]);
+
+    board.restore(snap);
+    board.history = [];
+  } catch (e) {
+    console.warn("Laden fehlgeschlagen", e);
+  }
+}
+
+window.addEventListener("pagehide", saveGame);
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "hidden") {
+    saveGame();
+  }
+});
 
 function makeAllMeadow() {
   board.clearAll(img[MEADOW_TILE_INDEX]);
