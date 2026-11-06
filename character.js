@@ -1,7 +1,7 @@
 // Character-Klasse für den Character-Modus
 class GameCharacter {
   constructor(characterDefPath) {
-    this.characterPath = characterDefPath; // z.B. "character/basketballbird"
+    this.characterPath = characterDefPath; // z.B. "character/char_1"
     this.gx = 0;      // Float Position X
     this.gy = 0;      // Float Position Y
     this.targetGx = 0;  // Ziel-Tile X
@@ -25,20 +25,13 @@ class GameCharacter {
       animFront: `${this.characterPath}/animiert_vorn.gif`,
       animBack: `${this.characterPath}/animiert_hinten.gif`
     };
-    
-    console.log(`[GameCharacter] preloadAssets for ${this.characterPath}, current images:`, Object.keys(this.images));
-    
-    try {
-      for (const [key, path] of Object.entries(paths)) {
-        console.log(`[GameCharacter] Loading ${key}: ${path}`);
-        this.images[key] = loadImage(path);
-        console.log(`[GameCharacter] Loaded ${key}:`, this.images[key]);
-      }
-    } catch (error) {
-      console.error("Fehler beim Laden der Character-Assets:", error);
+
+    for (const [key, path] of Object.entries(paths)) {
+      this.images[key] = loadImage(path, undefined, (error) => {
+        console.error(`Charakterbild konnte nicht geladen werden: ${path}`, error);
+        this.images[key] = null;
+      });
     }
-    
-    console.log(`[GameCharacter] After preload, images:`, Object.keys(this.images));
   }
   
   // Initialisierung - Platziere Character auf dem Grid
@@ -135,7 +128,20 @@ class GameCharacter {
   get maxX() { return this.gx; }
   get minY() { return this.gy; }
   get maxY() { return this.gy; }
-  
+
+  getDisplayImage() {
+    const direction = this.lastDirection === "front" ? "Front" : "Back";
+    const idleImage = this.images[`idle${direction}`];
+    if (!this.isMoving) {
+      return idleImage;
+    }
+
+    const animatedImage = this.images[`anim${direction}`];
+    return animatedImage && animatedImage.width > 0 && animatedImage.height > 0
+      ? animatedImage
+      : idleImage;
+  }
+
   // Zeichne den Character
   display() {
     const screenPos = gridToScreen(this.gx, this.gy);
@@ -185,4 +191,3 @@ class CharacterManager {
     }
   }
 }
-

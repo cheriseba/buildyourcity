@@ -1,4 +1,4 @@
-﻿@font-face {
+@font-face {
   font-family: "Press Start 2P";
   src: url("fonts/press-start-2p.woff2") format("woff2");
   font-weight: 400;
@@ -964,7 +964,61 @@ body {
   outline-offset: 2px;
 }
 
+.character-controls-hint {
+  position: absolute;
+  right: calc(15px + var(--safe-r));
+  bottom: calc(15px + var(--safe-b));
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: var(--px-panel);
+  box-shadow: var(--px-edge), var(--px-bevel);
+}
+
+.character-controls-hint[hidden] {
+  display: none;
+}
+
+.character-controls-label {
+  color: var(--px-light);
+  font-family: var(--px-font);
+  font-size: 0.55rem;
+  line-height: 1.6;
+}
+
+.character-controls-keys {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.character-controls-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.character-control-key {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  background: var(--px-panel-2);
+  box-shadow: var(--px-edge), var(--px-bevel);
+  color: var(--px-light);
+  font-family: var(--px-font);
+  font-size: 0.65rem;
+}
+
 .app.ui-hidden .mode-switch {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.app.ui-hidden .character-controls-hint {
   opacity: 0;
   pointer-events: none;
 }
@@ -1367,6 +1421,12 @@ body {
     min-height: 36px;
     padding: 8px 12px;
     font-size: 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .character-controls-hint {
+    display: none;
   }
 }
 

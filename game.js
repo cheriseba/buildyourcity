@@ -1,4 +1,4 @@
-﻿img = [];
+img = [];
 
 let tiles = []; // alle Boden-Tiles, nach Zeichenreihenfolge sortiert
 const board = new Board();
@@ -28,6 +28,7 @@ let touchController = null;
 let characterManager = null;
 let currentCharacter = null;
 let characterSelectionScreen = null;
+let characterCameraFollowing = true;
 const CHARACTER_TILE_SIZE = 32; // Gleicher Maßstab wie Tiles
 const CHARACTER_MOVE_SPEED = 0.5; // Bewegungsverzögerung: höhere Werte = langsamer, min. 0.1 (10 frames pro Schritt)
 
@@ -204,7 +205,7 @@ function panBy(dx, dy, immediate) {
 
 function gameDraw() {
   const ease = 0.25;
-  const following = gameMode === "character" && currentCharacter;
+  const following = gameMode === "character" && currentCharacter && characterCameraFollowing;
   if (following) {
     updateCharacterMovement();
     currentCharacter.display();
@@ -248,14 +249,8 @@ function gameDraw() {
       if (t === currentCharacter) {
         // Character ist bereits in drawList eingefügt, aber wir rendern ihn nicht nochmal
         // Die x, y, drawW, drawH sind schon aktualisiert von display() oben
-        // Wir zeichnen ihn direkt mit dem bereits ausgewählten Bild
-        let currentImage;
-        if (currentCharacter.isMoving) {
-          currentImage = currentCharacter.lastDirection === "front" ? currentCharacter.images.animFront : currentCharacter.images.animBack;
-        } else {
-          currentImage = currentCharacter.lastDirection === "front" ? currentCharacter.images.idleFront : currentCharacter.images.idleBack;
-        }
-        if (currentImage) {
+        const currentImage = currentCharacter.getDisplayImage();
+        if (currentImage && currentImage.width > 0 && currentImage.height > 0) {
           image(currentImage, currentCharacter.x, currentCharacter.y, currentCharacter.drawW, currentCharacter.drawH);
         }
       } else {
@@ -485,8 +480,12 @@ function initCamera() {
   );
 
   window.addEventListener("keydown", (event) => {
-    if (event.target instanceof HTMLElement && event.target.closest("button, input")) {
+    if (event.target instanceof HTMLElement && event.target.closest("input")) {
       return;
+    }
+
+    if (gameMode === "character" && event.key.startsWith("Arrow")) {
+      characterCameraFollowing = false;
     }
 
     const step = 80;
@@ -773,7 +772,6 @@ function initCharacterMode() {
   // Initialisiere Character Manager
   if (!characterManager) {
     characterManager = new CharacterManager();
-    loadCharacters();
   }
   
   const mainElement = document.querySelector("main.app");
@@ -793,30 +791,34 @@ function handleCharacterMovementKey(event) {
   if (gameMode !== "character" || !currentCharacter) return;
   
   const key = event.key.toLowerCase();
-  if (key === 'w' || key === 'arrowup') {
+  if (key === 'w') {
     keysPressed.w = true;
     event.preventDefault();
+    characterCameraFollowing = true;
   }
-  if (key === 's' || key === 'arrowdown') {
+  if (key === 's') {
     keysPressed.s = true;
     event.preventDefault();
+    characterCameraFollowing = true;
   }
-  if (key === 'a' || key === 'arrowleft') {
+  if (key === 'a') {
     keysPressed.a = true;
     event.preventDefault();
+    characterCameraFollowing = true;
   }
-  if (key === 'd' || key === 'arrowright') {
+  if (key === 'd') {
     keysPressed.d = true;
     event.preventDefault();
+    characterCameraFollowing = true;
   }
 }
 
 function handleCharacterMovementKeyUp(event) {
   const key = event.key.toLowerCase();
-  if (key === 'w' || key === 'arrowup') keysPressed.w = false;
-  if (key === 's' || key === 'arrowdown') keysPressed.s = false;
-  if (key === 'a' || key === 'arrowleft') keysPressed.a = false;
-  if (key === 'd' || key === 'arrowright') keysPressed.d = false;
+  if (key === 'w') keysPressed.w = false;
+  if (key === 's') keysPressed.s = false;
+  if (key === 'a') keysPressed.a = false;
+  if (key === 'd') keysPressed.d = false;
 }
 
 function updateCharacterMovement() {
@@ -840,6 +842,7 @@ function updateCharacterMovement() {
     const mobileInput = touchController.getInput();
     
     if (Math.abs(mobileInput.x) > 0.3 || Math.abs(mobileInput.y) > 0.3) {
+      characterCameraFollowing = true;
       // Bestimme die Richtung basierend auf Joystick-Input
       let direction;
       if (Math.abs(mobileInput.y) > Math.abs(mobileInput.x)) {
@@ -854,21 +857,35 @@ function updateCharacterMovement() {
   }
 }
 
-const CHARACTER_DEFS = [
-  { name: "Basketball Bird", folder: "basketballbird" },
-  { name: "Charakter 2", folder: "character2" },
-  { name: "Charakter 3", folder: "nocheincharacter" },
-  { name: "Charakter 4", folder: "vierterchar" }
-];
+// Charakterordner muessen fortlaufend char_1, char_2, ... heissen.
+async function loadCharacters() {
+  let index = 1;
+  while (true) {
+    const folder = `char_${index}`;
+    const response = await fetch(`character/${folder}/vorn.png`, {
+      method: "HEAD",
+      cache: "no-cache"
+    });
 
-function loadCharacters() {
-  for (const char of CHARACTER_DEFS) {
-    characterManager.addCharacter(char.name, `character/${char.folder}`);
+    if (response.status === 404) {
+      break;
+    }
+    if (!response.ok) {
+      throw new Error(`character/${folder}/vorn.png: ${response.status}`);
+    }
+
+    characterManager.addCharacter(`Charakter ${index}`, `character/${folder}`);
+    index += 1;
+  }
+
+  if (index === 1) {
+    throw new Error("Keine Charakterordner gefunden. Erwartet wird character/char_1/.");
   }
 }
 
 function switchGameMode(newMode) {
   gameMode = newMode;
+  characterCameraFollowing = true;
   
   if (gameMode === "build") {
     enableBuildMode();
@@ -909,9 +926,9 @@ function disableBuildMode() {
 
 // Der Charakter ist nach der Wahl fest; ein Wechsel geht nur ueber Bauen -> Erkunden.
 function showCharacterSelection() {
-  const characters = CHARACTER_DEFS.map((def) => ({
-    name: def.name,
-    previewImage: `character/${def.folder}/vorn.png`
+  const characters = Array.from(characterManager.characters, ([name, character]) => ({
+    name,
+    previewImage: `${character.characterPath}/vorn.png`
   }));
   
   const mainElement = document.querySelector("main.app");
@@ -1298,9 +1315,9 @@ window.addEventListener("keydown", (event) => {
 async function startGame() {
   // Initialisiere Character-Manager früh, damit Assets in gamePreload geladen werden
   characterManager = new CharacterManager();
-  loadCharacters();
   
   try {
+    await loadCharacters();
     const manifest = await loadManifest();
     ({ tileDefs, tileCategories } = buildTileDefs(manifest));
     window.TILE_MANIFEST = manifest;
@@ -1308,7 +1325,7 @@ async function startGame() {
     console.error(error);
     document.body.insertAdjacentHTML(
       "beforeend",
-      '<p style="position:fixed;inset:0;margin:0;padding:24px;background:#222;color:#fff;font:16px sans-serif;z-index:99">Tiles konnten nicht geladen werden. Das Spiel muss über einen Webserver laufen (GitHub Pages oder <code>python -m http.server</code>), nicht per Doppelklick.</p>'
+      '<p style="position:fixed;inset:0;margin:0;padding:24px;background:#222;color:#fff;font:16px sans-serif;z-index:99">Charaktere oder Tiles konnten nicht geladen werden. Das Spiel muss über einen Webserver laufen (GitHub Pages oder <code>python -m http.server</code>), nicht per Doppelklick.</p>'
     );
     return;
   }

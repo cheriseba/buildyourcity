@@ -209,7 +209,34 @@ class ModeSwitch {
     
     this.buildBtn = buildBtn;
     this.charBtn = charBtn;
-    
+
+    const controlsHint = document.createElement("aside");
+    controlsHint.classList.add("character-controls-hint");
+    controlsHint.setAttribute("aria-label", "Steuerung im Entdeckermodus: W, A, S und D");
+
+    const hintLabel = document.createElement("span");
+    hintLabel.classList.add("character-controls-label");
+    hintLabel.textContent = "Steuern mit";
+
+    const keys = document.createElement("span");
+    keys.classList.add("character-controls-keys");
+    keys.setAttribute("aria-hidden", "true");
+    for (const rowKeys of [["W"], ["A", "S", "D"]]) {
+      const row = document.createElement("span");
+      row.classList.add("character-controls-row");
+      for (const key of rowKeys) {
+        const keyTile = document.createElement("span");
+        keyTile.classList.add("character-control-key");
+        keyTile.textContent = key;
+        row.appendChild(keyTile);
+      }
+      keys.appendChild(row);
+    }
+
+    controlsHint.append(hintLabel, keys);
+    this.container.appendChild(controlsHint);
+    this.controlsHint = controlsHint;
+
     this.updateDisplay();
   }
   
@@ -222,6 +249,7 @@ class ModeSwitch {
   }
   
   updateDisplay() {
+    const isCharacterMode = this.currentMode === "character";
     if (this.currentMode === "build") {
       this.buildBtn.classList.add("active");
       this.charBtn.classList.remove("active");
@@ -229,6 +257,7 @@ class ModeSwitch {
       this.charBtn.classList.add("active");
       this.buildBtn.classList.remove("active");
     }
+    this.controlsHint.hidden = !isCharacterMode;
   }
   
   onChange(callback) {
@@ -468,4 +497,3 @@ class CharacterSelectionBar {
     this.isVisible = false;
   }
 }
-
