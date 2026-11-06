@@ -1,4 +1,4 @@
-﻿Kategorie,Dateiname,Type,Tags,Größe
+Kategorie,Dateiname,Type,Tags,Größe
 ,Wiese.png,UNDER,"Boden, Wiese,Gras",1x1
 1_Hauslinks,Altbau_1.png,FULL,"Haus,Altbau,rot,weiss",1x1
 1_Hauslinks,Altbau_2.png,FULL,"Haus,Altbau,orange",1x1
@@ -143,9 +143,13 @@
 22_Deko,Spielplatz_5.png,OVER,,1x1
 30_Bahnhof,Bahnhof_1.png,FULL,,3x2
 30_Bahnhof,Gleis_1.png,UNDER,,1x1
+30_Bahnhof,Gleis_2.png,UNDER,,1x1
+30_Bahnhof,Gleis_3.png,UNDER,,1x1
+30_Bahnhof,Gleis_4.png,UNDER,,1x1
 30_Bahnhof,Gleis_Brucke_1.png,OVER,,1x1
 30_Bahnhof,Gleis_Brucke_2.png,OVER,,1x1
 30_Bahnhof,Gleis_Brucke_3.png,OVER,,1x1
+30_Bahnhof,Gleis_Brucke_4.png,OVER,,1x1
 30_Bahnhof,ICE_1.png,OVER,,1x1
 30_Bahnhof,ICE_2.png,OVER,,1x1
 30_Bahnhof,ICE_3.png,OVER,,1x1
