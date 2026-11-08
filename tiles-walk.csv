@@ -1,9 +1,11 @@
 Dateiname,Ebene,W,A,S,D,Hinweis
 
-Auffahrt_1.png,unten,-,-,-,-,x
-Auffahrt_2.png,unten,-,-,-,-,x
+Auffahrt_1.png,unten,-,0,-,0,x
+Auffahrt_1.png,oben,0>1,-,1>0,-,x
+Auffahrt_2.png,unten,0,-,0,-,x
+Auffahrt_2.png,oben,-,1,-,1>0,x
 Hohe_1.png,unten,-,-,-,-,x
-Hohe_1.png,unten,-,-,-,-,x
+Hohe_1.png,unten,1,1,1,1,x
 Oben_1.png,unten,-,-,-,-,x
 Oben_2.png,unten,-,-,-,-,x
 Oben_3.png,unten,-,-,-,-,x
