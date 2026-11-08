@@ -6,6 +6,8 @@ Kategorie,Dateiname,Type,Tags,Größe
 1_Hauslinks,Altbau_4.png,FULL,"Haus,Altbau,Grunderzeit,Backstein,rot",1x1
 1_Hauslinks,Altbau_5.png,FULL,"Haus,Altbau,Grunderzeit,Backstein,rot",1x1
 1_Hauslinks,Haus_1.png,FULL,"Haus,Altbau,Grunderzeit,pink",1x1
+1_Hauslinks,Haus_2.png,FULL,"Haus,Altbau,Grunderzeit,blau",1x1
+1_Hauslinks,Haus_3.png,FULL,"Haus,Altbau,Grunderzeit,blau",1x1
 1_Hauslinks,Historische_1.png,FULL,"Haus,Altbau,Grunderzeit,Historisch",1x1
 1_Hauslinks,Historische_2.png,FULL,"Haus,Altbau,Grunderzeit,Historisch",1x1
 1_Hauslinks,Historische_3.png,FULL,"Haus,Altbau,Historisch",1x1
@@ -33,6 +35,7 @@ Kategorie,Dateiname,Type,Tags,Größe
 2_Hausrechts,Wohnhaus_1.png,FULL,"Haus,Neubau,Balkon,orange,braun",1x1
 2_Hausrechts,Wohnhaus_2.png,FULL,"Haus,Neubau,Balkon,orange,rot",1x1
 2_Hausrechts,Wohnhaus_3.png,FULL,"Haus,Neubau,Balkon,blau,turkis,grun",1x1
+2_Hausrechts,Haus_1.png,FULL,"Haus,Altbau,Grunderzeit,blau",1x1
 3_Spezialhaus,Fabrik_1.png,FULL,"Haus,Fabrik,Grunderzeit,Altbau,Backstein,rot",1x2
 3_Spezialhaus,Fabrik_2.png,FULL,"Haus,Fabrik,Kufa,Turm,Backstein,rot",2x1
 3_Spezialhaus,Fabrik_3.png,FULL,"Haus,Fabrik,Kufa,Turm,Backstein,rot",3x1
@@ -40,13 +43,21 @@ Kategorie,Dateiname,Type,Tags,Größe
 3_Spezialhaus,Halle_2.png,FULL,"Haus,Fabrik,Halle,weiss,rot",1x1
 3_Spezialhaus,Nordi_1.png,FULL,"Haus,Fabrik,Halle,weiss,blau,turkis,grun",2x1
 3_Spezialhaus,Nordi_2.png,FULL,"Haus,Kirche,Turm,blau,turkis,grun",2x2
+3_Spezialhaus,Nordi_3.png,FULL,,2x1
 3_Spezialhaus,Turm_1.png,FULL,"Haus,Fabrik,Kufa,Turm,Backstein,rot",1x1
+3_Spezialhaus,Turm_2.png,FULL,,2x2
+3_Spezialhaus,Hochhaus_1.png,FULL,,1x1
 10_Strassen,Strasse_1.png,UNDER,"Strasse,Boden,gerade,hoch,grau",1x1
 10_Strassen,Strasse_2.png,UNDER,"Strasse,Boden,gerade,runter,grau",1x1
-10_Strassen,Strasse_3.png,UNDER,"Strasse,Boden,Ecke,grau",1x1
+10_Strassen,Strasse_3.png,UNDER,"Strasse,Boden,Kreuzung,grau",1x1
 10_Strassen,Strasse_4.png,UNDER,"Strasse,Boden,Ecke,grau",1x1
 10_Strassen,Strasse_5.png,UNDER,"Strasse,Boden,Ecke,grau",1x1
 10_Strassen,Strasse_6.png,UNDER,"Strasse,Boden,Ecke,grau",1x1
+10_Strassen,Strasse_7.png,UNDER,"Strasse,Boden,Ecke,grau",1x1
+10_Strassen,Strasse_8.png,UNDER,"Strasse,Boden,Ecke,grau",1x1
+10_Strassen,Strasse_9.png,UNDER,"Strasse,Boden,T-Kreuzung,grau",1x1
+10_Strassen,Strasse_10.png,UNDER,"Strasse,Boden,T-Kreuzung,grau",1x1
+10_Strassen,Strasse_11.png,UNDER,"Strasse,Boden,T-Kreuzung,grau",1x1
 10_Strassen,Strasse_7.png,UNDER,"Strasse,Boden,Kreuzung,grau",1x1
 10_Strassen,Zebra_1.png,UNDER,"Strasse,Boden,Zebrastreifen,grau",1x1
 10_Strassen,Zebra_2.png,UNDER,"Strasse,Boden,Zebrastreifen,grau",1x1
@@ -129,10 +140,7 @@ Kategorie,Dateiname,Type,Tags,Größe
 20_Naturdeko,Blume_7.png,OVER,,1x1
 20_Naturdeko,Blume_8.png,OVER,,1x1
 20_Naturdeko,Laub_1.png,OVER,,1x1
-20_Naturdeko,Pflanzen_1.png,OVER,"Pilz,Fliegenpilz,roter Pilz",1x1
 20_Naturdeko,Pflanzen_2.png,OVER,"Pilz,,brauner Pilz",1x1
-20_Naturdeko,Garten_1.png,OVER,,1x1
-20_Naturdeko,Garten_2.png,OVER,,1x1
 21_Tiere,Katze_1.png,OVER,,1x1
 21_Tiere,Katze_2.png,OVER,,1x1
 21_Tiere,Katze_3.png,OVER,,1x1
