@@ -277,10 +277,16 @@ function gameDraw() {
         if (currentImage && currentImage.width > 0 && currentImage.height > 0) {
           image(currentImage, currentCharacter.x, currentCharacter.y, currentCharacter.drawW, currentCharacter.drawH);
         }
-        // Unter einer Bruecke: deren Overlay nochmal ueber den Charakter zeichnen
+        // Unter einer Bruecke nur den Charakterbereich erneut zeichnen, damit keine Tile-Raender aufblitzen.
+        const context = drawingContext;
+        context.save();
+        context.beginPath();
+        context.rect(currentCharacter.x, currentCharacter.y, currentCharacter.drawW, currentCharacter.drawH);
+        context.clip();
         for (const cell of coveringCells(currentCharacter.gx, currentCharacter.gy, currentCharacter.height)) {
           cell.drawImage(cell.overlay);
         }
+        context.restore();
       } else {
         t.show();
       }

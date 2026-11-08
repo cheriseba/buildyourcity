@@ -132,6 +132,18 @@ function canStandOnGround(cell) {
   return Object.values(WALK_DIRS).some((dir) => walkOptions(cell, dir).some((o) => Math.abs(optionCenter(o)) < WALK_EPS));
 }
 
+function hasElevatedWalkOptions(image) {
+  const rules = imageWalkRules(image);
+  return Boolean(rules && rules.some((rule) =>
+    Object.values(rule.dirs).some((option) => option && !isFlatOption(option))
+  ));
+}
+
+function hasUpperWalkLayer(image) {
+  const rules = imageWalkRules(image);
+  return Boolean(rules && rules.some((rule) => rule.level === "oben"));
+}
+
 // Ergebnis { fromH, toH } fuer einen Schritt von (gx, gy) in Richtung dir bei Hoehe height, sonst null.
 function planWalkStep(gx, gy, dir, height) {
   const from = board.get(gx, gy);
@@ -164,7 +176,13 @@ function coveringCells(gx, gy, height) {
   for (const x of xs) {
     for (const y of ys) {
       const cell = board.get(x, y);
-      if (cell && cell.overlay && !cell.owner && imageWalkRules(cell.overlay) && canStandOnGround(cell)) {
+      if (
+        cell &&
+        cell.overlay &&
+        !cell.owner &&
+        (hasElevatedWalkOptions(cell.overlay) || hasUpperWalkLayer(cell.overlay)) &&
+        canStandOnGround(cell)
+      ) {
         result.push(cell);
       }
     }
