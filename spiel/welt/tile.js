@@ -13,6 +13,7 @@ class Tile {
     this.ground = img;
     this.groundType = "UNDER";
     this.overlay = null;
+    this.overlayBack = null;
     this.owner = null; // Building, das diese Zelle belegt
     this.locked = false; // fest (Startlayout), nicht veraenderbar
   }
@@ -21,22 +22,43 @@ class Tile {
   // FULL ersetzt das ganze Feld (Boden + Overlay).
   place(image, type) {
     if (type === "OVER") {
-      this.overlay = image;
+      const existing = this.overlays();
+      let keep = existing.length === 2
+        ? existing.find((item) => Boolean(halfOverPosition(item)) !== Boolean(halfOverPosition(image))) || existing[0]
+        : existing[0];
+      if (keep && !halfOverPosition(keep) && !halfOverPosition(image)) {
+        keep = null;
+      }
+      const overlays = keep ? [keep, image] : [image];
+      if (keep && (halfOverPosition(image) === "hinten" || halfOverPosition(keep) === "vorn")) {
+        overlays.reverse();
+      }
+      this.setOverlays(overlays);
     } else if (type === "UNDER") {
       this.ground = image;
       this.groundType = "UNDER";
+      this.setOverlays(this.overlays().filter((overlay) => isOverAllowed(image, overlay)));
     } else {
       this.ground = image;
       this.groundType = "FULL";
-      this.overlay = null;
+      this.setOverlays([]);
     }
+  }
+
+  overlays() {
+    return [this.overlayBack, this.overlay].filter(Boolean);
+  }
+
+  setOverlays(overlays) {
+    this.overlayBack = overlays.length > 1 ? overlays[0] : null;
+    this.overlay = overlays.length ? overlays[overlays.length - 1] : null;
   }
 
   // Zurueck auf Ausgangszustand: nur Boden, kein Overlay
   reset(groundImage) {
     this.ground = groundImage;
     this.groundType = "UNDER";
-    this.overlay = null;
+    this.setOverlays([]);
   }
 
   // Skaliert nach Breite (Seitenverhaeltnis bleibt), Unterkante bleibt auf der Zelle:
@@ -49,9 +71,7 @@ class Tile {
   show() {
     this.drawImage(this.ground);
 
-    if (this.overlay) {
-      this.drawImage(this.overlay);
-    }
+    this.overlays().forEach((overlay) => this.drawImage(overlay));
   }
 
   bounding() {

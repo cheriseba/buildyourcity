@@ -1,4 +1,4 @@
-// Laufregeln aus tiles-walk.csv (Format: siehe tiles-walk-legende.md).
+// Laufregeln aus dem zentralen Tile-Katalog.
 // Pro Zelle und Laufrichtung gibt es eine Liste von Optionen { e, x }: Hoehe am Eingang (e) und am Ausgang (x)
 // der Zelle. Die Hoehe in der Zellmitte ist der Mittelwert. Eine Bewegung von A nach B ist nur erlaubt, wenn der
 // Charakter auf der Mittelhoehe einer Option von A steht und der Ausgang von A zum Eingang einer Option von B passt.
@@ -72,7 +72,7 @@ function parseWalkRules(text) {
 
 async function loadWalkRules() {
   try {
-    const response = await fetch("tiles-walk.csv", { cache: "no-cache" });
+    const response = await fetch("csv/archiv/tiles-walk.csv", { cache: "no-cache" });
     walkRules = response.ok ? parseWalkRules(await response.text()) : new Map();
   } catch (error) {
     console.warn("tiles-walk.csv konnte nicht geladen werden; es gelten die Standardregeln", error);
@@ -90,7 +90,7 @@ function defOfImage(image) {
 
 function imageWalkRules(image) {
   const def = image ? defOfImage(image) : null;
-  return def ? walkRules.get(def.file.toLowerCase()) || null : null;
+  return def ? walkRules.get(def.id || def.file.toLowerCase()) || null : null;
 }
 
 function rulesOptions(rules, col) {
@@ -119,12 +119,15 @@ function walkOptions(cell, dir) {
   }
 
   // Overlay (z. B. Bruecke): nur mit eigener Regel begehbar; auf Bodenhoehe muss auch der Boden darunter begehbar sein.
-  const rules = imageWalkRules(cell.overlay);
-  if (!rules) {
-    return [];
-  }
   const groundFlat = ground.some(isFlatOption);
-  return rulesOptions(rules, dir.col).filter((o) => !isFlatOption(o) || groundFlat);
+  const options = cell.overlays().map((overlay) => {
+    const rules = imageWalkRules(overlay);
+    return rules ? rulesOptions(rules, dir.col) : [];
+  });
+  return options[0].filter((o) =>
+    (!isFlatOption(o) || groundFlat) &&
+    options.slice(1).every((other) => other.some((p) => Math.abs(o.e - p.e) < WALK_EPS && Math.abs(o.x - p.x) < WALK_EPS))
+  );
 }
 
 // Kann der Charakter auf Bodenhoehe in dieser Zelle stehen (Spawn, Nachbarpruefung)?
@@ -180,7 +183,7 @@ function coveringCells(gx, gy, height) {
         cell &&
         cell.overlay &&
         !cell.owner &&
-        (hasElevatedWalkOptions(cell.overlay) || hasUpperWalkLayer(cell.overlay)) &&
+        cell.overlays().some((overlay) => hasElevatedWalkOptions(overlay) || hasUpperWalkLayer(overlay)) &&
         canStandOnGround(cell)
       ) {
         result.push(cell);

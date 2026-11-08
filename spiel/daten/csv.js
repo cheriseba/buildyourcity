@@ -54,10 +54,10 @@ function parseCsvTable(text) {
   return rows.map((row) => Object.fromEntries(header.map((name, i) => [name, (row[i] || "").trim()])));
 }
 
-// Laedt tiles-tags.csv und start-layout.csv und baut daraus das Manifest.
-// Eine Zeile pro Tile; Kategorie leer = Wiese (liegt direkt in tiles_sortiert/).
+// Laedt die CSV-Dateien aus csv/ und baut daraus das Manifest.
+// Eine Zeile pro Tile; Kategorie leer = Wiese (liegt direkt in Katalog/).
 async function loadManifest() {
-  const root = "tiles_sortiert";
+  const root = "Katalog";
   const fetchText = async (url, optional) => {
     const response = await fetch(url, { cache: "no-cache" });
     if (!response.ok) {
@@ -69,7 +69,7 @@ async function loadManifest() {
     return response.text();
   };
 
-  const [tagsText, layoutText] = await Promise.all([fetchText("tiles-tags.csv", false), fetchText("start-layout.csv", true)]);
+  const [tagsText, layoutText] = await Promise.all([fetchText("csv/archiv/tiles-tags.csv", false), fetchText("csv/start-layout.csv", true)]);
   const pick = (r, ...names) => names.map((n) => r[n]).find((v) => v !== undefined) || "";
   const TYPES = ["OVER", "UNDER", "FULL"];
   let meadow = null;

@@ -1,4 +1,4 @@
-// Cache: Seite und CSVs immer zuerst aus dem Netz (damit Updates sofort ankommen),
+// Cache: Seite, Daten und Bildpruefungen immer zuerst aus dem Netz,
 // alles andere (Tiles, Charaktere, Schrift, p5) sofort aus dem Cache und im Hintergrund aktualisiert.
 const CACHE = "build-your-city-v1";
 
@@ -21,7 +21,7 @@ self.addEventListener("fetch", (event) => {
   const isP5 = url.hostname === "cdnjs.cloudflare.com";
   if (!sameOrigin && !isP5) return;
 
-  const networkFirst = request.mode === "navigate" || /\.(html|csv)$/i.test(url.pathname);
+  const networkFirst = request.mode === "navigate" || /\.(html|csv|json)$/i.test(url.pathname) || url.searchParams.has("tile-check");
 
   event.respondWith(
     caches.open(CACHE).then(async (cache) => {

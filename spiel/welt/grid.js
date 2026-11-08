@@ -40,10 +40,11 @@ function screenToGrid(wx, wy) {
 }
 
 class Board {
-  constructor() {
+  constructor(onChange = () => {}) {
     this.cells = new Map();
     this.buildings = new Set();
     this.history = [];
+    this.onChange = onChange;
   }
 
   static key(gx, gy) {
@@ -141,10 +142,7 @@ class Board {
   }
 
   refresh() {
-    tiles = this.drawOrder();
-    if (typeof scheduleSave === "function") {
-      scheduleSave();
-    }
+    this.onChange(this);
   }
 
   // Feste Tiles (Startlayout) lassen sich nicht aendern; im Editor-Modus (?editor) schon.
@@ -165,7 +163,7 @@ class Board {
   // Rueckgaengig: Zustand vor jeder Aenderung merken (max. HISTORY_LIMIT Schritte)
   snapshot() {
     return {
-      cells: [...this.cells.values()].map((c) => [c.key, c.ground, c.groundType, c.overlay, c.locked]),
+      cells: [...this.cells.values()].map((c) => [c.key, c.ground, c.groundType, c.overlay, c.locked, c.overlayBack]),
       buildings: [...this.buildings].map((b) => [b.anchor.gx, b.anchor.gy, b.w, b.h, b.image, b.locked]),
     };
   }
@@ -189,11 +187,12 @@ class Board {
 
   restore(snap) {
     this.buildings.clear();
-    for (const [key, ground, groundType, overlay, locked] of snap.cells) {
+    for (const [key, ground, groundType, overlay, locked, overlayBack] of snap.cells) {
       const cell = this.cells.get(key);
       cell.ground = ground;
       cell.groundType = groundType;
       cell.overlay = overlay;
+      cell.overlayBack = overlayBack || null;
       cell.locked = locked;
       cell.owner = null;
     }
@@ -286,7 +285,7 @@ class Board {
     }
 
     this.record(this.snapshot());
-    tile.overlay = null;
+    tile.setOverlays(tile.overlays().slice(0, -1));
     this.refresh();
     return true;
   }
@@ -301,7 +300,8 @@ class Board {
       return false;
     }
 
-    if (def.type === "OVER" && (w * h !== 1 || anchor.overlay)) {
+    const overGround = anchor.owner || anchor.groundType === "FULL" ? meadow : anchor.ground;
+    if (def.type === "OVER" && (w * h !== 1 || (anchor.overlay && !halfOverPosition(anchor.overlay) && !halfOverPosition(image)) || anchor.overlayBack || !isOverAllowed(overGround, image))) {
       return false;
     }
 
@@ -327,7 +327,7 @@ class Board {
   }
 
   // Platziert ein Tile. Mehrzellige Tiles werden an ihrer vordersten Zelle (angeklickt) verankert.
-  // Ergebnis: true, "space" (Gebaeude passt nicht aufs Spielfeld) oder "locked" (Zelle ist fest).
+  // Ergebnis: true, "space", "locked" oder "over-not-allowed".
   place(tile, image, def, meadow) {
     const w = def.w || 1;
     const h = def.h || 1;
@@ -339,6 +339,10 @@ class Board {
     if (w * h === 1) {
       if (this.isLocked(tile)) {
         return "locked";
+      }
+      const overGround = tile.owner || tile.groundType === "FULL" ? meadow : tile.ground;
+      if (def.type === "OVER" && !isOverAllowed(overGround, image)) {
+        return "over-not-allowed";
       }
       const snap = this.snapshot();
       tile.locked = false;
@@ -397,7 +401,7 @@ class Board {
   }
 }
 // Erzeugt das Spielfeld als versetztes Raster: gerade Zeilen 17 Tiles, ungerade 16 Tiles.
-function buildBoard(initialImage) {
+function buildBoard(board, initialImage) {
   board.cells.clear();
   board.buildings.clear();
   board.history = [];

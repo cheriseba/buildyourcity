@@ -1,6 +1,12 @@
 # Legende für `tiles-walk.csv`
 
-Die Datei wird beim Laden des Spiels gelesen (`walk.js`). Tiles, die **nicht** drinstehen, verhalten sich wie bisher: freier UNDER-Boden ist begehbar, alles andere nicht.
+> Archiv: Das Spiel liest Laufregeln inzwischen aus dem zentralen
+> [Tile-Katalog](../../daten/tile-catalog.json). Bitte Regeln in der
+> [Tile-Werkstatt](../../ARCHITEKTUR.md#tile-werkstatt) bearbeiten; Änderungen
+> an dieser CSV wirken sich nicht mehr auf das Spiel aus. Die folgenden
+> Erklärungen zu Richtungen und Höhen gelten weiterhin.
+
+Die frühere Datei [tiles-walk.csv](../archiv/tiles-walk.csv) liegt im Archiv. Die Standardregel gilt weiterhin: freier UNDER-Boden ist ohne eigene Laufregel begehbar, alles andere nicht.
 
 ## Spalten
 
@@ -44,7 +50,7 @@ Der Wert beschreibt, wie man **über dieses Tile in diese Richtung läuft**: Hö
 - **Bei einem Overlay** (OVER, z. B. Brücke auf Straße) gilt: Läuft man unten durch (`0`), muss auch der Boden darunter begehbar sein. Ein Overlay mit Regel **ohne** `unten`-Zeile ist am Boden gesperrt (z. B. ein Pfeiler).
 - Ein Overlay **ohne** Zeile in der Liste blockiert wie bisher.
 - **Gesperrtes UNDER** (z. B. Wasser): eine Zeile mit vier `-`.
-- Auf Bodenhöhe unter einem Overlay wird der Charakter automatisch **hinter** der Brücke gezeichnet, auf der Brücke davor und nach oben versetzt (`BRIDGE_HEIGHT` in `character.js`).
+- Auf Bodenhöhe unter einem Overlay wird der Charakter automatisch **hinter** der Brücke gezeichnet, auf der Brücke davor und nach oben versetzt (`BRIDGE_HEIGHT` in [character.js](../../spiel/charakter/character.js)).
 - Fehlerhafte Zeilen (ungültige Ebene oder ungültiger Wert) werden übersprungen. Die Browser-Konsole zeigt dann eine Warnung `tiles-walk.csv: Zeile uebersprungen`.
 - Gibt es einen Dateinamen in mehreren Kategorien (z. B. `Altbau_1.png`), gilt die Regel für alle davon.
 

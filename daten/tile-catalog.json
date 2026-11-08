@@ -1,0 +1,6165 @@
+{
+  "version": 1,
+  "profiles": [],
+  "tiles": [
+    {
+      "id": "123a158b-c1f2-4dbf-8542-d8a2cdfb13c3",
+      "category": "",
+      "file": "Wiese.png",
+      "hash": "04757c2ed9796e1c7546af115d90e161dccb0f84626fa1edc986517aaf066378",
+      "legacyIds": [
+        "/Wiese.png"
+      ],
+      "name": "Wiese",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Boden",
+        "Wiese",
+        "Gras"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "e68b30fb-dbfc-4d27-8a3f-2f6e16114f09",
+      "category": "1_Hauslinks",
+      "file": "Altbau_1.png",
+      "hash": "0c6208343e2a0985fccc1df2d17b4df2783c108617ad72327d7207012240788a",
+      "legacyIds": [
+        "1_Hauslinks/Altbau_1.png"
+      ],
+      "name": "Altbau_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Altbau",
+        "rot",
+        "weiss"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "6e9751e4-ea5c-4fb6-8987-ee9743a3cd5c",
+      "category": "1_Hauslinks",
+      "file": "Altbau_2.png",
+      "hash": "354e38648c7f29aecc80efd53472dd8fe249a79fe56ef647c197f9f2310c4077",
+      "legacyIds": [
+        "1_Hauslinks/Altbau_2.png"
+      ],
+      "name": "Altbau_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Altbau",
+        "orange",
+        "Wohnung"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "942e5f40-4519-4d2c-8e6f-3c497090cb7b",
+      "category": "1_Hauslinks",
+      "file": "Altbau_3.png",
+      "hash": "2edd620a645b9eca5ce672d63932eeb4cf97e5c10af951060fb9d222442a285e",
+      "legacyIds": [
+        "1_Hauslinks/Altbau_3.png"
+      ],
+      "name": "Altbau_3",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Altbau",
+        "Grunderzeit",
+        "Backstein",
+        "rot"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "bc9bf90b-a37f-46c9-b88f-eeab1ad9ae2f",
+      "category": "1_Hauslinks",
+      "file": "Altbau_4.png",
+      "hash": "c3ad9c46201000ebf78328bf5ee38c377af17472195797cd82502292e9a991ca",
+      "legacyIds": [
+        "1_Hauslinks/Altbau_4.png"
+      ],
+      "name": "Altbau_4",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Altbau",
+        "Grunderzeit",
+        "Backstein",
+        "rot"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "2457a4a4-651e-4708-9862-92e37a514539",
+      "category": "1_Hauslinks",
+      "file": "Altbau_5.png",
+      "hash": "d37fe420cc9e68b7e375d0ba91492f0aba092ee8664890ee2314312f4b0f6a1c",
+      "legacyIds": [
+        "1_Hauslinks/Altbau_5.png"
+      ],
+      "name": "Altbau_5",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Altbau",
+        "Grunderzeit",
+        "Backstein",
+        "rot"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "9861ba59-06b7-4d5c-af81-9abdeb4744ca",
+      "category": "1_Hauslinks",
+      "file": "Haus_1.png",
+      "hash": "1edab3220815883668375c3a7f1baa5e835723461fc63e0b46e39d530d0750ab",
+      "legacyIds": [
+        "1_Hauslinks/Haus_1.png"
+      ],
+      "name": "Haus_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Altbau",
+        "Grunderzeit",
+        "pink"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "f0f09310-e250-43f1-91d2-74ee7cbb1822",
+      "category": "1_Hauslinks",
+      "file": "Haus_2.png",
+      "hash": "9262bd6a133811115688a6077e7ab78ed4fe656bf988e36cbe3b0737d89dc8c2",
+      "legacyIds": [
+        "1_Hauslinks/Haus_2.png"
+      ],
+      "name": "Haus_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Altbau",
+        "Grunderzeit",
+        "blau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "d6012955-72f7-4827-b3fe-2ff43add4890",
+      "category": "1_Hauslinks",
+      "file": "Haus_3.png",
+      "hash": "b4be9c2abee5374d1b64e4df974836c0d1b38823c130aa5ea018c2c17423d67d",
+      "legacyIds": [
+        "1_Hauslinks/Haus_3.png"
+      ],
+      "name": "Haus_3",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Altbau",
+        "Grunderzeit",
+        "blau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "64783967-0a2b-4145-b9fd-c5dc676f9f58",
+      "category": "1_Hauslinks",
+      "file": "Historische_1.png",
+      "hash": "de714d77acdc38572e1f13c7d732617af6622ffd25f26f16242e8f4691960841",
+      "legacyIds": [
+        "1_Hauslinks/Historische_1.png"
+      ],
+      "name": "Historische_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Altbau",
+        "Grunderzeit",
+        "Historisch"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "f64e8bee-31f6-4e39-a0c9-5877e986f8ee",
+      "category": "1_Hauslinks",
+      "file": "Historische_2.png",
+      "hash": "1fde504674686a925da2a0cff29c9e35732c9f6992c5b460b5cc79f9db241689",
+      "legacyIds": [
+        "1_Hauslinks/Historische_2.png"
+      ],
+      "name": "Historische_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Altbau",
+        "Grunderzeit",
+        "Historisch"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "bd516877-635c-4d99-b4f2-e1189664de92",
+      "category": "1_Hauslinks",
+      "file": "Historische_3.png",
+      "hash": "d7df6ce5641711c1d3e304566380e2b7421ad1530afb7f21a0a6d53853970c69",
+      "legacyIds": [
+        "1_Hauslinks/Historische_3.png"
+      ],
+      "name": "Historische_3",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Altbau",
+        "Historisch"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "79abde5a-bea3-487f-adf2-7fd06493a9f0",
+      "category": "1_Hauslinks",
+      "file": "Reihenhaus_1.png",
+      "hash": "9c55b2568e7ea1c3d67987137ddb309240fd913f8fa11c3934199256ff0bb0ab",
+      "legacyIds": [
+        "1_Hauslinks/Reihenhaus_1.png"
+      ],
+      "name": "Reihenhaus_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "blau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "7526ac6b-28c7-4a32-81bb-7d8bff4a7ccf",
+      "category": "1_Hauslinks",
+      "file": "Reihenhaus_2.png",
+      "hash": "ac4c47e0f44f34e917d30afb22d8696dcaaf6227f0ce2cb20c5ddc0b9fe249f7",
+      "legacyIds": [
+        "1_Hauslinks/Reihenhaus_2.png"
+      ],
+      "name": "Reihenhaus_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "rot"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "88c58ae4-5020-4fcf-a296-96ebf21bd7c1",
+      "category": "1_Hauslinks",
+      "file": "Reihenhaus_3.png",
+      "hash": "75faa6327e4f2f2e71760fb5df0e6ecc3cee31f310778138efdfe30626722a59",
+      "legacyIds": [
+        "1_Hauslinks/Reihenhaus_3.png"
+      ],
+      "name": "Reihenhaus_3",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Altbau",
+        "braun"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "9cea62b6-7fb3-4529-b6ac-58c97c97d05d",
+      "category": "1_Hauslinks",
+      "file": "Reihenhaus_4.png",
+      "hash": "069bc41b2928437e7c736fcc8f543cde7edb5091aa1d262cd405ab8254a8b81a",
+      "legacyIds": [
+        "1_Hauslinks/Reihenhaus_4.png"
+      ],
+      "name": "Reihenhaus_4",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "orange"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "898871a9-b9ee-4dbc-b0d1-da9775e76b93",
+      "category": "1_Hauslinks",
+      "file": "Reihenhaus_G_1.png",
+      "hash": "71219260be2364c14141e4dfa3c73c107decc0ffae73f669bfd908566bd6fad7",
+      "legacyIds": [
+        "1_Hauslinks/Reihenhaus_G_1.png"
+      ],
+      "name": "Reihenhaus_G_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "blau",
+        "weiss"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "f37e9560-fac1-4b48-8644-6369486eab14",
+      "category": "1_Hauslinks",
+      "file": "Reihenhaus_G_2.png",
+      "hash": "efc4dbce29ef8d4732a7bc2789351e4c19fc19b5628d843a468beecbf5dbfb20",
+      "legacyIds": [
+        "1_Hauslinks/Reihenhaus_G_2.png"
+      ],
+      "name": "Reihenhaus_G_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "rot",
+        "weiss"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "b8259376-5eac-4919-9e7a-6755795ccd62",
+      "category": "1_Hauslinks",
+      "file": "Reihenhaus_G_3.png",
+      "hash": "42a171350e03062a862c46ebf96c6819f254b136ac7532c02e9b3dab5a00052b",
+      "legacyIds": [
+        "1_Hauslinks/Reihenhaus_G_3.png"
+      ],
+      "name": "Reihenhaus_G_3",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "braun",
+        "weiss"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "a5cc1065-bb46-4add-b8c1-79ad2db45741",
+      "category": "1_Hauslinks",
+      "file": "Reihenhaus_G_4.png",
+      "hash": "d6cdd50f836c04cfd379e2221569e11feb6ea812edc5b9047d6b05e2b9a9fe83",
+      "legacyIds": [
+        "1_Hauslinks/Reihenhaus_G_4.png"
+      ],
+      "name": "Reihenhaus_G_4",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "orange",
+        "braun"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "92ebe456-d2aa-4f30-82ad-b14c6ce12af3",
+      "category": "1_Hauslinks",
+      "file": "Wohnhaus_1.png",
+      "hash": "9720f56d8f23b9d149b60e37a62012594156074eda27e16d460b3da676686aab",
+      "legacyIds": [
+        "1_Hauslinks/Wohnhaus_1.png"
+      ],
+      "name": "Wohnhaus_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "Balkon",
+        "orange",
+        "braun"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "636ebc19-9f3d-4631-98b8-9a86301d5e90",
+      "category": "1_Hauslinks",
+      "file": "Wohnhaus_2.png",
+      "hash": "8e4d48261df6ec477538a592b32a7abc3f28cd472b81bf8e75f24175ccafbf5d",
+      "legacyIds": [
+        "1_Hauslinks/Wohnhaus_2.png"
+      ],
+      "name": "Wohnhaus_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "Balkon",
+        "orange",
+        "rot"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "ebc40789-4e9d-4d35-bc67-e8162cd984e7",
+      "category": "1_Hauslinks",
+      "file": "Wohnhaus_3.png",
+      "hash": "b4ab9814279f7bf822d2a40379fdb8229d024fd31c1600baca09dbcf415c5772",
+      "legacyIds": [
+        "1_Hauslinks/Wohnhaus_3.png"
+      ],
+      "name": "Wohnhaus_3",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "Balkon",
+        "blau",
+        "turkis",
+        "grun"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "38297770-a605-4aa2-8fae-798a2c19e105",
+      "category": "2_Hausrechts",
+      "file": "Altbau_1.png",
+      "hash": "cdf95e268460b3f37968f455ee35e831a6a913f628a69ca9e55a57a08071d38c",
+      "legacyIds": [
+        "2_Hausrechts/Altbau_1.png"
+      ],
+      "name": "Altbau_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Grunderzeit",
+        "Altbau",
+        "Backstein",
+        "rot"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "d0b1e910-49eb-42a5-97b5-ab60a5e28b19",
+      "category": "2_Hausrechts",
+      "file": "Altbau_2.png",
+      "hash": "0ecc3d1b8a09c13486f6b79332c5fd0502d2c03ee0987ec290f42695aaa0c836",
+      "legacyIds": [
+        "2_Hausrechts/Altbau_2.png"
+      ],
+      "name": "Altbau_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Eckhaus",
+        "Grunderzeit",
+        "Altbau",
+        "Backstein",
+        "rot"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "4672a9ef-d6f1-4443-b8f9-21c4a4d803f8",
+      "category": "2_Hausrechts",
+      "file": "Reihenhaus_1.png",
+      "hash": "0ec1c2632a3b3046d932dfa04f5f8a07349cae88875b96ff31c0751a4694f2de",
+      "legacyIds": [
+        "2_Hausrechts/Reihenhaus_1.png"
+      ],
+      "name": "Reihenhaus_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "blau",
+        "weiss"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "da89b43e-00ac-4f9f-aa31-ebc70a3b7492",
+      "category": "2_Hausrechts",
+      "file": "Reihenhaus_2.png",
+      "hash": "c207a9459d87dc70819dab03c0c33cfffff849e88157738ac9af9f9d7baa2675",
+      "legacyIds": [
+        "2_Hausrechts/Reihenhaus_2.png"
+      ],
+      "name": "Reihenhaus_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "rot",
+        "weiss"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "ac607054-04bf-4004-b8a9-45d1ee5132e7",
+      "category": "2_Hausrechts",
+      "file": "Reihenhaus_3.png",
+      "hash": "a0a561efa6df3422ab7418fd70a3481878d05c7b4c1a3f07ac1c45d6ab7bfaa5",
+      "legacyIds": [
+        "2_Hausrechts/Reihenhaus_3.png"
+      ],
+      "name": "Reihenhaus_3",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "braun",
+        "weiss"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "fbaa7398-eb05-430f-88bb-5b366c58dca1",
+      "category": "2_Hausrechts",
+      "file": "Reihenhaus_4.png",
+      "hash": "33fbb3ff88a11087ddc945ec08317babb85da69403405c7741c1d882dd1f8729",
+      "legacyIds": [
+        "2_Hausrechts/Reihenhaus_4.png"
+      ],
+      "name": "Reihenhaus_4",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "orange",
+        "braun"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "4dcce186-fcff-42a8-b2b7-53051e4947d1",
+      "category": "2_Hausrechts",
+      "file": "Reihenhaus_G_1.png",
+      "hash": "e52247d14c9f1bb073a288c3d8539a69f4a3b3faa4ca32c7f4265c422421664c",
+      "legacyIds": [
+        "2_Hausrechts/Reihenhaus_G_1.png"
+      ],
+      "name": "Reihenhaus_G_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "blau",
+        "weiss"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "d1dc503e-072c-4660-8ab7-24e87a0d306a",
+      "category": "2_Hausrechts",
+      "file": "Reihenhaus_G_2.png",
+      "hash": "f874da524ae327e4b22be18b89d7826fe30027eb62e045616708c1c45d153f04",
+      "legacyIds": [
+        "2_Hausrechts/Reihenhaus_G_2.png"
+      ],
+      "name": "Reihenhaus_G_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "rot",
+        "weiss"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "851ab28f-ebb8-4126-abaa-7a81bc129fbc",
+      "category": "2_Hausrechts",
+      "file": "Reihenhaus_G_3.png",
+      "hash": "83ef19d3a22899d4cf3b4c9b58f1a2354a0b597af226f2ccdeed3717ce4c0d58",
+      "legacyIds": [
+        "2_Hausrechts/Reihenhaus_G_3.png"
+      ],
+      "name": "Reihenhaus_G_3",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "braun",
+        "weiss"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "b901d3f3-5a9b-4d58-83d4-a4dab18fc469",
+      "category": "2_Hausrechts",
+      "file": "Reihenhaus_G_4.png",
+      "hash": "96d77c99e287b834a23124bb2a8aaf386a99cd717ece6f31d934c6ca9d88b5c2",
+      "legacyIds": [
+        "2_Hausrechts/Reihenhaus_G_4.png"
+      ],
+      "name": "Reihenhaus_G_4",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "orange",
+        "braun"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "f30c3263-092d-4682-9469-6747ef9e96ca",
+      "category": "2_Hausrechts",
+      "file": "Wohnhaus_1.png",
+      "hash": "e17083563b0095040a0de54e4e81bdfbfe2c5f386b8bf5e146efa26adaa19034",
+      "legacyIds": [
+        "2_Hausrechts/Wohnhaus_1.png"
+      ],
+      "name": "Wohnhaus_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "Balkon",
+        "orange",
+        "braun"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "6f029082-ff3b-4d18-ba2e-214b0ab0313e",
+      "category": "2_Hausrechts",
+      "file": "Wohnhaus_2.png",
+      "hash": "2358f610e802b2d7a156129d19dcdbe9fef8af6111422e7076e12549bc1d1e4a",
+      "legacyIds": [
+        "2_Hausrechts/Wohnhaus_2.png"
+      ],
+      "name": "Wohnhaus_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "Balkon",
+        "orange",
+        "rot"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "16532e8b-335f-4031-b015-97c82e5bc754",
+      "category": "2_Hausrechts",
+      "file": "Wohnhaus_3.png",
+      "hash": "13b8e40b0cffa46163a40a1820c048d924e39c94d461bde92abff7ae7c4e81cc",
+      "legacyIds": [
+        "2_Hausrechts/Wohnhaus_3.png"
+      ],
+      "name": "Wohnhaus_3",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Neubau",
+        "Balkon",
+        "blau",
+        "turkis",
+        "grun"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "c2a60bbc-1f54-4c2a-a6e0-512899f5dafb",
+      "category": "2_Hausrechts",
+      "file": "Haus_1.png",
+      "hash": "64a8f5f3a73e5bb7ab8131757dfd9903ebd50d794e656b310ca35ddd03e4dd05",
+      "legacyIds": [
+        "2_Hausrechts/Haus_1.png"
+      ],
+      "name": "Haus_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Altbau",
+        "Grunderzeit",
+        "blau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "9da6bf2c-2ed7-4258-bfe9-114a20d137c9",
+      "category": "3_Spezialhaus",
+      "file": "Fabrik_1.png",
+      "hash": "fe5f6696d3b9cccfb6e8aacd1c800fa4be8749f62ae8c2b3712dd91080803d60",
+      "legacyIds": [
+        "3_Spezialhaus/Fabrik_1.png"
+      ],
+      "name": "Fabrik_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 2,
+      "tags": [
+        "Haus",
+        "Fabrik",
+        "Grunderzeit",
+        "Altbau",
+        "Backstein",
+        "rot"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "b60d7d24-c5a5-42a2-88cc-3aac7c2faf4f",
+      "category": "3_Spezialhaus",
+      "file": "Fabrik_2.png",
+      "hash": "27b22b1c65eb14ace6ed61ed968365af8e2d96f5b53069fa667bc0761b6cc105",
+      "legacyIds": [
+        "3_Spezialhaus/Fabrik_2.png"
+      ],
+      "name": "Fabrik_2",
+      "type": "FULL",
+      "w": 2,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Fabrik",
+        "Kufa",
+        "Turm",
+        "Backstein",
+        "rot"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "3eeda5a3-d118-493b-8bc0-86d924a74327",
+      "category": "3_Spezialhaus",
+      "file": "Fabrik_3.png",
+      "hash": "ae675f49f97312a92e1196208d8d7209a983bf4ef0c1aeac43ccd62d0563e2ed",
+      "legacyIds": [
+        "3_Spezialhaus/Fabrik_3.png"
+      ],
+      "name": "Fabrik_3",
+      "type": "FULL",
+      "w": 3,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Fabrik",
+        "Kufa",
+        "Turm",
+        "Backstein",
+        "rot"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "54b6e510-3125-4830-bcca-7f1a1f926e35",
+      "category": "3_Spezialhaus",
+      "file": "Halle_1.png",
+      "hash": "9169ae5606f7cdbb70b183a5521af808e91993ae9f18ef6d63042cb0227616f7",
+      "legacyIds": [
+        "3_Spezialhaus/Halle_1.png"
+      ],
+      "name": "Halle_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Fabrik",
+        "Halle",
+        "weiss",
+        "grun"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "cc483972-1e10-452e-a1e2-153e34e7cedf",
+      "category": "3_Spezialhaus",
+      "file": "Halle_2.png",
+      "hash": "ae3678755d235c9f4219d304fbbe2c8de22ca041207055bcfd85926e20dd31a5",
+      "legacyIds": [
+        "3_Spezialhaus/Halle_2.png"
+      ],
+      "name": "Halle_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Fabrik",
+        "Halle",
+        "weiss",
+        "rot"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "c628f674-9d9f-4d2b-8ad4-72dcb250c88e",
+      "category": "3_Spezialhaus",
+      "file": "Nordi_1.png",
+      "hash": "f4b2cbb0cc559ebcdb6ebd4c15af59808da587a11ad300b567e1aabd4b8f4e5f",
+      "legacyIds": [
+        "3_Spezialhaus/Nordi_1.png"
+      ],
+      "name": "Nordi_1",
+      "type": "FULL",
+      "w": 2,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Fabrik",
+        "Halle",
+        "weiss",
+        "blau",
+        "turkis",
+        "grun"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "73819d24-142f-4d9d-9200-32a249d6eb53",
+      "category": "3_Spezialhaus",
+      "file": "Nordi_2.png",
+      "hash": "992713826f0b24c525d1761210f5fa50a30c656596dc9dc2ebc1485a0475eb92",
+      "legacyIds": [
+        "3_Spezialhaus/Nordi_2.png"
+      ],
+      "name": "Nordi_2",
+      "type": "FULL",
+      "w": 2,
+      "h": 2,
+      "tags": [
+        "Haus",
+        "Kirche",
+        "Turm",
+        "blau",
+        "turkis",
+        "grun"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "7087ce4f-6b8e-4484-8bbb-fe670c0aa745",
+      "category": "3_Spezialhaus",
+      "file": "Nordi_3.png",
+      "hash": "8d0864dbd6fa55076ca9d7cc01341b61200560a52d0ad83ff2fcf004f544f224",
+      "legacyIds": [
+        "3_Spezialhaus/Nordi_3.png"
+      ],
+      "name": "Nordi_3",
+      "type": "FULL",
+      "w": 2,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "6deda247-8b50-45a1-9534-b3c75e92a805",
+      "category": "3_Spezialhaus",
+      "file": "Turm_1.png",
+      "hash": "1db808f79b341d5374304c54f4f9c2667cc2369a87dc9d4085c2b4f39d3aad4f",
+      "legacyIds": [
+        "3_Spezialhaus/Turm_1.png"
+      ],
+      "name": "Turm_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "Fabrik",
+        "Kufa",
+        "Turm",
+        "Backstein",
+        "rot"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "d14d04cc-4441-4848-b3f5-fe371c33c55c",
+      "category": "3_Spezialhaus",
+      "file": "Turm_2.png",
+      "hash": "61668f18cb8edc518756747ab79c264f94aed111756be08a24cb50eba5d8249f",
+      "legacyIds": [
+        "3_Spezialhaus/Turm_2.png"
+      ],
+      "name": "Turm_2",
+      "type": "FULL",
+      "w": 2,
+      "h": 2,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "6c8ad594-99f5-4e71-b367-1e56967f619c",
+      "category": "3_Spezialhaus",
+      "file": "Hochhaus_1.png",
+      "hash": "ce0c687780291754e870354e251bebb17514603f97f9ce7c777ad75aa02c685e",
+      "legacyIds": [
+        "3_Spezialhaus/Hochhaus_1.png"
+      ],
+      "name": "Hochhaus_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "72cc95e2-fad3-4ad7-9af2-3caf23bcc4a5",
+      "category": "10_Strassen",
+      "file": "Strasse_1.png",
+      "hash": "edfd7ffa928e953727d3ba9cc08d95f381fe0bd0e2cf6fb901404d1a85006c3c",
+      "legacyIds": [
+        "10_Strassen/Strasse_1.png"
+      ],
+      "name": "Strasse_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Strasse",
+        "Boden",
+        "gerade",
+        "hoch",
+        "grau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "758e48c9-315b-442d-8a66-252d8278ee46",
+      "category": "10_Strassen",
+      "file": "Strasse_2.png",
+      "hash": "4e0f8d4ede5f4fe01a962b1ef04cdd5653dcf3a85b6d12bc6a243284f7de8bf9",
+      "legacyIds": [
+        "10_Strassen/Strasse_2.png"
+      ],
+      "name": "Strasse_2",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Strasse",
+        "Boden",
+        "gerade",
+        "runter",
+        "grau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "a2d8b4dd-c35c-4817-ac33-ab5efd381ff2",
+      "category": "10_Strassen",
+      "file": "Strasse_3.png",
+      "hash": "a6cfe7a86dfa99b663f7e95ba2f1ffe8caec8e90edf5792104daa6da63625a77",
+      "legacyIds": [
+        "10_Strassen/Strasse_3.png"
+      ],
+      "name": "Strasse_3",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Strasse",
+        "Boden",
+        "Kreuzung",
+        "grau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "02354e6c-8abb-4a89-9f71-3747b3f05842",
+      "category": "10_Strassen",
+      "file": "Strasse_4.png",
+      "hash": "0cafb00bf96a32f41657a7fdb1aa03c3fff4bd539f02dc9a20af3824a5bd5d86",
+      "legacyIds": [
+        "10_Strassen/Strasse_4.png"
+      ],
+      "name": "Strasse_4",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Strasse",
+        "Boden",
+        "Ecke",
+        "grau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "b3a1f179-9a46-4d65-9033-3c411971d659",
+      "category": "10_Strassen",
+      "file": "Strasse_5.png",
+      "hash": "cd990b247df75f7c69cf7375f519c430db4ae55d989062167892ced3bf95a037",
+      "legacyIds": [
+        "10_Strassen/Strasse_5.png"
+      ],
+      "name": "Strasse_5",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Strasse",
+        "Boden",
+        "Ecke",
+        "grau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "d1a4c1e9-79b0-40e5-ad74-5d180d9440f7",
+      "category": "10_Strassen",
+      "file": "Strasse_6.png",
+      "hash": "f04dc57e29658d05cc31eeac3437d706da473df3da5784e875c0c2b435427b3e",
+      "legacyIds": [
+        "10_Strassen/Strasse_6.png"
+      ],
+      "name": "Strasse_6",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Strasse",
+        "Boden",
+        "Ecke",
+        "grau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "72986513-b1fe-44a5-8892-8e8e0b585427",
+      "category": "10_Strassen",
+      "file": "Strasse_7.png",
+      "hash": "9ddf1d7b2b41719c7ad7193c905e0da28ef568117bda37c06386240c92c7f6de",
+      "legacyIds": [
+        "10_Strassen/Strasse_7.png"
+      ],
+      "name": "Strasse_7",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Strasse",
+        "Boden",
+        "Ecke",
+        "grau",
+        "Strasse",
+        "Boden",
+        "Kreuzung",
+        "grau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "aa24864c-b971-45fe-84bc-11352ddf53b0",
+      "category": "10_Strassen",
+      "file": "Strasse_8.png",
+      "hash": "436b51f847c62ba6d1c767f6dd7467e6493a23240b56d28ad07ac299ee04b874",
+      "legacyIds": [
+        "10_Strassen/Strasse_8.png"
+      ],
+      "name": "Strasse_8",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Strasse",
+        "Boden",
+        "Ecke",
+        "grau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "af71fa3a-fb42-43fc-9e05-115bfe5fcdff",
+      "category": "10_Strassen",
+      "file": "Strasse_9.png",
+      "hash": "b8401a5d8d33fc28ab4eed7b6ca4e48f99e99f9bff2a75a679e0807486159906",
+      "legacyIds": [
+        "10_Strassen/Strasse_9.png"
+      ],
+      "name": "Strasse_9",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Strasse",
+        "Boden",
+        "T-Kreuzung",
+        "grau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "7bc6fa17-0c49-4df4-a689-14947db637d7",
+      "category": "10_Strassen",
+      "file": "Strasse_10.png",
+      "hash": "0a3cc58a9c71051f0b15937967d34ba598e4ae08361db8cf188c0b640c65c823",
+      "legacyIds": [
+        "10_Strassen/Strasse_10.png"
+      ],
+      "name": "Strasse_10",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Strasse",
+        "Boden",
+        "T-Kreuzung",
+        "grau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "0dedceae-677c-456b-aafc-76ed2935da12",
+      "category": "10_Strassen",
+      "file": "Strasse_11.png",
+      "hash": "91ea79131b4b1d1003c932b439bcd73288ef00258d2f47071368843efbabe0e1",
+      "legacyIds": [
+        "10_Strassen/Strasse_11.png"
+      ],
+      "name": "Strasse_11",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Strasse",
+        "Boden",
+        "T-Kreuzung",
+        "grau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "0b41c402-0b73-4adc-8a77-fc4ef2d65950",
+      "category": "10_Strassen",
+      "file": "Zebra_1.png",
+      "hash": "57e78b007d06bb9572afa0b8908c74ac2afc970d310dd0913a568b24c687c232",
+      "legacyIds": [
+        "10_Strassen/Zebra_1.png"
+      ],
+      "name": "Zebra_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Strasse",
+        "Boden",
+        "Zebrastreifen",
+        "grau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "8a5528e8-3655-46fc-8a5f-0a53128e1b3d",
+      "category": "10_Strassen",
+      "file": "Zebra_2.png",
+      "hash": "fe66dbcfbc176e6058209761169bb8bfa9d9de5ab4da2bbe28e4915439fc5f60",
+      "legacyIds": [
+        "10_Strassen/Zebra_2.png"
+      ],
+      "name": "Zebra_2",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Strasse",
+        "Boden",
+        "Zebrastreifen",
+        "grau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "9de08e07-54fd-4aaa-be1e-8c763a628ec9",
+      "category": "11_Boden",
+      "file": "Wiese_1.png",
+      "hash": "04757c2ed9796e1c7546af115d90e161dccb0f84626fa1edc986517aaf066378",
+      "legacyIds": [
+        "11_Boden/Wiese_1.png"
+      ],
+      "name": "Wiese_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Wiese",
+        "Boden",
+        "grun"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "383421f8-5d85-467b-a6d2-f93fb25a7a4f",
+      "category": "11_Boden",
+      "file": "Wiese_2.png",
+      "hash": "98beeb517fe8b93824949bdd76aa8bb0167b77c6fffcf1de9eab9f0935ec2325",
+      "legacyIds": [
+        "11_Boden/Wiese_2.png"
+      ],
+      "name": "Wiese_2",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Wiese",
+        "Boden",
+        "grunBlumen"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "c33f501b-819f-45c5-bd0d-105d2033ed27",
+      "category": "11_Boden",
+      "file": "Sand_1.png",
+      "hash": "73864d33c1d89cca60644a318d5f778999b8918d46e4b3d5c9d11d2953631eb0",
+      "legacyIds": [
+        "11_Boden/Sand_1.png"
+      ],
+      "name": "Sand_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Sand",
+        "Boden",
+        "braun"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "c955c1de-68f1-4d0c-93dd-36852d80f020",
+      "category": "11_Boden",
+      "file": "Erde_1.png",
+      "hash": "f095807624dc43fe776f8503551abb031d276ced3bd782cac4d4c7e918375572",
+      "legacyIds": [
+        "11_Boden/Erde_1.png"
+      ],
+      "name": "Erde_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Erde",
+        "Boden",
+        "braun"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "cd5aa88d-d296-4ba9-8223-d510dae5d154",
+      "category": "12_Wege",
+      "file": "A_Gerade_1.png",
+      "hash": "f8939ff8dff9d7d24a05e250a49f16833cb5782dc370e0f5195f1180bd5d47d2",
+      "legacyIds": [
+        "12_Wege/A_Gerade_1.png"
+      ],
+      "name": "A_Gerade_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "574d6694-e9eb-4a35-b82b-9924c3ee99d5",
+      "category": "12_Wege",
+      "file": "A_Gerade_2.png",
+      "hash": "fdd8c6e116da68175bcf4a0635cc8e449b71ad7f01d4393d74e4e47e46f6be41",
+      "legacyIds": [
+        "12_Wege/A_Gerade_2.png"
+      ],
+      "name": "A_Gerade_2",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "998405f1-28f9-4762-a643-42a2c6dba107",
+      "category": "12_Wege",
+      "file": "A_Gerade_3.png",
+      "hash": "d8d25cffaaa4dfed68a8631773ac9b67b79b5ed3e5dd78a305a171d3d512d769",
+      "legacyIds": [
+        "12_Wege/A_Gerade_3.png"
+      ],
+      "name": "A_Gerade_3",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "843f2062-0fea-499a-ad3a-c0c5024a1d6b",
+      "category": "12_Wege",
+      "file": "A_Gerade_4.png",
+      "hash": "1ffc7a14b5637f695dbadcc119c18e0209343d8c8b4da785c70ab4b093c49a7b",
+      "legacyIds": [
+        "12_Wege/A_Gerade_4.png"
+      ],
+      "name": "A_Gerade_4",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "ba320970-16ac-4b09-a8a5-60a021ded57e",
+      "category": "12_Wege",
+      "file": "A_Gerade_5.png",
+      "hash": "024ff7c5d7a1b22fa0671e71a8fdd5d9347000598b83ef089f3216c45a15af3c",
+      "legacyIds": [
+        "12_Wege/A_Gerade_5.png"
+      ],
+      "name": "A_Gerade_5",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "75d97dd2-801c-452e-9b53-1963fb9797f3",
+      "category": "12_Wege",
+      "file": "A_Gerade_6.png",
+      "hash": "0c0a5de3d6cc6e6c83ec2e581ea728ac2dce9227119364711a10e24b18547581",
+      "legacyIds": [
+        "12_Wege/A_Gerade_6.png"
+      ],
+      "name": "A_Gerade_6",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "b811667a-314f-4ca7-8782-b44bae4411da",
+      "category": "12_Wege",
+      "file": "Eck_1.png",
+      "hash": "0a496f72ad60b0ac880e7ff06f20980df1d3bacaf21087bfedcb0990a3f3c6e9",
+      "legacyIds": [
+        "12_Wege/Eck_1.png"
+      ],
+      "name": "Eck_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "78d82525-8139-4ceb-8853-80438da6d2d8",
+      "category": "12_Wege",
+      "file": "Eck_2.png",
+      "hash": "c674bb6345c4180cab1b3a045e39dee512da4653d16d34544a5efd9b48b631f6",
+      "legacyIds": [
+        "12_Wege/Eck_2.png"
+      ],
+      "name": "Eck_2",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "11192a7a-0127-48d5-94e9-d71db293f8df",
+      "category": "12_Wege",
+      "file": "Eck_3.png",
+      "hash": "3e0410d09a3d0d442f8b66b2767f732fca48a0c81c20797b06482b5478238bea",
+      "legacyIds": [
+        "12_Wege/Eck_3.png"
+      ],
+      "name": "Eck_3",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "659e9911-7552-4aa9-8e47-a7576a06a10a",
+      "category": "12_Wege",
+      "file": "Eck_4.png",
+      "hash": "86eba412c9e444adf35a8e75d0ca4334afe4cc9582abad40a83bf113258af5bc",
+      "legacyIds": [
+        "12_Wege/Eck_4.png"
+      ],
+      "name": "Eck_4",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "65801e8c-92ce-4347-8dd6-446e5b652954",
+      "category": "12_Wege",
+      "file": "Eck_5.png",
+      "hash": "969757b3788d781f52b1d3bc57895b069fa6ee78f2719440d8fe849850415fd0",
+      "legacyIds": [
+        "12_Wege/Eck_5.png"
+      ],
+      "name": "Eck_5",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "f437572d-de5e-465e-9e44-3af734a25e7a",
+      "category": "12_Wege",
+      "file": "Eck_6.png",
+      "hash": "684d212cb0f25d6a4eccbf1ce688d6b6a612c78b36aede955ad9cd88aec12c0e",
+      "legacyIds": [
+        "12_Wege/Eck_6.png"
+      ],
+      "name": "Eck_6",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "f781b59c-932a-4cd1-a4f6-460d8686944a",
+      "category": "12_Wege",
+      "file": "Eck_7.png",
+      "hash": "77eedfb46f7cbe9accbfbc54b518721e093df6359c80dfbebc971be3b601dd1d",
+      "legacyIds": [
+        "12_Wege/Eck_7.png"
+      ],
+      "name": "Eck_7",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "69cd4648-2d60-4b10-b2ad-df9a3273432a",
+      "category": "12_Wege",
+      "file": "Eck_8.png",
+      "hash": "0f0052be9b7511458fc2bc10a057d6614e13c7c847b1171ebfa240fc8f858344",
+      "legacyIds": [
+        "12_Wege/Eck_8.png"
+      ],
+      "name": "Eck_8",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "0e842dbd-c909-45f8-9822-6bb8d77611c1",
+      "category": "12_Wege",
+      "file": "End_1.png",
+      "hash": "2d976d1e217a6560a73db790a613c6ff1a403e7198536b8f55734f5c79e1932f",
+      "legacyIds": [
+        "12_Wege/End_1.png"
+      ],
+      "name": "End_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "8610a06e-f9cd-416a-ac1a-0f8aaa215403",
+      "category": "12_Wege",
+      "file": "End_2.png",
+      "hash": "9dddab14fa23c6c88d569946c823dd1ac346ca9d35be8ca04de53099e7a955b7",
+      "legacyIds": [
+        "12_Wege/End_2.png"
+      ],
+      "name": "End_2",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "a1f67e6b-eaac-4a3e-b1a8-ae708cca4533",
+      "category": "12_Wege",
+      "file": "End_3.png",
+      "hash": "700c2e69d38a2785df3cac03c622d6ed216ded25da5b052bb4a9f66b3d3e660e",
+      "legacyIds": [
+        "12_Wege/End_3.png"
+      ],
+      "name": "End_3",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "10591aa8-024f-4ff5-8d5c-c09eea8e6f43",
+      "category": "12_Wege",
+      "file": "End_4.png",
+      "hash": "1e0a3b036934c0ef2db1670bc82f2ec739a6d59d5270b95e12983022da173318",
+      "legacyIds": [
+        "12_Wege/End_4.png"
+      ],
+      "name": "End_4",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "8bfb7afc-5f4e-475f-a198-5f083ff24c95",
+      "category": "12_Wege",
+      "file": "End_5.png",
+      "hash": "f35235432b8af5ce1253f77b6ff3f41cbe17918484564c22abeaf036842f841b",
+      "legacyIds": [
+        "12_Wege/End_5.png"
+      ],
+      "name": "End_5",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "5c172b8c-fc92-4121-8227-b5c2f8d107e1",
+      "category": "12_Wege",
+      "file": "End_6.png",
+      "hash": "06b3d6a873917f58f8a7950ac594fd1c1e14ecbec58d62d5c2afcb2734ad62f9",
+      "legacyIds": [
+        "12_Wege/End_6.png"
+      ],
+      "name": "End_6",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "1668ef81-1c60-4f68-b833-2ad71706d7ab",
+      "category": "12_Wege",
+      "file": "End_7.png",
+      "hash": "72980979444ad233ce0614c9b500f5d4efb0efe9e71a8b89b7e7434c596f60c1",
+      "legacyIds": [
+        "12_Wege/End_7.png"
+      ],
+      "name": "End_7",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "40ef70c9-12c5-48ad-a02f-9db93b763702",
+      "category": "12_Wege",
+      "file": "End_8.png",
+      "hash": "c9da1faa707a44a49e55eb8bef0e3ad2b579784405fee632244df77c51523ccf",
+      "legacyIds": [
+        "12_Wege/End_8.png"
+      ],
+      "name": "End_8",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "72ab4c51-a198-4cdd-bcb3-0e69a9b4d5cd",
+      "category": "13_Stadtboden",
+      "file": "Asphalt_1.png",
+      "hash": "9b921f7f0c8d7d37a2f038521415a9b9db7d7f961894345ae0027e518c471689",
+      "legacyIds": [
+        "13_Stadtboden/Asphalt_1.png"
+      ],
+      "name": "Asphalt_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "3b4179cf-3b2c-449b-a302-4a3c76b3f1ef",
+      "category": "13_Stadtboden",
+      "file": "Asphalt_2.png",
+      "hash": "19a7c8436dfc524a09c2a09876824867883201db6bc242a637b6afdbbce76fa2",
+      "legacyIds": [
+        "13_Stadtboden/Asphalt_2.png"
+      ],
+      "name": "Asphalt_2",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "df923b7e-dd83-4584-b642-07368d224c01",
+      "category": "13_Stadtboden",
+      "file": "Asphalt_3.png",
+      "hash": "0c4be4d0a15406ad4c12ffaa3d9fe1075c19ab440c26e54fa88d1bed67c1dc8f",
+      "legacyIds": [
+        "13_Stadtboden/Asphalt_3.png"
+      ],
+      "name": "Asphalt_3",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "d1bf1cee-fd4b-4efe-a1a7-4e6a17b63d60",
+      "category": "13_Stadtboden",
+      "file": "Asphalt_4.png",
+      "hash": "da7c7277f59d5fe8295fa0bcd11d964325863bce27600db1780f6d9fb62d32f3",
+      "legacyIds": [
+        "13_Stadtboden/Asphalt_4.png"
+      ],
+      "name": "Asphalt_4",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "7070243a-6708-4347-a76d-cf66bffeca1b",
+      "category": "13_Stadtboden",
+      "file": "Asphalt_5.png",
+      "hash": "410b10a28a7a95b5e5e21fd0fa003a5d287e842ca0f2d30496bad76f3d25607f",
+      "legacyIds": [
+        "13_Stadtboden/Asphalt_5.png"
+      ],
+      "name": "Asphalt_5",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "0fc7b23b-26f4-48b4-9873-3d3cae28188a",
+      "category": "13_Stadtboden",
+      "file": "Asphalt_6.png",
+      "hash": "2684d86d3676a396aa6a8e7ebd174ea8cc0a17d9d4ae4a4f7736ba2a129b6606",
+      "legacyIds": [
+        "13_Stadtboden/Asphalt_6.png"
+      ],
+      "name": "Asphalt_6",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "67215932-3def-44fc-a75c-9a8c367ab60f",
+      "category": "13_Stadtboden",
+      "file": "Backstein_1.png",
+      "hash": "6df0c3ab3830361704cfa5eaf9ad28287060b988367a10f746104cfd05d1d158",
+      "legacyIds": [
+        "13_Stadtboden/Backstein_1.png"
+      ],
+      "name": "Backstein_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "5cfd1e7c-5c03-4f97-97be-f7e0ff5f98d8",
+      "category": "13_Stadtboden",
+      "file": "Backstein_2.png",
+      "hash": "c3cc61b209f535f00b6097a96cf50925e54d20b5a0089da66efaa51f3403acf9",
+      "legacyIds": [
+        "13_Stadtboden/Backstein_2.png"
+      ],
+      "name": "Backstein_2",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "9584bb0f-a64a-4af6-89c2-54c2c3798fff",
+      "category": "13_Stadtboden",
+      "file": "Boden_1.png",
+      "hash": "aa8edfc1fa49bb922e4bd1ad45c2c7bcf4576046850b521a7c4d5d78a6575a82",
+      "legacyIds": [
+        "13_Stadtboden/Boden_1.png"
+      ],
+      "name": "Boden_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "081294fd-54c5-4a0a-b244-0b94012751a1",
+      "category": "13_Stadtboden",
+      "file": "Boden_2.png",
+      "hash": "5f21b0c75ad9b462aac27d02bbf4788d343ee15430475e480d3615c0d4c7a157",
+      "legacyIds": [
+        "13_Stadtboden/Boden_2.png"
+      ],
+      "name": "Boden_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "bd137615-9fa1-4d6c-b7c1-cf188de22978",
+      "category": "13_Stadtboden",
+      "file": "Boden_3.png",
+      "hash": "ee16b53b90c181c8931f617a68e8dbb604b4388648c414d424a34b8459988739",
+      "legacyIds": [
+        "13_Stadtboden/Boden_3.png"
+      ],
+      "name": "Boden_3",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "68283fc4-eb11-4b49-927a-131cf892dd6e",
+      "category": "13_Stadtboden",
+      "file": "Boden_4.png",
+      "hash": "f0693579187344471a0935d881fa41efc5c95331f5c07b86386b7c340349975b",
+      "legacyIds": [
+        "13_Stadtboden/Boden_4.png"
+      ],
+      "name": "Boden_4",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "18b12e32-6aa7-41d9-a860-edc260c4fdf0",
+      "category": "13_Stadtboden",
+      "file": "Kacheln_1.png",
+      "hash": "be037b939e1ac455b8bf6758dc036cc411502140b0fd23222d0cfdcc2e7f19e0",
+      "legacyIds": [
+        "13_Stadtboden/Kacheln_1.png"
+      ],
+      "name": "Kacheln_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "311392e8-ccfd-4876-afeb-ad8a78c2eb5a",
+      "category": "13_Stadtboden",
+      "file": "Kacheln_2.png",
+      "hash": "39f0335e2837d50ebc63baa18ff7840451deb13292b6df7531600010ee07ebc5",
+      "legacyIds": [
+        "13_Stadtboden/Kacheln_2.png"
+      ],
+      "name": "Kacheln_2",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "2f1f9cb8-a99a-435d-8f1f-418735cf6098",
+      "category": "13_Stadtboden",
+      "file": "Kacheln_3.png",
+      "hash": "f27b451048b6e927272f03b10b6d4d42479395b5a2f385b1fa9472b7722687d6",
+      "legacyIds": [
+        "13_Stadtboden/Kacheln_3.png"
+      ],
+      "name": "Kacheln_3",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "1290a443-b71f-456c-bd58-b4c4556a4fc9",
+      "category": "13_Stadtboden",
+      "file": "Kacheln_4.png",
+      "hash": "ce3887cdb94ca9c84dd60277772f732ebed44f0a112db04774d16f4b434ca301",
+      "legacyIds": [
+        "13_Stadtboden/Kacheln_4.png"
+      ],
+      "name": "Kacheln_4",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "9f608d51-df0d-46ed-9643-febff2101b79",
+      "category": "13_Stadtboden",
+      "file": "Kacheln_5.png",
+      "hash": "4002cf221f55e0ffdada2f4305e469db6f8972457deae83f78e6937519aec2ae",
+      "legacyIds": [
+        "13_Stadtboden/Kacheln_5.png"
+      ],
+      "name": "Kacheln_5",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "c239ebe5-9194-48df-9718-1e497be5b2a5",
+      "category": "13_Stadtboden",
+      "file": "Kacheln_6.png",
+      "hash": "03ec1ddeabf48a6daaae1c23ebfe27398e467687f7670d917dd87a24b833668a",
+      "legacyIds": [
+        "13_Stadtboden/Kacheln_6.png"
+      ],
+      "name": "Kacheln_6",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "3fa8c459-b500-4d11-a7d5-8e8044776fd8",
+      "category": "14_Brucke",
+      "file": "Auffahrt_1.png",
+      "hash": "f4a0c8c31105d1cffb1a1c0e25c35319accc57947c62c5600fbea9329ac208eb",
+      "legacyIds": [
+        "14_Brucke/Auffahrt_1.png"
+      ],
+      "name": "Auffahrt_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "0>1",
+              "A": "-",
+              "S": "1>0",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "df475d5d-6534-44a1-9bf2-b0d8ceafade0",
+      "category": "14_Brucke",
+      "file": "Auffahrt_2.png",
+      "hash": "b93c5a93ff3bcc7e21d6e413ba44f73dcb26881a4be54dd8365b351ad8998ae0",
+      "legacyIds": [
+        "14_Brucke/Auffahrt_2.png"
+      ],
+      "name": "Auffahrt_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "0>1",
+              "S": "-",
+              "D": "1>0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "963f3eed-71f0-405b-8cb2-2da0b301702a",
+      "category": "14_Brucke",
+      "file": "Auffahrt_3.png",
+      "hash": "f2f3f60ebf09ef6fe7be8cd404da506163e0fb3af0c3af2f9494c4e0294030ed",
+      "legacyIds": [
+        "14_Brucke/Auffahrt_3.png"
+      ],
+      "name": "Auffahrt_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1>0",
+              "A": "-",
+              "S": "0>1",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "25e47806-89db-46c4-9ccd-da3ea682e03b",
+      "category": "14_Brucke",
+      "file": "Auffahrt_4.png",
+      "hash": "57cc5127c5152fcc2a853a7385513ddf7838c9ef6ebc4a5c82e55abccb7cf788",
+      "legacyIds": [
+        "14_Brucke/Auffahrt_4.png"
+      ],
+      "name": "Auffahrt_4",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "1>0",
+              "S": "-",
+              "D": "0>1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "878a5cc2-f8d5-47ed-be9b-c329392e529b",
+      "category": "14_Brucke",
+      "file": "Hohe_1.png",
+      "hash": "597335387a4e4016bba9e7b410f4194ef0ad04363a7efb483f7b72de61226ba6",
+      "legacyIds": [
+        "14_Brucke/Hohe_1.png"
+      ],
+      "name": "Hohe_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "1",
+              "S": "1",
+              "D": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ad9a88b6-d73e-441f-8099-aa683cf9b8ae",
+      "category": "14_Brucke",
+      "file": "Hohe_2.png",
+      "hash": "abb63211dd55585dd88021c15c496188d4e1c80cc3da30a2d7fb373f968f7304",
+      "legacyIds": [
+        "14_Brucke/Hohe_2.png"
+      ],
+      "name": "Hohe_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "-",
+              "S": "1",
+              "D": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "3d840f45-d863-416c-a7c4-2e22452221a5",
+      "category": "14_Brucke",
+      "file": "Hohe_3.png",
+      "hash": "324e2c3f15069b27226b6a5c86b726382437c68f922019de1c8a160497a8668f",
+      "legacyIds": [
+        "14_Brucke/Hohe_3.png"
+      ],
+      "name": "Hohe_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "1",
+              "S": "1",
+              "D": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "bf04ba5e-fdb0-4be2-b133-f6d367f30600",
+      "category": "14_Brucke",
+      "file": "Hohe_4.png",
+      "hash": "2ca9e45493c431c0ae605e4757093e64264f851a2f5c7b84e1f25a3d74abfb88",
+      "legacyIds": [
+        "14_Brucke/Hohe_4.png"
+      ],
+      "name": "Hohe_4",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "1",
+              "S": "-",
+              "D": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "d280861c-8edd-4074-80e8-096e883d6f51",
+      "category": "14_Brucke",
+      "file": "Hohe_5.png",
+      "hash": "4db75f6941b0a73ec574e43b4ecd87c9fcc34f2de37551cea1ed3906f2a36687",
+      "legacyIds": [
+        "14_Brucke/Hohe_5.png"
+      ],
+      "name": "Hohe_5",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "1",
+              "S": "1",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "1a7f98c5-e81d-4ef0-bbae-3d87a152b8c0",
+      "category": "14_Brucke",
+      "file": "Oben_1.png",
+      "hash": "aabb20e53e4b9d28f827300ec979bd86c974a85367a860557b192abc0df3a9e4",
+      "legacyIds": [
+        "14_Brucke/Oben_1.png"
+      ],
+      "name": "Oben_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "0",
+              "S": "-",
+              "D": "0"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "-",
+              "S": "1",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "e61111ff-0737-4a59-b558-1b132fac590f",
+      "category": "14_Brucke",
+      "file": "Oben_2.png",
+      "hash": "5cef54139630b9a1458452ac56627801f5938c1c39b6ffa27dbc1b1b4373c7d1",
+      "legacyIds": [
+        "14_Brucke/Oben_2.png"
+      ],
+      "name": "Oben_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "-",
+              "S": "0",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "1",
+              "S": "-",
+              "D": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "7db67ad8-bbe7-4eba-a3a7-56ec920a1960",
+      "category": "14_Brucke",
+      "file": "Oben_3.png",
+      "hash": "2ef61e3431fb1ec88d5aac74289c96c769cd5c66019336aa231dcbd90dc68eda",
+      "legacyIds": [
+        "14_Brucke/Oben_3.png"
+      ],
+      "name": "Oben_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "0",
+              "S": "-",
+              "D": "0"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "-",
+              "S": "1",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "49c6a11f-0f01-4109-858d-66a7ada780fa",
+      "category": "14_Brucke",
+      "file": "Oben_4.png",
+      "hash": "d0d0c139dc396d0f8461924870e66223d23d31998587129d36414572da69bdc4",
+      "legacyIds": [
+        "14_Brucke/Oben_4.png"
+      ],
+      "name": "Oben_4",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "-",
+              "S": "0",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "1",
+              "S": "-",
+              "D": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "3e8d21fb-81e3-4765-945f-4c7db6faf141",
+      "category": "20_Naturdeko",
+      "file": "Baum_1.png",
+      "hash": "c0016d6e1b671d4b2f548bfed1e7dcc14c801f59a418f0160ce39f9ffe3d2848",
+      "legacyIds": [
+        "20_Naturdeko/Baum_1.png"
+      ],
+      "name": "Baum_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "9702320f-4062-41ae-b1d9-e45f892e3ac8",
+      "category": "20_Naturdeko",
+      "file": "Baum_2.png",
+      "hash": "f2de58f52b974642438d347779e681eea4d368f6a604acd8dc3ab0969c58f186",
+      "legacyIds": [
+        "20_Naturdeko/Baum_2.png"
+      ],
+      "name": "Baum_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "e7cf1a1f-3493-4d0a-9b81-a70201d2abd0",
+      "category": "20_Naturdeko",
+      "file": "Baum_3.png",
+      "hash": "0a532d5df71ae8dfb9b9b9ff4a216a5735948ae00881d7d8ec173599f84b5b25",
+      "legacyIds": [
+        "20_Naturdeko/Baum_3.png"
+      ],
+      "name": "Baum_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "218ff66b-8c5c-4630-87c3-874731e61b23",
+      "category": "20_Naturdeko",
+      "file": "Baum_4.png",
+      "hash": "ae6c3fe4f69bc350a637ef260c18125445825b85f8204e12ff4ae246d1929d6c",
+      "legacyIds": [
+        "20_Naturdeko/Baum_4.png"
+      ],
+      "name": "Baum_4",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "d902b53d-7870-402f-b7ce-b3c5b9431efb",
+      "category": "20_Naturdeko",
+      "file": "Baum_5.png",
+      "hash": "b2c51789316737dc8ebb9972c5c57d442d4620d29677088eb4e72ca04128479a",
+      "legacyIds": [
+        "20_Naturdeko/Baum_5.png"
+      ],
+      "name": "Baum_5",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "65a5fbeb-9caf-4c8a-9369-6200aa183ec4",
+      "category": "20_Naturdeko",
+      "file": "Baum_6.png",
+      "hash": "80e6a7bbbd3e81243855d7651136210295f64f03ddec40f719262d0f2ddca3ed",
+      "legacyIds": [
+        "20_Naturdeko/Baum_6.png"
+      ],
+      "name": "Baum_6",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "66639be0-512f-478e-86ef-0c529ab8ac38",
+      "category": "20_Naturdeko",
+      "file": "Baum_7.png",
+      "hash": "01de9b482d3a51405800d1584ebab725137c596e5623a89e5f4926795591e0e4",
+      "legacyIds": [
+        "20_Naturdeko/Baum_7.png"
+      ],
+      "name": "Baum_7",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "4525ab46-b203-4533-9287-945d2d9cf807",
+      "category": "20_Naturdeko",
+      "file": "Baum_8.png",
+      "hash": "a6a3e0f8d3843bcfd096fc4313d435e1c2ef3745f083944484f91545c9e3e77b",
+      "legacyIds": [
+        "20_Naturdeko/Baum_8.png"
+      ],
+      "name": "Baum_8",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "95d2f14d-a362-4b7a-8995-0939dd6557aa",
+      "category": "20_Naturdeko",
+      "file": "Baum_9.png",
+      "hash": "944e6d493398e64a48867fe85ac285f4052f2f6eeda4b8eccbeb3b3a36c54c42",
+      "legacyIds": [
+        "20_Naturdeko/Baum_9.png"
+      ],
+      "name": "Baum_9",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "95322fd2-300e-44d8-93a5-aac13d5b8729",
+      "category": "20_Naturdeko",
+      "file": "Busch_1.png",
+      "hash": "df8334fb749991a194896039720809e47c46311a39a99e2cb2268a569469c0e1",
+      "legacyIds": [
+        "20_Naturdeko/Busch_1.png"
+      ],
+      "name": "Busch_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "8588279d-cfe7-411b-94e3-fae6761c0f9b",
+      "category": "20_Naturdeko",
+      "file": "Busch_2.png",
+      "hash": "92b5e90edaae89f0dc838ba85440c5ce4b844d1293f2bac8511fd209824b0ec1",
+      "legacyIds": [
+        "20_Naturdeko/Busch_2.png"
+      ],
+      "name": "Busch_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "84d5187c-cde0-482f-a7d3-0d2c1aab9e75",
+      "category": "20_Naturdeko",
+      "file": "Busch_3.png",
+      "hash": "fc277fd08564ea495d32be71df8ead7b23accf3f6dfedd6e689643eab7c8e20f",
+      "legacyIds": [
+        "20_Naturdeko/Busch_3.png"
+      ],
+      "name": "Busch_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "c4430444-42d6-40de-adb1-3b89d2048946",
+      "category": "20_Naturdeko",
+      "file": "Busch_4.png",
+      "hash": "edaa0f4522a8e0f6d3e0907b8efce37ace007ae5a4af1baf08035cc8816cac5f",
+      "legacyIds": [
+        "20_Naturdeko/Busch_4.png"
+      ],
+      "name": "Busch_4",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "7d5eac1a-22ff-4f53-9bae-16dd6734e4fb",
+      "category": "20_Naturdeko",
+      "file": "Blume_1.png",
+      "hash": "991c623e7e19c127cc7cc6979d80244ee40a740d8e3eaceda5318dd0071b46b8",
+      "legacyIds": [
+        "20_Naturdeko/Blume_1.png"
+      ],
+      "name": "Blume_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "fc5b9f75-f9b7-4e1c-b2a4-b330a1c50f6b",
+      "category": "20_Naturdeko",
+      "file": "Blume_2.png",
+      "hash": "792699120af995b2171cdab9228a98724229e69e0fd78e5e97a9a454929bfc3d",
+      "legacyIds": [
+        "20_Naturdeko/Blume_2.png"
+      ],
+      "name": "Blume_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "1fab90da-dd2e-4c12-b7a8-5adbbddfb84e",
+      "category": "20_Naturdeko",
+      "file": "Blume_3.png",
+      "hash": "2275e82ba6718f2529208bc64fcbb9652da263e706f4d18f16ba89200aa1004f",
+      "legacyIds": [
+        "20_Naturdeko/Blume_3.png"
+      ],
+      "name": "Blume_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "4801b142-5919-420c-9d08-61e49d376cdb",
+      "category": "20_Naturdeko",
+      "file": "Blume_4.png",
+      "hash": "de188546eb49f882b0215b02f77c3d4de6a59597b8cad6e635ff8165a14f37fc",
+      "legacyIds": [
+        "20_Naturdeko/Blume_4.png"
+      ],
+      "name": "Blume_4",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "277bf59b-5068-470a-a8ea-602c8587ebb7",
+      "category": "20_Naturdeko",
+      "file": "Blume_5.png",
+      "hash": "95c5b6d13f1c17847b302397c76365959008ef97acd5579641a2cb97eb098764",
+      "legacyIds": [
+        "20_Naturdeko/Blume_5.png"
+      ],
+      "name": "Blume_5",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "242da4d7-11fd-48ca-b136-6bb023548794",
+      "category": "20_Naturdeko",
+      "file": "Blume_6.png",
+      "hash": "3b972e60414d03f9f22acdba06c0e94b7c41b8cefa14b391d5486ec802a190a1",
+      "legacyIds": [
+        "20_Naturdeko/Blume_6.png"
+      ],
+      "name": "Blume_6",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "5db81465-5502-4896-823e-7d179e5b7bb7",
+      "category": "20_Naturdeko",
+      "file": "Blume_7.png",
+      "hash": "bd396f2e89368c343225687e2b43d9022a50af6248facfb6af7ada6e3a734d46",
+      "legacyIds": [
+        "20_Naturdeko/Blume_7.png"
+      ],
+      "name": "Blume_7",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "vergissmeinnicht",
+        "Blume",
+        "blau"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "2c6842e3-07a1-4c00-94a1-31929db216c3",
+      "category": "20_Naturdeko",
+      "file": "Blume_8.png",
+      "hash": "ae2133d45718597c9ac0ee5185debcca58467991f6aa502a8ffa1767cde30085",
+      "legacyIds": [
+        "20_Naturdeko/Blume_8.png"
+      ],
+      "name": "Blume_8",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "27b62a7e-554f-4dde-8458-c3fc060fa863",
+      "category": "20_Naturdeko",
+      "file": "Laub_1.png",
+      "hash": "0fae7d3a42ee8c02e7a44fcbc1bb3b23d0db2846cb9cfb7172233a7e52f569af",
+      "legacyIds": [
+        "20_Naturdeko/Laub_1.png"
+      ],
+      "name": "Laub_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cf1bc65b-2905-4c1b-bf87-93de913aa3d3",
+      "category": "20_Naturdeko",
+      "file": "Pflanzen_2.png",
+      "hash": "7269529dd3a5de9ede27bcc026203b165ea14ca93aed17a1fbc46f7ffd0d4dc5",
+      "legacyIds": [
+        "20_Naturdeko/Pflanzen_2.png"
+      ],
+      "name": "Pflanzen_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Pilz",
+        "brauner Pilz"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "b2950ffe-0a6a-4c1b-b49a-79c4b577a267",
+      "category": "21_Tiere",
+      "file": "Katze_1.png",
+      "hash": "35e87f5a4c4077b9b7a751077f3e1456c81482c3ffc8f6f2f34001a0b549ef97",
+      "legacyIds": [
+        "21_Tiere/Katze_1.png"
+      ],
+      "name": "Katze_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "fdafcc8f-3d27-4794-82b9-cb0589b02f40",
+      "category": "21_Tiere",
+      "file": "Katze_2.png",
+      "hash": "d1dd6235e03b75707dcdb81634c89a01cb7cc45ef0be9dbbcdca1fb80b7f8b74",
+      "legacyIds": [
+        "21_Tiere/Katze_2.png"
+      ],
+      "name": "Katze_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "9720efdc-da67-42f8-aed3-1321fcb0afd3",
+      "category": "21_Tiere",
+      "file": "Katze_3.png",
+      "hash": "4f1acf4b3adfe2f8c9c6beafdf463524107088f8d65fae975a4f5ec11553b29f",
+      "legacyIds": [
+        "21_Tiere/Katze_3.png"
+      ],
+      "name": "Katze_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "d3afa48a-001d-4495-9e90-5fdccf8c72f1",
+      "category": "21_Tiere",
+      "file": "Katze_4.png",
+      "hash": "601061896634a03be504fe23c15a857bfcb9bfe9d85e350d498b605d9e341f90",
+      "legacyIds": [
+        "21_Tiere/Katze_4.png"
+      ],
+      "name": "Katze_4",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "49a24ea8-84cf-4a1c-87d6-5df0e258eb6f",
+      "category": "21_Tiere",
+      "file": "Katze_5.png",
+      "hash": "6dadbcba78dc31fdae08bdac0b6e2e2645b321dc2d27bfebc9d08fb4e44f1200",
+      "legacyIds": [
+        "21_Tiere/Katze_5.png"
+      ],
+      "name": "Katze_5",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "95c5c9ef-2033-4abf-bf9e-17b85c16067c",
+      "category": "21_Tiere",
+      "file": "Katze_6.png",
+      "hash": "1edcc0d0a266e552e16c9dd9842697b69d990b3aa2a977777ec30402e9c40fc9",
+      "legacyIds": [
+        "21_Tiere/Katze_6.png"
+      ],
+      "name": "Katze_6",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "b38ea414-77fd-4cb8-a8e3-5424193a9788",
+      "category": "21_Tiere",
+      "file": "Ratte_1.png",
+      "hash": "d13a38c257b23172daa691e61aaf5c5c1281e0a15be8502a41ce7ba75a7a3419",
+      "legacyIds": [
+        "21_Tiere/Ratte_1.png"
+      ],
+      "name": "Ratte_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "7d2d1edc-3d93-4c9d-998f-6e5571cd42a9",
+      "category": "21_Tiere",
+      "file": "Ratte_2.png",
+      "hash": "4eee9af2b8c5d00626ab902786bc5f691ae9f0eae36d76cc1f5556bdb5540bcc",
+      "legacyIds": [
+        "21_Tiere/Ratte_2.png"
+      ],
+      "name": "Ratte_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "6c112645-c7b8-45c1-81c4-367774724d38",
+      "category": "21_Tiere",
+      "file": "Taube_1.png",
+      "hash": "924bbe3955363cf32c5f3193f54e5802e65fcf23af052881572ccb3d10d0eebc",
+      "legacyIds": [
+        "21_Tiere/Taube_1.png"
+      ],
+      "name": "Taube_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "6fcabf11-3c76-4a28-8ed3-f762ae85aa5b",
+      "category": "21_Tiere",
+      "file": "Taube_2.png",
+      "hash": "3e28423db8ea908dd1fc8f42d00e5e3f7f1c99a72b3dee8ace0515625bd308e3",
+      "legacyIds": [
+        "21_Tiere/Taube_2.png"
+      ],
+      "name": "Taube_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "ba00f277-3ade-45b8-a263-91d19e6f45bc",
+      "category": "21_Tiere",
+      "file": "Taube_3.png",
+      "hash": "9b150fac67c4572880c9c9b7cab84eb6cea3ceca032e99e6085ef34464e586fa",
+      "legacyIds": [
+        "21_Tiere/Taube_3.png"
+      ],
+      "name": "Taube_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "1c7ccd17-45e5-4b66-84e3-219c13b5ec81",
+      "category": "21_Tiere",
+      "file": "Taube_4.png",
+      "hash": "0cf92b34fbe1b691060308b6b29cfeb45c923c49aeb51209a261749c9b51f6be",
+      "legacyIds": [
+        "21_Tiere/Taube_4.png"
+      ],
+      "name": "Taube_4",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "f1c748ca-f859-4f35-961f-c1a350d144c1",
+      "category": "21_Tiere",
+      "file": "Taube_5.png",
+      "hash": "2e2314b341c0265f6300c534a8f7dfb7c2472dc85772a336debc758abc84d3e8",
+      "legacyIds": [
+        "21_Tiere/Taube_5.png"
+      ],
+      "name": "Taube_5",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "e018f35a-723a-4a55-8213-ee7ad7cc7255",
+      "category": "21_Tiere",
+      "file": "flyingbirdcolor_1.gif",
+      "hash": "1d048804d1516958a661c1f028f943b6cb2c0232aa34f424254f36225ecaef55",
+      "legacyIds": [
+        "21_Tiere/flyingbirdcolor_1.gif"
+      ],
+      "name": "flyingbirdcolor_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "1x1"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "1e0dc797-668e-435a-95a1-cbeadfb5c306",
+      "category": "22_Infrastruktur",
+      "file": "Bank_2.png",
+      "hash": "3cd8efde18f7b4c4a801d24fb770563ec906dc587981cffa0397463a26d8098e",
+      "legacyIds": [
+        "22_Infrastruktur/Bank_2.png"
+      ],
+      "name": "Bank_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "9ee35070-1032-457f-b9df-ba5768b412af",
+      "category": "22_Infrastruktur",
+      "file": "Mull_1.png",
+      "hash": "568f67740fdec4fdab742f59c3a8b3262acc46e26f8182e466f1a75027f1cf6b",
+      "legacyIds": [
+        "22_Infrastruktur/Mull_1.png"
+      ],
+      "name": "Mull_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "323061da-751c-42e4-a27e-dbd902b00261",
+      "category": "22_Infrastruktur",
+      "file": "Mull_2.png",
+      "hash": "1dcf7a298e52a127ce671db282262367a280d3679fdaf1172515b585f99044e8",
+      "legacyIds": [
+        "22_Infrastruktur/Mull_2.png"
+      ],
+      "name": "Mull_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "e56a890f-8c91-4d84-a281-ece7ec2c537f",
+      "category": "22_Infrastruktur",
+      "file": "Stadtdeko_2.png",
+      "hash": "6761e0d4fd970ec78a127d320d45205dc7f0e1e4414829c757a765f51e7404a1",
+      "legacyIds": [
+        "22_Infrastruktur/Stadtdeko_2.png"
+      ],
+      "name": "Stadtdeko_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "8bb50e57-3a6c-4444-9056-bf26a4c6c8f3",
+      "category": "22_Infrastruktur",
+      "file": "Stadtdeko_3.png",
+      "hash": "d0fb594398c4dafd18fb65791787287d71b3c20044f62ec4e6550835addeff2d",
+      "legacyIds": [
+        "22_Infrastruktur/Stadtdeko_3.png"
+      ],
+      "name": "Stadtdeko_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "ad577a22-6986-4afc-8b7a-7461a96509ab",
+      "category": "22_Infrastruktur",
+      "file": "Stadtdeko_4.png",
+      "hash": "54cf4c55a14fdf5aa4a434b80f013ff88a94c530c8326b0c991c92b306b24ace",
+      "legacyIds": [
+        "22_Infrastruktur/Stadtdeko_4.png"
+      ],
+      "name": "Stadtdeko_4",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "217fd01e-15f0-400d-968e-df4443a07165",
+      "category": "22_Infrastruktur",
+      "file": "Stadtdeko_5.png",
+      "hash": "2fc156ffb73e21ac6db3a2ff826442d39452a94d83abd31d7cf1e29b189e6455",
+      "legacyIds": [
+        "22_Infrastruktur/Stadtdeko_5.png"
+      ],
+      "name": "Stadtdeko_5",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "b8650de6-23f4-4db7-8ebb-6be8079c219b",
+      "category": "22_Infrastruktur",
+      "file": "Stadtdeko_7.png",
+      "hash": "bd92e7e9ebb13881ac0dcb8a9debdf32aad23a9bacc82e0f91d672b497914294",
+      "legacyIds": [
+        "22_Infrastruktur/Stadtdeko_7.png"
+      ],
+      "name": "Stadtdeko_7",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "3ac1bfd3-002d-4d5f-9a82-8ab6dcd86012",
+      "category": "22_Infrastruktur",
+      "file": "Schild_1.png",
+      "hash": "a259a5f74f1dc46eda2c5110081750995fd596cb00c91bfbf934d2177f63118e",
+      "legacyIds": [
+        "22_Infrastruktur/Schild_1.png"
+      ],
+      "name": "Schild_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "7bc37f45-22ac-4c4a-851c-02042aa00bda",
+      "category": "22_Infrastruktur",
+      "file": "Schild_2.png",
+      "hash": "198542f81514ea0d5ed832a5219868153b2e65e3ef9eb1927b26c64b6c6dc921",
+      "legacyIds": [
+        "22_Infrastruktur/Schild_2.png"
+      ],
+      "name": "Schild_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "51f0ff34-b9c7-43dd-841e-d3786414e194",
+      "category": "22_Infrastruktur",
+      "file": "Schild_3.png",
+      "hash": "f35263a9a36cb7975c4f6922a9b037b2f61cfb3c1bcf78e1b6d6093b5162ac4d",
+      "legacyIds": [
+        "22_Infrastruktur/Schild_3.png"
+      ],
+      "name": "Schild_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "7f257023-dc03-40ab-83f3-b11b00f47dcf",
+      "category": "22_Infrastruktur",
+      "file": "Fahrrad_1.png",
+      "hash": "5bdd98f9721199fa06e4cce64c64f79de0acbff607bbba82020efbc4fc99b368",
+      "legacyIds": [
+        "22_Infrastruktur/Fahrrad_1.png"
+      ],
+      "name": "Fahrrad_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "47486bb7-a7f5-400f-9370-c78d76be1ffa",
+      "category": "22_Infrastruktur",
+      "file": "Fahrrad_2.png",
+      "hash": "75e7347f631aebfb6d7396936326496073b318748a8f28bb167be4737a91ae39",
+      "legacyIds": [
+        "22_Infrastruktur/Fahrrad_2.png"
+      ],
+      "name": "Fahrrad_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "c88edaaa-71d0-4fee-bb63-89d84b5a0eb7",
+      "category": "22_Infrastruktur",
+      "file": "Fahrrad_3.png",
+      "hash": "a44f5d6324661d581f3039b2c69d1a8ed6cd74fc3f3835a01245893baa2dbd19",
+      "legacyIds": [
+        "22_Infrastruktur/Fahrrad_3.png"
+      ],
+      "name": "Fahrrad_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "25ceaa8a-57a5-4666-8ba2-c9eaaa85521e",
+      "category": "22_Infrastruktur",
+      "file": "Fahrrad_4.png",
+      "hash": "b00ad87ca56a175eba4b99e35bd85376cc85b188d3e9e410effb13c909c86a0e",
+      "legacyIds": [
+        "22_Infrastruktur/Fahrrad_4.png"
+      ],
+      "name": "Fahrrad_4",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "-",
+              "S": "0",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "6e4a6765-8dd4-490d-97ed-4e9a5bf9b399",
+      "category": "22_Infrastruktur",
+      "file": "Fahrrad_5.png",
+      "hash": "bde7f8cb335836a53d716f367bf1529aa8f7611ea7bb154b7b705f24ea9d2334",
+      "legacyIds": [
+        "22_Infrastruktur/Fahrrad_5.png"
+      ],
+      "name": "Fahrrad_5",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "0",
+              "S": "-",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "bcd5009a-bd31-416c-ae2b-adb70411e334",
+      "category": "23_Deko",
+      "file": "Rotor_2.png",
+      "hash": "9db3db31926399966d9aafb99c00e74a8f73f0e3a30b98654a787c5e273864d2",
+      "legacyIds": [
+        "23_Deko/Rotor_2.png"
+      ],
+      "name": "Rotor_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "19ccab8b-0314-4fbe-844a-e8e091232983",
+      "category": "23_Deko",
+      "file": "Automat_1.png",
+      "hash": "1c833132d2f1d2625901fb6844d9166a112c258691ee00caae0aeab706ea363a",
+      "legacyIds": [
+        "23_Deko/Automat_1.png"
+      ],
+      "name": "Automat_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "0640b40d-abac-4fa4-b117-6e54516ed517",
+      "category": "23_Deko",
+      "file": "Automat_2.png",
+      "hash": "1204eadac34290b34c1420713ca97233d3d1ec5a80bed8b6ba6f16beaef36227",
+      "legacyIds": [
+        "23_Deko/Automat_2.png"
+      ],
+      "name": "Automat_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "b4a76534-56cd-453c-b6ef-92e773a83a1b",
+      "category": "24_Friedhof",
+      "file": "Grabstein_1.png",
+      "hash": "bdd2079ec0e84a02d8492319162714107b52fc928f81bfc916c5897587893fd1",
+      "legacyIds": [
+        "24_Friedhof/Grabstein_1.png"
+      ],
+      "name": "Grabstein_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "98a24c09-5828-4473-a4fc-86a947858f02",
+      "category": "24_Friedhof",
+      "file": "Grabstein_2.png",
+      "hash": "178e16f7643bccdb1bb85eb1ec4af4a182e581ee5baacb040158db44fb0194ed",
+      "legacyIds": [
+        "24_Friedhof/Grabstein_2.png"
+      ],
+      "name": "Grabstein_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "8e80faaa-052c-447a-a63a-a96d19cb52bb",
+      "category": "25_Spielplatz",
+      "file": "Spielplatz_1.png",
+      "hash": "34e75b2428e0c249719efb8aad442a8a4e41d4c6f88d966c6255770048868d45",
+      "legacyIds": [
+        "25_Spielplatz/Spielplatz_1.png"
+      ],
+      "name": "Spielplatz_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "56abd5aa-8077-424a-9818-f93b1384980c",
+      "category": "25_Spielplatz",
+      "file": "Spielplatz_2.png",
+      "hash": "05482a750d2f8ee52cd0364913fe50f4bdb58596e739c1eda644c1bf9b02e5cf",
+      "legacyIds": [
+        "25_Spielplatz/Spielplatz_2.png"
+      ],
+      "name": "Spielplatz_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "d76325fe-9fc4-457c-ae2b-68c6708bd909",
+      "category": "25_Spielplatz",
+      "file": "Spielplatz_3.png",
+      "hash": "72d3ad1f1721136e854d38ccc9f9f0ab9eb10579d3b9ad74d894a9ae1e60fc61",
+      "legacyIds": [
+        "25_Spielplatz/Spielplatz_3.png"
+      ],
+      "name": "Spielplatz_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "53695adc-ce15-4549-b03d-5a8ef8871825",
+      "category": "25_Spielplatz",
+      "file": "Spielplatz_4.png",
+      "hash": "7ee75be9f1b4264c01ffff0c94dcb378cc6487dca09b8a752adf3cdd4a926f7e",
+      "legacyIds": [
+        "25_Spielplatz/Spielplatz_4.png"
+      ],
+      "name": "Spielplatz_4",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "3efd31e6-f2bb-4b1c-b846-37d1e09da98c",
+      "category": "25_Spielplatz",
+      "file": "Spielplatz_5.png",
+      "hash": "ef23ffa9d381e541520a7932b95c10b53637060a85c3962a8242ad853bf16e2f",
+      "legacyIds": [
+        "25_Spielplatz/Spielplatz_5.png"
+      ],
+      "name": "Spielplatz_5",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "ce4f00d4-269a-4ae9-9d1f-79c6ac9b8be3",
+      "category": "25_Spielplatz",
+      "file": "Spielplatz_6.png",
+      "hash": "0325ddd52aca0e930181499b6a913d7e7372642dac6ff4cf72f740d65f9eae3e",
+      "legacyIds": [
+        "25_Spielplatz/Spielplatz_6.png"
+      ],
+      "name": "Spielplatz_6",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "3397d822-82bb-443a-a5b5-6ad929fdd348",
+      "category": "30_Bahnhof",
+      "file": "Bahnhof_1.png",
+      "hash": "4acb9c31be9a8069f1495d0d522a9195f0a51b211189a1dcebf257a31f10f461",
+      "legacyIds": [
+        "30_Bahnhof/Bahnhof_1.png"
+      ],
+      "name": "Bahnhof_1",
+      "type": "FULL",
+      "w": 3,
+      "h": 2,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "6f447883-92ef-486b-bf5c-a32f5ccb692c",
+      "category": "30_Bahnhof",
+      "file": "Gleis_1.png",
+      "hash": "40c2981765b02c0a6437e7d91556d79564aec57e9ffd386f45ceca86f1bb0393",
+      "legacyIds": [
+        "30_Bahnhof/Gleis_1.png"
+      ],
+      "name": "Gleis_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "a8041cf9-2c4b-4a7a-8eae-503990bfea7c",
+      "category": "30_Bahnhof",
+      "file": "Gleis_2.png",
+      "hash": "76f40d4d82d7c82be0e4c3824d750c264ca259133b3bb2f73fee698b79311537",
+      "legacyIds": [
+        "30_Bahnhof/Gleis_2.png"
+      ],
+      "name": "Gleis_2",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "07bb42d1-4bc5-40de-8ec6-1dd99f02c5c9",
+      "category": "30_Bahnhof",
+      "file": "Gleis_3.png",
+      "hash": "d97e34f72d64e5b24089528d0b760b92aec2de096e70037dcea62091b351b26c",
+      "legacyIds": [
+        "30_Bahnhof/Gleis_3.png"
+      ],
+      "name": "Gleis_3",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "d46d51a3-e4b3-4c11-904d-653385d402bd",
+      "category": "30_Bahnhof",
+      "file": "Gleis_4.png",
+      "hash": "fc2b895f5469c7ede6ba5f05269a1d765c66a7cdb9d8a50d19f93f90673625ed",
+      "legacyIds": [
+        "30_Bahnhof/Gleis_4.png"
+      ],
+      "name": "Gleis_4",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "e479319a-de9c-4824-bf75-e8e918799f92",
+      "category": "30_Bahnhof",
+      "file": "Gleis_5.png",
+      "hash": "63be5e711bcf75901f5e1eba1f594e72f60aa934aac7153ec6051b2df3dd4ad7",
+      "legacyIds": [
+        "30_Bahnhof/Gleis_5.png"
+      ],
+      "name": "Gleis_5",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "8c1ee77f-5f0d-42dd-af95-ac3da7ac163b",
+      "category": "30_Bahnhof",
+      "file": "Gleis_6.png",
+      "hash": "35376dd9e49ffca8bfb5ac98671b90412e210bae434ae7a5ac455adcbdffa1f2",
+      "legacyIds": [
+        "30_Bahnhof/Gleis_6.png"
+      ],
+      "name": "Gleis_6",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "15ccbde3-4ba5-4903-9478-e59eb3dc8308",
+      "category": "30_Bahnhof",
+      "file": "Gleis_Brucke_1.png",
+      "hash": "865b65b61447b80e4c9ec49f0f0b5a04160cad67bb7235429701cd76d5e7c20a",
+      "legacyIds": [
+        "30_Bahnhof/Gleis_Brucke_1.png"
+      ],
+      "name": "Gleis_Brucke_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "0",
+              "S": "-",
+              "D": "0"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "93ad1804-061c-4295-a2a3-b8e76bd4d673",
+      "category": "30_Bahnhof",
+      "file": "Gleis_Brucke_2.png",
+      "hash": "3c51d167762e10463b00cf77d11076529a28b162217c3c35aa84be6e842d8fdd",
+      "legacyIds": [
+        "30_Bahnhof/Gleis_Brucke_2.png"
+      ],
+      "name": "Gleis_Brucke_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "-",
+              "S": "0",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "e58fd1cc-4e79-4669-b9d6-cc472384ab57",
+      "category": "30_Bahnhof",
+      "file": "Gleis_Brucke_3.png",
+      "hash": "6a9a911b1b4e018b9daa9463ddc6b77a36033c155c2c870e44a93ffb1825d004",
+      "legacyIds": [
+        "30_Bahnhof/Gleis_Brucke_3.png"
+      ],
+      "name": "Gleis_Brucke_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "-",
+              "S": "0",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "56d425ad-1d3a-4a83-9e4b-dccd576300c8",
+      "category": "30_Bahnhof",
+      "file": "Gleis_Brucke_4.png",
+      "hash": "3d712221e78455a27a434aa7b201ce488a1427559783b172fad246f452be9f6f",
+      "legacyIds": [
+        "30_Bahnhof/Gleis_Brucke_4.png"
+      ],
+      "name": "Gleis_Brucke_4",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "0",
+              "S": "-",
+              "D": "0"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "75a5ca93-4d03-442a-a7e3-425ecd1443d6",
+      "category": "30_Bahnhof",
+      "file": "Gleis_Brucke_5.png",
+      "hash": "4b1dead3da0292682941b1cb15ee61abdcc0afe21a73e99355165b3e5b3cb29e",
+      "legacyIds": [
+        "30_Bahnhof/Gleis_Brucke_5.png"
+      ],
+      "name": "Gleis_Brucke_5",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "a18566ce-3b8a-482d-8b7c-b2f473b63176",
+      "category": "30_Bahnhof",
+      "file": "Gleis_Brucke_6.png",
+      "hash": "82066a88ffe16b2484c184c9d3ed37d7b4dd3657b85aeffa4b6f0d9e8c198aaa",
+      "legacyIds": [
+        "30_Bahnhof/Gleis_Brucke_6.png"
+      ],
+      "name": "Gleis_Brucke_6",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "d5e7cbbd-dc3d-43b1-978e-bc6c0d9373b7",
+      "category": "30_Bahnhof",
+      "file": "Gleis_Brucke_7.png",
+      "hash": "0975985d71f6509efbcdc67a27426c2e127fa8177a8abff614ec34a96379063c",
+      "legacyIds": [
+        "30_Bahnhof/Gleis_Brucke_7.png"
+      ],
+      "name": "Gleis_Brucke_7",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "5e231c50-1d19-4a14-aaa5-c09091c634b5",
+      "category": "30_Bahnhof",
+      "file": "ICE_1.png",
+      "hash": "01cff148cf176af5e72a0ef47f14e69de31cf79a7a791b60d7d765e9565612c2",
+      "legacyIds": [
+        "30_Bahnhof/ICE_1.png"
+      ],
+      "name": "ICE_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "26958e00-8847-4096-984d-926c653e0d15",
+      "category": "30_Bahnhof",
+      "file": "ICE_2.png",
+      "hash": "6a7dcabb2622abeaa3853c60a1ab101af1bd993fd52da1c957d1cfcee2263d1b",
+      "legacyIds": [
+        "30_Bahnhof/ICE_2.png"
+      ],
+      "name": "ICE_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "49481338-18eb-4808-9fd0-4d812d0b9e59",
+      "category": "30_Bahnhof",
+      "file": "ICE_3.png",
+      "hash": "8db9b18f490f1d5e2946d9cfa5ca34cba4e96b9f33d8b194f795bef12bca087d",
+      "legacyIds": [
+        "30_Bahnhof/ICE_3.png"
+      ],
+      "name": "ICE_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "647809f9-da50-4803-8c6e-129fdfebcce4",
+      "category": "30_Bahnhof",
+      "file": "X_Bahnhof_1.png",
+      "hash": "325972ee142dd2790e47067caffea58e80dc2e9348559848d535af6c2ebe4251",
+      "legacyIds": [
+        "30_Bahnhof/X_Bahnhof_1.png"
+      ],
+      "name": "X_Bahnhof_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "f05421f4-a46c-463f-99e8-5a9c25a06b9e",
+      "category": "30_Bahnhof",
+      "file": "X_Bahnhof_2.png",
+      "hash": "cb4a8af40570eaf316731dc2e42a2f7b1a50083f7dd030520210e9eaa22a5183",
+      "legacyIds": [
+        "30_Bahnhof/X_Bahnhof_2.png"
+      ],
+      "name": "X_Bahnhof_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "46393974-6677-4136-902d-762e968f1ab6",
+      "category": "30_Bahnhof",
+      "file": "X_Bahnhof_3.png",
+      "hash": "fdfcb2ff106b5c9a7d4522b3f1ad6103c3747aaedd6a8c932bf6eb5e5f1ab993",
+      "legacyIds": [
+        "30_Bahnhof/X_Bahnhof_3.png"
+      ],
+      "name": "X_Bahnhof_3",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "77a3cd80-f3f7-42a5-ac47-f6c61f988a44",
+      "category": "31_Fahrzeug",
+      "file": "Auto_2.png",
+      "hash": "1a6a868ea950fbb31d253b4f0e7ba0eb753b2fa5b31aae8c962b4ec0bd82f139",
+      "legacyIds": [
+        "31_Fahrzeug/Auto_2.png"
+      ],
+      "name": "Auto_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "a413479f-7218-47dd-8cf5-19865cdc3179",
+      "category": "31_Fahrzeug",
+      "file": "Auto_3.png",
+      "hash": "c12bb0230a42be4555debdeed6b49238962cfac9ab84cd680dafe34126842b61",
+      "legacyIds": [
+        "31_Fahrzeug/Auto_3.png"
+      ],
+      "name": "Auto_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "7baafeee-fdca-448e-b037-b1e1a67b7e88",
+      "category": "31_Fahrzeug",
+      "file": "Auto_4.png",
+      "hash": "e5908bd8e15bfdc6d8425cf946c416acda102fb25ccf2ff52ee0ec22369111e2",
+      "legacyIds": [
+        "31_Fahrzeug/Auto_4.png"
+      ],
+      "name": "Auto_4",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "53edea94-7648-436a-9218-579f6f79d243",
+      "category": "31_Fahrzeug",
+      "file": "Auto_5.png",
+      "hash": "1bf15127f11fb94e484ea35ad3bbf303ad68f56c1372ab470522ee62ab37ce22",
+      "legacyIds": [
+        "31_Fahrzeug/Auto_5.png"
+      ],
+      "name": "Auto_5",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "9b5f7227-03bd-4021-bca8-16739678e42f",
+      "category": "31_Fahrzeug",
+      "file": "Auto_6.png",
+      "hash": "0941345df3b0a4c085cd5dade464febb6fe2faba599334194d50ac33866f0260",
+      "legacyIds": [
+        "31_Fahrzeug/Auto_6.png"
+      ],
+      "name": "Auto_6",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "6e7b03bd-f2c5-40d4-98ea-4110ac6bec30",
+      "category": "31_Fahrzeug",
+      "file": "Bus_2.png",
+      "hash": "523746f7e64794dcaf3468e34484c1e8aa0024358becae6741e38adeb0eae935",
+      "legacyIds": [
+        "31_Fahrzeug/Bus_2.png"
+      ],
+      "name": "Bus_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "024ab379-bcdc-44ac-859b-833f5e6db66e",
+      "category": "31_Fahrzeug",
+      "file": "Bus_3.png",
+      "hash": "8343f1e07dfd5624851e4aede0ae8802b9e4ce372be328f342b41033aca60536",
+      "legacyIds": [
+        "31_Fahrzeug/Bus_3.png"
+      ],
+      "name": "Bus_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "e5e69ce2-c635-4c65-813a-254090ceeb22",
+      "category": "32_Zaune",
+      "file": "Zaun_1.png",
+      "hash": "646af50b2f68635b55c776d09cb153964f588a27a58342a4e1eb36f927a62772",
+      "legacyIds": [
+        "32_Zaune/Zaun_1.png"
+      ],
+      "name": "Zaun_1",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": "hinten",
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "a11854a5-e687-4925-8654-bf0136730b66",
+      "category": "32_Zaune",
+      "file": "Zaun_2.png",
+      "hash": "b31010de08a6c78032f18482fb2175f1de494dba5b7785219e9eb6899334cd8c",
+      "legacyIds": [
+        "32_Zaune/Zaun_2.png"
+      ],
+      "name": "Zaun_2",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "4097d2b9-8a35-4871-8495-5a4a2e52c20e",
+      "category": "32_Zaune",
+      "file": "Zaun_3.png",
+      "hash": "16663ba66342571cdecfdca0d5cfb6f85574168709d65c19f7ffc0a2f059df23",
+      "legacyIds": [
+        "32_Zaune/Zaun_3.png"
+      ],
+      "name": "Zaun_3",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "2c5ecef7-f6fa-4ce2-8276-26c01d68491b",
+      "category": "32_Zaune",
+      "file": "Zaun_4.png",
+      "hash": "4030d4eed9c80a6306d9d616796a3c585cbf1c8eac9e629c4866004e8496d60f",
+      "legacyIds": [
+        "32_Zaune/Zaun_4.png"
+      ],
+      "name": "Zaun_4",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "9361195b-6777-4a34-a040-b9975293eba9",
+      "category": "32_Zaune",
+      "file": "Zaun_5.png",
+      "hash": "c83722ca8b6b971df885c17af5a20bb9e20fcb85201cd6572a880702316ace9e",
+      "legacyIds": [
+        "32_Zaune/Zaun_5.png"
+      ],
+      "name": "Zaun_5",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "2a994fe8-961b-4883-9398-038051bdcdec",
+      "category": "32_Zaune",
+      "file": "Zaun_6.png",
+      "hash": "f03685818ea44f1f4fb42083f50c79e72c177eaca99843aa59d5b5b8f8878854",
+      "legacyIds": [
+        "32_Zaune/Zaun_6.png"
+      ],
+      "name": "Zaun_6",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "7e67a0cd-8609-4651-b259-7f596db6911d",
+      "category": "32_Zaune",
+      "file": "Zaun_7.png",
+      "hash": "39fe3748ebe10752b4488803183c3cffe3bd120287c017ef74cab0e1cc7385bc",
+      "legacyIds": [
+        "32_Zaune/Zaun_7.png"
+      ],
+      "name": "Zaun_7",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "5a1ff156-ab02-4067-b634-da658bafa6ad",
+      "category": "32_Zaune",
+      "file": "Zaun_8.png",
+      "hash": "f0b75ba1cf58c9cb4c246744c2171a8c37d2841b5e7dd7e917958cd7b8b712f5",
+      "legacyIds": [
+        "32_Zaune/Zaun_8.png"
+      ],
+      "name": "Zaun_8",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "d0d6125a-e9df-4170-b7fe-32e10204cd23",
+      "category": "32_Zaune",
+      "file": "Zaun_9.png",
+      "hash": "d565aeaa7276eedac248e8beb107e04b41207b4942726abe3706f2331c9bfc14",
+      "legacyIds": [
+        "32_Zaune/Zaun_9.png"
+      ],
+      "name": "Zaun_9",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "3941df6b-25f6-46bb-93be-7f099a5c754c",
+      "category": "32_Zaune",
+      "file": "Zaun_10.png",
+      "hash": "53f352291e5d559eda35a1f7074d4e34335b6aff9ca06fc2a47690cc190f3554",
+      "legacyIds": [
+        "32_Zaune/Zaun_10.png"
+      ],
+      "name": "Zaun_10",
+      "type": "OVER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "9c1ed92d-c7e0-4902-8785-1dac408bf253",
+      "category": "40_Wasser",
+      "file": "Andere_1.png",
+      "hash": "b77976aaabce923e4de4cbb2b3ba2689d9bc325c7599d035cf06c7392b50d495",
+      "legacyIds": [
+        "40_Wasser/Andere_1.png"
+      ],
+      "name": "Andere_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "1x1"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "0e94e6b1-67ed-438a-a114-c33f6e2c730f",
+      "category": "40_Wasser",
+      "file": "Andere_2.png",
+      "hash": "bd4cb6f17e32672e8bd053e77dcbedf29a56d135e8b3b0ec85c4350f2495d9cf",
+      "legacyIds": [
+        "40_Wasser/Andere_2.png"
+      ],
+      "name": "Andere_2",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "1x1"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": [
+          "1a7f98c5-e81d-4ef0-bbae-3d87a152b8c0",
+          "e61111ff-0737-4a59-b558-1b132fac590f",
+          "7db67ad8-bbe7-4eba-a3a7-56ec920a1960",
+          "49c6a11f-0f01-4109-858d-66a7ada780fa"
+        ],
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "5b52902b-1531-4f39-85ba-0b3fe4c03fe6",
+      "category": "40_Wasser",
+      "file": "Andere_3.png",
+      "hash": "c52ccf05987d8b41d0067a7184187bfb4d8e01e38efd517c6898ce20330ba63c",
+      "legacyIds": [
+        "40_Wasser/Andere_3.png"
+      ],
+      "name": "Andere_3",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "1x1"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "abef7eb0-15f2-489e-ab00-5d522ab62fd3",
+      "category": "40_Wasser",
+      "file": "Andere_4.png",
+      "hash": "ea994e906000858147d58329ae96ac02551903842a425645d2182f672cd3c6ea",
+      "legacyIds": [
+        "40_Wasser/Andere_4.png"
+      ],
+      "name": "Andere_4",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "1x1"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "896c4287-f09c-4bdf-96d0-7e157c6d1fcd",
+      "category": "40_Wasser",
+      "file": "Andere_5.png",
+      "hash": "0fdf879ca72b263d2094b4e7f6a40ffb59f4ba474996e29c43beac7a06f443f2",
+      "legacyIds": [
+        "40_Wasser/Andere_5.png"
+      ],
+      "name": "Andere_5",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "1x1"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "4c2572da-1c8a-421e-9377-91b66ab17834",
+      "category": "40_Wasser",
+      "file": "Halb_1.png",
+      "hash": "9c6bb39a9b91be5a9051485025f0e576ac75dc62638b9e0c46df815b2efb7562",
+      "legacyIds": [
+        "40_Wasser/Halb_1.png"
+      ],
+      "name": "Halb_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "719decd0-0c7f-469c-828e-195cc9b844bf",
+      "category": "40_Wasser",
+      "file": "Halb_2.png",
+      "hash": "f13d6ef3bd92caba4508b757e6eae2f078428f6a353bd1e588344f22d9b1983c",
+      "legacyIds": [
+        "40_Wasser/Halb_2.png"
+      ],
+      "name": "Halb_2",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "497d454e-666e-4fe7-bfd5-181283b58e66",
+      "category": "40_Wasser",
+      "file": "Halb_3.png",
+      "hash": "32e760f9ec21addb2c15e67b413fb06f2d152e220818cd62da83ce1ea7a262f8",
+      "legacyIds": [
+        "40_Wasser/Halb_3.png"
+      ],
+      "name": "Halb_3",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "33c136a7-79e9-4580-8cc0-a15f60b36599",
+      "category": "40_Wasser",
+      "file": "Halb_4.png",
+      "hash": "3d722f99582bbd1c3cf595d16ecbf7b2f4ff237f1a6ee382e8a237ab9e0e42ea",
+      "legacyIds": [
+        "40_Wasser/Halb_4.png"
+      ],
+      "name": "Halb_4",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "b45c4ee3-7353-48ce-b4d0-b6c306bcbe24",
+      "category": "40_Wasser",
+      "file": "Viertel_1.png",
+      "hash": "6f9f4732257c52a5a18203cb9c0ad79aed0439f7037c3ec60b2027da3861998d",
+      "legacyIds": [
+        "40_Wasser/Viertel_1.png"
+      ],
+      "name": "Viertel_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "a164dcf3-03df-4bc2-8e1a-2af2d6398cd2",
+      "category": "40_Wasser",
+      "file": "Viertel_2.png",
+      "hash": "6ae6f8d58aab4866fd909a252e509ad39428458bac4a0db967bd6f486292f263",
+      "legacyIds": [
+        "40_Wasser/Viertel_2.png"
+      ],
+      "name": "Viertel_2",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "42c30ef4-45bf-48b8-9820-891c9e61e0e6",
+      "category": "40_Wasser",
+      "file": "Viertel_3.png",
+      "hash": "6adf6d17807d18b4262cdfb97060ef3642b3a0643bcd212ec0367d15e274982a",
+      "legacyIds": [
+        "40_Wasser/Viertel_3.png"
+      ],
+      "name": "Viertel_3",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "7527d404-6c0c-4eb1-beea-45d7bab6ff11",
+      "category": "40_Wasser",
+      "file": "Viertel_4.png",
+      "hash": "77bc720179d381e0f4002a4a5cd0d8af373b1dad02ba27022259dec8df35c065",
+      "legacyIds": [
+        "40_Wasser/Viertel_4.png"
+      ],
+      "name": "Viertel_4",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "15f7eb18-d2f5-49d2-a220-44cca32f6212",
+      "category": "40_Wasser",
+      "file": "Dreiviertel_1.png",
+      "hash": "df04032d7993cd175fec9647eb51754272822dda83c995ffa99eb6a2611382d8",
+      "legacyIds": [
+        "40_Wasser/Dreiviertel_1.png"
+      ],
+      "name": "Dreiviertel_1",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "77b013f3-f62b-41c7-ac44-ffe32084c597",
+      "category": "40_Wasser",
+      "file": "Dreiviertel_2.png",
+      "hash": "2b3baf387a9bad61fa7cd52f542e19f60d80625ecc96cf1df358da0cf7a4a2e7",
+      "legacyIds": [
+        "40_Wasser/Dreiviertel_2.png"
+      ],
+      "name": "Dreiviertel_2",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "892c420a-16eb-4590-b748-1c8e4d80e74b",
+      "category": "40_Wasser",
+      "file": "Dreiviertel_3.png",
+      "hash": "6982910f4bc60ff3c2fa88cb4531a06729f4ce8863bd1acfa06e0f5688ff62db",
+      "legacyIds": [
+        "40_Wasser/Dreiviertel_3.png"
+      ],
+      "name": "Dreiviertel_3",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "063627f8-38af-405e-9541-c58e17417274",
+      "category": "40_Wasser",
+      "file": "Dreiviertel_4.png",
+      "hash": "4dd42326a4ac20f455833edb84cc6c39de41faf6dbe4171583907134003036af",
+      "legacyIds": [
+        "40_Wasser/Dreiviertel_4.png"
+      ],
+      "name": "Dreiviertel_4",
+      "type": "UNDER",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

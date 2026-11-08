@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Press Start 2P";
-  src: url("fonts/press-start-2p.woff2") format("woff2");
+  src: url("../fonts/press-start-2p.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
@@ -92,6 +92,201 @@ body {
   color: #fff;
   text-shadow: 0.08em 0.08em 0 var(--accent-2), 0.16em 0.16em 0 rgba(0, 0, 0, 0.45);
   text-wrap: balance;
+}
+
+#intro {
+  padding: max(20px, var(--safe-t)) max(20px, var(--safe-r)) max(20px, var(--safe-b)) max(20px, var(--safe-l));
+  overflow: auto;
+  place-items: safe center;
+  background: rgba(8, 10, 28, 0.88);
+}
+
+#intro .intro-home {
+  width: min(1050px, 100%);
+  max-width: none;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+  padding: clamp(24px, 4.5vw, 56px);
+  text-align: left;
+  border: 4px solid #0b1020;
+  background: #1b1f45;
+  box-shadow: inset 0 4px 0 rgba(255, 255, 255, 0.12), 8px 8px 0 #0b1020;
+}
+
+#intro .intro-copy {
+  min-width: 0;
+}
+
+#intro .intro-eyebrow {
+  margin: 0 0 18px;
+  color: #a7b8ff;
+  font: 0.65rem/1.6 "Press Start 2P", ui-monospace, monospace;
+  text-transform: uppercase;
+}
+
+#intro .intro-title {
+  font-size: clamp(1.3rem, 3vw, 2.5rem);
+  line-height: 1.4;
+  overflow-wrap: normal;
+}
+
+#intro .intro-actions {
+  display: grid;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+#intro .intro-actions button {
+  width: 100%;
+  min-height: 54px;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 0;
+  font: 0.7rem/1.6 "Press Start 2P", ui-monospace, monospace;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+#intro .intro-skip {
+  color: #0b1020;
+  background: #9eb4ff;
+  box-shadow: 4px 4px 0 #724cae;
+}
+
+#intro .intro-start {
+  color: #eef1ff;
+  background: #30386d;
+  box-shadow: inset 0 0 0 2px #7383bc, 4px 4px 0 #0b1020;
+}
+
+#intro .intro-actions button:hover {
+  transform: translate(-2px, -2px);
+}
+
+#intro .intro-actions button:active {
+  transform: translate(2px, 2px);
+}
+
+#intro .intro-actions button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+#intro .intro-visual {
+  min-width: 0;
+  border: 4px solid #0b1020;
+  background: #0b1020;
+  box-shadow: 5px 5px 0 #121530;
+}
+
+#intro .intro-visual-bar {
+  display: flex;
+  gap: 6px;
+  padding: 9px;
+  background: #30386d;
+}
+
+#intro .intro-visual-bar span {
+  width: 7px;
+  height: 7px;
+  background: #9eb4ff;
+}
+
+#intro .intro-visual-bar span:nth-child(2) { background: #b46cff; }
+#intro .intro-visual-bar span:nth-child(3) { background: #edb3cb; }
+
+#intro .intro-visual-image {
+  aspect-ratio: 1200 / 563;
+  overflow: hidden;
+}
+
+#intro .intro-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(2);
+  image-rendering: pixelated;
+}
+
+#intro.idle {
+  background: rgba(8, 10, 28, 0.55);
+}
+
+#intro.idle .intro-home {
+  width: auto;
+  display: block;
+  text-align: center;
+  background: rgba(27, 31, 69, 0.92);
+}
+
+#intro.idle .intro-actions,
+#intro.idle .intro-visual {
+  display: none;
+}
+
+#intro.idle .intro-idle-hint {
+  margin-top: 24px;
+}
+
+@media (max-width: 700px) {
+  #intro .intro-home {
+    max-width: 480px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  #intro .intro-visual {
+    grid-row: 1;
+  }
+
+  #intro .intro-title {
+    font-size: clamp(1.1rem, 6.5vw, 2.4rem);
+  }
+
+  #intro .intro-eyebrow {
+    margin-bottom: 10px;
+  }
+
+  #intro .intro-actions {
+    margin-top: 24px;
+  }
+}
+
+@media (max-height: 600px) {
+  #intro .intro-home {
+    gap: 16px;
+    padding: 20px;
+  }
+
+  #intro .intro-visual {
+    display: none;
+  }
+
+  #intro .intro-home {
+    max-width: 520px;
+    grid-template-columns: minmax(0, 1fr);
+    text-align: center;
+  }
+
+  #intro .intro-eyebrow {
+    margin-bottom: 8px;
+  }
+
+  #intro .intro-actions {
+    margin-top: 18px;
+    gap: 10px;
+  }
+
+  #intro .intro-actions button {
+    min-height: 44px;
+    padding: 10px;
+  }
 }
 
 .intro-start {
@@ -1588,3 +1783,19 @@ body {
   background: #7c9cff;
   color: #0b1020;
 }
+.catalog-warnings {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 101;
+  max-width: min(32rem, 90vw);
+  max-height: 45vh;
+  overflow: auto;
+  padding: .8rem 1rem;
+  border: 2px solid #e8ad40;
+  border-radius: .6rem;
+  background: #2f2517;
+  color: #fff;
+  font: 14px/1.5 sans-serif;
+}
+.catalog-warnings summary { cursor: pointer; font-weight: bold; }

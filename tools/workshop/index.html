@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tile-Werkstatt</title>
+  <link rel="stylesheet" href="/workshop.css">
+</head>
+<body>
+  <header>
+    <div><h1>Tile-Werkstatt</h1><p>Objekte, Regeln und Änderungen an einem Ort</p></div>
+    <div class="actions"><button id="reload">Neu einlesen</button><button id="save" class="primary">Änderungen speichern</button></div>
+  </header>
+  <div id="message" role="status" aria-live="polite"></div>
+  <main>
+    <section class="list">
+      <div class="filters">
+        <input id="search" type="search" placeholder="Name, Kategorie oder Suchbegriff" aria-label="Tiles suchen">
+        <select id="filter" aria-label="Status filtern">
+          <option value="all">Alle Status</option><option value="attention">Prüfung nötig</option>
+          <option value="new">Neu</option><option value="changed">Bild geändert</option>
+          <option value="moved">Verschoben</option><option value="ambiguous">Mehrdeutig</option>
+          <option value="missing">Fehlend</option><option value="invalid">Ungültig</option>
+        </select>
+      </div>
+      <p id="count"></p>
+      <div class="bulk"><select id="bulk-profile" aria-label="Vorlage für Auswahl"></select><button id="apply-profile">Vorlage auf Auswahl anwenden</button></div>
+      <div class="table-wrap"><table><thead><tr><th><input type="checkbox" id="select-all" aria-label="Sichtbare Tiles auswählen"></th><th>Bild</th><th>Tile / Kategorie</th><th>Status</th></tr></thead><tbody id="rows"></tbody></table></div>
+    </section>
+    <aside id="detail"><p>Wähle ein Tile aus, um seine Eigenschaften zu bearbeiten.</p></aside>
+  </main>
+  <script src="/tile-catalog-model.js"></script><script src="/workshop.js"></script>
+</body>
+</html>

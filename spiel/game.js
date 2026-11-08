@@ -1,7 +1,10 @@
 img = [];
 
 let tiles = []; // alle Boden-Tiles, nach Zeichenreihenfolge sortiert
-const board = new Board();
+const board = new Board((changedBoard) => {
+  tiles = changedBoard.drawOrder();
+  saveGame.schedule();
+});
 let selectedBoardTileIndices = new Set();
 let selectedPaletteIndex = null;
 
@@ -10,7 +13,7 @@ const BASE_CANVAS_SIZE = 1024;
 let gameCanvas;
 let currentCanvasSize = BASE_CANVAS_SIZE;
 
-// Tile-Liste aus tiles-tags.csv (siehe csv.js, startGame am Dateiende).
+// Tile-Liste aus dem zentralen Katalog (siehe spiel/daten/catalog.js).
 // Index 0 ist immer die Wiese; img[i] gehoert zu tileDefs[i].
 const MEADOW_TILE_INDEX = 0;
 let tileDefs = [];
@@ -38,23 +41,11 @@ function notifyTutorialAction(action, detail) {
   }
 }
 
-function buildTileDefs(manifest) {
-  const data = manifest || { root: "tiles_sortiert", meadow: null, categories: [] };
-  const url = (...parts) => [data.root, ...parts].map(encodeURIComponent).join("/");
-  const defs = [];
-  const categories = [];
-
-  if (data.meadow) {
-    defs.push({ ...data.meadow, category: "", url: url(data.meadow.file) });
-  }
-
-  for (const category of data.categories) {
-    const indices = category.tiles.map((tile) => defs.push({ ...tile, category: category.name, url: url(category.name, tile.file) }) - 1);
-    categories.push({ name: category.name, indices, iconUrl: category.icon ? url(category.name, category.icon) : defs[indices[0]].url });
-  }
-
-  return { tileDefs: defs, tileCategories: categories };
-}
+const saveGame = new SaveGame({
+  board,
+  getCatalog: () => ({ definitions: tileDefs, images: img, meadowIndex: MEADOW_TILE_INDEX }),
+  editorMode: EDITOR_MODE,
+});
 
 function gamePreload() {
   tileDefs.forEach((def, i) => {
@@ -117,10 +108,10 @@ function gameSetup() {
   gameCanvas = createCanvas(view.w, view.h);
   gameCanvas.parent("sketch");
 
-  buildBoard(img[MEADOW_TILE_INDEX]);
-  applyStartLayout();
-  loadSavedGame();
-  saveEnabled = true;
+  buildBoard(board, img[MEADOW_TILE_INDEX]);
+  applyStartLayout((window.TILE_MANIFEST && window.TILE_MANIFEST.layout) || [], board, tileDefs, img, MEADOW_TILE_INDEX);
+  saveGame.load();
+  saveGame.enable();
 
   noSmooth();
   createTilePalette();
@@ -130,6 +121,7 @@ function gameSetup() {
   initCamera();
   bindUndo();
   bindRespawn();
+  bindUiHide();
   enableDockDrag();
 }
 
@@ -284,7 +276,9 @@ function gameDraw() {
         context.rect(currentCharacter.x, currentCharacter.y, currentCharacter.drawW, currentCharacter.drawH);
         context.clip();
         for (const cell of coveringCells(currentCharacter.gx, currentCharacter.gy, currentCharacter.height)) {
-          cell.drawImage(cell.overlay);
+          const overlays = cell.overlays();
+          const firstCover = overlays.findIndex((overlay) => hasElevatedWalkOptions(overlay) || hasUpperWalkLayer(overlay));
+          overlays.slice(firstCover).forEach((overlay) => cell.drawImage(overlay));
         }
         context.restore();
       } else {
@@ -385,13 +379,15 @@ function handleTap(px, py, withCtrl) {
     } else {
       const def = tileDefs[selectedPaletteIndex];
       const selectedImage = img[selectedPaletteIndex];
-      if (def.type === "OVER" && tile.overlay === selectedImage) {
+      if (def.type === "OVER" && tile.overlays().includes(selectedImage)) {
         return;
       }
 
       const result = board.place(tile, selectedImage, def, img[MEADOW_TILE_INDEX]);
       if (result === "locked") {
         showToast("Dieses Tile ist fest");
+      } else if (result === "over-not-allowed") {
+        showToast("Dieses OVER ist auf diesem Boden nicht erlaubt");
       } else if (result !== true) {
         showToast("Hier ist nicht genug Platz");
       } else {
@@ -1214,140 +1210,10 @@ function pulseButton(button) {
   button.classList.add("pulse");
 }
 
-function applyStartLayout() {
-  const layout = (window.TILE_MANIFEST && window.TILE_MANIFEST.layout) || [];
-
-  for (const entry of layout) {
-    const index = tileDefs.findIndex((def) => def.category === entry.category && def.file === entry.file);
-
-    if (index === -1 || !board.placeLayout(entry.gx, entry.gy, img[index], tileDefs[index], img[MEADOW_TILE_INDEX], entry.fixed)) {
-      console.warn("Startlayout: Eintrag uebersprungen", entry);
-    }
-  }
-
-  board.history = [];
-  board.refresh();
-}
-
-// Admin-Tool: aktuelles Spielfeld als start-layout.csv herunterladen
-function exportLayout() {
-  const rows = [["Kategorie", "Dateiname", "gx", "gy", "Fix"]];
-  const add = (image, cell, locked) => {
-    const def = tileDefs[img.indexOf(image)];
-    if (def && img.indexOf(image) !== MEADOW_TILE_INDEX) {
-      rows.push([def.category, def.file, cell.gx, cell.gy, locked ? "FIX" : "FREI"]);
-    }
-  };
-
-  for (const cell of board.sorted()) {
-    if (!cell.owner) {
-      add(cell.ground, cell, cell.locked);
-      if (cell.overlay) {
-        add(cell.overlay, cell, cell.locked);
-      }
-    }
-  }
-
-  for (const building of board.buildings) {
-    add(building.image, building.anchor, building.locked);
-  }
-
-  const quote = (value) => (/[",\r\n]/.test(String(value)) ? `"${String(value).replace(/"/g, '""')}"` : String(value));
-  const csv = "\uFEFF" + rows.map((row) => row.map(quote).join(",")).join("\r\n") + "\r\n";
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
-  link.download = "start-layout.csv";
-  link.click();
-  setTimeout(() => URL.revokeObjectURL(link.href), 1000);
-}
-
-// Autosave im Browser (localStorage): bleibt erhalten, solange der Browser-Speicher nicht geloescht wird
-const SAVE_KEY = "nordi-savegame-v1";
-let saveEnabled = false;
-let saveTimer = null;
-
-function tileId(image) {
-  const def = tileDefs[img.indexOf(image)];
-  return def ? `${def.category}/${def.file}` : null;
-}
-
-function saveGame() {
-  if (!saveEnabled || EDITOR_MODE) {
-    return;
-  }
-
-  try {
-    const snap = board.snapshot();
-    const data = {
-      v: 1,
-      cells: snap.cells
-        .map(([key, ground, groundType, overlay, locked]) => [key, tileId(ground), groundType, overlay ? tileId(overlay) : null, locked])
-        .filter(([, ground, , overlay, locked]) => ground !== tileId(img[MEADOW_TILE_INDEX]) || overlay || locked),
-      buildings: snap.buildings.map(([gx, gy, w, h, image, locked]) => [gx, gy, w, h, tileId(image), locked]),
-    };
-    localStorage.setItem(SAVE_KEY, JSON.stringify(data));
-  } catch (e) {
-    console.warn("Speichern fehlgeschlagen", e);
-  }
-}
-
-function scheduleSave() {
-  if (!saveEnabled) {
-    return;
-  }
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(saveGame, 400);
-}
-
-function loadSavedGame() {
-  if (EDITOR_MODE) {
-    return;
-  }
-
-  try {
-    const raw = localStorage.getItem(SAVE_KEY);
-    if (!raw) {
-      return;
-    }
-
-    const data = JSON.parse(raw);
-    const byId = new Map(tileDefs.map((def, i) => [`${def.category}/${def.file}`, img[i]]));
-    const snap = board.snapshot();
-    const meadow = img[MEADOW_TILE_INDEX];
-
-    for (const cell of snap.cells) {
-      cell[1] = meadow;
-      cell[2] = "UNDER";
-      cell[3] = null;
-      cell[4] = false;
-    }
-    const cellMap = new Map(snap.cells.map((c) => [c[0], c]));
-
-    for (const [key, ground, groundType, overlay, locked] of data.cells) {
-      const cell = cellMap.get(key);
-      if (cell && byId.has(ground)) {
-        cell[1] = byId.get(ground);
-        cell[2] = groundType;
-        cell[3] = overlay ? byId.get(overlay) || null : null;
-        cell[4] = locked;
-      }
-    }
-
-    snap.buildings = data.buildings
-      .filter(([gx, gy, , , id]) => board.get(gx, gy) && byId.has(id))
-      .map(([gx, gy, w, h, id, locked]) => [gx, gy, w, h, byId.get(id), locked]);
-
-    board.restore(snap);
-    board.history = [];
-  } catch (e) {
-    console.warn("Laden fehlgeschlagen", e);
-  }
-}
-
-window.addEventListener("pagehide", saveGame);
+window.addEventListener("pagehide", () => saveGame.save());
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden") {
-    saveGame();
+    saveGame.save();
   }
 });
 
@@ -1439,27 +1305,29 @@ function bindUndo() {
 window.addEventListener("keydown", (event) => {
   if (event.ctrlKey && event.altKey && event.shiftKey && event.code === "KeyL") {
     event.preventDefault();
-    exportLayout();
+    exportLayout(board, tileDefs, img, MEADOW_TILE_INDEX);
     showToast("start-layout.csv exportiert");
   }
 });
 
-// Die CSV-Dateien muessen vor p5 geladen sein; p5 wird deshalb erst danach gestartet.
+// Der Katalog muss vor p5 geladen sein; p5 wird deshalb erst danach gestartet.
 async function startGame() {
   // Initialisiere Character-Manager früh, damit Assets in gamePreload geladen werden
   characterManager = new CharacterManager();
   
   try {
     await loadCharacters();
-    const manifest = await loadManifest();
+    const manifest = await loadTileCatalog();
     ({ tileDefs, tileCategories } = buildTileDefs(manifest));
     window.TILE_MANIFEST = manifest;
-    await loadWalkRules();
+    installCatalogRules(tileDefs, manifest.profiles);
+    if (manifest.issues.length) showCatalogWarnings(manifest.issues);
   } catch (error) {
     console.error(error);
+    showCatalogWarnings([`Spielstart fehlgeschlagen: ${error.message}`]);
     document.body.insertAdjacentHTML(
       "beforeend",
-      '<p style="position:fixed;inset:0;margin:0;padding:24px;background:#222;color:#fff;font:16px sans-serif;z-index:99">Charaktere oder Tiles konnten nicht geladen werden. Das Spiel muss über einen Webserver laufen (GitHub Pages oder <code>python -m http.server</code>), nicht per Doppelklick.</p>'
+      '<p style="position:fixed;inset:0;margin:0;padding:24px;background:#222;color:#fff;font:16px sans-serif;z-index:99">Das Spiel konnte nicht gestartet werden. Bitte versuche es später erneut.</p>'
     );
     return;
   }
@@ -1537,7 +1405,7 @@ if (document.readyState === "complete") {
   }
 
   intro.addEventListener("click", (event) => {
-    if (event.target === intro) {
+    if (event.target === intro || (intro.classList.contains("idle") && !event.target.closest("button"))) {
       hide();
     }
   });
@@ -1605,7 +1473,7 @@ function openTutorial() {
     { type: "board", point: "cat", title: "Katze entfernen", text: "Doppelklicke oder doppeltippe auf das Feld. Die Katze verschwindet, der Asphalt bleibt. Ein weiterer Doppelklick setzt das Feld auf Wiese." },
     { type: "menu", title: "Men\u00fc \u00f6ffnen", text: "\u00d6ffne das Men\u00fc oben rechts." },
     { type: "save", title: "Speichern", text: "Klicke auf Speichern, um deine Stadt zu teilen oder als Bild herunterzuladen." },
-    { type: "reset", title: "Reset", text: "Klicke zweimal auf Reset, um das Spielfeld wirklich zur\u00fcckzusetzen." },
+    { type: "reset", title: "Reset", text: "Klicke zweimal auf Reset. Danach ist das Startlayout wieder da." },
   ];
 
   let step = 0;
@@ -1707,7 +1575,7 @@ function openTutorial() {
     focus.hidden = true;
     title.textContent = current.title;
     copy.textContent = current.type === "reset" && resetDone
-      ? "Das Spielfeld wurde zur\u00fcckgesetzt. Klicke auf Fertig, um das Tutorial zu beenden."
+      ? "Das Startlayout ist wieder da. Klicke auf Fertig, um das Tutorial zu beenden."
       : current.text;
     progress.textContent = `${step + 1} / ${steps.length}`;
     next.textContent = step === steps.length - 1 ? "Fertig" : "Weiter";
@@ -1883,6 +1751,7 @@ function openTutorial() {
       step++;
       completed = true;
     } else if (current.type === "reset" && action === "reset-confirmed") {
+      resetToStartLayout((window.TILE_MANIFEST && window.TILE_MANIFEST.layout) || [], board, tileDefs, img, MEADOW_TILE_INDEX);
       resetDone = true;
       completed = true;
     }
