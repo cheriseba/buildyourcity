@@ -1135,7 +1135,8 @@ function createModeSwitch() {
     }
   });
 }
-function enableDockDrag() {
+
+function enableDockDrag() {
   enableDragScroll(document.getElementById("palette-scroll"));
   enableDragScroll(document.querySelector("#left-palette .cat-flyout"));
 }
