@@ -6289,6 +6289,120 @@
         "allowed": null,
         "walk": null
       }
+    },
+    {
+      "id": "71d09c72-b779-4896-844f-8d56ed6c87e8",
+      "category": "1_Hauslinks",
+      "file": "Historische_4.png",
+      "hash": "54f64a9f7d3ae2053c866d0e0ee9e16cfe094bc0e8553bf711b2b4a686890da2",
+      "legacyIds": [],
+      "name": "Historische_4",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "abc238c6-c3b0-4c84-bfdd-fe5f8de60317",
+      "category": "1_Hauslinks",
+      "file": "Historische_5.png",
+      "hash": "8e326969109ce2979c82db10d39c67f421c614eac596eadeda58c61b4228fd09",
+      "legacyIds": [],
+      "name": "Historische_5",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "429aca24-8094-406a-a4c7-4539b961ae19",
+      "category": "1_Hauslinks",
+      "file": "Historische_6.png",
+      "hash": "4e9e3cadb35a439272b1e3a85cb8f2dd9f3a4e7796bebd6e181927954c803ae6",
+      "legacyIds": [],
+      "name": "Historische_6",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "ed08aa11-23a1-4f03-8c9b-76e0902b0971",
+      "category": "1_Hauslinks",
+      "file": "Historische_7.png",
+      "hash": "e9aff2e5a42c6cf27c1fdd5b93183f9a67ddd0f3c58262ceaac85a5249ba0ea8",
+      "legacyIds": [],
+      "name": "Historische_7",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "be8eff43-48c5-4043-acbc-dfc81519d3b2",
+      "category": "1_Hauslinks",
+      "file": "Historische_8.png",
+      "hash": "856c1df93ae931a0bccf0644dc9c4dcbfe59781e23feb8c06dd9c6ebc9f4397a",
+      "legacyIds": [],
+      "name": "Historische_8",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "3986256d-55b0-4684-991c-7c46ac311bd7",
+      "category": "1_Hauslinks",
+      "file": "Historische_9.png",
+      "hash": "b63f1a4ff400c05e843dd09ba4d183ed60d501c522681629159f1249bf2f831e",
+      "legacyIds": [],
+      "name": "Historische_9",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
     }
   ]
 }
