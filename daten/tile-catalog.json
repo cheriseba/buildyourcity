@@ -6160,6 +6160,135 @@
           }
         ]
       }
+    },
+    {
+      "id": "004e92d7-64f2-4f25-9efe-3da4bd69f2ad",
+      "category": "1_Hauslinks",
+      "file": "Haus_4.png",
+      "hash": "a836f561f44715e9333c75a535f8a5a13961761866fb6fb49d41a0be44186729",
+      "legacyIds": [],
+      "name": "Haus_4",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "rot",
+        "Backstein",
+        "Eckhaus",
+        "Altbau",
+        "Grunderzeit"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "09a7c2b0-4877-4927-98e6-155b4f3bb494",
+      "category": "1_Hauslinks",
+      "file": "Haus_5.png",
+      "hash": "e52ed90137b96fa9d0d53fb368b9517ce3da6e4e4bf64c3515eebb7766167d37",
+      "legacyIds": [],
+      "name": "Haus_5",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "rot",
+        "Backstein",
+        "Eckhaus",
+        "Altbau",
+        "Grunderzeit"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "40f24a2a-3ed8-4f36-acf1-6adab95dabf8",
+      "category": "1_Hauslinks",
+      "file": "Haus_6.png",
+      "hash": "5956df310b433701d8bb77fe4444620cfc754e6a182a551004d2a98504578c2f",
+      "legacyIds": [],
+      "name": "Haus_6",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "rot",
+        "Backstein",
+        "Eckhaus",
+        "Altbau",
+        "Grunderzeit"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "76b32d47-0c98-4a0f-b534-c95d1e5062f7",
+      "category": "1_Hauslinks",
+      "file": "Haus_7.png",
+      "hash": "c02c29c1cdbcce680fe8bcb404cf505a2e6cd460f940eede1a4f6beec93de3f3",
+      "legacyIds": [],
+      "name": "Haus_7",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "rot",
+        "Backstein",
+        "Eckhaus",
+        "Altbau",
+        "Gründerzeit"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
+    },
+    {
+      "id": "02e48290-50d6-42c4-85be-0df5debbec7f",
+      "category": "1_Hauslinks",
+      "file": "Haus_8.png",
+      "hash": "73b88851e72adff1acb0f1621df13be18bda1c6e22dfd74811dda7594d321ca9",
+      "legacyIds": [],
+      "name": "Haus_8",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Haus",
+        "rot",
+        "Backstein",
+        "Altbau",
+        "Gründerzeit"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      }
     }
   ]
 }
