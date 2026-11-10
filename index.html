@@ -51,7 +51,7 @@
   }
   @keyframes loader-blink { 50% { opacity: 0.15; } }
 </style>
-<link href="spiel/style.css?v=20261108-22" rel="stylesheet">
+<link href="spiel/style.css?v=20261110-7" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/nordstadt-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/nordstadt-180.png">
 <link rel="manifest" href="manifest.webmanifest">
@@ -160,9 +160,40 @@
       <button id="respawn-button" class="tool-button respawn-button" type="button" aria-label="Neu platzieren" title="Neu platzieren (falls du feststeckst)" hidden>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>
       </button>
+      <button id="home-button" class="tool-button home-button" type="button" aria-label="Zum Startgebiet" title="Zum Startgebiet">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8M6 9v12h12V9M10 21v-7h4v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      </button>
+      <div id="land-markers" class="land-markers"></div>
+      <section id="reset-panel" class="land-panel reset-panel" role="dialog" aria-labelledby="reset-title" hidden>
+        <h2 id="reset-title">Was m&ouml;chtest du l&ouml;schen?</h2>
+        <div class="land-actions">
+          <button id="reset-city" class="intro-start" type="button">Nur gebaute Stadt</button>
+          <button id="reset-all" class="tutorial-secondary" type="button">Gesamten Spielstand</button>
+          <button id="reset-cancel" class="tutorial-secondary" type="button">zur&uuml;ck</button>
+        </div>
+      </section>
+      <section id="land-panel" class="land-panel" aria-labelledby="land-title" hidden>
+        <h2 id="land-title">Stadtteil erweitern?</h2>
+        <div class="land-actions">
+          <button id="land-confirm" class="intro-start" type="button">Ja</button>
+          <button id="land-cancel" class="tutorial-secondary" type="button">zur&uuml;ck</button>
+        </div>
+      </section>
     </div>
   </section>
 
+  <section id="update-panel" class="update-panel" role="dialog" aria-modal="true" aria-labelledby="update-title" aria-describedby="update-description" hidden>
+    <div class="land-panel">
+      <h2 id="update-title">Ein neuer Anfang f&uuml;r deine Stadt</h2>
+      <p id="update-description">Dieses gro&szlig;e Update ben&ouml;tigt einen neuen Spielstand. Deine bisherige Stadt bleibt bis zu deiner Best&auml;tigung gespeichert. Du kannst vorher ein Bild deiner gesamten Stadt herunterladen.</p>
+      <p>Mit &bdquo;Zur&uuml;cksetzen und Update starten&ldquo; wird deine alte Stadt dauerhaft durch das neue Startlayout ersetzt. Das kann nicht r&uuml;ckg&auml;ngig gemacht werden. Du kannst die Seite auch verlassen und sp&auml;ter entscheiden.</p>
+      <div class="land-actions">
+        <button id="update-image" class="tutorial-secondary" type="button">Alte Stadt als Bild speichern</button>
+        <button id="update-confirm" class="intro-start" type="button">Zur&uuml;cksetzen und Update starten</button>
+      </div>
+      <p id="update-status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
   <nav class="dock tile-panel" id="left-palette" aria-label="Tiles"></nav>
 </main>
 <script
@@ -179,14 +210,17 @@
     <script src="spiel/daten/start-layout.js?v=20261108-2"></script>
     <script src="gemeinsam/tile-catalog-model.js?v=20261108-2"></script>
     <script src="spiel/daten/catalog.js?v=20261108-7"></script>
-    <script src="spiel/welt/grid.js?v=20261108-2"></script>
-    <script src="spiel/welt/tile.js?v=20261108-1"></script>
+    <script src="spiel/welt/land.js?v=20261110-4"></script>
+    <script src="spiel/welt/camera.js?v=20261110-2"></script>
+    <script src="spiel/welt/land-ui.js?v=20261110-5"></script>
+    <script src="spiel/welt/grid.js?v=20261110-8"></script>
+    <script src="spiel/welt/tile.js?v=20261110-1"></script>
     <script src="spiel/welt/walk.js?v=20261108-5"></script>
     <script src="spiel/welt/over-rules.js?v=20261108-5"></script>
     <script src="spiel/charakter/character.js?v=20261106-2"></script>
     <script src="spiel/charakter/character-ui.js?v=20261106-5"></script>
-    <script src="spiel/speichern/save-game.js?v=20261108-3"></script>
-    <script src="spiel/game.js?v=20261108-10"></script>
+    <script src="spiel/speichern/save-game.js?v=20261110-7"></script>
+    <script src="spiel/game.js?v=20261110-8"></script>
 
     
     <script>

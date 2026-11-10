@@ -68,8 +68,8 @@ class Tile {
     image(img, this.x, this.y + TILE_IMG - h, TILE_IMG, h);
   }
 
-  show() {
-    this.drawImage(this.ground);
+  show(groundDrawn = false) {
+    if (!groundDrawn || this.groundType !== "UNDER") this.drawImage(this.ground);
 
     this.overlays().forEach((overlay) => this.drawImage(overlay));
   }
@@ -106,9 +106,9 @@ class Building {
     this.y = anchor.y + ((w + h - 2) * CELL_H) / 2 + TILE_IMG - this.drawH;
   }
 
-  show() {
-    for (const cell of this.cells) {
-      cell.drawImage(cell.ground);
+  show(groundDrawn = false) {
+    if (!groundDrawn) {
+      for (const cell of this.cells) cell.drawImage(cell.ground);
     }
 
     image(this.image, this.x, this.y, this.drawW, this.drawH);

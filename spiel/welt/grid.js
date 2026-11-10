@@ -10,19 +10,16 @@ const CELL_CENTER_X = 32;
 const CELL_CENTER_Y = 40;
 
 const HISTORY_LIMIT = 50;
+
+function renderBounds(item) {
+  const height = item instanceof Tile
+    ? Math.max(...[item.ground, ...item.overlays()].map((image) => image.height * TILE_IMG / image.width))
+    : item.drawH;
+  const y = item instanceof Tile ? item.y + TILE_IMG - height : item.y;
+  return { minX: item.x, minY: y, maxX: item.x + item.drawW, maxY: y + height };
+}
 // ?editor in der URL: feste Tiles sind aenderbar und das Menue bietet "Layout exportieren"
 const EDITOR_MODE = new URLSearchParams(window.location.search).has("editor");
-const BOARD_ROWS = 66;
-const BOARD_COLS_EVEN = 17;
-const BOARD_COLS_ODD = 16;
-// Zusaetzliche Spalten links/rechts; nur auf Desktop erreichbar (Koordinaten gx/gy der Bestandszellen bleiben gleich)
-const EXTRA_COLS = 4;
-const DESKTOP_MIN_WIDTH = 900;
-
-// Seitlicher Spielraum der Welt in px (0 auf kleinen Bildschirmen)
-function worldPad() {
-  return window.innerWidth >= DESKTOP_MIN_WIDTH ? EXTRA_COLS * CELL_W : 0;
-}
 
 // Obere linke Bildposition einer Zelle in Weltkoordinaten
 function gridToScreen(gx, gy) {
@@ -39,12 +36,33 @@ function screenToGrid(wx, wy) {
   return { gx: Math.round((s + d) / 2), gy: Math.round((s - d) / 2) };
 }
 
+function createGroundTiles(rect, initialImage) {
+  const cells = [];
+  const minRow = Math.ceil((rect.minY - GRID_ORIGIN_Y - CELL_CENTER_Y) / (CELL_H / 2)) - 1;
+  const maxRow = Math.ceil((rect.maxY - GRID_ORIGIN_Y - CELL_CENTER_Y) / (CELL_H / 2)) - 1;
+  for (let row = minRow; row < maxRow; row++) {
+    const even = row % 2 === 0;
+    const offsetX = even ? 0 : CELL_W / 2;
+    const minCol = Math.ceil((rect.minX - offsetX) / CELL_W);
+    const maxCol = Math.ceil((rect.maxX - offsetX) / CELL_W);
+    for (let k = minCol; k < maxCol; k++) {
+      const gx = even ? row / 2 + k : (row + 1) / 2 + k;
+      const gy = even ? row / 2 + 1 - k : (row + 1) / 2 - k;
+      cells.push(new Tile(gx, gy, initialImage));
+    }
+  }
+  return cells;
+}
+
 class Board {
   constructor(onChange = () => {}) {
     this.cells = new Map();
     this.buildings = new Set();
     this.history = [];
     this.onChange = onChange;
+    this.land = new WorldLand();
+    this.initialImage = null;
+    this.sortedCells = null;
   }
 
   static key(gx, gy) {
@@ -57,17 +75,21 @@ class Board {
 
   set(tile) {
     this.cells.set(tile.key, tile);
+    this.sortedCells = null;
   }
 
   // Zeichenreihenfolge: hinten (kleine Tiefe) zuerst, vorne zuletzt
   sorted() {
-    return [...this.cells.values()].sort((a, b) => a.gx + a.gy - (b.gx + b.gy) || a.gx - b.gx);
+    if (!this.sortedCells) {
+      this.sortedCells = [...this.cells.values()].sort((a, b) => a.gx + a.gy - (b.gx + b.gy) || a.gx - b.gx);
+    }
+    return this.sortedCells;
   }
 
   // Zeichenliste mit Gebaeuden: Basis ist die Tiefensortierung der freien Zellen. Fuer Gebaeude gilt zusaetzlich:
   // a liegt hinter b, wenn a komplett kleinere gx- oder gy-Werte hat. Diese Paare (nur bei sich ueberlappenden
   // Bildern) werden per topologischer Sortierung erzwungen.
-  drawOrder(characterToRender = null) {
+  drawOrder(characterToRender = null, visible = null) {
     const depth = (o) => {
       // Character: vorderste Zelle, die er gerade beruehrt (aufrunden) plus Offset. So steht er beim Laufen
       // zwischen zwei Zellen vor beiden Tiles und wird von keinem Nachbar-Tile ueberdeckt.
@@ -76,7 +98,13 @@ class Board {
       }
       return o.maxX + o.maxY;
     };
-    const drawItems = [...this.sorted().filter((tile) => !tile.owner), ...this.buildings];
+    const inView = (item) => {
+      if (!visible) return true;
+      const bounds = renderBounds(item);
+      return bounds.maxX >= visible.minX && bounds.minX <= visible.maxX &&
+        bounds.maxY >= visible.minY && bounds.minY <= visible.maxY;
+    };
+    const drawItems = [...this.sorted().filter((tile) => !tile.owner && inView(tile)), ...[...this.buildings].filter(inView)];
     
     // Füge den Character hinzu
     if (characterToRender) {
@@ -90,7 +118,10 @@ class Board {
     const out = items.map(() => []);
     const indeg = new Array(n).fill(0);
     const behind = (a, b) => a.maxX < b.minX || a.maxY < b.minY;
-    const overlaps = (a, b) => a.x < b.x + b.drawW && a.x + a.drawW > b.x && a.y < b.y + b.drawH && a.y + a.drawH > b.y;
+    const overlaps = (a, b) => {
+      const ra = renderBounds(a), rb = renderBounds(b);
+      return ra.minX < rb.maxX && ra.maxX > rb.minX && ra.minY < rb.maxY && ra.maxY > rb.minY;
+    };
 
     items.forEach((b, j) => {
       if (!(b instanceof Building)) {
@@ -161,9 +192,11 @@ class Board {
   }
 
   // Rueckgaengig: Zustand vor jeder Aenderung merken (max. HISTORY_LIMIT Schritte)
-  snapshot() {
+  snapshot(includeEmpty = false) {
     return {
-      cells: [...this.cells.values()].map((c) => [c.key, c.ground, c.groundType, c.overlay, c.locked, c.overlayBack]),
+      cells: [...this.cells.values()]
+        .filter((c) => includeEmpty || c.ground !== this.initialImage || c.groundType !== "UNDER" || c.overlay || c.overlayBack || c.locked)
+        .map((c) => [c.key, c.ground, c.groundType, c.overlay, c.locked, c.overlayBack]),
       buildings: [...this.buildings].map((b) => [b.anchor.gx, b.anchor.gy, b.w, b.h, b.image, b.locked]),
     };
   }
@@ -187,6 +220,12 @@ class Board {
 
   restore(snap) {
     this.buildings.clear();
+    // Freischaltungen gehoeren nicht zum Bau-Undo. Neue Zellen bleiben als Wiese erhalten.
+    for (const cell of this.cells.values()) {
+      cell.reset(this.initialImage);
+      cell.locked = false;
+      cell.owner = null;
+    }
     for (const [key, ground, groundType, overlay, locked, overlayBack] of snap.cells) {
       const cell = this.cells.get(key);
       cell.ground = ground;
@@ -219,26 +258,14 @@ class Board {
     return building;
   }
 
-  // Passt das Gebaeude komplett in die sichtbare Welt (0..BASE_CANVAS_SIZE)?
-  fitsWorld(anchor, w, h, image) {
-    const probe = new Building(anchor, w, h, image);
-    const pad = worldPad();
-    if (probe.y < -pad || probe.y + probe.drawH > BASE_CANVAS_SIZE + pad || probe.x < -pad || probe.x + probe.drawW > BASE_CANVAS_SIZE + pad) {
-      return false;
-    }
+  addParcelCells(parcel) {
+    for (const tile of createGroundTiles(this.land.rect(parcel), this.initialImage)) this.set(tile);
+  }
 
-    for (let dx = 0; dx < w; dx++) {
-      for (let dy = 0; dy < h; dy++) {
-        const cell = this.get(anchor.gx + dx, anchor.gy + dy);
-        const cx = cell.x + CELL_CENTER_X;
-        const cy = cell.y + CELL_CENTER_Y;
-        if (cx - CELL_W / 2 < -pad || cx + CELL_W / 2 > BASE_CANVAS_SIZE + pad || cy - CELL_H / 2 < -pad || cy + CELL_H / 2 > BASE_CANVAS_SIZE + pad) {
-          return false;
-        }
-      }
-    }
-
-    return true;
+  unlockParcel(x, y) {
+    this.land.unlock(x, y);
+    this.addParcelCells({ x, y });
+    this.refresh();
   }
 
   // Alles auf Wiese zuruecksetzen, ausser feste Tiles (auch rueckgaengig machbar)
@@ -362,7 +389,7 @@ class Board {
 
     const cells = anchor && this.footprint(anchor, w, h);
 
-    if (!cells || !this.fitsWorld(anchor, w, h, image)) {
+    if (!cells) {
       return "space";
     }
 
@@ -400,23 +427,13 @@ class Board {
     return cells;
   }
 }
-// Erzeugt das Spielfeld als versetztes Raster: gerade Zeilen 17 Tiles, ungerade 16 Tiles.
-function buildBoard(board, initialImage) {
+function buildBoard(board, initialImage, land = new WorldLand()) {
   board.cells.clear();
   board.buildings.clear();
   board.history = [];
-
-  // Zeilen oben/unten ergaenzen, damit das Feld (Desktop) quadratisch ist: EXTRA_COLS*64 px = EXTRA_COLS*4 Zeilen
-  for (let row = -EXTRA_COLS * 4; row < BOARD_ROWS + EXTRA_COLS * 4; row++) {
-    const even = row % 2 === 0;
-    const cols = even ? BOARD_COLS_EVEN : BOARD_COLS_ODD;
-
-    for (let k = -EXTRA_COLS; k < cols + EXTRA_COLS; k++) {
-      const gx = even ? row / 2 + k : (row + 1) / 2 + k;
-      const gy = even ? row / 2 + 1 - k : (row + 1) / 2 - k;
-      board.set(new Tile(gx, gy, initialImage));
-    }
-  }
-
+  board.sortedCells = null;
+  board.initialImage = initialImage;
+  board.land = land;
+  for (const parcel of land.parcels.values()) board.addParcelCells(parcel);
   board.refresh();
 }

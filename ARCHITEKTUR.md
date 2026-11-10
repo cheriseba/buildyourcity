@@ -27,6 +27,10 @@ Desktop- oder Startbildschirm-Icon angelegt wird, haengt vom Browser ab.
   Zeichenreihenfolge und Undo. [tile.js](spiel/welt/tile.js) enthaelt die darstellbaren Zellen und
   Gebaeude. `Board` benachrichtigt seinen Aufrufer bei Aenderungen ueber einen
   Callback; es speichert nicht selbst.
+- [land.js](spiel/welt/land.js) verwaltet geraeteunabhaengige, zusammenhaengende
+  Grundstuecke. [land-ui.js](spiel/welt/land-ui.js) enthaelt ausgegraute Randwiesen,
+  Pluszeichen und Bestaetigung. [camera.js](spiel/welt/camera.js) berechnet
+  Ausschnitt, Ausrichten und Kameragrenzen ohne DOM- oder p5-Abhaengigkeit.
 - [over-rules.js](spiel/welt/over-rules.js) und [walk.js](spiel/welt/walk.js) wenden Platzierungs-
   bzw. Laufregeln aus dem Katalog an. Die bisherigen Regel-CSV-Dateien liegen
   als Sicherung des importierten Ausgangsstands in [csv/archiv/](csv/archiv/)
@@ -46,24 +50,150 @@ zu vergroessern. Ein kompletter Modulumbau ist noch nicht erfolgt.
 ## Spielstaende und Erweiterungen
 
 Staedte liegen unter `nordi-savegame-v1` im lokalen Browser-Speicher. Das
-Spiel liest das alte Format v1 mit Dateipfaden und speichert das neue Format
-v2 mit stabilen Tile-IDs unter demselben Schluessel. Alte Pfade stehen als
+Spiel liest die alten Formate v1 mit Dateipfaden und v2 mit stabilen Tile-IDs.
+Es speichert Format v3 mit stabilen Tile-IDs und expliziter Grundstuecksliste
+unter demselben Schluessel. Alte Pfade stehen als
 `legacyIds` im Katalog. Der Editor (`?editor`) liest und schreibt diesen
 Spielstand nicht. Fehlende Tiles werden uebersprungen; spaetere automatische
 Speicherung kann sie dauerhaft aus dem Spielstand entfernen. Technische
-Hinweise erscheinen in der Browser-Konsole und im lokalen Debug-Modus, nicht
-in der normalen Spieloberflaeche. Vor Umbenennungen oder groesseren Updates
+Hinweise erscheinen in der Browser-Konsole und im lokalen Debug-Modus;
+Speicher- und Ladefehler zusaetzlich als Meldung im Spiel.
+Vor Umbenennungen oder groesseren Updates
 Browserdaten sichern. Aenderungen am Speicherformat brauchen Migration und Tests.
-Der bestaetigte Reset im letzten Tutorial-Schritt stellt das Startlayout wieder
-her; der normale Reset ausserhalb dieses Schritts behaelt sein Verhalten.
+Reset oeffnet eine Auswahl: **Nur gebaute Stadt** stellt leere Wiese wieder her
+und behaelt freigeschaltete Grundstuecke. **Gesamten Spielstand** setzt auch die
+Freischaltungen auf die zwei Startgrundstuecke mit CSV-Startlayout zurueck. Beide Varianten leeren
+den Bauverlauf und speichern sofort; ausstehendes Autosave kann den alten Stand
+nicht wiederherstellen. Andere localStorage-Schluessel bleiben unberuehrt.
+Abbrechen und Escape aendern nichts. Waehrend der Auswahl sind Kamera,
+Bauen und Undo gesperrt. Der Tutorial-Reset verwendet dieselbe Auswahl.
+Im Editor wird stattdessen das CSV-Startlayout wiederhergestellt; ein kompletter
+Reset stellt dort auch die zwei Startgrundstuecke wieder her, ohne Spielstaende
+zu veraendern. Bau-Undo behaelt freigeschaltete Grundstuecke.
 
-Fuer spaetere Erweiterungen sollten Katalogdaten, Platzierungsentscheidungen,
-Spielzustand und UI getrennt bleiben. Drehung benoetigt unter anderem eindeutig
-definierte Ausrichtungen, Footprints und passende Grafiken; Waehrung und
-Freischaltungen benoetigen einen eigenen dauerhaft gespeicherten Zustand.
-Interaktionen und Minispiele sollten erst mit geklaerten Regeln und einer
-klaren Schnittstelle zur Welt eingebaut werden. Diese Funktionen sind hier
-bewusst noch nicht implementiert.
+Neue Staedte und der Editor beginnen mit denselben zwei waagerechten
+Grundstuecken: (0,1) und (1,1). Jedes Grundstueck umfasst 512x512
+Weltpixel (256 Zellen), zusammen 512 Bauzellen. Der Start ist auf allen
+Bildschirmen gleich gross und laedt das CSV-Startlayout. Die ausgelieferte
+Vorlage enthaelt derzeit nur die Kopfzeile, also leere Wiese.
+Bestehende v3-Staedte behalten ihre gespeicherten
+Freischaltungen, auch die bisherigen Ein-Grundstueck-Staedte. Die Validierung
+verlangt das zentrale Grundstueck (1,1), nicht alle aktuellen Startgrundstuecke.
+Alte v1/v2-Staedte erhalten die bisherige 3x3-Flaeche.
+Die 3x3-Erzeugung bleibt ausschliesslich fuer diese alten Spielstaende erhalten,
+nicht als Editor- oder Startflaeche. Sie wird noch fuer deren Bildexport vor
+einem bestaetigten Update-Neustart benoetigt.
+
+Spielstaende enthalten neben dem Datenformat `v: 3` eine separate
+`compatibility`-Version. `SAVE_COMPATIBILITY_VERSION` in
+[spiel/speichern/save-game.js](spiel/speichern/save-game.js) wird **nur** dann
+erhoeht, wenn ein Update zwingend einen vollstaendigen Neustart erfordert.
+Normale Code-, Katalog- oder Layoutaenderungen erhoehen sie nicht.
+Die erste Version ist 1: Vorherige Spielstaende ohne dieses Feld benoetigen
+beim aktuellen Update eine ausdrueckliche Bestaetigung.
+
+Bei abweichender Kompatibilitaet wird die alte Stadt ausschliesslich zur
+Vorschau geladen. Bauen, Kameraeingaben und alle normalen Speicherwege
+(auch pagehide und visibilitychange) bleiben gesperrt. Der Update-Dialog
+laesst sich nicht mit Escape wegklicken; die Seite kann ohne Datenverlust
+verlassen und spaeter erneut geoeffnet werden.
+**Alte Stadt als Bild speichern** rendert die gesamte Stadt mit Gebaeuden
+und Overlays ohne UI auf einen separaten Canvas, mit blauem Hintergrund und
+maximal 4096 Pixeln je Achse. Die Stadt selbst wird dabei nicht veraendert.
+Ein gestarteter Download gilt nicht als gesicherte Nutzerbestaetigung;
+der Dialog fordert dazu auf, das gespeicherte Bild vor dem Reset zu pruefen.
+
+Erst **Zuruecksetzen und Update starten** speichert einen vorbereiteten neuen
+1x2-Stand mit dem aktuellen CSV-Startlayout und der neuen Kompatibilitaet.
+Nur nach erfolgreichem Schreiben wird die sichtbare alte Stadt ersetzt und
+Autosave freigegeben. Bei Speicherfehlern bleiben alter Stand, Ansicht und
+Dialog erhalten. Unlesbare Spielstaende werden ebenfalls nicht automatisch
+ueberschrieben; ein nicht moeglicher oder unvollstaendiger Bildexport wird
+ausdruecklich angezeigt. Neue Spieler, kompatible Spielstaende und der Editor
+erhalten keine Updateaufforderung. Es wird kein separater Bestaetigungsmarker
+gespeichert: Der neue Spielstand selbst belegt den erfolgreichen Wechsel.
+
+Ein neues Startlayout erstellen:
+1. Das Spiel mit `?editor` oeffnen und auf den zwei Startgrundstuecken bauen,
+   ohne weitere Grundstuecke freizuschalten.
+2. Im Menue **Layout exportieren** oder **Strg+Alt+Umschalt+L** verwenden.
+3. Die heruntergeladene Datei als [csv/start-layout.csv](csv/start-layout.csv)
+   im Projekt ersetzen; Koordinaten und Kopfzeile beibehalten.
+4. Neue Spiele und ein kompletter Reset laden diese Vorlage. Ein vorhandener
+   Spielstand hat Vorrang und wird durch eine neue CSV nicht ueberschrieben.
+   `FIX` sperrt ein Tile im normalen Spiel, `FREI` erlaubt Aenderungen.
+   Im Editor bleiben auch `FIX`-Tiles bearbeitbar. Die CSV speichert keine
+   Freischaltungen; Eintraege ausserhalb der Startflaeche werden mit
+   Konsolenwarnung uebersprungen.
+
+Zusaetzliche Grundstuecke entstehen nur nach
+ausdruecklicher Freischaltung oberhalb, links oder rechts von bestehendem Land.
+Neue Erweiterungen nach unten sind in Modell und UI gesperrt. Seitliches
+Schliessen von Luecken bleibt moeglich; bereits gespeicherte suedliche
+Grundstuecke bleiben unveraendert ladbar. Die Zusammenhangspruefung von
+Spielstaenden verwendet weiterhin alle vier Nachbarrichtungen. Es gibt keine
+feste Anzahlgrenze, aber natuerlich Speicher- und Leistungsgrenzen des Browsers.
+Mehrzellige Gebaeude brauchen ausschliesslich vorhandene Grundflaechenzellen;
+ihre Grafik darf ueber den Weltrand ragen. Leere Grundstuecke werden unabhaengig
+von ihren Tiles gespeichert und vor diesen wiederhergestellt.
+
+Am Spielfeldrand sind zunaechst keine Erweiterungsbuttons sichtbar. Erst ein
+Verschiebeversuch ueber eine erlaubte Grenze deckt Pluszeichen in der Luft
+dicht neben der letzten Tile-Reihe auf. Es gibt keine grauen Vorschauwiesen,
+Randpolster, rechteckigen Bodenausschnitte oder flaechigen Markierungen.
+Nur tatsaechliche Board-Zellen werden gezeichnet. Strassen ersetzen die Wiese
+ihrer Zelle; die aeussere Silhouette folgt den Tilegrafiken. Boden, FULL-Tiles,
+Overlays, Gebaeude und Charaktere verwenden eine gemeinsame Tiefenreihenfolge,
+keinen separaten Boden-Vorlauf. So verdecken vordere Nachbarfelder korrekt die
+Basis hinterer Objekte. Auch der Stadtbildexport folgt dieser Reihenfolge.
+Sichtbarkeit und Gebaeude-Ueberlappungen beruecksichtigen die volle Bildhoehe
+aller Boden- und Overlaygrafiken, nicht nur das 64x64-Basisfeld.
+Das Plus oder ein Tippen auf die aufgedeckte Luft oeffnet die Bestaetigung
+direkt, ohne Menueeintrag oder separaten Erweiterungsmodus.
+Die Luft ist weder bebaubar noch begehbar und wird nicht gespeichert.
+Die Scrollgrenzen liegen normalerweise an der freigeschalteten Welt.
+Bewusst aufgedeckte Kanten erlauben Platz fuer den Tile-Ueberhang und das Plus:
+64 Weltpixel plus 64 Bildschirmpixel, maximal eine halbe Grundstuecksbreite.
+Wiederholtes Ziehen gibt keinen weiteren Raum frei.
+Nach dem Loslassen bleibt das Plus anklickbar. Zoom und Heimkehr verbergen
+die aufgedeckten Kanten wieder; diese werden nicht gespeichert.
+Die Bestaetigung zeigt ausschliesslich **Stadtteil erweitern?**, **Ja**
+und einen kleineren **zurueck**-Button. **Ja** bestaetigt;
+**zurueck** oder Escape schliesst
+ohne Kauf. Beim Auswaehlen und Freischalten bleibt der betrachtete Weltpunkt
+soweit moeglich erhalten; die Kamera springt nicht zum neuen Grundstueck.
+Nach dem Freischalten werden die moeglichen Erweiterungen und Pluszeichen aktualisiert.
+Die Randabfrage prueft jede gemeinsame Kante mit freigeschaltetem Land, nicht
+nur die aeusseren Grenzen des Weltrechtecks. Dadurch bleiben auch versetzte
+Erweiterungen und Luecken zwischen bereits gekauften Grundstuecken erreichbar.
+Im Erkunden-Modus und bei ausgeblendeter Oberflaeche sind die Pluszeichen
+ausgeblendet. Aktuell sind Freischaltungen
+kostenlos. Spaetere Birbs-Preispruefung und Abbuchung gehoeren in den zentralen
+Freischaltvorgang, nicht in einzelne UI-Handler. Ein voll bebautes Gebiet ist
+keine Voraussetzung. Der Editor speichert auch Freischaltungen nicht.
+
+Die Kamera bleibt an freigeschaltetem Land; auch in ungekauften Zwischenraeumen
+unregelmaessiger Staedte muss Land im Ausschnitt bleiben. **Zum Startgebiet**
+kehrt zum Ausgangsviertel zurueck. Der Mindestzoom fuellt die sichtbare Flaeche
+mit Land (Maximum aus Breiten- und Hoehenverhaeltnis statt Komplettansicht).
+**Ausrichten** zentriert mit diesem sicheren Zoom; je nach Bildschirmformat
+bleibt ein Teil der Stadt ausserhalb des Ausschnitts.
+`ResizeObserver`, p5-Fensterresize, Orientierungs- und
+VisualViewport-Ereignisse werden pro Animationsframe gebuendelt. Beim
+Formatwechsel bleiben Weltmittelpunkt und Zoom erhalten, soweit die
+Kameragrenzen es erlauben. Im Ausrichten-Modus wird erneut eingepasst.
+Zeichenreihenfolgen werden fuer den sichtbaren Ausschnitt berechnet; Undo
+enthaelt keine unveraenderten leeren Wiesen.
+Der Canvas wird pro Frame transparent geleert. Dahinter liegt ein einfarbiger,
+tiefblauer CSS-Hintergrund (#0b1638), kein Thumbnail.
+Ein dezentes isometrisches Linienraster wird vor dem Boden in Weltkoordinaten
+gezeichnet. Es folgt exakt den 64x32-Tilekanten, bewegt und zoomt mit der Kamera
+und deutet im freien Hintergrund weitere Zellen an. Die Linien bleiben einen
+Bildschirmpixel breit; berechnet wird nur der sichtbare Ausschnitt.
+Das Raster erzeugt weder Bauzellen noch zusaetzliche Freischaltmoeglichkeiten.
+
+Waehrung, Gebaeudedrehung, Interaktionen und Minispiele sind noch nicht
+implementiert.
 
 ## Tests
 
@@ -75,7 +205,12 @@ node --test tests/*.test.js
 ```
 
 Diese Tests ersetzen keinen Browser-Test von Grafik, Eingabe, Touch und
-Avatarbewegung. Bei Aenderungen daran zusaetzlich im Browser pruefen.
+Avatarbewegung. [viewport-land.test.js](tests/viewport-land.test.js) prueft
+Formatwechsel und Erweiterungsinteraktionen mit DOM-/p5-Testdoubles in Node,
+ohne Browser. Visuell manuell pruefen: Hoch-/Querformat und Fenstergroesse
+wechseln, ausgegraute Wiesenstreifen und Rand-Plus pruefen,
+Erweiterung abbrechen/bestaetigen, neu laden, ueber eine
+Grundstuecksgrenze bauen und zum Startgebiet zurueckkehren.
 
 ## Tile-Werkstatt
 

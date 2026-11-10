@@ -20,7 +20,7 @@ function createGame(editor = false) {
     setTimeout,
     clearTimeout,
   });
-  for (const file of ["spiel/daten/csv.js", "spiel/daten/catalog.js", "spiel/daten/start-layout.js", "spiel/welt/grid.js", "spiel/welt/tile.js", "spiel/welt/walk.js", "spiel/welt/over-rules.js", "spiel/speichern/save-game.js"]) {
+  for (const file of ["spiel/daten/csv.js", "spiel/daten/catalog.js", "spiel/daten/start-layout.js", "spiel/welt/land.js", "spiel/welt/camera.js", "spiel/welt/grid.js", "spiel/welt/tile.js", "spiel/welt/walk.js", "spiel/welt/over-rules.js", "spiel/speichern/save-game.js"]) {
     vm.runInContext(fs.readFileSync(path.join(root, file), "utf8"), context, { filename: file });
   }
   vm.runInContext(`
@@ -48,7 +48,7 @@ function createGame(editor = false) {
     );
     let changes = 0;
     const board = new Board(() => changes++);
-    buildBoard(board, meadow);
+    buildBoard(board, meadow, new WorldLand(WorldLand.legacyParcels()));
     const save = new SaveGame({
       board, getCatalog: () => ({ definitions: tileDefs, images: img, meadowIndex: 0 }),
       editorMode: EDITOR_MODE
@@ -139,6 +139,38 @@ test("Startlayout wird angewendet und als CSV mit Overlays und Gebaeuden exporti
   assert.match(text, /Haus,house\.png,20,20,FREI\r\n/);
 });
 
+test("1x2-Startlayout laesst sich als CSV exportieren und mit Boden, Overlay und Gebaeude importieren", async () => {
+  const game = createGame(true);
+  let exported;
+  game.context.Blob = Blob;
+  game.context.URL = { createObjectURL: (blob) => { exported = blob; return "blob:test"; }, revokeObjectURL() {} };
+  game.context.document = { createElement: () => ({ click() {} }) };
+  game.context.setTimeout = (callback) => callback();
+  game.run(`
+    buildBoard(board, meadow);
+    board.place(board.get(23, 7), ground, tileDefs[1], meadow);
+    board.place(board.get(23, 7), front, tileDefs[2], meadow);
+    board.get(23, 7).locked = true;
+    board.place(board.get(26, 7), house, tileDefs[4], meadow);
+    exportLayout(board, tileDefs, img, 0);
+  `);
+  game.context.exportedCsv = await exported.text();
+  game.run(`
+    const layout = parseCsvTable(exportedCsv).map((row) => ({
+      category: row.kategorie, file: row.dateiname,
+      gx: Number(row.gx), gy: Number(row.gy), fixed: row.fix === "FIX",
+    }));
+    buildBoard(board, meadow);
+    applyStartLayout(layout, board, tileDefs, img, 0);
+  `);
+  assert.equal(game.run("board.cells.size"), 512);
+  assert.equal(game.run("board.get(23, 7).ground === ground"), true);
+  assert.equal(game.run("board.get(23, 7).overlay === front"), true);
+  assert.equal(game.run("board.get(23, 7).locked"), true);
+  assert.equal(game.run("board.buildings.size"), 1);
+  assert.deepEqual(game.warnings, []);
+});
+
 test("Tutorial-Reset stellt das komplette Startlayout wieder her und speichert es", () => {
   for (const editorMode of [false, true]) {
     const game = createGame(editorMode);
@@ -170,7 +202,7 @@ test("Tutorial-Reset stellt das komplette Startlayout wieder her und speichert e
   }
 });
 
-test("v1-Spielstand speichert und laedt Overlays und mehrzellige Gebaeude", () => {
+test("v3-Spielstand speichert und laedt Overlays und mehrzellige Gebaeude", () => {
   const { run, storage } = createGame();
   run(`
     const cell = board.get(15, 15);
@@ -182,7 +214,8 @@ test("v1-Spielstand speichert und laedt Overlays und mehrzellige Gebaeude", () =
     save.save();
   `);
   const saved = JSON.parse(storage.get("nordi-savegame-v1"));
-  assert.equal(saved.v, 1);
+  assert.equal(saved.v, 3);
+  assert.equal(saved.parcels.length, 9);
   assert.deepEqual(saved.cells.find((cell) => cell[0] === "15,15"), [
     "15,15", "Boden/ground.png", "UNDER", "Deko/front.png", false, "Deko/back.png",
   ]);
@@ -212,7 +245,7 @@ test("Aeltere v1-Spielstaende ohne hinteres Overlay und unbekannte Tiles", () =>
   assert.equal(run("board.buildings.size"), 0);
 });
 
-test("Fehlende Tiles melden und beim weiteren Speichern ueberspringen", () => {
+test("Fehlende Tiles alter Spielstaende melden, aber Original vor Updatebestaetigung nicht ueberschreiben", () => {
   const game = createGame();
   const issues = [];
   game.context.showCatalogWarnings = (messages) => issues.push(...messages);
@@ -221,10 +254,12 @@ test("Fehlende Tiles melden und beim weiteren Speichern ueberspringen", () => {
     cells: [["15,15", "Boden/ground.png", "UNDER", "Deko/fehlt.png", false]],
     buildings: [],
   }));
+  const original = game.storage.get("nordi-savegame-v1");
   game.run("save.load(); save.enable(); save.save()");
   assert.match(issues[0], /Deko\/fehlt\.png/);
   assert.equal(game.run("board.get(15, 15).overlay"), null);
-  assert.equal(JSON.parse(game.storage.get("nordi-savegame-v1")).cells[0][3], null);
+  assert.equal(game.storage.get("nordi-savegame-v1"), original);
+  assert.equal(game.run("save.pendingReset"), true);
 });
 
 test("Editor greift nicht auf Spielstaende zu und Ladefehler werden gemeldet", () => {
@@ -259,11 +294,232 @@ test("Alte Spielstaende werden anhand alter IDs geladen und mit stabilen IDs ges
   const { run, storage } = createGame();
   run(`tileDefs.forEach((def, i) => { def.id = "stable-" + i; def.legacyIds = [def.category + "/" + def.file]; })`);
   storage.set("nordi-savegame-v1", JSON.stringify({
-    v: 1, cells: [["15,15", "Boden/ground.png", "UNDER", "Deko/front.png", false]], buildings: [],
+    v: 3, compatibility: run("SAVE_COMPATIBILITY_VERSION"), parcels: run("board.land.snapshot()"),
+    cells: [["15,15", "Boden/ground.png", "UNDER", "Deko/front.png", false]], buildings: [],
   }));
   run("save.load(); save.enable(); save.save()");
   const result = JSON.parse(storage.get("nordi-savegame-v1"));
-  assert.equal(result.v, 2);
+  assert.equal(result.v, 3);
   assert.equal(result.cells[0][1], "stable-1");
   assert.equal(result.cells[0][3], "stable-2");
+});
+
+test("Welt und Baugrenzen sind unabhaengig von Bildschirm und Ausrichtung", () => {
+  const { run } = createGame();
+  const original = run("JSON.stringify([...board.cells.keys()])");
+  assert.equal(run("board.cells.size"), 9 * 256);
+  for (const width of [390, 844, 900, 1920]) {
+    run(`window.innerWidth = ${width}; buildBoard(board, meadow, new WorldLand(WorldLand.legacyParcels()))`);
+    assert.equal(run("JSON.stringify([...board.cells.keys()])"), original);
+    assert.equal(run("board.place(board.get(20, 20), house, tileDefs[4], meadow)"), true);
+  }
+  assert.equal(run("[...board.cells.values()].every((cell) => board.land.contains(cell.x + CELL_CENTER_X, cell.y + CELL_CENTER_Y))"), true);
+});
+
+test("Nur angrenzende Grundstuecke werden additiv und ohne doppelte Zellen freigeschaltet", () => {
+  const { run } = createGame();
+  run("const previousCell = board.get(15, 15); const originalKeys = [...board.cells.keys()]");
+  assert.equal(run("board.land.frontier().length"), 9);
+  assert.equal(run("board.land.canUnlock(3, 1)"), true);
+  assert.equal(run("board.land.canUnlock(3, 3)"), false);
+  assert.throws(() => run("board.unlockParcel(5, 5)"), /angrenzende/);
+  assert.throws(() => run("board.unlockParcel(1.5, 1)"), /angrenzende/);
+  run("board.unlockParcel(3, 1)");
+  assert.equal(run("board.cells.size"), 10 * 256);
+  assert.equal(run("board.get(15, 15) === previousCell"), true);
+  assert.equal(run("originalKeys.every((key) => board.cells.has(key))"), true);
+  assert.equal(run("board.land.frontier().some((p) => p.x === 3 && p.y === 1)"), false);
+  assert.throws(() => run("board.unlockParcel(3, 1)"), /angrenzende/);
+  run("board.unlockParcel(-1, 0); board.unlockParcel(-1, -1)");
+  assert.equal(run("board.cells.size"), 12 * 256);
+  assert.equal(run("[...board.cells.values()].every((c) => board.land.contains(c.x + CELL_CENTER_X, c.y + CELL_CENTER_Y))"), true);
+});
+
+test("Gebaeude duerfen eine Grundstuecksgrenze erst nach Freischaltung ueberqueren", () => {
+  const { run } = createGame();
+  run(`
+    const edge = [...board.cells.values()].find((c) =>
+      c.x + CELL_CENTER_X === 1248 && c.y + CELL_CENTER_Y > 300 && c.y + CELL_CENTER_Y < 700);
+  `);
+  assert.equal(run("board.place(edge, house, tileDefs[4], meadow)"), "space");
+  assert.equal(run("board.buildings.size"), 0);
+  assert.equal(run('planWalkStep(edge.gx, edge.gy, WALK_DIRS["down-right"], 0)'), null);
+  run("board.unlockParcel(3, 1)");
+  assert.equal(run('planWalkStep(edge.gx, edge.gy, WALK_DIRS["down-right"], 0) !== null'), true);
+  assert.equal(run("board.place(edge, house, tileDefs[4], meadow)"), true);
+  assert.equal(run("board.buildings.size"), 1);
+});
+
+test("Bau-Undo und beide Resets behalten Freischaltungen, auch nach alten Undo-Snapshots", () => {
+  const { run } = createGame();
+  run(`
+    board.place(board.get(15, 15), ground, tileDefs[1], meadow);
+    const oldSnapshot = board.history[0];
+    board.unlockParcel(3, 1);
+    const newCell = [...board.cells.values()].find((c) => c.x + CELL_CENTER_X >= 1280);
+    board.place(newCell, ground, tileDefs[1], meadow);
+    board.undo();
+  `);
+  assert.equal(run("newCell.ground === meadow"), true);
+  assert.equal(run("board.get(15, 15).ground === ground"), true);
+  assert.equal(run("board.undo()"), true);
+  assert.equal(run("board.get(15, 15).ground === meadow"), true);
+  assert.equal(run("board.land.parcels.size"), 10);
+  assert.equal(run("oldSnapshot.cells.length"), 0);
+  run("board.place(newCell, ground, tileDefs[1], meadow); board.clearAll(meadow); board.undo()");
+  assert.equal(run("newCell.ground === ground"), true);
+  run("resetToStartLayout([], board, tileDefs, img, 0)");
+  assert.equal(run("newCell.ground === meadow"), true);
+  assert.equal(run("board.land.parcels.size"), 10);
+  assert.equal(run("board.cells.size"), 10 * 256);
+});
+
+test("Leere und bebaute Erweiterungen werden beim Neuladen wiederhergestellt", () => {
+  const { run, storage } = createGame();
+  run(`
+    board.unlockParcel(3, 1);
+    board.unlockParcel(4, 1);
+    const expandedCell = [...board.cells.values()].find((c) => c.x + CELL_CENTER_X > 1300);
+    const expandedKey = expandedCell.key;
+    board.place(expandedCell, ground, tileDefs[1], meadow);
+    const expandedHouseCell = [...board.cells.values()].find((c) =>
+      c.x + CELL_CENTER_X >= 1450 && c.y + CELL_CENTER_Y > 400 && c.y + CELL_CENTER_Y < 600);
+    const expandedHouseKey = expandedHouseCell.key;
+    board.place(expandedHouseCell, house, tileDefs[4], meadow);
+    save.enable(); save.save();
+  `);
+  const saved = JSON.parse(storage.get("nordi-savegame-v1"));
+  assert.equal(saved.v, 3);
+  assert.equal(saved.parcels.length, 11);
+  assert.equal(saved.cells.length, 1);
+  assert.equal(saved.buildings.length, 1);
+  run("buildBoard(board, meadow); save.load()");
+  assert.equal(run("board.land.parcels.size"), 11);
+  assert.equal(run("board.cells.size"), 11 * 256);
+  assert.equal(run("board.cells.get(expandedKey).ground === ground"), true);
+  assert.equal(run("board.cells.get(expandedHouseKey).owner.image === house"), true);
+  assert.equal(run("board.land.contains(2000, 512)"), true);
+  assert.equal(run("board.history.length"), 0);
+});
+
+test("Mehrfache Erweiterung hat keine feste Weltrand-Grenze", () => {
+  const { run } = createGame();
+  run("for (let x = 3; x < 35; x++) board.unlockParcel(x, 1)");
+  assert.equal(run("board.land.parcels.size"), 41);
+  assert.equal(run("board.cells.size"), 41 * 256);
+  assert.equal(run("board.land.bounds().maxX"), -256 + 35 * 512);
+  assert.equal(run("board.land.canUnlock(35, 1)"), true);
+});
+
+test("Ungueltige Freischaltungen werden vor Veraenderung der Stadt abgewiesen", () => {
+  for (const extra of [[[5, 5]], [[1, 1]], [[3.5, 1]], [[Number.MAX_SAFE_INTEGER, 1]]]) {
+    const { run, storage, warnings } = createGame();
+    storage.set("nordi-savegame-v1", JSON.stringify({
+      v: 3, parcels: [...run("board.land.snapshot()"), ...extra], cells: [], buildings: [],
+    }));
+    run("board.place(board.get(15, 15), ground, tileDefs[1], meadow); save.load()");
+    assert.equal(run("board.get(15, 15).ground === ground"), true);
+    assert.equal(run("board.land.parcels.size"), 9);
+    assert.match(warnings[0][0], /Laden fehlgeschlagen/);
+  }
+  for (const parcels of [undefined, [], [[0, 0]]]) {
+    const { run, storage, warnings } = createGame();
+    storage.set("nordi-savegame-v1", JSON.stringify({ v: 3, parcels, cells: [], buildings: [] }));
+    run("save.load()");
+    assert.equal(warnings.length, 1);
+    assert.equal(run("board.cells.size"), 9 * 256);
+  }
+});
+
+test("Speicherfehler liefern keinen Erfolg und werden sichtbar gemeldet", () => {
+  const { run, context, warnings } = createGame();
+  const messages = [];
+  context.showToast = (message) => messages.push(message);
+  context.localStorage.setItem = () => { throw new Error("Quota exceeded"); };
+  assert.equal(run("save.enable(); save.save()"), false);
+  assert.match(warnings[0][0], /Speichern fehlgeschlagen/);
+  assert.match(messages[0], /Speichern fehlgeschlagen/);
+});
+
+test("Zeichenreihenfolge fuer den Ausschnitt enthaelt keine weit entfernten Objekte", () => {
+  const { run } = createGame();
+  run(`
+    board.place(board.get(20, 20), house, tileDefs[4], meadow);
+    const visible = { minX: 0, minY: 400, maxX: 200, maxY: 700 };
+    const ordered = board.drawOrder(null, visible);
+  `);
+  assert.equal(run("ordered.some((item) => item instanceof Building)"), true);
+  assert.equal(run("ordered.every((t) => t.x + t.drawW >= visible.minX && t.x <= visible.maxX && t.y + t.drawH >= visible.minY && t.y <= visible.maxY)"), true);
+  assert.ok(run("ordered.length") < run("board.cells.size") / 10);
+});
+
+test("Die leere CSV-Startvorlage passt auf die gemeinsame 1x2-Startflaeche", () => {
+  const { run, context, warnings } = createGame();
+  context.TileCatalogModel = require("../gemeinsam/tile-catalog-model.js");
+  context.realCatalog = JSON.parse(fs.readFileSync(path.join(root, "daten", "tile-catalog.json"), "utf8"));
+  context.realLayoutCsv = fs.readFileSync(path.join(root, "csv", "start-layout.csv"), "utf8");
+  run(`
+    const realDefs = realCatalog.tiles;
+    const realImages = realDefs.map(() => ({ width: 64, height: 64 }));
+    defByImage = new Map(realImages.map((image, index) => [image, realDefs[index]]));
+    const realMeadowIndex = realDefs.findIndex((def) => def.category === "");
+    const realLayout = parseCsvTable(realLayoutCsv).map((row) => ({
+      category: row.kategorie, file: row.dateiname,
+      gx: Number(row.gx), gy: Number(row.gy), fixed: row.fix === "FIX",
+    }));
+    installCatalogRules(realDefs, realCatalog.profiles);
+    buildBoard(board, realImages[realMeadowIndex]);
+    applyStartLayout(realLayout, board, realDefs, realImages, realMeadowIndex);
+  `);
+  assert.equal(run("realLayout.length"), 0);
+  assert.deepEqual(warnings, []);
+  assert.equal(run("board.land.parcels.size"), 2);
+});
+
+test("Neue Welt beginnt mit zwei waagerechten Grundstuecken und vier Erweiterungen ohne Sueden", () => {
+  const { run } = createGame();
+  run("buildBoard(board, meadow)");
+  assert.equal(run("board.cells.size"), 512);
+  assert.equal(run("board.land.parcels.size"), 2);
+  assert.equal(run("JSON.stringify(board.land.snapshot())"), JSON.stringify([[0, 1], [1, 1]]));
+  assert.equal(run("board.land.parcels.has('1,1')"), true);
+  assert.equal(run("board.land.frontier().length"), 4);
+  assert.equal(run("board.snapshot().cells.length"), 0);
+  assert.equal(run("board.buildings.size"), 0);
+  assert.equal(run("board.land.canUnlock(2, 2)"), false);
+  run("board.unlockParcel(2, 1)");
+  assert.equal(run("board.cells.size"), 768);
+  assert.equal(run("board.land.canUnlock(2, 2)"), false);
+  assert.equal(run("board.land.canUnlock(2, 0)"), true);
+});
+
+test("Kleines Startgebiet und einzelne Freischaltungen bleiben im v3-Spielstand erhalten", () => {
+  const { run, storage } = createGame();
+  run("buildBoard(board, meadow); save.enable(); save.save()");
+  assert.deepEqual(JSON.parse(storage.get("nordi-savegame-v1")).parcels, [[0, 1], [1, 1]]);
+  run("buildBoard(board, meadow, new WorldLand(WorldLand.legacyParcels())); save.load()");
+  assert.equal(run("board.cells.size"), 512);
+  run("board.unlockParcel(2, 1); save.save(); buildBoard(board, meadow); save.load()");
+  assert.equal(run("board.land.parcels.size"), 3);
+  assert.equal(run("board.cells.size"), 768);
+  assert.equal(run("board.land.parcels.has('0,0')"), false);
+});
+
+test("Bisherige Ein-Grundstueck-Staedte bleiben gueltige Spielstaende", () => {
+  const { run } = createGame();
+  run("buildBoard(board, meadow, new WorldLand([[1, 1]])); save.enable(); save.save(); buildBoard(board, meadow); save.load()");
+  assert.equal(run("board.land.parcels.size"), 1);
+  assert.equal(run("board.cells.size"), 256);
+});
+
+test("Die obere Luft wird erst nach Freischaltung begehbares Land", () => {
+  const { run } = createGame();
+  run(`
+    buildBoard(board, meadow);
+    const upperEdge = [...board.cells.values()].find((c) =>
+      c.y + CELL_CENTER_Y === 264 && c.x + CELL_CENTER_X > 400 && c.x + CELL_CENTER_X < 600);
+  `);
+  assert.equal(run('planWalkStep(upperEdge.gx, upperEdge.gy, WALK_DIRS["up-right"], 0)'), null);
+  run("board.unlockParcel(1, 0)");
+  assert.equal(run('planWalkStep(upperEdge.gx, upperEdge.gy, WALK_DIRS["up-right"], 0) !== null'), true);
 });

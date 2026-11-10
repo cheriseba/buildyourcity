@@ -1,17 +1,19 @@
 img = [];
 
-let tiles = []; // alle Boden-Tiles, nach Zeichenreihenfolge sortiert
-const board = new Board((changedBoard) => {
-  tiles = changedBoard.drawOrder();
+let tiles = [];
+let drawnView = null;
+const board = new Board(() => {
+  drawnView = null;
   saveGame.schedule();
 });
 let selectedBoardTileIndices = new Set();
 let selectedPaletteIndex = null;
 
-const BASE_CANVAS_SIZE = 1024;
+const START_WORLD_BOUNDS = new WorldLand().bounds();
 
 let gameCanvas;
-let currentCanvasSize = BASE_CANVAS_SIZE;
+let landExpansion = null;
+let cameraFitsWorld = false;
 
 // Tile-Liste aus dem zentralen Katalog (siehe spiel/daten/catalog.js).
 // Index 0 ist immer die Wiese; img[i] gehoert zu tileDefs[i].
@@ -108,10 +110,7 @@ function gameSetup() {
   gameCanvas = createCanvas(view.w, view.h);
   gameCanvas.parent("sketch");
 
-  buildBoard(board, img[MEADOW_TILE_INDEX]);
-  applyStartLayout((window.TILE_MANIFEST && window.TILE_MANIFEST.layout) || [], board, tileDefs, img, MEADOW_TILE_INDEX);
-  saveGame.load();
-  saveGame.enable();
+  initializeCity();
 
   noSmooth();
   createTilePalette();
@@ -119,14 +118,30 @@ function gameSetup() {
   initCharacterMode();
   updateViewportLayout();
   initCamera();
+  initLandExpansion();
+  bindResetChoice();
+  observeViewport();
   bindUndo();
   bindRespawn();
   bindUiHide();
   enableDockDrag();
+  bindUpdateNotice();
 }
 
-// Kamera: Canvas fuellt die ganze Buehne, das Board (1024x1024) wird per Scale/Offset betrachtet.
-const MAX_SCALE = 4;
+function initialCityLayout() {
+  return (window.TILE_MANIFEST && window.TILE_MANIFEST.layout) || [];
+}
+
+function initializeCity() {
+  const land = new WorldLand();
+  buildBoard(board, img[MEADOW_TILE_INDEX], land);
+  applyStartLayout(initialCityLayout(), board, tileDefs, img, MEADOW_TILE_INDEX);
+  saveGame.load();
+  saveGame.enable();
+  saveGame.schedule();
+}
+
+// Canvas und Kamera sind unabhaengig von der freigeschalteten Weltgroesse.
 const DRAG_THRESHOLD = 6;
 
 const view = { w: 1024, h: 1024, insetTop: 0, insetBottom: 0, minScale: 1 };
@@ -142,15 +157,27 @@ function measureView() {
   view.w = Math.max(1, Math.floor(rect.width));
   view.h = Math.max(1, Math.floor(rect.height));
   view.insetTop = topbar && getComputedStyle(topbar).display !== "none" ? Math.max(0, topbar.getBoundingClientRect().bottom - rect.top) : 0;
-  view.insetBottom = dock ? Math.max(0, rect.bottom - dock.getBoundingClientRect().top) : 0;
-  view.minScale = Math.max(view.w / (BASE_CANVAS_SIZE + 2 * worldPad()), view.h / (BASE_CANVAS_SIZE + 2 * worldPad()));
+  const dockRect = dock && dock.getBoundingClientRect();
+  view.insetBottom = dockRect && dockRect.height > 0
+    ? Math.min(view.h - 1, Math.max(0, rect.bottom - dockRect.top)) : 0;
+  view.minScale = CameraGeometry.fitScale(board.land.bounds(), view);
+}
+
+function cameraBounds() {
+  const bounds = board.land.bounds();
+  if (landExpansion) {
+    for (const { rect } of landExpansion.revealRegions()) {
+      bounds.minX = Math.min(bounds.minX, rect.minX);
+      bounds.minY = Math.min(bounds.minY, rect.minY);
+      bounds.maxX = Math.max(bounds.maxX, rect.maxX);
+      bounds.maxY = Math.max(bounds.maxY, rect.maxY);
+    }
+  }
+  return bounds;
 }
 
 function clampCamera(c) {
-  c.scale = Math.min(Math.max(MAX_SCALE, view.minScale), Math.max(view.minScale, c.scale));
-  const pad = worldPad();
-  c.x = Math.min(BASE_CANVAS_SIZE + pad - view.w / c.scale, Math.max(-pad, c.x));
-  c.y = Math.min(BASE_CANVAS_SIZE + pad - (view.h - view.insetBottom) / c.scale, Math.max(-pad - view.insetTop / c.scale, c.y));
+  CameraGeometry.clamp(c, view, cameraBounds(), board.land.regions());
 }
 
 function startScale() {
@@ -159,13 +186,20 @@ function startScale() {
 }
 
 function resetCamera() {
+  if (landExpansion) landExpansion.clearReveal();
+  cameraFitsWorld = false;
   camTarget.scale = startScale();
-  camTarget.x = (BASE_CANVAS_SIZE - view.w / camTarget.scale) / 2;
-  camTarget.y = (BASE_CANVAS_SIZE - view.h / camTarget.scale) / 2;
+  CameraGeometry.moveCenter(camTarget, view, {
+    x: (START_WORLD_BOUNDS.minX + START_WORLD_BOUNDS.maxX) / 2,
+    y: (START_WORLD_BOUNDS.minY + START_WORLD_BOUNDS.maxY) / 2,
+  });
   clampCamera(camTarget);
 }
 
 function zoomAt(px, py, newScale, immediate) {
+  if (resetChoiceOpen()) return;
+  if (landExpansion) landExpansion.clearReveal();
+  cameraFitsWorld = false;
   setUiHidden(false);
   const t = camTarget;
   const worldX = t.x + px / t.scale;
@@ -190,10 +224,19 @@ function setUiHidden(hidden) {
 }
 
 function panBy(dx, dy, immediate) {
+  if (resetChoiceOpen() || (landExpansion && landExpansion.active)) return;
+  cameraFitsWorld = false;
   setUiHidden(false);
+  const previous = { ...camTarget };
   camTarget.x -= dx / camTarget.scale;
   camTarget.y -= dy / camTarget.scale;
+  const attempted = { ...camTarget };
   clampCamera(camTarget);
+  if (landExpansion && gameMode === "build" && !landExpansion.active) {
+    landExpansion.revealAttempt(camTarget, view, attempted, previous);
+    Object.assign(camTarget, attempted);
+    clampCamera(camTarget);
+  }
 
   if (immediate) {
     Object.assign(cam, camTarget);
@@ -238,8 +281,9 @@ function gameDraw() {
     cam.x += (camTarget.x - cam.x) * ease;
     cam.y += (camTarget.y - cam.y) * ease;
   }
+  if (!cameraFitsWorld) clampCamera(cam);
 
-  background(70);
+  clear();
 
   push();
   scale(cam.scale);
@@ -247,6 +291,10 @@ function gameDraw() {
 
   const viewW = view.w / cam.scale;
   const viewH = view.h / cam.scale;
+  const visible = { minX: cam.x, minY: cam.y, maxX: cam.x + viewW, maxY: cam.y + viewH };
+  if (landExpansion) {
+    landExpansion.drawGrid(drawingContext, visible, cam.scale);
+  }
 
   // Update Character-Bewegung (wenn im Character-Modus)
   if (gameMode === "character" && currentCharacter) {
@@ -256,11 +304,8 @@ function gameDraw() {
 
 
     // Rebuild tiles mit Character eingebunden für korrekte z-order Sortierung
-    const drawList = board.drawOrder(currentCharacter);
+    const drawList = board.drawOrder(currentCharacter, visible);
     for (const t of drawList) {
-      if (t.x + t.drawW < cam.x || t.x > cam.x + viewW || t.y + t.drawH < cam.y || t.y > cam.y + viewH) {
-        continue;
-      }
       
       if (t === currentCharacter) {
         // Character ist bereits in drawList eingefügt, aber wir rendern ihn nicht nochmal
@@ -287,19 +332,38 @@ function gameDraw() {
     }
   } else {
     // Build Mode - nur Tiles
+    if (!drawnView || Object.keys(visible).some((key) => drawnView[key] !== visible[key])) {
+      tiles = board.drawOrder(null, visible);
+      drawnView = visible;
+    }
     for (const t of tiles) {
-      if (t.x + t.drawW < cam.x || t.x > cam.x + viewW || t.y + t.drawH < cam.y || t.y > cam.y + viewH) {
-        continue;
-      }
       t.show();
     }
   }
 
+  if (landExpansion) landExpansion.draw(drawingContext, cam, view, gameMode === "build");
   pop();
 }
 
 function gameWindowResized() {
-  updateViewportLayout();
+  scheduleViewportLayout();
+}
+
+let viewportFrame = null;
+function scheduleViewportLayout() {
+  if (viewportFrame !== null) return;
+  viewportFrame = requestAnimationFrame(() => {
+    viewportFrame = null;
+    updateViewportLayout();
+  });
+}
+
+function observeViewport() {
+  const observer = new ResizeObserver(scheduleViewportLayout);
+  observer.observe(document.querySelector(".stage"));
+  observer.observe(document.getElementById("left-palette"));
+  window.addEventListener("orientationchange", scheduleViewportLayout);
+  if (window.visualViewport) window.visualViewport.addEventListener("resize", scheduleViewportLayout);
 }
 
 function updateViewportLayout() {
@@ -307,12 +371,54 @@ function updateViewportLayout() {
     return;
   }
 
+  const center = CameraGeometry.center(cam, view);
+  const targetCenter = CameraGeometry.center(camTarget, view);
   measureView();
-  resizeCanvas(view.w, view.h);
+  // resizeCanvas zeichnet synchron neu; erst nach der Kameraanpassung weiterzeichnen.
+  if (width !== view.w || height !== view.h) resizeCanvas(view.w, view.h, true);
   gameCanvas.elt.style.removeProperty("width");
   gameCanvas.elt.style.removeProperty("height");
-  clampCamera(camTarget);
-  clampCamera(cam);
+  if (cameraFitsWorld) {
+    CameraGeometry.fit(camTarget, board.land.bounds(), view);
+    Object.assign(cam, camTarget);
+  } else {
+    CameraGeometry.moveCenter(cam, view, center);
+    CameraGeometry.moveCenter(camTarget, view, targetCenter);
+    clampCamera(camTarget);
+    clampCamera(cam);
+  }
+  if (landExpansion) {
+    landExpansion.setRevealScale(camTarget.scale);
+    clampCamera(camTarget);
+    clampCamera(cam);
+  }
+}
+
+function initLandExpansion() {
+  landExpansion = new LandExpansion({
+    board,
+    onSelect: () => {
+      setUiHidden(false);
+      lastOverlayTap = null;
+      cameraFitsWorld = false;
+      updateViewportLayout();
+    },
+    onClose: () => {
+      updateViewportLayout();
+    },
+    onUnlock: () => {
+      cameraFitsWorld = false;
+      updateViewportLayout();
+      if (!EDITOR_MODE) saveGame.save();
+    },
+  });
+  document.getElementById("home-button").addEventListener("click", () => {
+    landExpansion.close(false);
+    characterCameraFollowing = false;
+    setUiHidden(false);
+    resetCamera();
+    Object.assign(cam, camTarget);
+  });
 }
 
 function canvasPoint(event) {
@@ -321,11 +427,17 @@ function canvasPoint(event) {
 }
 
 function handleTap(px, py, withCtrl) {
+  if (resetChoiceOpen()) return;
+  if (landExpansion && landExpansion.active) return;
   console.log(`[handleTap] Click at canvas (${px}, ${py}), gameMode=${gameMode}`);
   
   const worldX = cam.x + px / cam.scale;
   const worldY = cam.y + py / cam.scale;
   console.log(`[handleTap] World coords: (${worldX}, ${worldY})`);
+  if (!board.land.contains(worldX, worldY)) {
+    if (gameMode === "build" && landExpansion) landExpansion.chooseAt(worldX, worldY);
+    return;
+  }
 
   const cell = screenToGrid(worldX, worldY);
   console.log(`[handleTap] Grid cell from screenToGrid: (${cell.gx}, ${cell.gy})`);
@@ -510,7 +622,7 @@ function initCamera() {
   );
 
   window.addEventListener("keydown", (event) => {
-    if (event.target instanceof HTMLElement && event.target.closest("input")) {
+    if (event.target instanceof HTMLElement && event.target.closest("input, select, textarea, [contenteditable]")) {
       return;
     }
 
@@ -538,10 +650,11 @@ function initCamera() {
     "zoom-in": () => zoomAt(centerX(), centerY(), camTarget.scale * 1.4, false),
     "zoom-out": () => zoomAt(centerX(), centerY(), camTarget.scale / 1.4, false),
     "zoom-fit": () => {
-      camTarget.scale = view.minScale;
-      camTarget.x = 0;
-      camTarget.y = 0;
-      clampCamera(camTarget);
+      if (landExpansion) landExpansion.clearReveal();
+      characterCameraFollowing = false;
+      cameraFitsWorld = true;
+      CameraGeometry.fit(camTarget, board.land.bounds(), view);
+      Object.assign(cam, camTarget);
     },
   };
 
@@ -818,6 +931,7 @@ function initCharacterMode() {
 let keysPressed = { w: false, a: false, s: false, d: false };
 
 function handleCharacterMovementKey(event) {
+  if (resetChoiceOpen()) return;
   if (gameMode !== "character" || !currentCharacter) return;
   
   const key = event.key.toLowerCase();
@@ -852,6 +966,7 @@ function handleCharacterMovementKeyUp(event) {
 }
 
 function updateCharacterMovement() {
+  if (resetChoiceOpen()) return;
   if (gameMode !== "character" || !currentCharacter) {
     return;
   }
@@ -904,6 +1019,7 @@ async function loadCharacters() {
 }
 
 function switchGameMode(newMode) {
+  if (landExpansion) landExpansion.close(false);
   gameMode = newMode;
   characterCameraFollowing = true;
   setUiHidden(false);
@@ -1094,40 +1210,14 @@ function createModeSwitch() {
     infoToggle.dataset.bound = "1";
   }
 
-  // Zweiter Klick innerhalb von 3s bestaetigt, weil das ganze Board ueberschrieben wird.
-  const bindConfirm = (button, action) => {
-    if (!button || button.dataset.bound === "1") {
-      return;
-    }
-
-    const label = button.querySelector("span");
-    const original = label.textContent;
-    let timer = null;
-
-    const disarm = () => {
-      clearTimeout(timer);
-      button.classList.remove("armed");
-      label.textContent = original;
-    };
-
-    button.addEventListener("click", () => {
-      if (!button.classList.contains("armed")) {
-        button.classList.add("armed");
-        label.textContent = "Sicher?";
-        timer = setTimeout(disarm, 3000);
-        return;
-      }
-
-      disarm();
-      action();
-      notifyTutorialAction("reset-confirmed");
-      pulseButton(menuToggle || button);
-      closeMenu();
-    });
-    button.dataset.bound = "1";
-  };
-
-  bindConfirm(meadowButton, makeAllMeadow);
+  meadowButton.addEventListener("click", () => {
+    closeMenu();
+    if (landExpansion) landExpansion.close(false);
+    document.getElementById("reset-panel").hidden = false;
+    document.querySelector(".app").classList.add("resetting");
+    keysPressed = { w: false, a: false, s: false, d: false };
+    document.getElementById("reset-city").focus();
+  });
 
   document.addEventListener("pointerdown", (event) => {
     if (menuPanel && !menuPanel.hidden && !event.target.closest(".menu")) {
@@ -1218,9 +1308,63 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-function makeAllMeadow() {
-  board.clearAll(img[MEADOW_TILE_INDEX]);
+function resetChoiceOpen() {
+  const panel = document.getElementById("reset-panel");
+  return saveGame.pendingReset || Boolean(panel && !panel.hidden);
+}
+
+function resetCity(entireSave) {
+  if (saveGame.pendingReset) return;
+  if (gameMode !== "build" && modeSwitch) modeSwitch.setMode("build");
+  if (landExpansion) {
+    landExpansion.close(false);
+    landExpansion.clearReveal();
+  }
+  lastOverlayTap = null;
+  spawnHistory = [];
+  if (entireSave) {
+    const land = new WorldLand();
+    buildBoard(board, img[MEADOW_TILE_INDEX], land);
+    recentTileIndices = [];
+    selectedPaletteIndex = null;
+    syncPaletteSelection();
+  }
+  resetToStartLayout(entireSave || EDITOR_MODE ? initialCityLayout() : [], board, tileDefs, img, MEADOW_TILE_INDEX);
   selectedBoardTileIndices.clear();
+  if (landExpansion) landExpansion.refresh();
+  updateViewportLayout();
+  resetCamera();
+  Object.assign(cam, camTarget);
+  if (!EDITOR_MODE) saveGame.save();
+  notifyTutorialAction("reset-confirmed");
+}
+
+function bindResetChoice() {
+  const panel = document.getElementById("reset-panel");
+  const close = () => {
+    panel.hidden = true;
+    document.querySelector(".app").classList.remove("resetting");
+    document.getElementById("menu-toggle").focus();
+  };
+  document.getElementById("reset-city").addEventListener("click", () => {
+    close();
+    resetCity(false);
+  });
+  document.getElementById("reset-all").addEventListener("click", () => {
+    close();
+    resetCity(true);
+  });
+  document.getElementById("reset-cancel").addEventListener("click", close);
+  window.addEventListener("keydown", (event) => {
+    if (panel.hidden) return;
+    if (event.key === "Escape") close();
+    if (event.key === "Tab") {
+      const buttons = ["reset-city", "reset-all", "reset-cancel"].map((id) => document.getElementById(id));
+      const index = buttons.indexOf(document.activeElement);
+      event.preventDefault();
+      buttons[(index + (event.shiftKey ? 2 : 1)) % buttons.length].focus();
+    }
+  });
 }
 
 let toastTimer = null;
@@ -1294,7 +1438,7 @@ function bindUndo() {
   document.addEventListener("pointerup", () => setTimeout(sync, 0));
   document.addEventListener("click", () => setTimeout(sync, 0));
   window.addEventListener("keydown", (event) => {
-    if (gameMode === "build" && (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "z" && !(event.target instanceof HTMLInputElement)) {
+    if (gameMode === "build" && !resetChoiceOpen() && !(landExpansion && landExpansion.active) && (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "z" && !(event.target instanceof HTMLInputElement)) {
       event.preventDefault();
       button.click();
     }
@@ -1433,6 +1577,8 @@ if (document.readyState === "complete") {
 })();
 
 function openTutorial() {
+  if (saveGame.pendingReset) return;
+  if (landExpansion) landExpansion.close(false);
   const tutorial = document.getElementById("tutorial");
   if (tutorial && !tutorial.hidden) {
     return;
@@ -1474,7 +1620,7 @@ function openTutorial() {
     { type: "board", point: "cat", title: "Katze entfernen", text: "Doppelklicke oder doppeltippe auf das Feld. Die Katze verschwindet, der Asphalt bleibt. Ein weiterer Doppelklick setzt das Feld auf Wiese." },
     { type: "menu", title: "Men\u00fc \u00f6ffnen", text: "\u00d6ffne das Men\u00fc oben rechts." },
     { type: "save", title: "Speichern", text: "Klicke auf Speichern, um deine Stadt zu teilen oder als Bild herunterzuladen." },
-    { type: "reset", title: "Reset", text: "Klicke zweimal auf Reset. Danach ist das Startlayout wieder da." },
+    { type: "reset", title: "Reset", text: "Klicke auf Reset und w\u00e4hle, ob du nur die gebaute Stadt oder den gesamten Spielstand zur\u00fccksetzen m\u00f6chtest." },
   ];
 
   let step = 0;
@@ -1576,7 +1722,7 @@ function openTutorial() {
     focus.hidden = true;
     title.textContent = current.title;
     copy.textContent = current.type === "reset" && resetDone
-      ? "Das Startlayout ist wieder da. Klicke auf Fertig, um das Tutorial zu beenden."
+      ? "Die Stadt wurde entsprechend deiner Auswahl zur\u00fcckgesetzt. Klicke auf Fertig, um das Tutorial zu beenden."
       : current.text;
     progress.textContent = `${step + 1} / ${steps.length}`;
     next.textContent = step === steps.length - 1 ? "Fertig" : "Weiter";
@@ -1752,7 +1898,6 @@ function openTutorial() {
       step++;
       completed = true;
     } else if (current.type === "reset" && action === "reset-confirmed") {
-      resetToStartLayout((window.TILE_MANIFEST && window.TILE_MANIFEST.layout) || [], board, tileDefs, img, MEADOW_TILE_INDEX);
       resetDone = true;
       completed = true;
     }
@@ -1779,6 +1924,139 @@ function openTutorial() {
   window.addEventListener("keydown", onKeydown);
 }
 
+function downloadImage(blob, filename) {
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+}
+
+function createCityImage(city) {
+  const items = city.drawOrder();
+  const bounds = city.land.bounds();
+  for (const item of items) {
+    bounds.minX = Math.min(bounds.minX, item.x);
+    bounds.minY = Math.min(bounds.minY, item.y);
+    bounds.maxX = Math.max(bounds.maxX, item.x + item.drawW);
+    bounds.maxY = Math.max(bounds.maxY, item.y + item.drawH);
+  }
+  for (const tile of city.sorted()) {
+    for (const image of [tile.ground, ...tile.overlays()]) {
+      bounds.minY = Math.min(bounds.minY, tile.y + TILE_IMG - image.height * TILE_IMG / image.width);
+    }
+  }
+  const padding = 32;
+  const width = bounds.maxX - bounds.minX + padding * 2;
+  const height = bounds.maxY - bounds.minY + padding * 2;
+  const scale = Math.min(1, 4096 / Math.max(width, height));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.ceil(width * scale);
+  canvas.height = Math.ceil(height * scale);
+  const context = canvas.getContext("2d");
+  if (!context) throw new Error("Bildexport wird von diesem Browser nicht unterstuetzt.");
+  context.fillStyle = "#0b1638";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.imageSmoothingEnabled = false;
+  context.scale(scale, scale);
+  context.translate(padding - bounds.minX, padding - bounds.minY);
+  const drawImage = (image, x, y, w, h) => {
+    if (!image.canvas) throw new Error("Ein Tile-Bild ist fuer den Export nicht verfuegbar.");
+    context.drawImage(image.canvas, x, y, w, h);
+  };
+  const drawTileImage = (tile, image) => {
+    const height = image.height * TILE_IMG / image.width;
+    drawImage(image, tile.x, tile.y + TILE_IMG - height, TILE_IMG, height);
+  };
+  for (const item of items) {
+    if (item instanceof Building) {
+      for (const cell of item.cells) drawTileImage(cell, cell.ground);
+      drawImage(item.image, item.x, item.y, item.drawW, item.drawH);
+    } else {
+      drawTileImage(item, item.ground);
+      item.overlays().forEach((image) => drawTileImage(item, image));
+    }
+  }
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) resolve(blob);
+      else reject(new Error("Das Stadtbild konnte nicht erstellt werden."));
+    }, "image/png");
+  });
+}
+
+function bindUpdateNotice() {
+  if (!saveGame.pendingReset) return;
+  const panel = document.getElementById("update-panel");
+  const imageButton = document.getElementById("update-image");
+  const confirmButton = document.getElementById("update-confirm");
+  const status = document.getElementById("update-status");
+  const app = document.querySelector(".app");
+  const sketch = document.getElementById("sketch");
+  const palette = document.getElementById("left-palette");
+  panel.hidden = false;
+  app.classList.add("update-required");
+  sketch.inert = true;
+  palette.inert = true;
+  imageButton.disabled = !saveGame.loaded;
+  if (!saveGame.loaded) status.textContent =
+    "Dein alter Spielstand konnte nicht dargestellt werden. Ein Stadtbild ist deshalb nicht verf\u00fcgbar. Der gespeicherte Stand bleibt bis zu deiner Best\u00e4tigung unver\u00e4ndert.";
+  else if (saveGame.missingTiles) status.textContent =
+    "Einige alte Tiles sind nicht mehr verf\u00fcgbar. Das Stadtbild ist deshalb unvollst\u00e4ndig. Dein gespeicherter Originalstand bleibt bis zur Best\u00e4tigung erhalten.";
+  imageButton.addEventListener("click", async () => {
+    imageButton.disabled = true;
+    confirmButton.disabled = true;
+    status.textContent = "Stadtbild wird erstellt \u2026";
+    try {
+      const blob = await createCityImage(board);
+      downloadImage(blob, `nordstadt-vor-update-${new Date().toISOString().slice(0, 10)}.png`);
+      status.textContent = "Bilddownload gestartet. Pr\u00fcfe bitte, ob du das Bild gespeichert hast, bevor du zur\u00fccksetzt.";
+    } catch (error) {
+      console.warn("Stadtbild vor Update fehlgeschlagen", error);
+      status.textContent = `Das Stadtbild konnte nicht gespeichert werden: ${error.message}`;
+      showToast("Stadtbild konnte nicht gespeichert werden. Dein Spielstand bleibt erhalten.");
+    } finally {
+      imageButton.disabled = false;
+      confirmButton.disabled = false;
+      imageButton.focus();
+    }
+  });
+  confirmButton.addEventListener("click", () => {
+    const newCity = new Board();
+    buildBoard(newCity, img[MEADOW_TILE_INDEX]);
+    applyStartLayout(initialCityLayout(), newCity, tileDefs, img, MEADOW_TILE_INDEX);
+    if (!saveGame.acceptReset(newCity)) {
+      status.textContent = "Der neue Spielstand konnte nicht gespeichert werden. Dein alter Stand bleibt erhalten. Bitte pr\u00fcfe den Browser-Speicher und versuche es erneut.";
+      return;
+    }
+    buildBoard(board, img[MEADOW_TILE_INDEX], newCity.land);
+    board.restore(newCity.snapshot());
+    board.history = [];
+    selectedBoardTileIndices.clear();
+    selectedPaletteIndex = null;
+    lastOverlayTap = null;
+    syncPaletteSelection();
+    landExpansion.refresh();
+    panel.hidden = true;
+    sketch.inert = false;
+    palette.inert = false;
+    app.classList.remove("update-required");
+    updateViewportLayout();
+    resetCamera();
+    Object.assign(cam, camTarget);
+    document.getElementById("menu-toggle").focus();
+  });
+  panel.addEventListener("keydown", (event) => {
+    if (event.key !== "Tab") return;
+    const buttons = [imageButton, confirmButton].filter((button) => !button.disabled);
+    event.preventDefault();
+    if (!buttons.length) return;
+    const index = buttons.indexOf(document.activeElement);
+    buttons[(index + (event.shiftKey ? buttons.length - 1 : 1)) % buttons.length].focus();
+  });
+  (imageButton.disabled ? confirmButton : imageButton).focus();
+}
+
 // Speichert den Canvas (ohne Menue/Dock) als PNG auf dem Geraet.
 (function initSaveImage() {
   const saveButton = document.getElementById("save-image");
@@ -1786,14 +2064,6 @@ function openTutorial() {
   if (!saveButton) {
     return;
   }
-
-  const downloadImage = (blob, filename) => {
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = filename;
-    link.click();
-    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
-  };
 
   saveButton.addEventListener("click", async () => {
     const panel = document.getElementById("menu-panel");

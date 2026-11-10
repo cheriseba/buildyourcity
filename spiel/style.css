@@ -587,6 +587,8 @@ body {
 .stage {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+  background: #0b1638;
 }
 
 #sketch {
@@ -837,6 +839,90 @@ body {
   display: none;
 }
 
+.home-button {
+  position: absolute;
+  top: calc(12px + (var(--btn) + 8px) * 3 + var(--safe-t));
+  right: calc(12px + var(--safe-r));
+  z-index: 3;
+}
+
+.land-panel {
+  position: absolute;
+  z-index: 5;
+  top: calc(20px + var(--btn) + var(--safe-t));
+  left: calc(12px + var(--safe-l));
+  width: min(340px, calc(100% - var(--btn) - 44px - var(--safe-l) - var(--safe-r)));
+  max-height: calc(100% - var(--btn) - 40px - var(--safe-t) - var(--safe-b));
+  overflow: auto;
+  padding: 16px;
+  background: var(--px-panel, #141c30);
+  box-shadow: var(--px-edge), var(--px-bevel);
+  font-size: 0.85rem;
+}
+
+.land-panel h2 { margin: 0; font-size: 1rem; }
+.land-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 20px; }
+.land-actions button { font: inherit; }
+.land-actions #land-confirm { min-width: 100px; padding: 12px 24px; }
+.land-actions #land-cancel { padding: 6px 10px; font-size: 0.75rem; }
+.land-actions button:disabled { opacity: 0.45; cursor: default; }
+.land-panel[hidden], .land-marker[hidden], .land-markers[hidden] { display: none; }
+.reset-panel { z-index: 8; }
+.update-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(3, 8, 24, 0.8);
+}
+.update-panel[hidden] { display: none; }
+.update-panel .land-panel {
+  position: static;
+  width: min(520px, 100%);
+  max-height: 100%;
+}
+.app.update-required .intro,
+.app.update-required .mode-switch,
+.app.update-required .touch-controller { visibility: hidden; }
+.app.resetting .stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  background: rgba(0, 0, 0, 0.35);
+}
+.app.resetting .menu,
+.app.resetting .home-button,
+.app.resetting .ui-hide-button,
+.app.resetting .respawn-button,
+.app.resetting .dock,
+.app.resetting .mode-switch,
+.app.resetting .land-markers,
+.app.resetting .undo-button { visibility: hidden; pointer-events: none; }
+.land-markers { position: absolute; inset: 0; pointer-events: none; z-index: 4; }
+.land-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border: 2px solid #c6c9ca;
+  background: rgba(57, 62, 65, 0.8);
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.land-marker.selected { background: #445b99; }
+.land-marker:hover, .land-marker:focus-visible { background: #445b99; outline: 2px solid var(--accent); }
+.app.expanding .dock,
+.app.expanding .undo-button,
+.app.expanding .ui-hide-button,
+.app.expanding .mode-switch { display: none; }
+.app.explore-mode .land-markers,
+.app.ui-hidden .land-markers { display: none; }
+
 .menu,
 .ui-hide-button,
 .undo-button,
@@ -849,6 +935,7 @@ body {
 .app.ui-hidden .ui-hide-button,
 .app.ui-hidden .undo-button,
 .app.ui-hidden .respawn-button,
+.app.ui-hidden .home-button,
 .app.ui-hidden .dock {
   opacity: 0;
   pointer-events: none;
