@@ -1,6 +1,6 @@
-// Cache: Seite, Daten und Bildpruefungen immer zuerst aus dem Netz,
-// alles andere (Tiles, Charaktere, Schrift, p5) sofort aus dem Cache und im Hintergrund aktualisiert.
-const CACHE = "build-your-city-v1";
+// Cache: Seite, Daten, Bildpruefungen und Charakterbilder immer zuerst aus dem Netz,
+// alles andere (Tiles, Schrift, p5) sofort aus dem Cache und im Hintergrund aktualisiert.
+const CACHE = "build-your-city-v2";
 
 self.addEventListener("install", () => self.skipWaiting());
 
@@ -21,12 +21,13 @@ self.addEventListener("fetch", (event) => {
   const isP5 = url.hostname === "cdnjs.cloudflare.com";
   if (!sameOrigin && !isP5) return;
 
-  const networkFirst = request.mode === "navigate" || /\.(html|csv|json)$/i.test(url.pathname) || url.searchParams.has("tile-check");
+  const isCharacterAsset = url.pathname.startsWith("/character/");
+  const networkFirst = request.mode === "navigate" || /\.(html|csv|json)$/i.test(url.pathname) || url.searchParams.has("tile-check") || isCharacterAsset;
 
   event.respondWith(
     caches.open(CACHE).then(async (cache) => {
       const cached = await cache.match(request);
-      const fetchAndStore = fetch(request).then((response) => {
+      const fetchAndStore = fetch(request, isCharacterAsset ? { cache: "no-cache" } : undefined).then((response) => {
         if (response.ok) cache.put(request, response.clone());
         return response;
       });

@@ -7,6 +7,7 @@ async function scanTileImages(root) {
   async function visit(directory, relative) {
     const entries = await fs.readdir(directory, { withFileTypes: true });
     for (const entry of entries) {
+      if (!relative && entry.isDirectory() && entry.name.toLowerCase() === "icons") continue;
       const current = path.join(directory, entry.name);
       const name = relative ? `${relative}/${entry.name}` : entry.name;
       if (entry.isDirectory()) {

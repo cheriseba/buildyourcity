@@ -646,24 +646,6 @@ function initCamera() {
     }
   });
 
-  const zoomButtons = {
-    "zoom-in": () => zoomAt(centerX(), centerY(), camTarget.scale * 1.4, false),
-    "zoom-out": () => zoomAt(centerX(), centerY(), camTarget.scale / 1.4, false),
-    "zoom-fit": () => {
-      if (landExpansion) landExpansion.clearReveal();
-      characterCameraFollowing = false;
-      cameraFitsWorld = true;
-      CameraGeometry.fit(camTarget, board.land.bounds(), view);
-      Object.assign(cam, camTarget);
-    },
-  };
-
-  Object.entries(zoomButtons).forEach(([id, action]) => {
-    const button = document.getElementById(id);
-    if (button) {
-      button.addEventListener("click", action);
-    }
-  });
 }
 
 function createTilePalette() {
@@ -719,8 +701,10 @@ function createTilePalette() {
   searchButton.title = "Suchen";
   searchButton.setAttribute("aria-label", "Suchen");
   searchButton.setAttribute("aria-expanded", "false");
-  searchButton.innerHTML =
-    '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15 15l5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>';
+  const searchIcon = document.createElement("img");
+  searchIcon.src = "icons/Lupe.png";
+  searchIcon.alt = "";
+  searchButton.appendChild(searchIcon);
 
   const searchInput = document.createElement("input");
   searchInput.className = "tile-search";
@@ -769,7 +753,7 @@ function createTilePalette() {
   recentHead.setAttribute("aria-label", RECENT_CATEGORY_NAME);
   recentHead.setAttribute("aria-expanded", "false");
   recentHead.innerHTML =
-    '<svg class="recent-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M12 7v5.5l3.5 2" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square"/></svg><span class="cat-chevron"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+    '<img class="recent-icon" src="icons/zuletzt.png" alt=""><span class="cat-chevron"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
 
   const recentItems = document.createElement("div");
   recentItems.className = "cat-items";
@@ -1121,6 +1105,10 @@ function setRespawnButtonVisible(visible) {
   const button = document.getElementById("respawn-button");
   if (button) {
     button.hidden = !visible;
+  }
+  const app = document.querySelector("main.app");
+  if (app) {
+    app.classList.toggle("has-respawn", visible && gameMode === "character");
   }
 }
 

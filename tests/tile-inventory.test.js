@@ -51,8 +51,10 @@ test("Inventar liest PNGs rekursiv und ignoriert Kategorie-Icons", async (t) => 
   const root = await fs.mkdtemp(path.join(os.tmpdir(), "tile-inventory-"));
   t.after(() => fs.rm(root, { recursive: true, force: true }));
   await fs.mkdir(path.join(root, "Bäume"));
+  await fs.mkdir(path.join(root, "Icons"));
   await fs.writeFile(path.join(root, "Bäume", "Baum.png"), "image");
   await fs.writeFile(path.join(root, "Bäume", "ICON.png"), "icon");
+  await fs.writeFile(path.join(root, "Icons", "Ordner.png"), "icon");
   await fs.writeFile(path.join(root, "not-a-tile.txt"), "text");
   const result = await scanTileImages(root);
   assert.equal(result.length, 1);

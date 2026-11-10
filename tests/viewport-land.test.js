@@ -754,11 +754,12 @@ test("Versetzte und innere Grundstueckskanten lassen sich nach Freischaltungen e
   }
 });
 
-test("Der Hintergrund ist tiefblau ohne Thumbnail hinter einem transparenten Canvas", () => {
+test("Das Thumbnail liegt nur auf der Intro-Kachel, nicht hinter dem transparenten Canvas", () => {
   const css = fs.readFileSync(path.join(__dirname, "..", "spiel", "style.css"), "utf8");
   const backdrop = css.match(/\.stage\s*\{([^}]+)\}/)[1];
   assert.match(backdrop, /background:\s*#0b1638/);
-  assert.doesNotMatch(css, /Thumbnail-small\.jpg/);
+  assert.match(css, /#intro \.intro-home::before[\s\S]*?Thumbnail-small\.jpg/);
+  assert.doesNotMatch(backdrop, /Thumbnail-small\.jpg/);
   const game = createViewGame({ small: true });
   const operations = [];
   for (const name of ["clear", "push", "pop", "scale", "translate", "image"]) {

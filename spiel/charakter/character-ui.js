@@ -114,8 +114,8 @@ class ModeSwitch {
       return btn;
     };
     
-    const buildBtn = makeButton("mode-button-build", "icons/Bauen.png", "Bauen");
-    const charBtn = makeButton("mode-button-character", "icons/Erkunden.png", "Erkunden");
+    const buildBtn = makeButton("mode-button-build", "icons/Bauen_auswahl.png", "Bauen");
+    const charBtn = makeButton("mode-button-character", "icons/Erkunden_leer.png", "Erkunden");
     
     buildBtn.addEventListener("click", () => this.setMode("build"));
     charBtn.addEventListener("click", () => this.setMode("character"));
@@ -167,6 +167,8 @@ class ModeSwitch {
   
   updateDisplay() {
     const isCharacterMode = this.currentMode === "character";
+    this.buildBtn.querySelector("img").src = isCharacterMode ? "icons/Bauen_leer.png" : "icons/Bauen_auswahl.png";
+    this.charBtn.querySelector("img").src = isCharacterMode ? "icons/Erkunden_auswahl.png" : "icons/Erkunden_leer.png";
     if (this.currentMode === "build") {
       this.buildBtn.classList.add("active");
       this.charBtn.classList.remove("active");

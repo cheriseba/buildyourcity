@@ -12,6 +12,17 @@
     <div class="actions"><button id="reload">Neu einlesen</button><button id="save" class="primary">Änderungen speichern</button></div>
   </header>
   <div id="message" role="status" aria-live="polite"></div>
+  <section class="tag-sharing" aria-labelledby="tag-sharing-title">
+    <div>
+      <h2 id="tag-sharing-title">Tags gemeinsam sammeln</h2>
+      <p>Lade einen ausfüllbaren Bilderbogen herunter und importiere anschließend die JSON-Rückmeldungen. Neue Tags werden ergänzt; vorhandene bleiben erhalten.</p>
+    </div>
+    <div class="tag-sharing-actions">
+      <button id="export-tag-sheet" type="button">Bilderbogen herunterladen</button>
+      <button id="import-tag-response" type="button">Rückmeldungen importieren</button>
+      <input id="tag-response-file" type="file" accept=".json,application/json" hidden>
+    </div>
+  </section>
   <main>
     <section class="list">
       <div class="filters">
@@ -24,11 +35,16 @@
         </select>
       </div>
       <p id="count"></p>
-      <div class="bulk"><select id="bulk-profile" aria-label="Vorlage für Auswahl"></select><button id="apply-profile">Vorlage auf Auswahl anwenden</button></div>
+      <p class="hint">Bild anklicken: vergrößerte Vorschau. Zeilen in einen Ordner ziehen: zuordnen; innerhalb eines Ordners ziehen: Reihenfolge ändern.</p>
+      <div class="bulk"><button id="new-folder">UI-Ordner anlegen</button><select id="bulk-profile" aria-label="Vorlage für Auswahl"></select><button id="apply-profile">Vorlage auf Auswahl anwenden</button></div>
       <div class="table-wrap"><table><thead><tr><th><input type="checkbox" id="select-all" aria-label="Sichtbare Tiles auswählen"></th><th>Bild</th><th>Tile / Kategorie</th><th>Status</th></tr></thead><tbody id="rows"></tbody></table></div>
     </section>
     <aside id="detail"><p>Wähle ein Tile aus, um seine Eigenschaften zu bearbeiten.</p></aside>
   </main>
-  <script src="/tile-catalog-model.js"></script><script src="/workshop.js"></script>
+  <dialog id="image-preview" aria-label="Tile-Vorschau">
+    <div class="preview-head"><strong id="preview-title"></strong><button id="preview-close" type="button">Schließen</button></div>
+    <img id="preview-image" alt="">
+  </dialog>
+  <script src="/tile-catalog-model.js"></script><script src="/tag-sharing.js"></script><script src="/workshop.js"></script>
 </body>
 </html>

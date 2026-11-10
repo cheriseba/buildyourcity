@@ -63,7 +63,10 @@
       "tags": [
         "Boden",
         "Wiese",
-        "Gras"
+        "Gras",
+        "Rasen",
+        "Grünfläche",
+        "Natur"
       ],
       "status": "ready",
       "profile": null,
@@ -71,7 +74,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "Wiese.png",
+      "order": 0
     },
     {
       "id": "e68b30fb-dbfc-4d27-8a3f-2f6e16114f09",
@@ -89,7 +94,11 @@
         "Haus",
         "Altbau",
         "rot",
-        "weiss"
+        "weiss",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -97,7 +106,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Altbau_1.png",
+      "order": 0
     },
     {
       "id": "6e9751e4-ea5c-4fb6-8987-ee9743a3cd5c",
@@ -115,7 +126,11 @@
         "Haus",
         "Altbau",
         "orange",
-        "Wohnung"
+        "Wohnung",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -123,7 +138,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Altbau_2.png",
+      "order": 1
     },
     {
       "id": "942e5f40-4519-4d2c-8e6f-3c497090cb7b",
@@ -142,7 +159,11 @@
         "Altbau",
         "Grunderzeit",
         "Backstein",
-        "rot"
+        "rot",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -150,7 +171,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Altbau_3.png",
+      "order": 3
     },
     {
       "id": "bc9bf90b-a37f-46c9-b88f-eeab1ad9ae2f",
@@ -169,7 +192,11 @@
         "Altbau",
         "Grunderzeit",
         "Backstein",
-        "rot"
+        "rot",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -177,7 +204,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Altbau_4.png",
+      "order": 4
     },
     {
       "id": "2457a4a4-651e-4708-9862-92e37a514539",
@@ -196,7 +225,11 @@
         "Altbau",
         "Grunderzeit",
         "Backstein",
-        "rot"
+        "rot",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -204,7 +237,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Altbau_5.png",
+      "order": 5
     },
     {
       "id": "9861ba59-06b7-4d5c-af81-9abdeb4744ca",
@@ -222,7 +257,11 @@
         "Haus",
         "Altbau",
         "Grunderzeit",
-        "pink"
+        "pink",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -230,7 +269,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Haus_1.png",
+      "order": 6
     },
     {
       "id": "f0f09310-e250-43f1-91d2-74ee7cbb1822",
@@ -248,7 +289,11 @@
         "Haus",
         "Altbau",
         "Grunderzeit",
-        "blau"
+        "blau",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -256,7 +301,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Haus_2.png",
+      "order": 7
     },
     {
       "id": "d6012955-72f7-4827-b3fe-2ff43add4890",
@@ -274,7 +321,11 @@
         "Haus",
         "Altbau",
         "Grunderzeit",
-        "blau"
+        "blau",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -282,7 +333,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Haus_3.png",
+      "order": 8
     },
     {
       "id": "64783967-0a2b-4145-b9fd-c5dc676f9f58",
@@ -300,7 +353,13 @@
         "Haus",
         "Altbau",
         "Grunderzeit",
-        "Historisch"
+        "Historisch",
+        "Historische",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "Gründerzeit"
       ],
       "status": "ready",
       "profile": null,
@@ -308,7 +367,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Historische_1.png",
+      "order": 9
     },
     {
       "id": "f64e8bee-31f6-4e39-a0c9-5877e986f8ee",
@@ -326,7 +387,13 @@
         "Haus",
         "Altbau",
         "Grunderzeit",
-        "Historisch"
+        "Historisch",
+        "Historische",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "Gründerzeit"
       ],
       "status": "ready",
       "profile": null,
@@ -334,7 +401,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Historische_2.png",
+      "order": 10
     },
     {
       "id": "bd516877-635c-4d99-b4f2-e1189664de92",
@@ -351,7 +420,13 @@
       "tags": [
         "Haus",
         "Altbau",
-        "Historisch"
+        "Historisch",
+        "Historische",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "Gründerzeit"
       ],
       "status": "ready",
       "profile": null,
@@ -359,7 +434,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Historische_3.png",
+      "order": 11
     },
     {
       "id": "79abde5a-bea3-487f-adf2-7fd06493a9f0",
@@ -376,7 +453,12 @@
       "tags": [
         "Haus",
         "Neubau",
-        "blau"
+        "blau",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -384,7 +466,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Reihenhaus_1.png",
+      "order": 12
     },
     {
       "id": "7526ac6b-28c7-4a32-81bb-7d8bff4a7ccf",
@@ -401,7 +485,12 @@
       "tags": [
         "Haus",
         "Neubau",
-        "rot"
+        "rot",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -409,7 +498,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Reihenhaus_2.png",
+      "order": 13
     },
     {
       "id": "88c58ae4-5020-4fcf-a296-96ebf21bd7c1",
@@ -426,7 +517,12 @@
       "tags": [
         "Haus",
         "Altbau",
-        "braun"
+        "braun",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -434,7 +530,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Reihenhaus_3.png",
+      "order": 14
     },
     {
       "id": "9cea62b6-7fb3-4529-b6ac-58c97c97d05d",
@@ -451,7 +549,12 @@
       "tags": [
         "Haus",
         "Neubau",
-        "orange"
+        "orange",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -459,7 +562,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Reihenhaus_4.png",
+      "order": 15
     },
     {
       "id": "898871a9-b9ee-4dbc-b0d1-da9775e76b93",
@@ -477,7 +582,12 @@
         "Haus",
         "Neubau",
         "blau",
-        "weiss"
+        "weiss",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -485,7 +595,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Reihenhaus_G_1.png",
+      "order": 16
     },
     {
       "id": "f37e9560-fac1-4b48-8644-6369486eab14",
@@ -503,7 +615,12 @@
         "Haus",
         "Neubau",
         "rot",
-        "weiss"
+        "weiss",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -511,7 +628,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Reihenhaus_G_2.png",
+      "order": 17
     },
     {
       "id": "b8259376-5eac-4919-9e7a-6755795ccd62",
@@ -529,7 +648,12 @@
         "Haus",
         "Neubau",
         "braun",
-        "weiss"
+        "weiss",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -537,7 +661,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Reihenhaus_G_3.png",
+      "order": 18
     },
     {
       "id": "a5cc1065-bb46-4add-b8c1-79ad2db45741",
@@ -555,7 +681,12 @@
         "Haus",
         "Neubau",
         "orange",
-        "braun"
+        "braun",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -563,7 +694,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Reihenhaus_G_4.png",
+      "order": 19
     },
     {
       "id": "92ebe456-d2aa-4f30-82ad-b14c6ce12af3",
@@ -582,7 +715,11 @@
         "Neubau",
         "Balkon",
         "orange",
-        "braun"
+        "braun",
+        "Wohnhaus",
+        "Gebäude",
+        "Wohnen",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -590,7 +727,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Wohnhaus_1.png",
+      "order": 20
     },
     {
       "id": "636ebc19-9f3d-4631-98b8-9a86301d5e90",
@@ -609,7 +748,11 @@
         "Neubau",
         "Balkon",
         "orange",
-        "rot"
+        "rot",
+        "Wohnhaus",
+        "Gebäude",
+        "Wohnen",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -617,7 +760,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Wohnhaus_2.png",
+      "order": 21
     },
     {
       "id": "ebc40789-4e9d-4d35-bc67-e8162cd984e7",
@@ -637,7 +782,11 @@
         "Balkon",
         "blau",
         "turkis",
-        "grun"
+        "grun",
+        "Wohnhaus",
+        "Gebäude",
+        "Wohnen",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -645,7 +794,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Wohnhaus_3.png",
+      "order": 22
     },
     {
       "id": "38297770-a605-4aa2-8fae-798a2c19e105",
@@ -664,7 +815,11 @@
         "Grunderzeit",
         "Altbau",
         "Backstein",
-        "rot"
+        "rot",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -672,7 +827,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Altbau_1.png",
+      "order": 0
     },
     {
       "id": "d0b1e910-49eb-42a5-97b5-ab60a5e28b19",
@@ -692,7 +849,11 @@
         "Grunderzeit",
         "Altbau",
         "Backstein",
-        "rot"
+        "rot",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -700,7 +861,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Altbau_2.png",
+      "order": 1
     },
     {
       "id": "4672a9ef-d6f1-4443-b8f9-21c4a4d803f8",
@@ -718,7 +881,12 @@
         "Haus",
         "Neubau",
         "blau",
-        "weiss"
+        "weiss",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -726,7 +894,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Reihenhaus_1.png",
+      "order": 2
     },
     {
       "id": "da89b43e-00ac-4f9f-aa31-ebc70a3b7492",
@@ -744,7 +914,12 @@
         "Haus",
         "Neubau",
         "rot",
-        "weiss"
+        "weiss",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -752,7 +927,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Reihenhaus_2.png",
+      "order": 3
     },
     {
       "id": "ac607054-04bf-4004-b8a9-45d1ee5132e7",
@@ -770,7 +947,12 @@
         "Haus",
         "Neubau",
         "braun",
-        "weiss"
+        "weiss",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -778,7 +960,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Reihenhaus_3.png",
+      "order": 4
     },
     {
       "id": "fbaa7398-eb05-430f-88bb-5b366c58dca1",
@@ -796,7 +980,12 @@
         "Haus",
         "Neubau",
         "orange",
-        "braun"
+        "braun",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -804,7 +993,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Reihenhaus_4.png",
+      "order": 5
     },
     {
       "id": "4dcce186-fcff-42a8-b2b7-53051e4947d1",
@@ -822,7 +1013,12 @@
         "Haus",
         "Neubau",
         "blau",
-        "weiss"
+        "weiss",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -830,7 +1026,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Reihenhaus_G_1.png",
+      "order": 6
     },
     {
       "id": "d1dc503e-072c-4660-8ab7-24e87a0d306a",
@@ -848,7 +1046,12 @@
         "Haus",
         "Neubau",
         "rot",
-        "weiss"
+        "weiss",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -856,7 +1059,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Reihenhaus_G_2.png",
+      "order": 7
     },
     {
       "id": "851ab28f-ebb8-4126-abaa-7a81bc129fbc",
@@ -874,7 +1079,12 @@
         "Haus",
         "Neubau",
         "braun",
-        "weiss"
+        "weiss",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -882,7 +1092,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Reihenhaus_G_3.png",
+      "order": 8
     },
     {
       "id": "b901d3f3-5a9b-4d58-83d4-a4dab18fc469",
@@ -900,7 +1112,12 @@
         "Haus",
         "Neubau",
         "orange",
-        "braun"
+        "braun",
+        "Reihenhaus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -908,7 +1125,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Reihenhaus_G_4.png",
+      "order": 9
     },
     {
       "id": "f30c3263-092d-4682-9469-6747ef9e96ca",
@@ -927,7 +1146,11 @@
         "Neubau",
         "Balkon",
         "orange",
-        "braun"
+        "braun",
+        "Wohnhaus",
+        "Gebäude",
+        "Wohnen",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -935,7 +1158,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Wohnhaus_1.png",
+      "order": 10
     },
     {
       "id": "6f029082-ff3b-4d18-ba2e-214b0ab0313e",
@@ -954,7 +1179,11 @@
         "Neubau",
         "Balkon",
         "orange",
-        "rot"
+        "rot",
+        "Wohnhaus",
+        "Gebäude",
+        "Wohnen",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -962,7 +1191,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Wohnhaus_2.png",
+      "order": 11
     },
     {
       "id": "16532e8b-335f-4031-b015-97c82e5bc754",
@@ -982,7 +1213,11 @@
         "Balkon",
         "blau",
         "turkis",
-        "grun"
+        "grun",
+        "Wohnhaus",
+        "Gebäude",
+        "Wohnen",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -990,7 +1225,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Wohnhaus_3.png",
+      "order": 12
     },
     {
       "id": "c2a60bbc-1f54-4c2a-a6e0-512899f5dafb",
@@ -1008,7 +1245,11 @@
         "Haus",
         "Altbau",
         "Grunderzeit",
-        "blau"
+        "blau",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -1016,7 +1257,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Haus_1.png",
+      "order": 13
     },
     {
       "id": "9da6bf2c-2ed7-4258-bfe9-114a20d137c9",
@@ -1036,7 +1279,12 @@
         "Grunderzeit",
         "Altbau",
         "Backstein",
-        "rot"
+        "rot",
+        "Gebäude",
+        "Stadtgebäude",
+        "Sonderbau",
+        "Industrie",
+        "Gewerbe"
       ],
       "status": "ready",
       "profile": null,
@@ -1044,7 +1292,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "3_Spezialhaus/Fabrik_1.png",
+      "order": 0
     },
     {
       "id": "b60d7d24-c5a5-42a2-88cc-3aac7c2faf4f",
@@ -1064,7 +1314,12 @@
         "Kufa",
         "Turm",
         "Backstein",
-        "rot"
+        "rot",
+        "Gebäude",
+        "Stadtgebäude",
+        "Sonderbau",
+        "Industrie",
+        "Gewerbe"
       ],
       "status": "ready",
       "profile": null,
@@ -1072,7 +1327,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "3_Spezialhaus/Fabrik_2.png",
+      "order": 1
     },
     {
       "id": "3eeda5a3-d118-493b-8bc0-86d924a74327",
@@ -1092,7 +1349,12 @@
         "Kufa",
         "Turm",
         "Backstein",
-        "rot"
+        "rot",
+        "Gebäude",
+        "Stadtgebäude",
+        "Sonderbau",
+        "Industrie",
+        "Gewerbe"
       ],
       "status": "ready",
       "profile": null,
@@ -1100,7 +1362,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "3_Spezialhaus/Fabrik_3.png",
+      "order": 2
     },
     {
       "id": "54b6e510-3125-4830-bcca-7f1a1f926e35",
@@ -1119,7 +1383,12 @@
         "Fabrik",
         "Halle",
         "weiss",
-        "grun"
+        "grun",
+        "Gebäude",
+        "Stadtgebäude",
+        "Sonderbau",
+        "Industrie",
+        "Bahnhof"
       ],
       "status": "ready",
       "profile": null,
@@ -1127,7 +1396,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "3_Spezialhaus/Halle_1.png",
+      "order": 3
     },
     {
       "id": "cc483972-1e10-452e-a1e2-153e34e7cedf",
@@ -1146,7 +1417,12 @@
         "Fabrik",
         "Halle",
         "weiss",
-        "rot"
+        "rot",
+        "Gebäude",
+        "Stadtgebäude",
+        "Sonderbau",
+        "Industrie",
+        "Bahnhof"
       ],
       "status": "ready",
       "profile": null,
@@ -1154,7 +1430,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "3_Spezialhaus/Halle_2.png",
+      "order": 4
     },
     {
       "id": "c628f674-9d9f-4d2b-8ad4-72dcb250c88e",
@@ -1175,7 +1453,11 @@
         "weiss",
         "blau",
         "turkis",
-        "grun"
+        "grun",
+        "Nordi",
+        "Gebäude",
+        "Stadtgebäude",
+        "Sonderbau"
       ],
       "status": "ready",
       "profile": null,
@@ -1183,7 +1465,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "3_Spezialhaus/Nordi_1.png",
+      "order": 5
     },
     {
       "id": "73819d24-142f-4d9d-9200-32a249d6eb53",
@@ -1203,7 +1487,11 @@
         "Turm",
         "blau",
         "turkis",
-        "grun"
+        "grun",
+        "Nordi",
+        "Gebäude",
+        "Stadtgebäude",
+        "Sonderbau"
       ],
       "status": "ready",
       "profile": null,
@@ -1211,7 +1499,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "3_Spezialhaus/Nordi_2.png",
+      "order": 6
     },
     {
       "id": "7087ce4f-6b8e-4484-8bbb-fe670c0aa745",
@@ -1225,14 +1515,22 @@
       "type": "FULL",
       "w": 2,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Nordi",
+        "Haus",
+        "Gebäude",
+        "Stadtgebäude",
+        "Sonderbau"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "3_Spezialhaus/Nordi_3.png",
+      "order": 7
     },
     {
       "id": "6deda247-8b50-45a1-9534-b3c75e92a805",
@@ -1252,7 +1550,13 @@
         "Kufa",
         "Turm",
         "Backstein",
-        "rot"
+        "rot",
+        "Gebäude",
+        "Stadtgebäude",
+        "Sonderbau",
+        "Turmgebäude",
+        "Hochbau",
+        "Wahrzeichen"
       ],
       "status": "ready",
       "profile": null,
@@ -1260,7 +1564,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "3_Spezialhaus/Turm_1.png",
+      "order": 8
     },
     {
       "id": "d14d04cc-4441-4848-b3f5-fe371c33c55c",
@@ -1274,14 +1580,25 @@
       "type": "FULL",
       "w": 2,
       "h": 2,
-      "tags": [],
+      "tags": [
+        "Turm",
+        "Haus",
+        "Gebäude",
+        "Stadtgebäude",
+        "Sonderbau",
+        "Turmgebäude",
+        "Hochbau",
+        "Wahrzeichen"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "3_Spezialhaus/Turm_2.png",
+      "order": 9
     },
     {
       "id": "6c8ad594-99f5-4e71-b367-1e56967f619c",
@@ -1295,14 +1612,24 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Hochhaus",
+        "Haus",
+        "Gebäude",
+        "Stadtgebäude",
+        "Sonderbau",
+        "Wolkenkratzer",
+        "Wohnen"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "3_Spezialhaus/Hochhaus_1.png",
+      "order": 10
     },
     {
       "id": "72cc95e2-fad3-4ad7-9af2-3caf23bcc4a5",
@@ -1321,7 +1648,11 @@
         "Boden",
         "gerade",
         "hoch",
-        "grau"
+        "grau",
+        "Straße",
+        "Verkehr",
+        "Fahrbahn",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -1329,7 +1660,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "10_Strassen/Strasse_1.png",
+      "order": 0
     },
     {
       "id": "758e48c9-315b-442d-8a66-252d8278ee46",
@@ -1348,7 +1681,11 @@
         "Boden",
         "gerade",
         "runter",
-        "grau"
+        "grau",
+        "Straße",
+        "Verkehr",
+        "Fahrbahn",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -1356,7 +1693,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "10_Strassen/Strasse_2.png",
+      "order": 1
     },
     {
       "id": "a2d8b4dd-c35c-4817-ac33-ab5efd381ff2",
@@ -1374,7 +1713,11 @@
         "Strasse",
         "Boden",
         "Kreuzung",
-        "grau"
+        "grau",
+        "Straße",
+        "Verkehr",
+        "Fahrbahn",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -1382,7 +1725,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "10_Strassen/Strasse_3.png",
+      "order": 2
     },
     {
       "id": "02354e6c-8abb-4a89-9f71-3747b3f05842",
@@ -1400,7 +1745,11 @@
         "Strasse",
         "Boden",
         "Ecke",
-        "grau"
+        "grau",
+        "Straße",
+        "Verkehr",
+        "Fahrbahn",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -1408,7 +1757,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "10_Strassen/Strasse_4.png",
+      "order": 3
     },
     {
       "id": "b3a1f179-9a46-4d65-9033-3c411971d659",
@@ -1426,7 +1777,11 @@
         "Strasse",
         "Boden",
         "Ecke",
-        "grau"
+        "grau",
+        "Straße",
+        "Verkehr",
+        "Fahrbahn",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -1434,7 +1789,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "10_Strassen/Strasse_5.png",
+      "order": 4
     },
     {
       "id": "d1a4c1e9-79b0-40e5-ad74-5d180d9440f7",
@@ -1452,7 +1809,11 @@
         "Strasse",
         "Boden",
         "Ecke",
-        "grau"
+        "grau",
+        "Straße",
+        "Verkehr",
+        "Fahrbahn",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -1460,7 +1821,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "10_Strassen/Strasse_6.png",
+      "order": 5
     },
     {
       "id": "72986513-b1fe-44a5-8892-8e8e0b585427",
@@ -1479,10 +1842,11 @@
         "Boden",
         "Ecke",
         "grau",
-        "Strasse",
-        "Boden",
         "Kreuzung",
-        "grau"
+        "Straße",
+        "Verkehr",
+        "Fahrbahn",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -1490,7 +1854,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "10_Strassen/Strasse_7.png",
+      "order": 6
     },
     {
       "id": "aa24864c-b971-45fe-84bc-11352ddf53b0",
@@ -1508,7 +1874,11 @@
         "Strasse",
         "Boden",
         "Ecke",
-        "grau"
+        "grau",
+        "Straße",
+        "Verkehr",
+        "Fahrbahn",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -1516,7 +1886,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "10_Strassen/Strasse_8.png",
+      "order": 7
     },
     {
       "id": "af71fa3a-fb42-43fc-9e05-115bfe5fcdff",
@@ -1534,7 +1906,11 @@
         "Strasse",
         "Boden",
         "T-Kreuzung",
-        "grau"
+        "grau",
+        "Straße",
+        "Verkehr",
+        "Fahrbahn",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -1542,7 +1918,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "10_Strassen/Strasse_9.png",
+      "order": 8
     },
     {
       "id": "7bc6fa17-0c49-4df4-a689-14947db637d7",
@@ -1560,7 +1938,11 @@
         "Strasse",
         "Boden",
         "T-Kreuzung",
-        "grau"
+        "grau",
+        "Straße",
+        "Verkehr",
+        "Fahrbahn",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -1568,7 +1950,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "10_Strassen/Strasse_10.png",
+      "order": 9
     },
     {
       "id": "0dedceae-677c-456b-aafc-76ed2935da12",
@@ -1586,7 +1970,11 @@
         "Strasse",
         "Boden",
         "T-Kreuzung",
-        "grau"
+        "grau",
+        "Straße",
+        "Verkehr",
+        "Fahrbahn",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -1594,7 +1982,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "10_Strassen/Strasse_11.png",
+      "order": 10
     },
     {
       "id": "0b41c402-0b73-4adc-8a77-fc4ef2d65950",
@@ -1612,7 +2002,14 @@
         "Strasse",
         "Boden",
         "Zebrastreifen",
-        "grau"
+        "grau",
+        "Zebra",
+        "Straße",
+        "Verkehr",
+        "Fahrbahn",
+        "Stadt",
+        "Fußgänger",
+        "Überweg"
       ],
       "status": "ready",
       "profile": null,
@@ -1620,7 +2017,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "10_Strassen/Zebra_1.png",
+      "order": 11
     },
     {
       "id": "8a5528e8-3655-46fc-8a5f-0a53128e1b3d",
@@ -1638,7 +2037,14 @@
         "Strasse",
         "Boden",
         "Zebrastreifen",
-        "grau"
+        "grau",
+        "Zebra",
+        "Straße",
+        "Verkehr",
+        "Fahrbahn",
+        "Stadt",
+        "Fußgänger",
+        "Überweg"
       ],
       "status": "ready",
       "profile": null,
@@ -1646,7 +2052,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "10_Strassen/Zebra_2.png",
+      "order": 12
     },
     {
       "id": "9de08e07-54fd-4aaa-be1e-8c763a628ec9",
@@ -1663,7 +2071,13 @@
       "tags": [
         "Wiese",
         "Boden",
-        "grun"
+        "grun",
+        "Untergrund",
+        "Fläche",
+        "Gras",
+        "Rasen",
+        "Grünfläche",
+        "Natur"
       ],
       "status": "ready",
       "profile": null,
@@ -1671,7 +2085,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "11_Boden/Wiese_1.png",
+      "order": 0
     },
     {
       "id": "383421f8-5d85-467b-a6d2-f93fb25a7a4f",
@@ -1688,7 +2104,13 @@
       "tags": [
         "Wiese",
         "Boden",
-        "grunBlumen"
+        "grunBlumen",
+        "Untergrund",
+        "Fläche",
+        "Gras",
+        "Rasen",
+        "Grünfläche",
+        "Natur"
       ],
       "status": "ready",
       "profile": null,
@@ -1696,7 +2118,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "11_Boden/Wiese_2.png",
+      "order": 1
     },
     {
       "id": "c33f501b-819f-45c5-bd0d-105d2033ed27",
@@ -1713,7 +2137,11 @@
       "tags": [
         "Sand",
         "Boden",
-        "braun"
+        "braun",
+        "Untergrund",
+        "Fläche",
+        "Sandboden",
+        "Strand"
       ],
       "status": "ready",
       "profile": null,
@@ -1721,7 +2149,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "11_Boden/Sand_1.png",
+      "order": 2
     },
     {
       "id": "c955c1de-68f1-4d0c-93dd-36852d80f020",
@@ -1738,7 +2168,11 @@
       "tags": [
         "Erde",
         "Boden",
-        "braun"
+        "braun",
+        "Untergrund",
+        "Fläche",
+        "Erdreich",
+        "Naturboden"
       ],
       "status": "ready",
       "profile": null,
@@ -1746,7 +2180,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "11_Boden/Erde_1.png",
+      "order": 3
     },
     {
       "id": "cd5aa88d-d296-4ba9-8223-d510dae5d154",
@@ -1760,14 +2196,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gerade",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Straße",
+        "Strecke"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/A_Gerade_1.png",
+      "order": 0
     },
     {
       "id": "574d6694-e9eb-4a35-b82b-9924c3ee99d5",
@@ -1781,14 +2227,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gerade",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Straße",
+        "Strecke"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/A_Gerade_2.png",
+      "order": 1
     },
     {
       "id": "998405f1-28f9-4762-a643-42a2c6dba107",
@@ -1802,14 +2258,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gerade",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Straße",
+        "Strecke"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/A_Gerade_3.png",
+      "order": 2
     },
     {
       "id": "843f2062-0fea-499a-ad3a-c0c5024a1d6b",
@@ -1823,14 +2289,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gerade",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Straße",
+        "Strecke"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/A_Gerade_4.png",
+      "order": 3
     },
     {
       "id": "ba320970-16ac-4b09-a8a5-60a021ded57e",
@@ -1844,14 +2320,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gerade",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Straße",
+        "Strecke"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/A_Gerade_5.png",
+      "order": 4
     },
     {
       "id": "75d97dd2-801c-452e-9b53-1963fb9797f3",
@@ -1865,14 +2351,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gerade",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Straße",
+        "Strecke"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/A_Gerade_6.png",
+      "order": 5
     },
     {
       "id": "b811667a-314f-4ca7-8782-b44bae4411da",
@@ -1886,14 +2382,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Eck",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ecke",
+        "Kurve",
+        "Wegstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/Eck_1.png",
+      "order": 6
     },
     {
       "id": "78d82525-8139-4ceb-8853-80438da6d2d8",
@@ -1907,14 +2414,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Eck",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ecke",
+        "Kurve",
+        "Wegstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/Eck_2.png",
+      "order": 7
     },
     {
       "id": "11192a7a-0127-48d5-94e9-d71db293f8df",
@@ -1928,14 +2446,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Eck",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ecke",
+        "Kurve",
+        "Wegstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/Eck_3.png",
+      "order": 8
     },
     {
       "id": "659e9911-7552-4aa9-8e47-a7576a06a10a",
@@ -1949,14 +2478,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Eck",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ecke",
+        "Kurve",
+        "Wegstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/Eck_4.png",
+      "order": 9
     },
     {
       "id": "65801e8c-92ce-4347-8dd6-446e5b652954",
@@ -1970,14 +2510,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Eck",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ecke",
+        "Kurve",
+        "Wegstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/Eck_5.png",
+      "order": 10
     },
     {
       "id": "f437572d-de5e-465e-9e44-3af734a25e7a",
@@ -1991,14 +2542,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Eck",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ecke",
+        "Kurve",
+        "Wegstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/Eck_6.png",
+      "order": 11
     },
     {
       "id": "f781b59c-932a-4cd1-a4f6-460d8686944a",
@@ -2012,14 +2574,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Eck",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ecke",
+        "Kurve",
+        "Wegstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/Eck_7.png",
+      "order": 12
     },
     {
       "id": "69cd4648-2d60-4b10-b2ad-df9a3273432a",
@@ -2033,14 +2606,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Eck",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ecke",
+        "Kurve",
+        "Wegstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/Eck_8.png",
+      "order": 13
     },
     {
       "id": "0e842dbd-c909-45f8-9822-6bb8d77611c1",
@@ -2054,14 +2638,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "End",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ende",
+        "Wegende",
+        "Abschluss"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/End_1.png",
+      "order": 14
     },
     {
       "id": "8610a06e-f9cd-416a-ac1a-0f8aaa215403",
@@ -2075,14 +2670,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "End",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ende",
+        "Wegende",
+        "Abschluss"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/End_2.png",
+      "order": 15
     },
     {
       "id": "a1f67e6b-eaac-4a3e-b1a8-ae708cca4533",
@@ -2096,14 +2702,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "End",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ende",
+        "Wegende",
+        "Abschluss"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/End_3.png",
+      "order": 16
     },
     {
       "id": "10591aa8-024f-4ff5-8d5c-c09eea8e6f43",
@@ -2117,14 +2734,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "End",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ende",
+        "Wegende",
+        "Abschluss"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/End_4.png",
+      "order": 17
     },
     {
       "id": "8bfb7afc-5f4e-475f-a198-5f083ff24c95",
@@ -2138,14 +2766,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "End",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ende",
+        "Wegende",
+        "Abschluss"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/End_5.png",
+      "order": 18
     },
     {
       "id": "5c172b8c-fc92-4121-8227-b5c2f8d107e1",
@@ -2159,14 +2798,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "End",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ende",
+        "Wegende",
+        "Abschluss"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/End_6.png",
+      "order": 19
     },
     {
       "id": "1668ef81-1c60-4f68-b833-2ad71706d7ab",
@@ -2180,14 +2830,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "End",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ende",
+        "Wegende",
+        "Abschluss"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/End_7.png",
+      "order": 20
     },
     {
       "id": "40ef70c9-12c5-48ad-a02f-9db93b763702",
@@ -2201,14 +2862,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "End",
+        "Weg",
+        "Gehweg",
+        "Fußweg",
+        "Verbindung",
+        "Ende",
+        "Wegende",
+        "Abschluss"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "12_Wege/End_8.png",
+      "order": 21
     },
     {
       "id": "72ab4c51-a198-4cdd-bcb3-0e69a9b4d5cd",
@@ -2222,14 +2894,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Asphalt",
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Straße",
+        "Fahrbahn"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Asphalt_1.png",
+      "order": 0
     },
     {
       "id": "3b4179cf-3b2c-449b-a302-4a3c76b3f1ef",
@@ -2243,14 +2925,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Asphalt",
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Straße",
+        "Fahrbahn"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Asphalt_2.png",
+      "order": 1
     },
     {
       "id": "df923b7e-dd83-4584-b642-07368d224c01",
@@ -2264,14 +2956,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Asphalt",
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Straße",
+        "Fahrbahn"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Asphalt_3.png",
+      "order": 2
     },
     {
       "id": "d1bf1cee-fd4b-4efe-a1a7-4e6a17b63d60",
@@ -2285,14 +2987,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Asphalt",
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Straße",
+        "Fahrbahn"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Asphalt_4.png",
+      "order": 3
     },
     {
       "id": "7070243a-6708-4347-a76d-cf66bffeca1b",
@@ -2306,14 +3018,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Asphalt",
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Straße",
+        "Fahrbahn"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Asphalt_5.png",
+      "order": 4
     },
     {
       "id": "0fc7b23b-26f4-48b4-9873-3d3cae28188a",
@@ -2327,14 +3049,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Asphalt",
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Straße",
+        "Fahrbahn"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Asphalt_6.png",
+      "order": 5
     },
     {
       "id": "67215932-3def-44fc-a75c-9a8c367ab60f",
@@ -2348,14 +3080,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Backstein",
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Ziegel",
+        "Mauerwerk",
+        "Haus"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Backstein_1.png",
+      "order": 6
     },
     {
       "id": "5cfd1e7c-5c03-4f97-97be-f7e0ff5f98d8",
@@ -2369,14 +3112,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Backstein",
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Ziegel",
+        "Mauerwerk",
+        "Haus"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Backstein_2.png",
+      "order": 7
     },
     {
       "id": "9584bb0f-a64a-4af6-89c2-54c2c3798fff",
@@ -2390,14 +3144,22 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Fläche"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Boden_1.png",
+      "order": 8
     },
     {
       "id": "081294fd-54c5-4a0a-b244-0b94012751a1",
@@ -2411,14 +3173,22 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Fläche"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Boden_2.png",
+      "order": 9
     },
     {
       "id": "bd137615-9fa1-4d6c-b7c1-cf188de22978",
@@ -2432,14 +3202,22 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Fläche"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Boden_3.png",
+      "order": 10
     },
     {
       "id": "68283fc4-eb11-4b49-927a-131cf892dd6e",
@@ -2453,14 +3231,22 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Fläche"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Boden_4.png",
+      "order": 11
     },
     {
       "id": "18b12e32-6aa7-41d9-a860-edc260c4fdf0",
@@ -2474,14 +3260,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Kacheln",
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Fliesen",
+        "Platten"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Kacheln_1.png",
+      "order": 12
     },
     {
       "id": "311392e8-ccfd-4876-afeb-ad8a78c2eb5a",
@@ -2495,14 +3291,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Kacheln",
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Fliesen",
+        "Platten"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Kacheln_2.png",
+      "order": 13
     },
     {
       "id": "2f1f9cb8-a99a-435d-8f1f-418735cf6098",
@@ -2516,14 +3322,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Kacheln",
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Fliesen",
+        "Platten"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Kacheln_3.png",
+      "order": 14
     },
     {
       "id": "1290a443-b71f-456c-bd58-b4c4556a4fc9",
@@ -2537,14 +3353,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Kacheln",
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Fliesen",
+        "Platten"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Kacheln_4.png",
+      "order": 15
     },
     {
       "id": "9f608d51-df0d-46ed-9643-febff2101b79",
@@ -2558,14 +3384,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Kacheln",
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Fliesen",
+        "Platten"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Kacheln_5.png",
+      "order": 16
     },
     {
       "id": "c239ebe5-9194-48df-9718-1e497be5b2a5",
@@ -2579,14 +3415,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Kacheln",
+        "Boden",
+        "Pflaster",
+        "Belag",
+        "Untergrund",
+        "Fliesen",
+        "Platten"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "13_Stadtboden/Kacheln_6.png",
+      "order": 17
     },
     {
       "id": "3fa8c459-b500-4d11-a7d5-8e8044776fd8",
@@ -2600,7 +3446,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Auffahrt",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "Rampe"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -2626,7 +3479,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "14_Brucke/Auffahrt_1.png",
+      "order": 0
     },
     {
       "id": "df475d5d-6534-44a1-9bf2-b0d8ceafade0",
@@ -2640,7 +3495,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Auffahrt",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "Rampe"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -2666,7 +3528,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "14_Brucke/Auffahrt_2.png",
+      "order": 1
     },
     {
       "id": "963f3eed-71f0-405b-8cb2-2da0b301702a",
@@ -2680,7 +3544,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Auffahrt",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "Rampe"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -2706,7 +3577,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "14_Brucke/Auffahrt_3.png",
+      "order": 2
     },
     {
       "id": "25e47806-89db-46c4-9ccd-da3ea682e03b",
@@ -2720,7 +3593,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Auffahrt",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "Rampe"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -2746,7 +3626,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "14_Brucke/Auffahrt_4.png",
+      "order": 3
     },
     {
       "id": "878a5cc2-f8d5-47ed-be9b-c329392e529b",
@@ -2760,7 +3642,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -2777,7 +3666,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "14_Brucke/Hohe_1.png",
+      "order": 4
     },
     {
       "id": "ad9a88b6-d73e-441f-8099-aa683cf9b8ae",
@@ -2791,7 +3682,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -2808,7 +3706,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "14_Brucke/Hohe_2.png",
+      "order": 5
     },
     {
       "id": "3d840f45-d863-416c-a7c4-2e22452221a5",
@@ -2822,7 +3722,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -2839,7 +3746,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "14_Brucke/Hohe_3.png",
+      "order": 6
     },
     {
       "id": "bf04ba5e-fdb0-4be2-b133-f6d367f30600",
@@ -2853,7 +3762,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -2870,7 +3786,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "14_Brucke/Hohe_4.png",
+      "order": 7
     },
     {
       "id": "d280861c-8edd-4074-80e8-096e883d6f51",
@@ -2884,7 +3802,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -2901,7 +3826,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "14_Brucke/Hohe_5.png",
+      "order": 8
     },
     {
       "id": "1a7f98c5-e81d-4ef0-bbae-3d87a152b8c0",
@@ -2915,7 +3842,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Oben",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "Fahrbahn"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -2941,7 +3875,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "14_Brucke/Oben_1.png",
+      "order": 9
     },
     {
       "id": "e61111ff-0737-4a59-b558-1b132fac590f",
@@ -2955,7 +3891,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Oben",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "Fahrbahn"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -2981,7 +3924,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "14_Brucke/Oben_2.png",
+      "order": 10
     },
     {
       "id": "7db67ad8-bbe7-4eba-a3a7-56ec920a1960",
@@ -2995,7 +3940,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Oben",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "Fahrbahn"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -3021,7 +3973,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "14_Brucke/Oben_3.png",
+      "order": 11
     },
     {
       "id": "49c6a11f-0f01-4109-858d-66a7ada780fa",
@@ -3035,7 +3989,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Oben",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "Fahrbahn"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -3061,7 +4022,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "14_Brucke/Oben_4.png",
+      "order": 12
     },
     {
       "id": "3e8d21fb-81e3-4765-945f-4c7db6faf141",
@@ -3075,14 +4038,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Baum",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Bäume",
+        "Gehölz"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Baum_1.png",
+      "order": 0
     },
     {
       "id": "9702320f-4062-41ae-b1d9-e45f892e3ac8",
@@ -3096,14 +4070,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Baum",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Bäume",
+        "Gehölz"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Baum_2.png",
+      "order": 1
     },
     {
       "id": "e7cf1a1f-3493-4d0a-9b81-a70201d2abd0",
@@ -3117,14 +4102,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Baum",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Bäume",
+        "Gehölz"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Baum_3.png",
+      "order": 2
     },
     {
       "id": "218ff66b-8c5c-4630-87c3-874731e61b23",
@@ -3138,14 +4134,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Baum",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Bäume",
+        "Gehölz"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Baum_4.png",
+      "order": 3
     },
     {
       "id": "d902b53d-7870-402f-b7ce-b3c5b9431efb",
@@ -3159,14 +4166,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Baum",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Bäume",
+        "Gehölz"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Baum_5.png",
+      "order": 4
     },
     {
       "id": "65a5fbeb-9caf-4c8a-9369-6200aa183ec4",
@@ -3180,14 +4198,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Baum",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Bäume",
+        "Gehölz"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Baum_6.png",
+      "order": 5
     },
     {
       "id": "66639be0-512f-478e-86ef-0c529ab8ac38",
@@ -3201,14 +4230,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Baum",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Bäume",
+        "Gehölz"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Baum_7.png",
+      "order": 6
     },
     {
       "id": "4525ab46-b203-4533-9287-945d2d9cf807",
@@ -3222,14 +4262,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Baum",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Bäume",
+        "Gehölz"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Baum_8.png",
+      "order": 7
     },
     {
       "id": "95d2f14d-a362-4b7a-8995-0939dd6557aa",
@@ -3243,14 +4294,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Baum",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Bäume",
+        "Gehölz"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Baum_9.png",
+      "order": 8
     },
     {
       "id": "95322fd2-300e-44d8-93a5-aac13d5b8729",
@@ -3264,14 +4326,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Busch",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Strauch",
+        "Gehölz"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Busch_1.png",
+      "order": 9
     },
     {
       "id": "8588279d-cfe7-411b-94e3-fae6761c0f9b",
@@ -3285,14 +4358,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Busch",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Strauch",
+        "Gehölz"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Busch_2.png",
+      "order": 10
     },
     {
       "id": "84d5187c-cde0-482f-a7d3-0d2c1aab9e75",
@@ -3306,14 +4390,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Busch",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Strauch",
+        "Gehölz"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Busch_3.png",
+      "order": 11
     },
     {
       "id": "c4430444-42d6-40de-adb1-3b89d2048946",
@@ -3327,14 +4422,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Busch",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Strauch",
+        "Gehölz"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Busch_4.png",
+      "order": 12
     },
     {
       "id": "7d5eac1a-22ff-4f53-9bae-16dd6734e4fb",
@@ -3348,14 +4454,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Blume",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Blumen",
+        "Blüte"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Blume_1.png",
+      "order": 13
     },
     {
       "id": "fc5b9f75-f9b7-4e1c-b2a4-b330a1c50f6b",
@@ -3369,14 +4486,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Blume",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Blumen",
+        "Blüte"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Blume_2.png",
+      "order": 14
     },
     {
       "id": "1fab90da-dd2e-4c12-b7a8-5adbbddfb84e",
@@ -3390,14 +4518,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Blume",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Blumen",
+        "Blüte"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Blume_3.png",
+      "order": 15
     },
     {
       "id": "4801b142-5919-420c-9d08-61e49d376cdb",
@@ -3411,14 +4550,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Blume",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Blumen",
+        "Blüte"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Blume_4.png",
+      "order": 16
     },
     {
       "id": "277bf59b-5068-470a-a8ea-602c8587ebb7",
@@ -3432,14 +4582,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Blume",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Blumen",
+        "Blüte"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Blume_5.png",
+      "order": 17
     },
     {
       "id": "242da4d7-11fd-48ca-b136-6bb023548794",
@@ -3453,14 +4614,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Blume",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Blumen",
+        "Blüte"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Blume_6.png",
+      "order": 18
     },
     {
       "id": "5db81465-5502-4896-823e-7d179e5b7bb7",
@@ -3477,7 +4649,14 @@
       "tags": [
         "vergissmeinnicht",
         "Blume",
-        "blau"
+        "blau",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Blumen",
+        "Blüte"
       ],
       "status": "ready",
       "profile": null,
@@ -3485,7 +4664,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Blume_7.png",
+      "order": 19
     },
     {
       "id": "2c6842e3-07a1-4c00-94a1-31929db216c3",
@@ -3499,14 +4680,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Blume",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Blumen",
+        "Blüte"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "20_Naturdeko/Blume_8.png",
+      "order": 20
     },
     {
       "id": "27b62a7e-554f-4dde-8458-c3fc060fa863",
@@ -3520,7 +4712,16 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Laub",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration",
+        "Blätter",
+        "Herbst"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -3537,7 +4738,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "20_Naturdeko/Laub_1.png",
+      "order": 21
     },
     {
       "id": "cf1bc65b-2905-4c1b-bf87-93de913aa3d3",
@@ -3553,7 +4756,13 @@
       "h": 1,
       "tags": [
         "Pilz",
-        "brauner Pilz"
+        "brauner Pilz",
+        "Pflanzen",
+        "Natur",
+        "Pflanze",
+        "Grün",
+        "Garten",
+        "Dekoration"
       ],
       "status": "ready",
       "profile": null,
@@ -3571,7 +4780,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "20_Naturdeko/Pflanzen_2.png",
+      "order": 22
     },
     {
       "id": "b2950ffe-0a6a-4c1b-b49a-79c4b577a267",
@@ -3585,7 +4796,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Katze",
+        "Tier",
+        "Tiere",
+        "Stadtleben",
+        "Katzen",
+        "Haustier"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -3602,7 +4820,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "21_Tiere/Katze_1.png",
+      "order": 0
     },
     {
       "id": "fdafcc8f-3d27-4794-82b9-cb0589b02f40",
@@ -3616,7 +4836,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Katze",
+        "Tier",
+        "Tiere",
+        "Stadtleben",
+        "Katzen",
+        "Haustier"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -3633,7 +4860,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "21_Tiere/Katze_2.png",
+      "order": 1
     },
     {
       "id": "9720efdc-da67-42f8-aed3-1321fcb0afd3",
@@ -3647,7 +4876,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Katze",
+        "Tier",
+        "Tiere",
+        "Stadtleben",
+        "Katzen",
+        "Haustier"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -3664,7 +4900,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "21_Tiere/Katze_3.png",
+      "order": 2
     },
     {
       "id": "d3afa48a-001d-4495-9e90-5fdccf8c72f1",
@@ -3678,7 +4916,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Katze",
+        "Tier",
+        "Tiere",
+        "Stadtleben",
+        "Katzen",
+        "Haustier"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -3695,7 +4940,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "21_Tiere/Katze_4.png",
+      "order": 3
     },
     {
       "id": "49a24ea8-84cf-4a1c-87d6-5df0e258eb6f",
@@ -3709,7 +4956,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Katze",
+        "Tier",
+        "Tiere",
+        "Stadtleben",
+        "Katzen",
+        "Haustier"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -3726,7 +4980,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "21_Tiere/Katze_5.png",
+      "order": 4
     },
     {
       "id": "95c5c9ef-2033-4abf-bf9e-17b85c16067c",
@@ -3740,7 +4996,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Katze",
+        "Tier",
+        "Tiere",
+        "Stadtleben",
+        "Katzen",
+        "Haustier"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -3757,7 +5020,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "21_Tiere/Katze_6.png",
+      "order": 5
     },
     {
       "id": "b38ea414-77fd-4cb8-a8e3-5424193a9788",
@@ -3771,7 +5036,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Ratte",
+        "Tier",
+        "Tiere",
+        "Stadtleben",
+        "Nager",
+        "Nagetier"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -3788,7 +5060,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "21_Tiere/Ratte_1.png",
+      "order": 6
     },
     {
       "id": "7d2d1edc-3d93-4c9d-998f-6e5571cd42a9",
@@ -3802,14 +5076,23 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Ratte",
+        "Tier",
+        "Tiere",
+        "Stadtleben",
+        "Nager",
+        "Nagetier"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "21_Tiere/Ratte_2.png",
+      "order": 7
     },
     {
       "id": "6c112645-c7b8-45c1-81c4-367774724d38",
@@ -3823,7 +5106,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Taube",
+        "Tier",
+        "Tiere",
+        "Stadtleben",
+        "Vogel",
+        "Stadttaube"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -3840,7 +5130,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "21_Tiere/Taube_1.png",
+      "order": 8
     },
     {
       "id": "6fcabf11-3c76-4a28-8ed3-f762ae85aa5b",
@@ -3854,14 +5146,23 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Taube",
+        "Tier",
+        "Tiere",
+        "Stadtleben",
+        "Vogel",
+        "Stadttaube"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "21_Tiere/Taube_2.png",
+      "order": 9
     },
     {
       "id": "ba00f277-3ade-45b8-a263-91d19e6f45bc",
@@ -3875,7 +5176,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Taube",
+        "Tier",
+        "Tiere",
+        "Stadtleben",
+        "Vogel",
+        "Stadttaube"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -3892,7 +5200,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "21_Tiere/Taube_3.png",
+      "order": 10
     },
     {
       "id": "1c7ccd17-45e5-4b66-84e3-219c13b5ec81",
@@ -3906,7 +5216,12 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Tier",
+        "Tiere",
+        "Stadtleben",
+        "Vogel"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -3923,7 +5238,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "21_Tiere/Taube_4.png",
+      "order": 11
     },
     {
       "id": "f1c748ca-f859-4f35-961f-c1a350d144c1",
@@ -3937,7 +5254,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Taube",
+        "Tier",
+        "Tiere",
+        "Stadtleben",
+        "Vogel",
+        "Stadttaube"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -3954,7 +5278,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "21_Tiere/Taube_5.png",
+      "order": 12
     },
     {
       "id": "e018f35a-723a-4a55-8213-ee7ad7cc7255",
@@ -3969,7 +5295,14 @@
       "w": 1,
       "h": 1,
       "tags": [
-        "1x1"
+        "1x1",
+        "flyingbirdcolor",
+        "Tier",
+        "Tiere",
+        "Stadtleben",
+        "Vogel",
+        "Bird",
+        "Taube"
       ],
       "status": "ready",
       "profile": null,
@@ -3987,7 +5320,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "21_Tiere/flyingbirdcolor_1.gif",
+      "order": 13
     },
     {
       "id": "1e0dc797-668e-435a-95a1-cbeadfb5c306",
@@ -4001,14 +5336,24 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Bank",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Sitzbank",
+        "Sitzgelegenheit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "22_Infrastruktur/Bank_2.png",
+      "order": 0
     },
     {
       "id": "9ee35070-1032-457f-b9df-ba5768b412af",
@@ -4022,14 +5367,26 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Mull",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Müll",
+        "Abfall",
+        "Mülleimer",
+        "Abfalleimer"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "22_Infrastruktur/Mull_1.png",
+      "order": 1
     },
     {
       "id": "323061da-751c-42e4-a27e-dbd902b00261",
@@ -4043,14 +5400,28 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Mull",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Müll",
+        "Abfall",
+        "Mülleimer",
+        "Abfalleimer",
+        "Ratte",
+        "Maus"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "22_Infrastruktur/Mull_2.png",
+      "order": 2
     },
     {
       "id": "e56a890f-8c91-4d84-a281-ece7ec2c537f",
@@ -4064,14 +5435,24 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Stadtdeko",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Dekoration",
+        "Stadtleben"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "22_Infrastruktur/Stadtdeko_2.png",
+      "order": 3
     },
     {
       "id": "8bb50e57-3a6c-4444-9056-bf26a4c6c8f3",
@@ -4085,14 +5466,24 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Stadtdeko",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Dekoration",
+        "Stadtleben"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "22_Infrastruktur/Stadtdeko_3.png",
+      "order": 4
     },
     {
       "id": "ad577a22-6986-4afc-8b7a-7461a96509ab",
@@ -4106,7 +5497,15 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Stadtdeko",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Dekoration",
+        "Stadtleben"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4123,7 +5522,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "22_Infrastruktur/Stadtdeko_4.png",
+      "order": 5
     },
     {
       "id": "217fd01e-15f0-400d-968e-df4443a07165",
@@ -4137,7 +5538,15 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Stadtdeko",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Dekoration",
+        "Stadtleben"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4154,7 +5563,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "22_Infrastruktur/Stadtdeko_5.png",
+      "order": 6
     },
     {
       "id": "b8650de6-23f4-4db7-8ebb-6be8079c219b",
@@ -4168,7 +5579,15 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Stadtdeko",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Dekoration",
+        "Stadtleben"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4185,7 +5604,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "22_Infrastruktur/Stadtdeko_7.png",
+      "order": 7
     },
     {
       "id": "3ac1bfd3-002d-4d5f-9a82-8ab6dcd86012",
@@ -4199,7 +5620,17 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Schild",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Verkehrsschild",
+        "Wegweiser",
+        "Beschilderung",
+        "Haltestelle"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4216,7 +5647,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "22_Infrastruktur/Schild_1.png",
+      "order": 8
     },
     {
       "id": "7bc37f45-22ac-4c4a-851c-02042aa00bda",
@@ -4230,7 +5663,17 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Schild",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Verkehrsschild",
+        "Wegweiser",
+        "Beschilderung",
+        "Antifa"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4247,7 +5690,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "22_Infrastruktur/Schild_2.png",
+      "order": 9
     },
     {
       "id": "51f0ff34-b9c7-43dd-841e-d3786414e194",
@@ -4261,7 +5706,17 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Schild",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Verkehrsschild",
+        "Wegweiser",
+        "Beschilderung",
+        "Ampel"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4278,7 +5733,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "22_Infrastruktur/Schild_3.png",
+      "order": 10
     },
     {
       "id": "7f257023-dc03-40ab-83f3-b11b00f47dcf",
@@ -4292,14 +5749,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Fahrrad",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Rad",
+        "Velo",
+        "Fahrzeug"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "22_Infrastruktur/Fahrrad_1.png",
+      "order": 11
     },
     {
       "id": "47486bb7-a7f5-400f-9370-c78d76be1ffa",
@@ -4313,7 +5781,17 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Fahrrad",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Rad",
+        "Velo",
+        "Fahrzeug",
+        "Fahrradständer"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4330,7 +5808,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "22_Infrastruktur/Fahrrad_2.png",
+      "order": 12
     },
     {
       "id": "c88edaaa-71d0-4fee-bb63-89d84b5a0eb7",
@@ -4344,14 +5824,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Fahrrad",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Rad",
+        "Velo",
+        "Fahrzeug"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "22_Infrastruktur/Fahrrad_3.png",
+      "order": 13
     },
     {
       "id": "25ceaa8a-57a5-4666-8ba2-c9eaaa85521e",
@@ -4365,7 +5856,18 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Fahrrad",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Rad",
+        "Velo",
+        "Fahrzeug",
+        "Barrikade",
+        "Fahrradständer"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4382,7 +5884,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "22_Infrastruktur/Fahrrad_4.png",
+      "order": 14
     },
     {
       "id": "6e4a6765-8dd4-490d-97ed-4e9a5bf9b399",
@@ -4396,7 +5900,18 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Fahrrad",
+        "Stadtmöbel",
+        "Stadtmobiliar",
+        "Infrastruktur",
+        "Straßenausstattung",
+        "Rad",
+        "Velo",
+        "Fahrzeug",
+        "Barrikade",
+        "Fahrradständer"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4413,7 +5928,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "22_Infrastruktur/Fahrrad_5.png",
+      "order": 15
     },
     {
       "id": "bcd5009a-bd31-416c-ae2b-adb70411e334",
@@ -4427,14 +5944,23 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Rotor",
+        "Dekoration",
+        "Stadtdeko",
+        "Stadtleben",
+        "Drehflügel",
+        "Kunst"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "23_Deko/Rotor_2.png",
+      "order": 0
     },
     {
       "id": "19ccab8b-0314-4fbe-844a-e8e091232983",
@@ -4448,14 +5974,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Automat",
+        "Dekoration",
+        "Stadtdeko",
+        "Stadtleben",
+        "Verkaufsautomat",
+        "Kiosk",
+        "Stadtmöbel",
+        "Vending Machine"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "23_Deko/Automat_1.png",
+      "order": 1
     },
     {
       "id": "0640b40d-abac-4fa4-b117-6e54516ed517",
@@ -4469,14 +6006,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Automat",
+        "Dekoration",
+        "Stadtdeko",
+        "Stadtleben",
+        "Verkaufsautomat",
+        "Kiosk",
+        "Stadtmöbel",
+        "Kaugummiautomat"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "23_Deko/Automat_2.png",
+      "order": 2
     },
     {
       "id": "b4a76534-56cd-453c-b6ef-92e773a83a1b",
@@ -4490,14 +6038,22 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Grabstein",
+        "Friedhof",
+        "Grab",
+        "Gedenken",
+        "Denkmal"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "24_Friedhof/Grabstein_1.png",
+      "order": 0
     },
     {
       "id": "98a24c09-5828-4473-a4fc-86a947858f02",
@@ -4511,14 +6067,22 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Grabstein",
+        "Friedhof",
+        "Grab",
+        "Gedenken",
+        "Denkmal"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "24_Friedhof/Grabstein_2.png",
+      "order": 1
     },
     {
       "id": "8e80faaa-052c-447a-a63a-a96d19cb52bb",
@@ -4532,14 +6096,23 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Spielplatz",
+        "Kinder",
+        "Freizeit",
+        "Spielen",
+        "Spielgerät",
+        "Tor"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "25_Spielplatz/Spielplatz_1.png",
+      "order": 0
     },
     {
       "id": "56abd5aa-8077-424a-9818-f93b1384980c",
@@ -4553,14 +6126,23 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Spielplatz",
+        "Kinder",
+        "Freizeit",
+        "Spielen",
+        "Spielgerät",
+        "Tor"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "25_Spielplatz/Spielplatz_2.png",
+      "order": 1
     },
     {
       "id": "d76325fe-9fc4-457c-ae2b-68c6708bd909",
@@ -4574,7 +6156,15 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Spielplatz",
+        "Kinder",
+        "Freizeit",
+        "Spielen",
+        "Spielgerät",
+        "Fussball",
+        "Ball"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4591,7 +6181,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "25_Spielplatz/Spielplatz_3.png",
+      "order": 2
     },
     {
       "id": "53695adc-ce15-4549-b03d-5a8ef8871825",
@@ -4605,14 +6197,23 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Spielplatz",
+        "Kinder",
+        "Freizeit",
+        "Spielen",
+        "Spielgerät",
+        "Schaukel"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "25_Spielplatz/Spielplatz_4.png",
+      "order": 3
     },
     {
       "id": "3efd31e6-f2bb-4b1c-b846-37d1e09da98c",
@@ -4626,14 +6227,23 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Spielplatz",
+        "Kinder",
+        "Freizeit",
+        "Spielen",
+        "Spielgerät",
+        "Rutsche"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "25_Spielplatz/Spielplatz_5.png",
+      "order": 4
     },
     {
       "id": "ce4f00d4-269a-4ae9-9d1f-79c6ac9b8be3",
@@ -4647,14 +6257,23 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Spielplatz",
+        "Kinder",
+        "Freizeit",
+        "Spielen",
+        "Spielgerät",
+        "Rutsche"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "25_Spielplatz/Spielplatz_6.png",
+      "order": 5
     },
     {
       "id": "3397d822-82bb-443a-a5b5-6ad929fdd348",
@@ -4668,14 +6287,24 @@
       "type": "FULL",
       "w": 3,
       "h": 2,
-      "tags": [],
+      "tags": [
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Station",
+        "Haltestelle"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "30_Bahnhof/Bahnhof_1.png",
+      "order": 1
     },
     {
       "id": "6f447883-92ef-486b-bf5c-a32f5ccb692c",
@@ -4689,7 +6318,14 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gleis",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4706,7 +6342,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "30_Bahnhof/Gleis_1.png",
+      "order": 2
     },
     {
       "id": "a8041cf9-2c4b-4a7a-8eae-503990bfea7c",
@@ -4720,7 +6358,14 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gleis",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4737,7 +6382,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "30_Bahnhof/Gleis_2.png",
+      "order": 3
     },
     {
       "id": "07bb42d1-4bc5-40de-8ec6-1dd99f02c5c9",
@@ -4751,7 +6398,14 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gleis",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4768,7 +6422,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "30_Bahnhof/Gleis_3.png",
+      "order": 4
     },
     {
       "id": "d46d51a3-e4b3-4c11-904d-653385d402bd",
@@ -4782,7 +6438,14 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gleis",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4799,7 +6462,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "30_Bahnhof/Gleis_4.png",
+      "order": 5
     },
     {
       "id": "e479319a-de9c-4824-bf75-e8e918799f92",
@@ -4813,7 +6478,14 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gleis",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4830,7 +6502,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "30_Bahnhof/Gleis_5.png",
+      "order": 6
     },
     {
       "id": "8c1ee77f-5f0d-42dd-af95-ac3da7ac163b",
@@ -4844,7 +6518,14 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gleis",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4861,7 +6542,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "30_Bahnhof/Gleis_6.png",
+      "order": 7
     },
     {
       "id": "15ccbde3-4ba5-4903-9478-e59eb3dc8308",
@@ -4875,7 +6558,16 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gleis",
+        "Brucke",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Brücke"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4901,7 +6593,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "30_Bahnhof/Gleis_Brucke_1.png",
+      "order": 8
     },
     {
       "id": "93ad1804-061c-4295-a2a3-b8e76bd4d673",
@@ -4915,7 +6609,16 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gleis",
+        "Brucke",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Brücke"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4941,7 +6644,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "30_Bahnhof/Gleis_Brucke_2.png",
+      "order": 9
     },
     {
       "id": "e58fd1cc-4e79-4669-b9d6-cc472384ab57",
@@ -4955,7 +6660,16 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gleis",
+        "Brucke",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Brücke"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -4981,7 +6695,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "30_Bahnhof/Gleis_Brucke_3.png",
+      "order": 10
     },
     {
       "id": "56d425ad-1d3a-4a83-9e4b-dccd576300c8",
@@ -4995,7 +6711,16 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gleis",
+        "Brucke",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Brücke"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -5021,7 +6746,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "30_Bahnhof/Gleis_Brucke_4.png",
+      "order": 11
     },
     {
       "id": "75a5ca93-4d03-442a-a7e3-425ecd1443d6",
@@ -5035,14 +6762,44 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gleis",
+        "Brucke",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Brücke"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
-        "walk": null
-      }
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "1",
+              "S": "1",
+              "D": "1"
+            }
+          }
+        ]
+      },
+      "assetPath": "30_Bahnhof/Gleis_Brucke_5.png",
+      "order": 12
     },
     {
       "id": "a18566ce-3b8a-482d-8b7c-b2f473b63176",
@@ -5056,14 +6813,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gleis",
+        "Brucke",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Brücke"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "30_Bahnhof/Gleis_Brucke_6.png",
+      "order": 13
     },
     {
       "id": "d5e7cbbd-dc3d-43b1-978e-bc6c0d9373b7",
@@ -5077,14 +6845,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Gleis",
+        "Brucke",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Brücke"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "30_Bahnhof/Gleis_Brucke_7.png",
+      "order": 14
     },
     {
       "id": "5e231c50-1d19-4a14-aaa5-c09091c634b5",
@@ -5098,14 +6877,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "ICE",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Schnellzug",
+        "Hochgeschwindigkeitszug"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "30_Bahnhof/ICE_1.png",
+      "order": 15
     },
     {
       "id": "26958e00-8847-4096-984d-926c653e0d15",
@@ -5119,14 +6909,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "ICE",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Schnellzug",
+        "Hochgeschwindigkeitszug"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "30_Bahnhof/ICE_2.png",
+      "order": 16
     },
     {
       "id": "49481338-18eb-4808-9fd0-4d812d0b9e59",
@@ -5140,14 +6941,25 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "ICE",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Schnellzug",
+        "Hochgeschwindigkeitszug"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "30_Bahnhof/ICE_3.png",
+      "order": 17
     },
     {
       "id": "647809f9-da50-4803-8c6e-129fdfebcce4",
@@ -5161,14 +6973,25 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "X",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Kreuzung",
+        "Gleis"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "30_Bahnhof/X_Bahnhof_1.png",
+      "order": 18
     },
     {
       "id": "f05421f4-a46c-463f-99e8-5a9c25a06b9e",
@@ -5182,14 +7005,25 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "X",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Kreuzung",
+        "Gleis"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "30_Bahnhof/X_Bahnhof_2.png",
+      "order": 19
     },
     {
       "id": "46393974-6677-4136-902d-762e968f1ab6",
@@ -5203,14 +7037,25 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "X",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Kreuzung",
+        "Gleis"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "30_Bahnhof/X_Bahnhof_3.png",
+      "order": 20
     },
     {
       "id": "77a3cd80-f3f7-42a5-ac47-f6c61f988a44",
@@ -5224,7 +7069,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Auto",
+        "Fahrzeug",
+        "Verkehr",
+        "Straße",
+        "PKW",
+        "Kraftfahrzeug"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -5241,7 +7093,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "31_Fahrzeug/Auto_2.png",
+      "order": 0
     },
     {
       "id": "a413479f-7218-47dd-8cf5-19865cdc3179",
@@ -5255,7 +7109,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Auto",
+        "Fahrzeug",
+        "Verkehr",
+        "Straße",
+        "PKW",
+        "Kraftfahrzeug"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -5272,7 +7133,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "31_Fahrzeug/Auto_3.png",
+      "order": 1
     },
     {
       "id": "7baafeee-fdca-448e-b037-b1e1a67b7e88",
@@ -5286,7 +7149,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Auto",
+        "Fahrzeug",
+        "Verkehr",
+        "Straße",
+        "PKW",
+        "Kraftfahrzeug"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -5303,7 +7173,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "31_Fahrzeug/Auto_4.png",
+      "order": 2
     },
     {
       "id": "53edea94-7648-436a-9218-579f6f79d243",
@@ -5317,7 +7189,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Auto",
+        "Fahrzeug",
+        "Verkehr",
+        "Straße",
+        "PKW",
+        "Kraftfahrzeug"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -5334,7 +7213,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "31_Fahrzeug/Auto_5.png",
+      "order": 3
     },
     {
       "id": "9b5f7227-03bd-4021-bca8-16739678e42f",
@@ -5348,7 +7229,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Auto",
+        "Fahrzeug",
+        "Verkehr",
+        "Straße",
+        "PKW",
+        "Kraftfahrzeug"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -5365,7 +7253,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "31_Fahrzeug/Auto_6.png",
+      "order": 4
     },
     {
       "id": "6e7b03bd-f2c5-40d4-98ea-4110ac6bec30",
@@ -5379,7 +7269,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Bus",
+        "Fahrzeug",
+        "Verkehr",
+        "Straße",
+        "ÖPNV",
+        "Linienbus"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -5396,7 +7293,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "31_Fahrzeug/Bus_2.png",
+      "order": 5
     },
     {
       "id": "024ab379-bcdc-44ac-859b-833f5e6db66e",
@@ -5410,7 +7309,14 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Bus",
+        "Fahrzeug",
+        "Verkehr",
+        "Straße",
+        "ÖPNV",
+        "Linienbus"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -5427,7 +7333,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "31_Fahrzeug/Bus_3.png",
+      "order": 6
     },
     {
       "id": "e5e69ce2-c635-4c65-813a-254090ceeb22",
@@ -5441,14 +7349,22 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Zaun",
+        "Grenze",
+        "Begrenzung",
+        "Gartenzaun",
+        "Grundstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": "hinten",
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "32_Zaune/Zaun_1.png",
+      "order": 0
     },
     {
       "id": "a11854a5-e687-4925-8654-bf0136730b66",
@@ -5462,14 +7378,22 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Zaun",
+        "Grenze",
+        "Begrenzung",
+        "Gartenzaun",
+        "Grundstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "32_Zaune/Zaun_2.png",
+      "order": 1
     },
     {
       "id": "4097d2b9-8a35-4871-8495-5a4a2e52c20e",
@@ -5483,14 +7407,22 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Zaun",
+        "Grenze",
+        "Begrenzung",
+        "Gartenzaun",
+        "Grundstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "32_Zaune/Zaun_3.png",
+      "order": 2
     },
     {
       "id": "2c5ecef7-f6fa-4ce2-8276-26c01d68491b",
@@ -5504,14 +7436,22 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Zaun",
+        "Grenze",
+        "Begrenzung",
+        "Gartenzaun",
+        "Grundstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "32_Zaune/Zaun_4.png",
+      "order": 3
     },
     {
       "id": "9361195b-6777-4a34-a040-b9975293eba9",
@@ -5525,14 +7465,22 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Zaun",
+        "Grenze",
+        "Begrenzung",
+        "Gartenzaun",
+        "Grundstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "32_Zaune/Zaun_5.png",
+      "order": 4
     },
     {
       "id": "2a994fe8-961b-4883-9398-038051bdcdec",
@@ -5546,14 +7494,22 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Zaun",
+        "Grenze",
+        "Begrenzung",
+        "Gartenzaun",
+        "Grundstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "32_Zaune/Zaun_6.png",
+      "order": 5
     },
     {
       "id": "7e67a0cd-8609-4651-b259-7f596db6911d",
@@ -5567,14 +7523,22 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Zaun",
+        "Grenze",
+        "Begrenzung",
+        "Gartenzaun",
+        "Grundstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "32_Zaune/Zaun_7.png",
+      "order": 6
     },
     {
       "id": "5a1ff156-ab02-4067-b634-da658bafa6ad",
@@ -5588,14 +7552,22 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Zaun",
+        "Grenze",
+        "Begrenzung",
+        "Gartenzaun",
+        "Grundstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "32_Zaune/Zaun_8.png",
+      "order": 7
     },
     {
       "id": "d0d6125a-e9df-4170-b7fe-32e10204cd23",
@@ -5609,14 +7581,22 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Zaun",
+        "Grenze",
+        "Begrenzung",
+        "Gartenzaun",
+        "Grundstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "32_Zaune/Zaun_9.png",
+      "order": 8
     },
     {
       "id": "3941df6b-25f6-46bb-93be-7f099a5c754c",
@@ -5630,14 +7610,22 @@
       "type": "OVER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Zaun",
+        "Grenze",
+        "Begrenzung",
+        "Gartenzaun",
+        "Grundstück"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "32_Zaune/Zaun_10.png",
+      "order": 9
     },
     {
       "id": "9c1ed92d-c7e0-4902-8785-1dac408bf253",
@@ -5652,7 +7640,14 @@
       "w": 1,
       "h": 1,
       "tags": [
-        "1x1"
+        "1x1",
+        "Andere",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "Wasserfläche"
       ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
@@ -5696,7 +7691,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Andere_1.png",
+      "order": 0
     },
     {
       "id": "0e94e6b1-67ed-438a-a114-c33f6e2c730f",
@@ -5711,7 +7708,14 @@
       "w": 1,
       "h": 1,
       "tags": [
-        "1x1"
+        "1x1",
+        "Andere",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "Wasserfläche"
       ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
@@ -5743,7 +7747,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Andere_2.png",
+      "order": 1
     },
     {
       "id": "5b52902b-1531-4f39-85ba-0b3fe4c03fe6",
@@ -5758,7 +7764,14 @@
       "w": 1,
       "h": 1,
       "tags": [
-        "1x1"
+        "1x1",
+        "Andere",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "Wasserfläche"
       ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
@@ -5785,7 +7798,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Andere_3.png",
+      "order": 2
     },
     {
       "id": "abef7eb0-15f2-489e-ab00-5d522ab62fd3",
@@ -5800,7 +7815,14 @@
       "w": 1,
       "h": 1,
       "tags": [
-        "1x1"
+        "1x1",
+        "Andere",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "Wasserfläche"
       ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
@@ -5827,7 +7849,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Andere_4.png",
+      "order": 3
     },
     {
       "id": "896c4287-f09c-4bdf-96d0-7e157c6d1fcd",
@@ -5841,14 +7865,24 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Andere",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "40_Wasser/Andere_5.png",
+      "order": 4
     },
     {
       "id": "4c2572da-1c8a-421e-9377-91b66ab17834",
@@ -5862,7 +7896,16 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Halb",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "halbe Fläche",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
       "rules": {
@@ -5879,7 +7922,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Halb_1.png",
+      "order": 5
     },
     {
       "id": "719decd0-0c7f-469c-828e-195cc9b844bf",
@@ -5893,7 +7938,16 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Halb",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "halbe Fläche",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
       "rules": {
@@ -5910,7 +7964,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Halb_2.png",
+      "order": 6
     },
     {
       "id": "497d454e-666e-4fe7-bfd5-181283b58e66",
@@ -5924,7 +7980,16 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Halb",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "halbe Fläche",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
       "rules": {
@@ -5941,7 +8006,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Halb_3.png",
+      "order": 7
     },
     {
       "id": "33c136a7-79e9-4580-8cc0-a15f60b36599",
@@ -5955,7 +8022,16 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Halb",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "halbe Fläche",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
       "rules": {
@@ -5972,7 +8048,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Halb_4.png",
+      "order": 8
     },
     {
       "id": "b45c4ee3-7353-48ce-b4d0-b6c306bcbe24",
@@ -5986,7 +8064,16 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Viertel",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "Viertelfläche",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -6012,7 +8099,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Viertel_1.png",
+      "order": 9
     },
     {
       "id": "a164dcf3-03df-4bc2-8e1a-2af2d6398cd2",
@@ -6026,7 +8115,16 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Viertel",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "Viertelfläche",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -6052,7 +8150,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Viertel_2.png",
+      "order": 10
     },
     {
       "id": "42c30ef4-45bf-48b8-9820-891c9e61e0e6",
@@ -6066,7 +8166,16 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Viertel",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "Viertelfläche",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -6092,7 +8201,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Viertel_3.png",
+      "order": 11
     },
     {
       "id": "7527d404-6c0c-4eb1-beea-45d7bab6ff11",
@@ -6106,7 +8217,16 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Viertel",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "Viertelfläche",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -6132,7 +8252,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Viertel_4.png",
+      "order": 12
     },
     {
       "id": "15f7eb18-d2f5-49d2-a220-44cca32f6212",
@@ -6146,7 +8268,16 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Dreiviertel",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "drei Viertel",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
       "rules": {
@@ -6163,7 +8294,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Dreiviertel_1.png",
+      "order": 13
     },
     {
       "id": "77b013f3-f62b-41c7-ac44-ffe32084c597",
@@ -6177,7 +8310,16 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Dreiviertel",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "drei Viertel",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
       "rules": {
@@ -6194,7 +8336,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Dreiviertel_2.png",
+      "order": 14
     },
     {
       "id": "892c420a-16eb-4590-b748-1c8e4d80e74b",
@@ -6208,7 +8352,16 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Dreiviertel",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "drei Viertel",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
       "rules": {
@@ -6225,7 +8378,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Dreiviertel_3.png",
+      "order": 15
     },
     {
       "id": "063627f8-38af-405e-9541-c58e17417274",
@@ -6239,7 +8394,16 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Dreiviertel",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "drei Viertel",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
       "rules": {
@@ -6256,7 +8420,9 @@
             }
           }
         ]
-      }
+      },
+      "assetPath": "40_Wasser/Dreiviertel_4.png",
+      "order": 16
     },
     {
       "id": "004e92d7-64f2-4f25-9efe-3da4bd69f2ad",
@@ -6274,7 +8440,11 @@
         "Backstein",
         "Eckhaus",
         "Altbau",
-        "Grunderzeit"
+        "Grunderzeit",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -6282,7 +8452,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Haus_4.png",
+      "order": 23
     },
     {
       "id": "09a7c2b0-4877-4927-98e6-155b4f3bb494",
@@ -6300,7 +8472,11 @@
         "Backstein",
         "Eckhaus",
         "Altbau",
-        "Grunderzeit"
+        "Grunderzeit",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -6308,33 +8484,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
-    },
-    {
-      "id": "40f24a2a-3ed8-4f36-acf1-6adab95dabf8",
-      "category": "1_Hauslinks",
-      "file": "Haus_6.png",
-      "hash": "5956df310b433701d8bb77fe4444620cfc754e6a182a551004d2a98504578c2f",
-      "legacyIds": [],
-      "name": "Haus_6",
-      "type": "FULL",
-      "w": 1,
-      "h": 1,
-      "tags": [
-        "Haus",
-        "rot",
-        "Backstein",
-        "Eckhaus",
-        "Altbau",
-        "Grunderzeit"
-      ],
-      "status": "ready",
-      "profile": null,
-      "rules": {
-        "half": null,
-        "allowed": null,
-        "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Haus_5.png",
+      "order": 24
     },
     {
       "id": "76b32d47-0c98-4a0f-b534-c95d1e5062f7",
@@ -6352,7 +8504,11 @@
         "Backstein",
         "Eckhaus",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -6360,7 +8516,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Haus_7.png",
+      "order": 26
     },
     {
       "id": "02e48290-50d6-42c4-85be-0df5debbec7f",
@@ -6377,7 +8535,11 @@
         "rot",
         "Backstein",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
       ],
       "status": "ready",
       "profile": null,
@@ -6385,7 +8547,9 @@
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Haus_8.png",
+      "order": 27
     },
     {
       "id": "71d09c72-b779-4896-844f-8d56ed6c87e8",
@@ -6397,14 +8561,26 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Historische_4.png",
+      "order": 28
     },
     {
       "id": "abc238c6-c3b0-4c84-bfdd-fe5f8de60317",
@@ -6416,14 +8592,26 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Historische_5.png",
+      "order": 29
     },
     {
       "id": "429aca24-8094-406a-a4c7-4539b961ae19",
@@ -6435,14 +8623,26 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Historische_6.png",
+      "order": 30
     },
     {
       "id": "ed08aa11-23a1-4f03-8c9b-76e0902b0971",
@@ -6454,14 +8654,26 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Historische_7.png",
+      "order": 31
     },
     {
       "id": "be8eff43-48c5-4043-acbc-dfc81519d3b2",
@@ -6473,14 +8685,26 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Historische_8.png",
+      "order": 32
     },
     {
       "id": "3986256d-55b0-4684-991c-7c46ac311bd7",
@@ -6492,14 +8716,26 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "1_Hauslinks/Historische_9.png",
+      "order": 33
     },
     {
       "id": "0811cd50-f9c9-4051-94b6-2eaf5a0d4c8d",
@@ -6511,14 +8747,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Halb",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "halbe Fläche",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "40_Wasser/Halb_5.png",
+      "order": 17
     },
     {
       "id": "ec11dafa-deac-48e2-98fe-0dda8a757579",
@@ -6530,14 +8777,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Halb",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "halbe Fläche",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "40_Wasser/Halb_6.png",
+      "order": 18
     },
     {
       "id": "321fad5d-0b9f-4b02-b865-f9905b6a615d",
@@ -6549,14 +8807,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Halb",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "halbe Fläche",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "40_Wasser/Halb_7.png",
+      "order": 19
     },
     {
       "id": "649a8d8b-8684-4a28-a740-c50d825cf6dd",
@@ -6568,14 +8837,25 @@
       "type": "UNDER",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Halb",
+        "Wasser",
+        "Gewässer",
+        "Ufer",
+        "Fluss",
+        "See",
+        "halbe Fläche",
+        "Wasserfläche"
+      ],
       "status": "ready",
       "profile": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "40_Wasser/Halb_8.png",
+      "order": 20
     },
     {
       "id": "81278e77-7e07-44ee-a5c5-c5bf8ca26a62",
@@ -6587,14 +8867,22 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Haus_2.png",
+      "order": 14
     },
     {
       "id": "6d4af7b4-ef3b-4e8a-9672-0cd808764bbd",
@@ -6606,14 +8894,26 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Historische_1.png",
+      "order": 15
     },
     {
       "id": "b656d427-cac8-4011-97fd-86ff426fc394",
@@ -6625,14 +8925,26 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Historische_2.png",
+      "order": 16
     },
     {
       "id": "8fc90d5d-34aa-4683-822b-a784e0af10f4",
@@ -6644,14 +8956,26 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Historische_3.png",
+      "order": 17
     },
     {
       "id": "7e2b5575-05d4-43ac-839e-ae1dd7a0eb4e",
@@ -6663,14 +8987,26 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Historische_4.png",
+      "order": 18
     },
     {
       "id": "60a6122c-1247-439d-acdd-bf507728d718",
@@ -6682,14 +9018,26 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Historische_5.png",
+      "order": 19
     },
     {
       "id": "b05b20d9-209f-4d9a-b6da-e4c95963ac01",
@@ -6701,14 +9049,26 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Historische_6.png",
+      "order": 20
     },
     {
       "id": "85192247-1f11-4077-a253-fc656984c1d5",
@@ -6720,33 +9080,57 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Historische_7.png",
+      "order": 21
     },
     {
       "id": "e747e406-5737-4928-8506-5570be9fb9fa",
       "category": "2_Hausrechts",
       "file": "Historische_8.png",
-      "hash": "c7bdd070ee904e5b6b3f5ea35ab7b31c97402b490769b28dc82f470180dca823",
+      "hash": "d5db031c0d3608f2198c3772fc450dc8a4dc9c9280623ed77ecf318aa4612f03",
       "legacyIds": [],
       "name": "Historische_8",
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
         "allowed": null,
         "walk": null
-      }
+      },
+      "assetPath": "2_Hausrechts/Historische_8.png",
+      "order": 22
     },
     {
       "id": "d809c34b-d960-4df0-b1cf-f0114ab731ff",
@@ -6758,6 +9142,39 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
+      "tags": [
+        "Historische",
+        "Haus",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "historisch",
+        "Altbau",
+        "Gründerzeit"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": null
+      },
+      "assetPath": "2_Hausrechts/Historische_9.png",
+      "order": 23
+    },
+    {
+      "id": "45febedf-76ea-4c08-b36c-a76fe3377df2",
+      "category": "1_Hauslinks",
+      "assetPath": "2_Hauslinks/Haus_8.png",
+      "order": 33,
+      "file": "Haus_8.png",
+      "hash": "c7bdd070ee904e5b6b3f5ea35ab7b31c97402b490769b28dc82f470180dca823",
+      "legacyIds": [],
+      "name": "Haus_8",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
       "tags": [],
       "status": "ready",
       "profile": null,
@@ -6766,6 +9183,129 @@
         "allowed": null,
         "walk": null
       }
+    },
+    {
+      "id": "9ed6c25e-ff4f-4cc4-a70f-ea7354e76148",
+      "category": "30_Bahnhof",
+      "assetPath": "30_Bahnhof/Bahnhof_2.png",
+      "order": 0,
+      "file": "Bahnhof_2.png",
+      "hash": "1b23281ec4c737ba5387203f660ee6e52c647e22a087afc3730fe4b2114335e5",
+      "legacyIds": [],
+      "name": "Bahnhof_2",
+      "type": "UNDER",
+      "w": 3,
+      "h": 2,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": [],
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "0",
+              "S": "0",
+              "D": "0"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "folders": [
+    {
+      "name": "1_Hauslinks",
+      "order": 0,
+      "icon": "Icons/Haus_8-b8c8f174.png"
+    },
+    {
+      "name": "2_Hausrechts",
+      "order": 1,
+      "icon": "Icons/Haus_2-b5e5944d.png"
+    },
+    {
+      "name": "3_Spezialhaus",
+      "order": 2,
+      "icon": "3_Spezialhaus/ICON.png"
+    },
+    {
+      "name": "10_Strassen",
+      "order": 3,
+      "icon": "10_Strassen/ICON.png"
+    },
+    {
+      "name": "11_Boden",
+      "order": 4,
+      "icon": "11_Boden/ICON.png"
+    },
+    {
+      "name": "12_Wege",
+      "order": 5,
+      "icon": "12_Wege/ICON.png"
+    },
+    {
+      "name": "13_Stadtboden",
+      "order": 6,
+      "icon": "13_Stadtboden/ICON.png"
+    },
+    {
+      "name": "14_Brucke",
+      "order": 7,
+      "icon": "14_Brucke/ICON.png"
+    },
+    {
+      "name": "20_Naturdeko",
+      "order": 8,
+      "icon": "20_Naturdeko/ICON.png"
+    },
+    {
+      "name": "21_Tiere",
+      "order": 9,
+      "icon": "Icons/Katze_3-db6dc5a6.png"
+    },
+    {
+      "name": "22_Infrastruktur",
+      "order": 10,
+      "icon": "Icons/Stadtdeko_3-d73da92a.png"
+    },
+    {
+      "name": "23_Deko",
+      "order": 11,
+      "icon": "23_Deko/ICON.png"
+    },
+    {
+      "name": "24_Friedhof",
+      "order": 12,
+      "icon": "24_Friedhof/ICON.png"
+    },
+    {
+      "name": "25_Spielplatz",
+      "order": 13,
+      "icon": "25_Spielplatz/ICON.png"
+    },
+    {
+      "name": "30_Bahnhof",
+      "order": 14,
+      "icon": "Icons/Bahnhof_2-d3fa28f5.png"
+    },
+    {
+      "name": "31_Fahrzeug",
+      "order": 15,
+      "icon": "31_Fahrzeug/ICON.png"
+    },
+    {
+      "name": "32_Zaune",
+      "order": 16,
+      "icon": "32_Zaune/ICON.png"
+    },
+    {
+      "name": "40_Wasser",
+      "order": 17,
+      "icon": "40_Wasser/ICON.png"
     }
   ]
 }

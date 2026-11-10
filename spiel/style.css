@@ -102,20 +102,32 @@ body {
 }
 
 #intro .intro-home {
-  width: min(1050px, 100%);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: min(680px, 100%);
   max-width: none;
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
-  gap: clamp(24px, 4vw, 56px);
-  align-items: center;
   padding: clamp(24px, 4.5vw, 56px);
-  text-align: left;
+  text-align: center;
   border: 4px solid #0b1020;
   background: #1b1f45;
   box-shadow: inset 0 4px 0 rgba(255, 255, 255, 0.12), 8px 8px 0 #0b1020;
 }
 
+#intro .intro-home::before {
+  position: absolute;
+  z-index: -1;
+  inset: -20%;
+  background: url("../icons/Thumbnail-small.jpg") 58% center / 220% auto no-repeat;
+  content: "";
+  opacity: 0.18;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
 #intro .intro-copy {
+  position: relative;
+  z-index: 1;
   min-width: 0;
 }
 
@@ -175,56 +187,17 @@ body {
   outline-offset: 4px;
 }
 
-#intro .intro-visual {
-  min-width: 0;
-  border: 4px solid #0b1020;
-  background: #0b1020;
-  box-shadow: 5px 5px 0 #121530;
-}
-
-#intro .intro-visual-bar {
-  display: flex;
-  gap: 6px;
-  padding: 9px;
-  background: #30386d;
-}
-
-#intro .intro-visual-bar span {
-  width: 7px;
-  height: 7px;
-  background: #9eb4ff;
-}
-
-#intro .intro-visual-bar span:nth-child(2) { background: #b46cff; }
-#intro .intro-visual-bar span:nth-child(3) { background: #edb3cb; }
-
-#intro .intro-visual-image {
-  aspect-ratio: 1200 / 563;
-  overflow: hidden;
-}
-
-#intro .intro-visual img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(2);
-  image-rendering: pixelated;
-}
-
 #intro.idle {
   background: rgba(8, 10, 28, 0.55);
 }
 
 #intro.idle .intro-home {
-  width: auto;
-  display: block;
+  width: min(520px, 100%);
   text-align: center;
-  background: rgba(27, 31, 69, 0.92);
+  background: #1b1f45;
 }
 
-#intro.idle .intro-actions,
-#intro.idle .intro-visual {
+#intro.idle .intro-actions {
   display: none;
 }
 
@@ -235,14 +208,8 @@ body {
 @media (max-width: 700px) {
   #intro .intro-home {
     max-width: 480px;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
     padding: 24px;
     text-align: center;
-  }
-
-  #intro .intro-visual {
-    grid-row: 1;
   }
 
   #intro .intro-title {
@@ -260,18 +227,7 @@ body {
 
 @media (max-height: 600px) {
   #intro .intro-home {
-    gap: 16px;
     padding: 20px;
-  }
-
-  #intro .intro-visual {
-    display: none;
-  }
-
-  #intro .intro-home {
-    max-width: 520px;
-    grid-template-columns: minmax(0, 1fr);
-    text-align: center;
   }
 
   #intro .intro-eyebrow {
@@ -542,7 +498,8 @@ body {
   transition: background 0.2s, transform 0.15s;
 }
 
-.mode-button svg {
+.mode-button svg,
+.mode-button img {
   width: calc(var(--btn) * 0.42);
   height: 20px;
   flex: none;
@@ -846,6 +803,14 @@ body {
   z-index: 3;
 }
 
+.app.explore-mode .home-button {
+  top: calc(12px + var(--btn) + 8px + var(--safe-t));
+}
+
+.app.explore-mode.has-respawn .home-button {
+  top: calc(12px + (var(--btn) + 8px) * 2 + var(--safe-t));
+}
+
 .land-panel {
   position: absolute;
   z-index: 5;
@@ -995,9 +960,24 @@ body {
   transition: background 0.2s, transform 0.15s;
 }
 
-.tool-button svg {
+.tool-button svg,
+.tool-button img {
   width: calc(var(--btn) * 0.5);
   height: calc(var(--btn) * 0.5);
+}
+
+.tool-button img,
+.mode-button img,
+.search-toggle img,
+.recent-icon {
+  object-fit: contain;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+.search-toggle img {
+  width: 55%;
+  height: 55%;
 }
 
 .tool-button:hover {
@@ -1234,30 +1214,20 @@ body {
   padding: 0;
   border: 0;
   border-radius: 0;
-  background: var(--px-panel-2);
-  box-shadow: var(--px-bevel);
+  background: transparent;
   cursor: pointer;
 }
 
 .mode-switch-button img {
   display: block;
-  width: var(--icon);
-  height: var(--icon);
+  width: 100%;
+  height: 100%;
   image-rendering: pixelated;
   pointer-events: none;
 }
 
-.mode-switch-button:hover {
-  background: #3a4290;
-}
-
 .mode-switch-button:active {
   transform: translateY(2px);
-}
-
-.mode-switch-button.active {
-  background: var(--accent);
-  box-shadow: inset 0 var(--px) 0 0 rgba(0, 0, 0, 0.35), inset 0 calc(var(--px) * -1) 0 0 rgba(255, 255, 255, 0.25);
 }
 
 .mode-switch-button:focus-visible {
@@ -1680,8 +1650,8 @@ body {
   }
 
   .mode-switch-button img {
-    width: 24px;
-    height: 24px;
+    width: 100%;
+    height: 100%;
   }
 
   .char-select {
@@ -1817,8 +1787,6 @@ body {
   height: 55%;
   margin: auto;
   display: block;
-  color: var(--accent);
-  shape-rendering: crispEdges;
 }
 
 .cat-recent .cat-button {

@@ -216,8 +216,13 @@ Grundstuecksgrenze bauen und zum Startgebiet zurueckkehren.
 
 [Katalog/](Katalog/) enthaelt die Tile-Bilder. Die Datei
 [tile-catalog.json](daten/tile-catalog.json) enthaelt dagegen deren IDs,
-Eigenschaften und Regeln. Der Name des Bildordners ist nicht Teil einer
-Tile-ID oder eines Spielstands.
+Eigenschaften und Regeln. `assetPath` bezeichnet den physischen Bildpfad,
+waehrend `category` unabhaengig davon den UI-Ordner bestimmt. Tile- und
+Ordnerreihenfolge sowie Ordner-Icons sind ebenfalls Katalogmetadaten. Neue
+Bilder koennen daher direkt in `Katalog/` abgelegt und in der Werkstatt in
+einen UI-Ordner gezogen werden; bestehende Unterordner muessen nicht
+umorganisiert werden. Der Name des Bildordners ist nicht Teil einer Tile-ID
+oder eines Spielstands.
 
 Unter Windows [Tile-Werkstatt.cmd](Tile-Werkstatt.cmd) starten (Node.js muss
 installiert sein). Alternativ im Projektordner
@@ -229,7 +234,11 @@ erst **Aenderungen speichern** schreibt die Datei. Bei externen Aenderungen
 waehrend der Bearbeitung wird das Speichern verweigert und ein erneutes
 Einlesen verlangt.
 
-Die Werkstatt zeigt PNG- und GIF-Bilder ausser Kategorie-Icons. Sie vergleicht
+Die Werkstatt zeigt PNG- und GIF-Bilder ausser Kategorie-Icons und dem
+separaten `Katalog/Icons/`-Ordner. Tile-Bilder koennen zur vergroesserten
+Vorschau angeklickt werden. Durch Ziehen lassen sich Tiles zwischen UI-Ordnern
+verschieben und innerhalb eines Ordners sortieren; Ordner lassen sich ebenfalls
+sortieren. Ordner-Icons koennen als PNG hinzugefuegt und zugeordnet werden. Die Werkstatt vergleicht
 die Dateien mit den im Katalog gespeicherten SHA-256-Pruefsummen:
 
 - Neue Dateien anlegen, Eigenschaften festlegen und auf **Freigegeben** setzen.
@@ -243,6 +252,29 @@ die Dateien mit den im Katalog gespeicherten SHA-256-Pruefsummen:
   zugeordneten Tiles. Mit Checkboxen und **Vorlage auf Auswahl anwenden**
   koennen mehrere Tiles gleichzeitig zugeordnet werden. Unterschiedliche Typen
   koennen eine Vorlage ungueltig machen; die Pruefung zeigt dies an.
+- Die Suchbegriffe enthalten vorhandene CSV-Tags sowie aus Tile-Namen und
+  Ordnern ergaenzte deutsche Synonyme. Sie koennen pro Tile weiter bearbeitet
+  werden.
+- Unter **Tags gemeinsam sammeln** kann ein eigenstaendiger HTML-Bilderbogen
+  mit eingebetteten Tile-Bildern heruntergeladen werden. Mitwirkende ergaenzen
+  dort Tags und laden eine JSON-Rueckmeldung herunter. Der Import fuegt neue
+  Begriffe anhand stabiler Tile-IDs hinzu, behaelt vorhandene Tags bei und
+  ignoriert unbekannte IDs.
+- Erlaubte OVER-Tiles werden als anklickbare Bildauswahl bearbeitet; weitere
+  Tiles lassen sich einzeln hinzufuegen, ohne Strg gedrueckt zu halten. Der
+  Bereich **Sonderregeln fuer dieses Tile** kann unabhaengig von einer
+  geteilten Regelvorlage einzelne OVER-Tiles erlauben oder ausschliessen.
+- Laufregeln zeigen die isometrischen Richtungen als Pfeile ueber dem
+  Tile-Bild. Pro Richtung gibt es direkt waehlbare Zustandskaestchen fuer
+  gesperrt, eben, Rampe hinauf und Rampe hinunter; Ebenen werden passend in
+  die bisherigen numerischen Laufwerte uebersetzt.
+
+Drehung, Spiegelung und Einfaerbung bleiben vorerst eigenstaendige Tiles. Das
+Metadatenmodell trennt bereits Bildpfad, UI-Zuordnung und Tile-Identitaet. Eine
+spaetere Varianten-Architektur soll die Vorschau aus dem Bildasset ableiten
+und Drehung, Spiegelung sowie Farbton auf der platzierten Instanz speichern,
+statt fuer jede Kombination ein neues Tile-Bild zu benoetigen. Diese
+Instanztransformationen sind noch nicht implementiert.
 
 Ein ungueltiges, nicht freigegebenes oder fehlendes Tile wird beim Spielstart
 uebersprungen und diagnostisch gemeldet. Auch ein Boden, der ein nicht verfuegbares

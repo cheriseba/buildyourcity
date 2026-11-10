@@ -1,17 +1,23 @@
 // Wandelt das Tile-Manifest in die von Palette und Bildverwaltung genutzten Listen um.
 function buildTileDefs(manifest) {
   const data = manifest || { root: "Katalog", meadow: null, categories: [] };
-  const url = (...parts) => [data.root, ...parts].filter(Boolean).flatMap((part) => part.split("/")).map(encodeURIComponent).join("/");
+  const url = (relativePath) => [data.root, ...relativePath.split("/")].map(encodeURIComponent).join("/");
+  const imagePath = (tile, category = "") => tile.assetPath || [tile.category || category, tile.file].filter(Boolean).join("/");
   const defs = [];
   const categories = [];
 
   if (data.meadow) {
-    defs.push({ ...data.meadow, category: "", url: url(data.meadow.file) + (data.meadow.hash ? `?v=${data.meadow.hash}` : "") });
+    defs.push({ ...data.meadow, category: "", url: url(imagePath(data.meadow)) + (data.meadow.hash ? `?v=${data.meadow.hash}` : "") });
   }
 
   for (const category of data.categories) {
-    const indices = category.tiles.map((tile) => defs.push({ ...tile, category: category.name, url: url(category.name, tile.file) + (tile.hash ? `?v=${tile.hash}` : "") }) - 1);
-    categories.push({ name: category.name, indices, iconUrl: category.icon ? url(category.name, category.icon) : defs[indices[0]].url });
+    if (!category.tiles.length) continue;
+    const indices = category.tiles.map((tile) => defs.push({ ...tile, category: category.name, url: url(imagePath(tile, category.name)) + (tile.hash ? `?v=${tile.hash}` : "") }) - 1);
+    const firstTile = defs[indices[0]];
+    categories.push({
+      name: category.name, indices,
+      iconUrl: category.icon ? url(category.icon) : firstTile.url,
+    });
   }
 
   return { tileDefs: defs, tileCategories: categories };
@@ -31,7 +37,7 @@ function buildTileDefs(manifest) {
     for (const tile of catalog.tiles) if (tile && typeof tile === "object") counts.set(tile.id, (counts.get(tile.id) || 0) + 1);
     for (const tile of catalog.tiles) {
       if (!tile || typeof tile !== "object") continue;
-      const path = `${tile.category}/${tile.file}`.toLowerCase();
+      const path = TileCatalogModel.assetPathOf(tile).toLowerCase();
       paths.set(path, (paths.get(path) || 0) + 1);
       if (Array.isArray(tile.legacyIds)) for (const alias of new Set(tile.legacyIds)) aliases.set(alias, (aliases.get(alias) || 0) + 1);
     }
@@ -40,13 +46,13 @@ function buildTileDefs(manifest) {
     for (const tile of catalog.tiles) {
       const errors = TileCatalogModel.validateTile(tile, catalog.profiles, known);
       if (tile && counts.get(tile.id) !== 1) errors.push("Tile-ID ist nicht eindeutig");
-      if (tile && paths.get(`${tile.category}/${tile.file}`.toLowerCase()) !== 1) errors.push("Bildpfad ist nicht eindeutig");
+      if (tile && paths.get(TileCatalogModel.assetPathOf(tile).toLowerCase()) !== 1) errors.push("Bildpfad ist nicht eindeutig");
       if (tile && Array.isArray(tile.legacyIds) && tile.legacyIds.some((id) => aliases.get(id) !== 1)) errors.push("Alte Tile-ID ist nicht eindeutig");
       if (errors.length) issues.push(`${tile && tile.category || "(ohne Kategorie)"}/${tile && tile.file || "?"}: ${errors.join(", ")}`);
       else candidates.push(tile);
     }
     const checked = await Promise.all(candidates.map(async (tile) => {
-      const imagePath = [tile.category, tile.file].filter(Boolean).flatMap((part) => part.split("/")).map(encodeURIComponent).join("/");
+      const imagePath = TileCatalogModel.encodedAssetPath(tile);
       try {
         const result = await fetch(`Katalog/${imagePath}?tile-check=1`, { cache: "no-cache" });
         if (!result.ok) throw new Error(`HTTP ${result.status}`);
@@ -83,18 +89,32 @@ function buildTileDefs(manifest) {
       issues.push(`${tile.file}: Nur die Wiese darf im Hauptordner liegen; bitte einer Kategorie zuordnen`);
     }
     const categories = [];
-    for (const tile of valid.filter((item) => item.category !== "")) {
-      let category = categories.find((item) => item.name === tile.category);
-      if (!category) {
-        category = { name: tile.category, icon: null, tiles: [] };
-        categories.push(category);
-      }
-      category.tiles.push(tile);
+    const folders = Array.isArray(catalog.folders) ? [...catalog.folders].sort((a, b) => a.order - b.order) : [];
+    for (const folder of folders) {
+      const tiles = valid.filter((tile) => tile.category === folder.name);
+      if (!tiles.length) continue;
+      categories.push({
+        name: folder.name,
+        icon: folder.icon || null,
+        tiles: tiles.sort((a, b) => (a.order ?? 0) - (b.order ?? 0)),
+      });
+    }
+    for (const name of new Set(valid.filter((tile) => tile.category !== "").map((tile) => tile.category))) {
+      if (categories.some((category) => category.name === name)) continue;
+      categories.push({
+        name, icon: null,
+        tiles: valid.filter((tile) => tile.category === name).sort((a, b) => (a.order ?? 0) - (b.order ?? 0)),
+      });
     }
     await Promise.all(categories.map(async (category) => {
-      const url = ["Katalog", ...category.name.split("/"), "ICON.png"].map(encodeURIComponent).join("/");
-      try { if ((await fetch(url, { method: "HEAD" })).ok) category.icon = "ICON.png"; }
-      catch (error) { console.warn(`Kategorie-Icon ${category.name}:`, error); }
+      if (!category.icon) {
+        const legacyPath = `${category.name}/ICON.png`;
+        try {
+          if ((await fetch(["Katalog", ...legacyPath.split("/")].map(encodeURIComponent).join("/"), { method: "HEAD" })).ok) {
+            category.icon = legacyPath;
+          }
+        } catch (error) { console.warn(`Kategorie-Icon ${category.name}:`, error); }
+      }
     }));
     let layout = [];
     const layoutResponse = await fetch("csv/start-layout.csv", { cache: "no-cache" });
@@ -110,6 +130,7 @@ function buildTileDefs(manifest) {
 
   function installCatalogRules(defs, profiles) {
     const allowed = new Map();
+    const excluded = new Map();
     const half = new Map();
     const walks = new Map();
     const byId = new Map(defs.map((def) => [def.id, def]));
@@ -118,11 +139,12 @@ function buildTileDefs(manifest) {
       const key = overRuleKey(def);
       if (rules.half) half.set(key, rules.half);
       if (rules.allowed) allowed.set(key, new Set(rules.allowed.map((id) => overRuleKey(byId.get(id)))));
+      if (rules.excluded && rules.excluded.length) excluded.set(key, new Set(rules.excluded.map((id) => overRuleKey(byId.get(id)))));
       if (rules.walk) walks.set(def.id, rules.walk.map((row) => ({
         level: row.level,
         dirs: Object.fromEntries(Object.entries(row.dirs).map(([dir, value]) => [dir, parseWalkValue(value).value])),
       })));
     }
-    overRules = { allowed, half };
+    overRules = { allowed, excluded, half };
     walkRules = walks;
   }

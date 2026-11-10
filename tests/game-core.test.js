@@ -70,6 +70,18 @@ test("Katalog behaelt Reihenfolge, Kategorien und URL-Kodierung", () => {
   assert.equal(result.tileCategories[0].iconUrl, result.tileDefs[1].url);
 });
 
+test("Bildpfad, UI-Ordner und separates Ordner-Icon sind entkoppelt", () => {
+  const { run } = createGame();
+  const result = run(`buildTileDefs({
+    root: "Katalog",
+    meadow: { file: "Wiese.png", assetPath: "Wiese.png" },
+    categories: [{ name: "Natur", icon: "Icons/Natur.png", tiles: [{ file: "Baum.png", assetPath: "Neue Bilder/Baum.png" }] }]
+  })`);
+  assert.equal(result.tileDefs[1].category, "Natur");
+  assert.equal(result.tileDefs[1].url, "Katalog/Neue%20Bilder/Baum.png");
+  assert.equal(result.tileCategories[0].iconUrl, "Katalog/Icons/Natur.png");
+});
+
 test("Platzierung, zwei Overlays, Undo, Gebaeude und feste Felder", () => {
   const { run } = createGame();
   run(`
@@ -104,6 +116,24 @@ test("Nicht erlaubte Overlays veraendern das Spielfeld und den Verlauf nicht", (
   assert.equal(run("board.place(cell, front, tileDefs[2], meadow)"), "over-not-allowed");
   assert.equal(run("cell.overlay"), null);
   assert.equal(run("board.history.length"), run("previousHistory"));
+});
+
+test("Tile-spezifische OVER-Ausnahmen erlauben Ergänzungen und Ausschlüsse", () => {
+  const game = createGame();
+  game.context.TileCatalogModel = require("../gemeinsam/tile-catalog-model.js");
+  const { run } = game;
+  const result = run(`
+    tileDefs.forEach((def) => { def.rules = { half: null, allowed: null, walk: null }; });
+    tileDefs[1].id = "ground-id";
+    tileDefs[2].id = "front-id";
+    tileDefs[3].id = "back-id";
+    const shared = { id: "shared", rules: { half: null, allowed: [tileDefs[2].id], walk: null } };
+    tileDefs[1].profile = shared.id;
+    tileDefs[1].overrides = { allowed: { add: [tileDefs[3].id], remove: [tileDefs[2].id] } };
+    installCatalogRules(tileDefs, [shared]);
+    [isOverAllowed(ground, front), isOverAllowed(ground, back)]
+  `);
+  assert.deepEqual(Array.from(result), [false, true]);
 });
 
 test("Startlayout wird angewendet und als CSV mit Overlays und Gebaeuden exportiert", async () => {

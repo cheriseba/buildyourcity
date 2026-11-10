@@ -1,5 +1,5 @@
 // Platzierungsregeln; das Spiel befuellt sie aus dem zentralen Tile-Katalog.
-let overRules = { allowed: new Map(), half: new Map() };
+let overRules = { allowed: new Map(), excluded: new Map(), half: new Map() };
 
 function overRuleKey(def) {
   return `${def.category.toLowerCase()}/${def.file.toLowerCase()}`;
@@ -60,6 +60,7 @@ async function loadOverRules() {
   const [allowedText, halfText] = await Promise.all([load("tiles-over-regeln.csv"), load("tiles-over-halb.csv")]);
   overRules = {
     allowed: parseOverRules(allowedText, tileDefs),
+    excluded: new Map(),
     half: parseHalfOverRules(halfText, tileDefs),
   };
 }
@@ -73,5 +74,9 @@ function isOverAllowed(ground, overlay) {
   const groundDef = defOfImage(ground);
   const overDef = defOfImage(overlay);
   const allowed = groundDef && overRules.allowed.get(overRuleKey(groundDef));
-  return !allowed || Boolean(overDef && allowed.has(overRuleKey(overDef)));
+  if (!overDef) return !allowed;
+  const key = overRuleKey(overDef);
+  if (allowed) return allowed.has(key);
+  const excluded = groundDef && overRules.excluded && overRules.excluded.get(overRuleKey(groundDef));
+  return !excluded || !excluded.has(key);
 }

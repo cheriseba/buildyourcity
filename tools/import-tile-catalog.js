@@ -4,6 +4,7 @@ const path = require("node:path");
 const vm = require("node:vm");
 const crypto = require("node:crypto");
 const { scanTileImages } = require("./tile-inventory");
+const { enrichTileTags } = require("../gemeinsam/tile-keywords");
 
 const root = path.resolve(__dirname, "..");
 async function buildCatalog() {
@@ -32,21 +33,28 @@ async function buildCatalog() {
       console.warn(`Doppelter Eintrag zusammengefuehrt: ${key}`);
     } else uniqueTags.set(key, row);
   }
+  const categoryOrders = new Map();
+  const tileOrders = new Map();
   const tiles = [...uniqueTags.values()].map((row) => {
     const category = row.kategorie || "";
     const file = row.dateiname || row.datei;
     const imagePath = category ? `${category}/${file}` : file;
     const image = files.get(imagePath.toLowerCase());
+    if (!categoryOrders.has(category)) {
+      categoryOrders.set(category, category ? [...categoryOrders.keys()].filter(Boolean).length : Number.MAX_SAFE_INTEGER);
+    }
+    const order = tileOrders.get(category) || 0;
+    tileOrders.set(category, order + 1);
     const size = row["größe"] || row.groesse || row.grosse || row.size || "1x1";
     const match = /^(\d+)x(\d+)$/i.exec(size);
     const suffix = /_(UNDER|OVER)\.[^.]+$/i.exec(file);
     const type = (row.type || row.typ || (suffix ? suffix[1] : "FULL")).toUpperCase();
     const walkRows = walk.filter((item) => item.dateiname.toLowerCase() === file.toLowerCase());
     return {
-      id: crypto.randomUUID(), category, file, hash: image ? image.hash : null,
+      id: crypto.randomUUID(), category, file, assetPath: imagePath, order, hash: image ? image.hash : null,
       legacyIds: [`${category}/${file}`], name: file.replace(/\.[^.]+$/, "").replace(/_(UNDER|OVER)$/i, ""),
       type, w: match ? Number(match[1]) : 1, h: match ? Number(match[2]) : 1,
-      tags: (row.tags || "").split(/[,;]/).map((tag) => tag.trim()).filter(Boolean),
+      tags: enrichTileTags(category, file, (row.tags || "").split(/[,;]/).map((tag) => tag.trim()).filter(Boolean)),
       status: image ? "ready" : "missing", profile: null,
       rules: {
         half: (half.find((item) => item.kategorie.toLowerCase() === category.toLowerCase() && item.dateiname.toLowerCase() === file.toLowerCase()) || {}).position || null,
@@ -66,7 +74,17 @@ async function buildCatalog() {
     if (!under.rules.allowed) under.rules.allowed = [];
     under.rules.allowed.push(over.id);
   }
-  return { version: 1, profiles: [], tiles };
+  const folders = await Promise.all([...categoryOrders].filter(([name]) => name).map(async ([name, order]) => {
+    let icon = null;
+    try {
+      await fs.access(path.join(root, "Katalog", name, "ICON.png"));
+      icon = `${name}/ICON.png`;
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
+    }
+    return { name, order, icon };
+  }));
+  return { version: 1, profiles: [], folders, tiles };
 }
 
 async function importCatalog() {
