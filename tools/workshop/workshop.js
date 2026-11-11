@@ -575,12 +575,17 @@ function renderDetail() {
   field(form, "Suchbegriffe (mit Komma trennen)", input(tile.tags.join(", "), (value) => { tile.tags = value.split(",").map((tag) => tag.trim()).filter(Boolean); }));
   const profiles = [["", "Eigene Regeln"], ...state.catalog.profiles.map((profile) => [profile.id, profile.name])];
   field(form, "Regelvorlage", selectField(tile.profile || "", profiles, (value) => {
-    if (!value && tile.profile) {
-      const profile = state.catalog.profiles.find((item) => item.id === tile.profile);
-      if (profile) tile.rules = structuredClone(profile.rules);
-    }
     tile.profile = value || null;
   }));
+  form.append(node("p", "Beim Wechsel zu eigenen Regeln werden die vorherigen eigenen Regeln wieder verwendet.", "hint"));
+  form.append(confirmButton("Regeln dieses Tiles zurücksetzen", "Bestätigen: Regeln dieses Tiles zurücksetzen", () => {
+    tile.profile = null;
+    tile.rules = { half: null, allowed: null, walk: null };
+    delete tile.overrides;
+    changed();
+    render();
+  }));
+  form.append(node("p", "Setzt Vorlage, eigene Regeln und Sonderregeln dieses Tiles auf Standard zurück. Geteilte Vorlagen bleiben unverändert.", "hint"));
   const profileName = document.createElement("input");
   profileName.placeholder = "z. B. Bäume";
   field(form, "Name für neue Regelvorlage", profileName);
@@ -618,6 +623,15 @@ function renderDetail() {
     const specialRules = node("section", undefined, "special-rules");
     specialRules.append(node("h3", "Sonderregeln für dieses Tile"));
     specialRules.append(node("p", "Diese Ausnahmen gelten nur für dieses Tile und ändern keine geteilte Regelvorlage. Klicke Tiles an, um sie zusätzlich zu erlauben oder aus der Basisregel auszuschließen.", "hint"));
+    if (tile.overrides && tile.overrides.allowed) {
+      specialRules.append(node("p", "Sonderregeln sind aktiv und bleiben auch beim Wechsel der Vorlage bestehen.", "notice"));
+      specialRules.append(confirmButton("Sonderregeln zurücksetzen", "Bestätigen: Sonderregeln zurücksetzen", () => {
+        delete tile.overrides.allowed;
+        if (!Object.keys(tile.overrides).length) delete tile.overrides;
+        changed();
+        render();
+      }));
+    }
     renderOverPicker(
       specialRules,
       (item) => effectiveRules.allowed === null

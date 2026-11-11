@@ -24,26 +24,7 @@
           "56d425ad-1d3a-4a83-9e4b-dccd576300c8",
           "75a5ca93-4d03-442a-a7e3-425ecd1443d6"
         ],
-        "walk": [
-          {
-            "level": "unten",
-            "dirs": {
-              "W": "-",
-              "A": "-",
-              "S": "-",
-              "D": "-"
-            }
-          },
-          {
-            "level": "unten",
-            "dirs": {
-              "W": "-",
-              "A": "-",
-              "S": "-",
-              "D": "-"
-            }
-          }
-        ]
+        "walk": null
       }
     }
   ],
@@ -5943,7 +5924,7 @@
         ]
       },
       "assetPath": "22_Infrastruktur/Stadtdeko_7.png",
-      "order": 7
+      "order": 8
     },
     {
       "id": "3ac1bfd3-002d-4d5f-9a82-8ab6dcd86012",
@@ -5990,7 +5971,7 @@
         ]
       },
       "assetPath": "22_Infrastruktur/Schild_1.png",
-      "order": 8
+      "order": 7
     },
     {
       "id": "7bc37f45-22ac-4c4a-851c-02042aa00bda",

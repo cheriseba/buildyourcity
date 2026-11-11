@@ -248,7 +248,11 @@ die Dateien mit den im Katalog gespeicherten SHA-256-Pruefsummen:
   neues Bild kann auch manuell einem fehlenden Tile zugeordnet werden, wenn
   sich sowohl Pfad als auch Inhalt geaendert haben.
 - Vorlagen speichern Regeln gemeinsam; Aenderungen daran gelten fuer alle
-  zugeordneten Tiles. Mit Checkboxen und **Vorlage auf Auswahl anwenden**
+  zugeordneten Tiles. Beim Wechsel zu **Eigene Regeln** werden die vorherigen
+  eigenen Regeln des Tiles wieder aktiv, nicht die Regeln der Vorlage kopiert.
+  **Regeln dieses Tiles zuruecksetzen** loest die Vorlage und setzt eigene
+  Regeln sowie Sonderregeln auf Standard; die geteilte Vorlage bleibt erhalten.
+  Mit Checkboxen und **Vorlage auf Auswahl anwenden**
   koennen mehrere Tiles gleichzeitig zugeordnet werden. Unterschiedliche Typen
   koennen eine Vorlage ungueltig machen; die Pruefung zeigt dies an.
 - Die Suchbegriffe enthalten vorhandene CSV-Tags sowie aus Tile-Namen und
@@ -263,6 +267,8 @@ die Dateien mit den im Katalog gespeicherten SHA-256-Pruefsummen:
   Tiles lassen sich einzeln hinzufuegen, ohne Strg gedrueckt zu halten. Der
   Bereich **Sonderregeln fuer dieses Tile** kann unabhaengig von einer
   geteilten Regelvorlage einzelne OVER-Tiles erlauben oder ausschliessen.
+  Sonderregeln bleiben beim Vorlagenwechsel erhalten und koennen dort separat
+  zurueckgesetzt werden.
 - Laufregeln zeigen die isometrischen Richtungen als Pfeile ueber dem
   Tile-Bild. Pro Richtung gibt es direkt waehlbare Zustandskaestchen fuer
   gesperrt, eben, Rampe hinauf und Rampe hinunter; Ebenen werden passend in
