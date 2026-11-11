@@ -74,8 +74,7 @@ zu veraendern. Bau-Undo behaelt freigeschaltete Grundstuecke.
 Neue Staedte und der Editor beginnen mit denselben zwei waagerechten
 Grundstuecken: (0,1) und (1,1). Jedes Grundstueck umfasst 512x512
 Weltpixel (256 Zellen), zusammen 512 Bauzellen. Der Start ist auf allen
-Bildschirmen gleich gross und laedt das CSV-Startlayout. Die ausgelieferte
-Vorlage enthaelt derzeit nur die Kopfzeile, also leere Wiese.
+Bildschirmen gleich gross und laedt das CSV-Startlayout.
 Bestehende v3-Staedte behalten ihre gespeicherten
 Freischaltungen, auch die bisherigen Ein-Grundstueck-Staedte. Die Validierung
 verlangt das zentrale Grundstueck (1,1), nicht alle aktuellen Startgrundstuecke.

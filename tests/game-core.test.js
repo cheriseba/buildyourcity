@@ -483,7 +483,7 @@ test("Zeichenreihenfolge fuer den Ausschnitt enthaelt keine weit entfernten Obje
   assert.ok(run("ordered.length") < run("board.cells.size") / 10);
 });
 
-test("Die leere CSV-Startvorlage passt auf die gemeinsame 1x2-Startflaeche", () => {
+test("Die CSV-Startvorlage passt auf die gemeinsame 1x2-Startflaeche", () => {
   const { run, context, warnings } = createGame();
   context.TileCatalogModel = require("../gemeinsam/tile-catalog-model.js");
   context.realCatalog = JSON.parse(fs.readFileSync(path.join(root, "daten", "tile-catalog.json"), "utf8"));
@@ -501,9 +501,15 @@ test("Die leere CSV-Startvorlage passt auf die gemeinsame 1x2-Startflaeche", () 
     buildBoard(board, realImages[realMeadowIndex]);
     applyStartLayout(realLayout, board, realDefs, realImages, realMeadowIndex);
   `);
-  assert.equal(run("realLayout.length"), 0);
+  assert.ok(run("realLayout.length") > 0);
   assert.deepEqual(warnings, []);
   assert.equal(run("board.land.parcels.size"), 2);
+  assert.equal(run(`board.get(20, 28).ground === realImages[realDefs.findIndex(
+    (def) => def.category === "10_Strassen" && def.file === "Strasse_2.png"
+  )]`), true);
+  assert.equal(run(`board.get(20, 28) === [...board.cells.values()]
+    .filter((cell) => cell.x === board.land.bounds().minX)
+    .sort((a, b) => b.y - a.y)[0]`), true);
 });
 
 test("Neue Welt beginnt mit zwei waagerechten Grundstuecken und vier Erweiterungen ohne Sueden", () => {
