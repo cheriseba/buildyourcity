@@ -66,7 +66,8 @@
         "Gras",
         "Rasen",
         "Grünfläche",
-        "Natur"
+        "Natur",
+        "grün"
       ],
       "status": "ready",
       "profile": null,
@@ -98,7 +99,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -130,7 +132,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -163,7 +166,9 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "gotik",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -196,7 +201,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -229,7 +235,9 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "gotik",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -261,7 +269,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -293,7 +302,9 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "turm",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -325,7 +336,9 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "turm",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -359,7 +372,8 @@
         "Wohnen",
         "Wohnhaus",
         "Stadt",
-        "Gründerzeit"
+        "Gründerzeit",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -393,7 +407,8 @@
         "Wohnen",
         "Wohnhaus",
         "Stadt",
-        "Gründerzeit"
+        "Gründerzeit",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -426,7 +441,8 @@
         "Wohnen",
         "Wohnhaus",
         "Stadt",
-        "Gründerzeit"
+        "Gründerzeit",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -458,7 +474,9 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "weiss",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -490,7 +508,9 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "weiss",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -522,7 +542,9 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "weiss",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -554,7 +576,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -587,7 +610,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -620,7 +644,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -653,7 +678,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -686,7 +712,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -719,7 +746,8 @@
         "Wohnhaus",
         "Gebäude",
         "Wohnen",
-        "Stadt"
+        "Stadt",
+        "einstöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -752,7 +780,8 @@
         "Wohnhaus",
         "Gebäude",
         "Wohnen",
-        "Stadt"
+        "Stadt",
+        "einstöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -786,7 +815,9 @@
         "Wohnhaus",
         "Gebäude",
         "Wohnen",
-        "Stadt"
+        "Stadt",
+        "weiss",
+        "einstöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -819,7 +850,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -853,7 +885,9 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "Gotik",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -886,7 +920,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -919,7 +954,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -952,7 +988,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -985,7 +1022,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1018,7 +1056,9 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "zweistöckig",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1051,7 +1091,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1084,7 +1125,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1117,7 +1159,8 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1150,7 +1193,8 @@
         "Wohnhaus",
         "Gebäude",
         "Wohnen",
-        "Stadt"
+        "Stadt",
+        "einstöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1183,7 +1227,8 @@
         "Wohnhaus",
         "Gebäude",
         "Wohnen",
-        "Stadt"
+        "Stadt",
+        "einstöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1217,7 +1262,9 @@
         "Wohnhaus",
         "Gebäude",
         "Wohnen",
-        "Stadt"
+        "Stadt",
+        "weiss",
+        "einstöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1249,7 +1296,10 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "turm",
+        "schloss",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1284,7 +1334,9 @@
         "Stadtgebäude",
         "Sonderbau",
         "Industrie",
-        "Gewerbe"
+        "Gewerbe",
+        "halle",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1319,7 +1371,9 @@
         "Stadtgebäude",
         "Sonderbau",
         "Industrie",
-        "Gewerbe"
+        "Gewerbe",
+        "kulturfabrik",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1354,7 +1408,8 @@
         "Stadtgebäude",
         "Sonderbau",
         "Industrie",
-        "Gewerbe"
+        "Gewerbe",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1388,7 +1443,10 @@
         "Stadtgebäude",
         "Sonderbau",
         "Industrie",
-        "Bahnhof"
+        "Bahnhof",
+        "laden",
+        "geschäft",
+        "einstöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1422,7 +1480,10 @@
         "Stadtgebäude",
         "Sonderbau",
         "Industrie",
-        "Bahnhof"
+        "Bahnhof",
+        "laden",
+        "geschäft",
+        "einstöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1457,7 +1518,10 @@
         "Nordi",
         "Gebäude",
         "Stadtgebäude",
-        "Sonderbau"
+        "Sonderbau",
+        "laden",
+        "geschäft",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1491,7 +1555,10 @@
         "Nordi",
         "Gebäude",
         "Stadtgebäude",
-        "Sonderbau"
+        "Sonderbau",
+        "kloster",
+        "martin luther kirche",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1520,7 +1587,12 @@
         "Haus",
         "Gebäude",
         "Stadtgebäude",
-        "Sonderbau"
+        "Sonderbau",
+        "Burg",
+        "Steuerwald",
+        "Turm",
+        "Schloss",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1556,7 +1628,8 @@
         "Sonderbau",
         "Turmgebäude",
         "Hochbau",
-        "Wahrzeichen"
+        "Wahrzeichen",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1588,7 +1661,9 @@
         "Sonderbau",
         "Turmgebäude",
         "Hochbau",
-        "Wahrzeichen"
+        "Wahrzeichen",
+        "Schloss",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -1619,7 +1694,10 @@
         "Stadtgebäude",
         "Sonderbau",
         "Wolkenkratzer",
-        "Wohnen"
+        "Wohnen",
+        "Turm",
+        "Schloss",
+        "fünfstöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -2110,7 +2188,12 @@
         "Gras",
         "Rasen",
         "Grünfläche",
-        "Natur"
+        "Natur",
+        "grun",
+        "Blumen",
+        "frühling",
+        "rosa",
+        "pink"
       ],
       "status": "ready",
       "profile": null,
@@ -2172,7 +2255,8 @@
         "Untergrund",
         "Fläche",
         "Erdreich",
-        "Naturboden"
+        "Naturboden",
+        "beet"
       ],
       "status": "ready",
       "profile": null,
@@ -2203,7 +2287,9 @@
         "Fußweg",
         "Verbindung",
         "Straße",
-        "Strecke"
+        "Strecke",
+        "pfad",
+        "erde"
       ],
       "status": "ready",
       "profile": null,
@@ -2234,7 +2320,9 @@
         "Fußweg",
         "Verbindung",
         "Straße",
-        "Strecke"
+        "Strecke",
+        "pfad",
+        "sand"
       ],
       "status": "ready",
       "profile": null,
@@ -2265,7 +2353,9 @@
         "Fußweg",
         "Verbindung",
         "Straße",
-        "Strecke"
+        "Strecke",
+        "pfad",
+        "erde"
       ],
       "status": "ready",
       "profile": null,
@@ -2296,7 +2386,9 @@
         "Fußweg",
         "Verbindung",
         "Straße",
-        "Strecke"
+        "Strecke",
+        "pfad",
+        "sand"
       ],
       "status": "ready",
       "profile": null,
@@ -2327,7 +2419,10 @@
         "Fußweg",
         "Verbindung",
         "Straße",
-        "Strecke"
+        "Strecke",
+        "pfad",
+        "kreuzung",
+        "erde"
       ],
       "status": "ready",
       "profile": null,
@@ -2358,7 +2453,10 @@
         "Fußweg",
         "Verbindung",
         "Straße",
-        "Strecke"
+        "Strecke",
+        "pfad",
+        "kreuzung",
+        "sand"
       ],
       "status": "ready",
       "profile": null,
@@ -2390,7 +2488,9 @@
         "Verbindung",
         "Ecke",
         "Kurve",
-        "Wegstück"
+        "Wegstück",
+        "pfad",
+        "erde"
       ],
       "status": "ready",
       "profile": null,
@@ -2422,7 +2522,9 @@
         "Verbindung",
         "Ecke",
         "Kurve",
-        "Wegstück"
+        "Wegstück",
+        "pfad",
+        "sand"
       ],
       "status": "ready",
       "profile": null,
@@ -2454,7 +2556,9 @@
         "Verbindung",
         "Ecke",
         "Kurve",
-        "Wegstück"
+        "Wegstück",
+        "pfad",
+        "erde"
       ],
       "status": "ready",
       "profile": null,
@@ -2486,7 +2590,9 @@
         "Verbindung",
         "Ecke",
         "Kurve",
-        "Wegstück"
+        "Wegstück",
+        "pfad",
+        "sand"
       ],
       "status": "ready",
       "profile": null,
@@ -2518,7 +2624,9 @@
         "Verbindung",
         "Ecke",
         "Kurve",
-        "Wegstück"
+        "Wegstück",
+        "pfad",
+        "erde"
       ],
       "status": "ready",
       "profile": null,
@@ -2550,7 +2658,9 @@
         "Verbindung",
         "Ecke",
         "Kurve",
-        "Wegstück"
+        "Wegstück",
+        "pfad",
+        "sand"
       ],
       "status": "ready",
       "profile": null,
@@ -2582,7 +2692,9 @@
         "Verbindung",
         "Ecke",
         "Kurve",
-        "Wegstück"
+        "Wegstück",
+        "pfad",
+        "erde"
       ],
       "status": "ready",
       "profile": null,
@@ -2614,7 +2726,9 @@
         "Verbindung",
         "Ecke",
         "Kurve",
-        "Wegstück"
+        "Wegstück",
+        "pfad",
+        "sand"
       ],
       "status": "ready",
       "profile": null,
@@ -2646,7 +2760,9 @@
         "Verbindung",
         "Ende",
         "Wegende",
-        "Abschluss"
+        "Abschluss",
+        "pfad",
+        "erde"
       ],
       "status": "ready",
       "profile": null,
@@ -2678,7 +2794,9 @@
         "Verbindung",
         "Ende",
         "Wegende",
-        "Abschluss"
+        "Abschluss",
+        "pfad",
+        "sand"
       ],
       "status": "ready",
       "profile": null,
@@ -2710,7 +2828,9 @@
         "Verbindung",
         "Ende",
         "Wegende",
-        "Abschluss"
+        "Abschluss",
+        "pfad",
+        "erde"
       ],
       "status": "ready",
       "profile": null,
@@ -2742,7 +2862,9 @@
         "Verbindung",
         "Ende",
         "Wegende",
-        "Abschluss"
+        "Abschluss",
+        "pfad",
+        "sand"
       ],
       "status": "ready",
       "profile": null,
@@ -2774,7 +2896,9 @@
         "Verbindung",
         "Ende",
         "Wegende",
-        "Abschluss"
+        "Abschluss",
+        "pfad",
+        "erde"
       ],
       "status": "ready",
       "profile": null,
@@ -2806,7 +2930,9 @@
         "Verbindung",
         "Ende",
         "Wegende",
-        "Abschluss"
+        "Abschluss",
+        "pfad",
+        "sand"
       ],
       "status": "ready",
       "profile": null,
@@ -2838,7 +2964,9 @@
         "Verbindung",
         "Ende",
         "Wegende",
-        "Abschluss"
+        "Abschluss",
+        "pfad",
+        "erde"
       ],
       "status": "ready",
       "profile": null,
@@ -2870,7 +2998,9 @@
         "Verbindung",
         "Ende",
         "Wegende",
-        "Abschluss"
+        "Abschluss",
+        "pfad",
+        "sand"
       ],
       "status": "ready",
       "profile": null,
@@ -2932,7 +3062,8 @@
         "Belag",
         "Untergrund",
         "Straße",
-        "Fahrbahn"
+        "Fahrbahn",
+        "Parkplatz"
       ],
       "status": "ready",
       "profile": null,
@@ -2963,7 +3094,8 @@
         "Belag",
         "Untergrund",
         "Straße",
-        "Fahrbahn"
+        "Fahrbahn",
+        "Parkplatz"
       ],
       "status": "ready",
       "profile": null,
@@ -2994,7 +3126,8 @@
         "Belag",
         "Untergrund",
         "Straße",
-        "Fahrbahn"
+        "Fahrbahn",
+        "Parkplatz"
       ],
       "status": "ready",
       "profile": null,
@@ -3025,7 +3158,8 @@
         "Belag",
         "Untergrund",
         "Straße",
-        "Fahrbahn"
+        "Fahrbahn",
+        "Parkplatz"
       ],
       "status": "ready",
       "profile": null,
@@ -3056,7 +3190,8 @@
         "Belag",
         "Untergrund",
         "Straße",
-        "Fahrbahn"
+        "Fahrbahn",
+        "Parkplatz"
       ],
       "status": "ready",
       "profile": null,
@@ -3088,7 +3223,9 @@
         "Untergrund",
         "Ziegel",
         "Mauerwerk",
-        "Haus"
+        "Haus",
+        "rot",
+        "pflasterstein"
       ],
       "status": "ready",
       "profile": null,
@@ -3120,7 +3257,15 @@
         "Untergrund",
         "Ziegel",
         "Mauerwerk",
-        "Haus"
+        "Haus",
+        "Kacheln",
+        "Fliesen",
+        "Platten",
+        "rot",
+        "Fläche",
+        "pflasterstein",
+        "lila",
+        "grau"
       ],
       "status": "ready",
       "profile": null,
@@ -3149,7 +3294,12 @@
         "Pflaster",
         "Belag",
         "Untergrund",
-        "Fläche"
+        "Fläche",
+        "Backstein",
+        "Ziegel",
+        "Mauerwerk",
+        "pflasterstein",
+        "rot"
       ],
       "status": "ready",
       "profile": null,
@@ -3178,7 +3328,9 @@
         "Pflaster",
         "Belag",
         "Untergrund",
-        "Fläche"
+        "Fläche",
+        "Busch",
+        "Zaun"
       ],
       "status": "ready",
       "profile": null,
@@ -3207,7 +3359,12 @@
         "Pflaster",
         "Belag",
         "Untergrund",
-        "Fläche"
+        "Fläche",
+        "Einfahrt",
+        "Auffahrt",
+        "Ausfahrt",
+        "Weg",
+        "Straße"
       ],
       "status": "ready",
       "profile": null,
@@ -3236,7 +3393,12 @@
         "Pflaster",
         "Belag",
         "Untergrund",
-        "Fläche"
+        "Fläche",
+        "Einfahrt",
+        "Auffahrt",
+        "Ausfahrt",
+        "Weg",
+        "Straße"
       ],
       "status": "ready",
       "profile": null,
@@ -3267,7 +3429,10 @@
         "Belag",
         "Untergrund",
         "Fliesen",
-        "Platten"
+        "Platten",
+        "grau",
+        "karo",
+        "kariert"
       ],
       "status": "ready",
       "profile": null,
@@ -3298,7 +3463,11 @@
         "Belag",
         "Untergrund",
         "Fliesen",
-        "Platten"
+        "Platten",
+        "kaputt",
+        "grau",
+        "karo",
+        "kariert"
       ],
       "status": "ready",
       "profile": null,
@@ -3329,7 +3498,15 @@
         "Belag",
         "Untergrund",
         "Fliesen",
-        "Platten"
+        "Platten",
+        "rot",
+        "Fläche",
+        "Backstein",
+        "Ziegel",
+        "Mauerwerk",
+        "pflasterstein",
+        "karo",
+        "kariert"
       ],
       "status": "ready",
       "profile": null,
@@ -3360,7 +3537,11 @@
         "Belag",
         "Untergrund",
         "Fliesen",
-        "Platten"
+        "Platten",
+        "grau",
+        "weis",
+        "karo",
+        "kariert"
       ],
       "status": "ready",
       "profile": null,
@@ -3391,7 +3572,17 @@
         "Belag",
         "Untergrund",
         "Fliesen",
-        "Platten"
+        "Platten",
+        "rot",
+        "Fläche",
+        "Backstein",
+        "Ziegel",
+        "Mauerwerk",
+        "pflasterstein",
+        "lila",
+        "grau",
+        "karo",
+        "kariert"
       ],
       "status": "ready",
       "profile": null,
@@ -3422,7 +3613,17 @@
         "Belag",
         "Untergrund",
         "Fliesen",
-        "Platten"
+        "Platten",
+        "rot",
+        "Fläche",
+        "Backstein",
+        "Ziegel",
+        "Mauerwerk",
+        "pflasterstein",
+        "lila",
+        "grau",
+        "karo",
+        "kariert"
       ],
       "status": "ready",
       "profile": null,
@@ -3452,7 +3653,9 @@
         "Bruecke",
         "Übergang",
         "Überführung",
-        "Rampe"
+        "Rampe",
+        "fußgängerbrücke",
+        "skatepark"
       ],
       "status": "ready",
       "profile": null,
@@ -3501,7 +3704,9 @@
         "Bruecke",
         "Übergang",
         "Überführung",
-        "Rampe"
+        "Rampe",
+        "fußgängerbrücke",
+        "skatepark"
       ],
       "status": "ready",
       "profile": null,
@@ -3550,7 +3755,9 @@
         "Bruecke",
         "Übergang",
         "Überführung",
-        "Rampe"
+        "Rampe",
+        "fußgängerbrücke",
+        "skatepark"
       ],
       "status": "ready",
       "profile": null,
@@ -3599,7 +3806,9 @@
         "Bruecke",
         "Übergang",
         "Überführung",
-        "Rampe"
+        "Rampe",
+        "fußgängerbrücke",
+        "skatepark"
       ],
       "status": "ready",
       "profile": null,
@@ -3648,7 +3857,10 @@
         "Bruecke",
         "Übergang",
         "Überführung",
-        "hoch"
+        "hoch",
+        "fußgängerbrücke",
+        "oben",
+        "skatepark"
       ],
       "status": "ready",
       "profile": null,
@@ -3688,7 +3900,9 @@
         "Bruecke",
         "Übergang",
         "Überführung",
-        "hoch"
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
       ],
       "status": "ready",
       "profile": null,
@@ -3728,7 +3942,9 @@
         "Bruecke",
         "Übergang",
         "Überführung",
-        "hoch"
+        "hoch",
+        "Oben",
+        "fußgängerbrücke"
       ],
       "status": "ready",
       "profile": null,
@@ -3768,7 +3984,9 @@
         "Bruecke",
         "Übergang",
         "Überführung",
-        "hoch"
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
       ],
       "status": "ready",
       "profile": null,
@@ -3808,7 +4026,9 @@
         "Bruecke",
         "Übergang",
         "Überführung",
-        "hoch"
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
       ],
       "status": "ready",
       "profile": null,
@@ -3848,7 +4068,8 @@
         "Bruecke",
         "Übergang",
         "Überführung",
-        "Fahrbahn"
+        "Fahrbahn",
+        "fußgängerbrücke"
       ],
       "status": "ready",
       "profile": null,
@@ -3897,7 +4118,9 @@
         "Bruecke",
         "Übergang",
         "Überführung",
-        "Fahrbahn"
+        "Fahrbahn",
+        "fußgängerbrücke",
+        "fussgängerbrücke"
       ],
       "status": "ready",
       "profile": null,
@@ -3946,7 +4169,9 @@
         "Bruecke",
         "Übergang",
         "Überführung",
-        "Fahrbahn"
+        "Fahrbahn",
+        "fußgängerbrücke",
+        "fussgängerbrücke"
       ],
       "status": "ready",
       "profile": null,
@@ -3995,7 +4220,9 @@
         "Bruecke",
         "Übergang",
         "Überführung",
-        "Fahrbahn"
+        "Fahrbahn",
+        "fußgängerbrücke",
+        "fussgängerbrücke"
       ],
       "status": "ready",
       "profile": null,
@@ -4046,7 +4273,8 @@
         "Garten",
         "Dekoration",
         "Bäume",
-        "Gehölz"
+        "Gehölz",
+        "sommer"
       ],
       "status": "ready",
       "profile": null,
@@ -4078,7 +4306,12 @@
         "Garten",
         "Dekoration",
         "Bäume",
-        "Gehölz"
+        "Gehölz",
+        "frühling",
+        "pink",
+        "rosa",
+        "kirschblüte",
+        "hanami"
       ],
       "status": "ready",
       "profile": null,
@@ -4110,7 +4343,11 @@
         "Garten",
         "Dekoration",
         "Bäume",
-        "Gehölz"
+        "Gehölz",
+        "Herbst",
+        "kahl",
+        "kaputt",
+        "wald"
       ],
       "status": "ready",
       "profile": null,
@@ -4142,7 +4379,10 @@
         "Garten",
         "Dekoration",
         "Bäume",
-        "Gehölz"
+        "Gehölz",
+        "Herbst",
+        "laub. blätter",
+        "wald"
       ],
       "status": "ready",
       "profile": null,
@@ -4174,7 +4414,10 @@
         "Garten",
         "Dekoration",
         "Bäume",
-        "Gehölz"
+        "Gehölz",
+        "Tanne",
+        "tannenbaum",
+        "wald"
       ],
       "status": "ready",
       "profile": null,
@@ -4206,7 +4449,10 @@
         "Garten",
         "Dekoration",
         "Bäume",
-        "Gehölz"
+        "Gehölz",
+        "Tanne",
+        "tannenbaum",
+        "wald"
       ],
       "status": "ready",
       "profile": null,
@@ -4238,7 +4484,10 @@
         "Garten",
         "Dekoration",
         "Bäume",
-        "Gehölz"
+        "Gehölz",
+        "Tanne",
+        "tannenbaum",
+        "wald"
       ],
       "status": "ready",
       "profile": null,
@@ -4270,7 +4519,10 @@
         "Garten",
         "Dekoration",
         "Bäume",
-        "Gehölz"
+        "Gehölz",
+        "tanne",
+        "tannenbaum",
+        "wald"
       ],
       "status": "ready",
       "profile": null,
@@ -4302,7 +4554,10 @@
         "Garten",
         "Dekoration",
         "Bäume",
-        "Gehölz"
+        "Gehölz",
+        "Tanne",
+        "tannenbaum",
+        "wald"
       ],
       "status": "ready",
       "profile": null,
@@ -4334,7 +4589,8 @@
         "Garten",
         "Dekoration",
         "Strauch",
-        "Gehölz"
+        "Gehölz",
+        "wald"
       ],
       "status": "ready",
       "profile": null,
@@ -4366,7 +4622,11 @@
         "Garten",
         "Dekoration",
         "Strauch",
-        "Gehölz"
+        "Gehölz",
+        "pink",
+        "rosa",
+        "frühling",
+        "wald"
       ],
       "status": "ready",
       "profile": null,
@@ -4398,7 +4658,14 @@
         "Garten",
         "Dekoration",
         "Strauch",
-        "Gehölz"
+        "Gehölz",
+        "Unkraut",
+        "Kräuter",
+        "Dornen",
+        "Disteln",
+        "kraut",
+        "gras",
+        "wald"
       ],
       "status": "ready",
       "profile": null,
@@ -4430,7 +4697,14 @@
         "Garten",
         "Dekoration",
         "Strauch",
-        "Gehölz"
+        "Gehölz",
+        "Unkraut",
+        "Kräuter",
+        "Dornen",
+        "Disteln",
+        "kraut",
+        "gras",
+        "wald"
       ],
       "status": "ready",
       "profile": null,
@@ -4462,7 +4736,10 @@
         "Garten",
         "Dekoration",
         "Blumen",
-        "Blüte"
+        "Blüte",
+        "Weiß",
+        "Weiss",
+        "frühling"
       ],
       "status": "ready",
       "profile": null,
@@ -4494,7 +4771,10 @@
         "Garten",
         "Dekoration",
         "Blumen",
-        "Blüte"
+        "Blüte",
+        "Pink",
+        "Rosa",
+        "frühling"
       ],
       "status": "ready",
       "profile": null,
@@ -4526,7 +4806,9 @@
         "Garten",
         "Dekoration",
         "Blumen",
-        "Blüte"
+        "Blüte",
+        "Blau",
+        "sommer"
       ],
       "status": "ready",
       "profile": null,
@@ -4558,7 +4840,9 @@
         "Garten",
         "Dekoration",
         "Blumen",
-        "Blüte"
+        "Blüte",
+        "rot",
+        "sommer"
       ],
       "status": "ready",
       "profile": null,
@@ -4590,7 +4874,10 @@
         "Garten",
         "Dekoration",
         "Blumen",
-        "Blüte"
+        "Blüte",
+        "frühling",
+        "sommer",
+        "tulpen"
       ],
       "status": "ready",
       "profile": null,
@@ -4622,7 +4909,10 @@
         "Garten",
         "Dekoration",
         "Blumen",
-        "Blüte"
+        "Blüte",
+        "frühling",
+        "sommer",
+        "lavendel"
       ],
       "status": "ready",
       "profile": null,
@@ -4656,7 +4946,9 @@
         "Garten",
         "Dekoration",
         "Blumen",
-        "Blüte"
+        "Blüte",
+        "frühling",
+        "sommer"
       ],
       "status": "ready",
       "profile": null,
@@ -4688,7 +4980,9 @@
         "Garten",
         "Dekoration",
         "Blumen",
-        "Blüte"
+        "Blüte",
+        "frühling",
+        "sommer"
       ],
       "status": "ready",
       "profile": null,
@@ -4720,7 +5014,8 @@
         "Garten",
         "Dekoration",
         "Blätter",
-        "Herbst"
+        "Herbst",
+        "rot"
       ],
       "status": "ready",
       "profile": null,
@@ -5042,7 +5337,8 @@
         "Tiere",
         "Stadtleben",
         "Nager",
-        "Nagetier"
+        "Nagetier",
+        "Maus"
       ],
       "status": "ready",
       "profile": null,
@@ -5082,7 +5378,10 @@
         "Tiere",
         "Stadtleben",
         "Nager",
-        "Nagetier"
+        "Nagetier",
+        "Maus",
+        "Müll",
+        "mülleimer"
       ],
       "status": "ready",
       "profile": null,
@@ -5152,7 +5451,10 @@
         "Tiere",
         "Stadtleben",
         "Vogel",
-        "Stadttaube"
+        "Stadttaube",
+        "müll",
+        "mülleimer",
+        "bird"
       ],
       "status": "ready",
       "profile": null,
@@ -5182,7 +5484,10 @@
         "Tiere",
         "Stadtleben",
         "Vogel",
-        "Stadttaube"
+        "Stadttaube",
+        "vögel",
+        "tauben",
+        "bird"
       ],
       "status": "ready",
       "profile": null,
@@ -5220,7 +5525,13 @@
         "Tier",
         "Tiere",
         "Stadtleben",
-        "Vogel"
+        "Vogel",
+        "spatz",
+        "amsel",
+        "drossel",
+        "fink",
+        "vögel",
+        "bird"
       ],
       "status": "ready",
       "profile": null,
@@ -5260,7 +5571,9 @@
         "Tiere",
         "Stadtleben",
         "Vogel",
-        "Stadttaube"
+        "Stadttaube",
+        "ente",
+        "bird"
       ],
       "status": "ready",
       "profile": null,
@@ -5302,7 +5615,13 @@
         "Stadtleben",
         "Vogel",
         "Bird",
-        "Taube"
+        "Taube",
+        "fliegen",
+        "animiert",
+        "bewegung",
+        "blau",
+        "vogl",
+        "mogl"
       ],
       "status": "ready",
       "profile": null,
@@ -5376,7 +5695,9 @@
         "Müll",
         "Abfall",
         "Mülleimer",
-        "Abfalleimer"
+        "Abfalleimer",
+        "tonne",
+        "mülltonne"
       ],
       "status": "ready",
       "profile": null,
@@ -5442,7 +5763,11 @@
         "Infrastruktur",
         "Straßenausstattung",
         "Dekoration",
-        "Stadtleben"
+        "Stadtleben",
+        "laterne",
+        "lampe",
+        "licht",
+        "straßenlaterne"
       ],
       "status": "ready",
       "profile": null,
@@ -5473,7 +5798,11 @@
         "Infrastruktur",
         "Straßenausstattung",
         "Dekoration",
-        "Stadtleben"
+        "Stadtleben",
+        "laterne",
+        "lampe",
+        "licht",
+        "straßenlaterne"
       ],
       "status": "ready",
       "profile": null,
@@ -5504,7 +5833,8 @@
         "Infrastruktur",
         "Straßenausstattung",
         "Dekoration",
-        "Stadtleben"
+        "Stadtleben",
+        "Poller"
       ],
       "status": "ready",
       "profile": null,
@@ -5545,7 +5875,9 @@
         "Infrastruktur",
         "Straßenausstattung",
         "Dekoration",
-        "Stadtleben"
+        "Stadtleben",
+        "kaputt",
+        "Poller"
       ],
       "status": "ready",
       "profile": null,
@@ -5586,7 +5918,12 @@
         "Infrastruktur",
         "Straßenausstattung",
         "Dekoration",
-        "Stadtleben"
+        "Stadtleben",
+        "gullideckel",
+        "gulli",
+        "kanal",
+        "kanalisation",
+        "abfluss"
       ],
       "status": "ready",
       "profile": null,
@@ -5629,7 +5966,11 @@
         "Verkehrsschild",
         "Wegweiser",
         "Beschilderung",
-        "Haltestelle"
+        "Haltestelle",
+        "ÖPNV",
+        "bus",
+        "bushaltestelle",
+        "zob"
       ],
       "status": "ready",
       "profile": null,
@@ -5672,7 +6013,9 @@
         "Verkehrsschild",
         "Wegweiser",
         "Beschilderung",
-        "Antifa"
+        "Antifa",
+        "anarchie",
+        "rot"
       ],
       "status": "ready",
       "profile": null,
@@ -5757,7 +6100,8 @@
         "Straßenausstattung",
         "Rad",
         "Velo",
-        "Fahrzeug"
+        "Fahrzeug",
+        "rot"
       ],
       "status": "ready",
       "profile": null,
@@ -5910,7 +6254,8 @@
         "Velo",
         "Fahrzeug",
         "Barrikade",
-        "Fahrradständer"
+        "Fahrradständer",
+        "skatepark"
       ],
       "status": "ready",
       "profile": null,
@@ -5950,7 +6295,9 @@
         "Stadtdeko",
         "Stadtleben",
         "Drehflügel",
-        "Kunst"
+        "Kunst",
+        "rot",
+        "installation"
       ],
       "status": "ready",
       "profile": null,
@@ -5982,7 +6329,8 @@
         "Verkaufsautomat",
         "Kiosk",
         "Stadtmöbel",
-        "Vending Machine"
+        "Vending Machine",
+        "blau"
       ],
       "status": "ready",
       "profile": null,
@@ -6102,7 +6450,8 @@
         "Freizeit",
         "Spielen",
         "Spielgerät",
-        "Tor"
+        "Tor",
+        "Fussball"
       ],
       "status": "ready",
       "profile": null,
@@ -6132,7 +6481,8 @@
         "Freizeit",
         "Spielen",
         "Spielgerät",
-        "Tor"
+        "Tor",
+        "Fussball"
       ],
       "status": "ready",
       "profile": null,
@@ -6203,7 +6553,8 @@
         "Freizeit",
         "Spielen",
         "Spielgerät",
-        "Schaukel"
+        "Schaukel",
+        "rot"
       ],
       "status": "ready",
       "profile": null,
@@ -6233,7 +6584,8 @@
         "Freizeit",
         "Spielen",
         "Spielgerät",
-        "Rutsche"
+        "Rutsche",
+        "rot"
       ],
       "status": "ready",
       "profile": null,
@@ -6263,7 +6615,8 @@
         "Freizeit",
         "Spielen",
         "Spielgerät",
-        "Rutsche"
+        "Rutsche",
+        "blau"
       ],
       "status": "ready",
       "profile": null,
@@ -6404,7 +6757,8 @@
         "Bahn",
         "Zug",
         "Eisenbahn",
-        "Schiene"
+        "Schiene",
+        "Ecke"
       ],
       "status": "ready",
       "profile": null,
@@ -6444,7 +6798,8 @@
         "Bahn",
         "Zug",
         "Eisenbahn",
-        "Schiene"
+        "Schiene",
+        "Ecke"
       ],
       "status": "ready",
       "profile": null,
@@ -6484,7 +6839,8 @@
         "Bahn",
         "Zug",
         "Eisenbahn",
-        "Schiene"
+        "Schiene",
+        "Ecke"
       ],
       "status": "ready",
       "profile": null,
@@ -6524,7 +6880,8 @@
         "Bahn",
         "Zug",
         "Eisenbahn",
-        "Schiene"
+        "Schiene",
+        "Ecke"
       ],
       "status": "ready",
       "profile": null,
@@ -6566,7 +6923,10 @@
         "Zug",
         "Eisenbahn",
         "Schiene",
-        "Brücke"
+        "Brücke",
+        "auffahrt",
+        "übergang",
+        "rampe"
       ],
       "status": "ready",
       "profile": null,
@@ -6617,7 +6977,11 @@
         "Zug",
         "Eisenbahn",
         "Schiene",
-        "Brücke"
+        "Brücke",
+        "oben",
+        "hohe",
+        "hoch",
+        "überführung"
       ],
       "status": "ready",
       "profile": null,
@@ -6668,7 +7032,10 @@
         "Zug",
         "Eisenbahn",
         "Schiene",
-        "Brücke"
+        "Brücke",
+        "auffahrt",
+        "übergang",
+        "rampe"
       ],
       "status": "ready",
       "profile": null,
@@ -6719,7 +7086,11 @@
         "Zug",
         "Eisenbahn",
         "Schiene",
-        "Brücke"
+        "Brücke",
+        "oben",
+        "hohe",
+        "hoch",
+        "überführung"
       ],
       "status": "ready",
       "profile": null,
@@ -6770,7 +7141,11 @@
         "Zug",
         "Eisenbahn",
         "Schiene",
-        "Brücke"
+        "Brücke",
+        "oben",
+        "hohe",
+        "hoch",
+        "überführung"
       ],
       "status": "ready",
       "profile": null,
@@ -6821,7 +7196,10 @@
         "Zug",
         "Eisenbahn",
         "Schiene",
-        "Brücke"
+        "Brücke",
+        "auffahrt",
+        "übergang",
+        "rampe"
       ],
       "status": "ready",
       "profile": null,
@@ -6853,7 +7231,10 @@
         "Zug",
         "Eisenbahn",
         "Schiene",
-        "Brücke"
+        "Brücke",
+        "auffahrt",
+        "übergang",
+        "rampe"
       ],
       "status": "ready",
       "profile": null,
@@ -6981,7 +7362,11 @@
         "Eisenbahn",
         "Schiene",
         "Kreuzung",
-        "Gleis"
+        "Gleis",
+        "Laden",
+        "Geschäft",
+        "Schaufenster",
+        "hbf"
       ],
       "status": "ready",
       "profile": null,
@@ -7013,7 +7398,11 @@
         "Eisenbahn",
         "Schiene",
         "Kreuzung",
-        "Gleis"
+        "Gleis",
+        "Laden",
+        "Geschäft",
+        "Schaufenster",
+        "hbf"
       ],
       "status": "ready",
       "profile": null,
@@ -7045,7 +7434,14 @@
         "Eisenbahn",
         "Schiene",
         "Kreuzung",
-        "Gleis"
+        "Gleis",
+        "Laden",
+        "Geschäft",
+        "Schaufenster",
+        "haus",
+        "büro",
+        "gebäude",
+        "hbf"
       ],
       "status": "ready",
       "profile": null,
@@ -7075,7 +7471,9 @@
         "Verkehr",
         "Straße",
         "PKW",
-        "Kraftfahrzeug"
+        "Kraftfahrzeug",
+        "pink",
+        "rosa"
       ],
       "status": "ready",
       "profile": null,
@@ -7115,7 +7513,8 @@
         "Verkehr",
         "Straße",
         "PKW",
-        "Kraftfahrzeug"
+        "Kraftfahrzeug",
+        "blau"
       ],
       "status": "ready",
       "profile": null,
@@ -7155,7 +7554,8 @@
         "Verkehr",
         "Straße",
         "PKW",
-        "Kraftfahrzeug"
+        "Kraftfahrzeug",
+        "rot"
       ],
       "status": "ready",
       "profile": null,
@@ -7195,7 +7595,8 @@
         "Verkehr",
         "Straße",
         "PKW",
-        "Kraftfahrzeug"
+        "Kraftfahrzeug",
+        "gelb"
       ],
       "status": "ready",
       "profile": null,
@@ -7235,7 +7636,8 @@
         "Verkehr",
         "Straße",
         "PKW",
-        "Kraftfahrzeug"
+        "Kraftfahrzeug",
+        "grün"
       ],
       "status": "ready",
       "profile": null,
@@ -7275,7 +7677,11 @@
         "Verkehr",
         "Straße",
         "ÖPNV",
-        "Linienbus"
+        "Linienbus",
+        "rot",
+        "svhi",
+        "stadtbus",
+        "stadtverkehr"
       ],
       "status": "ready",
       "profile": null,
@@ -7315,7 +7721,11 @@
         "Verkehr",
         "Straße",
         "ÖPNV",
-        "Linienbus"
+        "Linienbus",
+        "frün",
+        "rvhi",
+        "regionalverkehr",
+        "dorfbus"
       ],
       "status": "ready",
       "profile": null,
@@ -7354,7 +7764,8 @@
         "Grenze",
         "Begrenzung",
         "Gartenzaun",
-        "Grundstück"
+        "Grundstück",
+        "gitter"
       ],
       "status": "ready",
       "profile": null,
@@ -7383,7 +7794,8 @@
         "Grenze",
         "Begrenzung",
         "Gartenzaun",
-        "Grundstück"
+        "Grundstück",
+        "gitter"
       ],
       "status": "ready",
       "profile": null,
@@ -7412,7 +7824,8 @@
         "Grenze",
         "Begrenzung",
         "Gartenzaun",
-        "Grundstück"
+        "Grundstück",
+        "gitter"
       ],
       "status": "ready",
       "profile": null,
@@ -7441,7 +7854,8 @@
         "Grenze",
         "Begrenzung",
         "Gartenzaun",
-        "Grundstück"
+        "Grundstück",
+        "gitter"
       ],
       "status": "ready",
       "profile": null,
@@ -7470,7 +7884,9 @@
         "Grenze",
         "Begrenzung",
         "Gartenzaun",
-        "Grundstück"
+        "Grundstück",
+        "ecke",
+        "gitter"
       ],
       "status": "ready",
       "profile": null,
@@ -7499,7 +7915,9 @@
         "Grenze",
         "Begrenzung",
         "Gartenzaun",
-        "Grundstück"
+        "Grundstück",
+        "ecke",
+        "gitter"
       ],
       "status": "ready",
       "profile": null,
@@ -7528,7 +7946,9 @@
         "Grenze",
         "Begrenzung",
         "Gartenzaun",
-        "Grundstück"
+        "Grundstück",
+        "ecke",
+        "gitter"
       ],
       "status": "ready",
       "profile": null,
@@ -7557,7 +7977,9 @@
         "Grenze",
         "Begrenzung",
         "Gartenzaun",
-        "Grundstück"
+        "Grundstück",
+        "ecke",
+        "gitter"
       ],
       "status": "ready",
       "profile": null,
@@ -7586,7 +8008,9 @@
         "Grenze",
         "Begrenzung",
         "Gartenzaun",
-        "Grundstück"
+        "Grundstück",
+        "tor",
+        "gitter"
       ],
       "status": "ready",
       "profile": null,
@@ -7615,7 +8039,9 @@
         "Grenze",
         "Begrenzung",
         "Gartenzaun",
-        "Grundstück"
+        "Grundstück",
+        "tor",
+        "gitter"
       ],
       "status": "ready",
       "profile": null,
@@ -8444,7 +8870,9 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "Gotik",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -8476,7 +8904,9 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "Gotik",
+        "vierstöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -8508,7 +8938,9 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "weiss",
+        "vierstöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -8539,7 +8971,9 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "Gotik",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -8570,7 +9004,8 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -8601,7 +9036,11 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "Graffiti",
+        "Geisterhaus",
+        "kaputt",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -8632,7 +9071,9 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "Historismus",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -8663,7 +9104,9 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "Historismus",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -8694,7 +9137,9 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "gelb",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -8725,7 +9170,10 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "rosa",
+        "pink",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -8872,7 +9320,13 @@
         "Gebäude",
         "Wohnen",
         "Wohnhaus",
-        "Stadt"
+        "Stadt",
+        "rot",
+        "Backstein",
+        "Altbau",
+        "Gründerzeit",
+        "Gotik",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -8903,7 +9357,9 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "braun",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -8934,7 +9390,9 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "braun",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -8965,7 +9423,9 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "braun",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -8996,7 +9456,9 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "braun",
+        "zweistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -9027,7 +9489,13 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "braun",
+        "Graffiti",
+        "Geisterhaus",
+        "kaputt",
+        "chrom",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -9058,7 +9526,9 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "braun",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -9089,7 +9559,9 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "orange",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -9120,7 +9592,9 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "gelb",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -9151,7 +9625,10 @@
         "Stadt",
         "historisch",
         "Altbau",
-        "Gründerzeit"
+        "Gründerzeit",
+        "rosa",
+        "pink",
+        "dreistöckig"
       ],
       "status": "ready",
       "profile": null,
@@ -9175,7 +9652,19 @@
       "type": "FULL",
       "w": 1,
       "h": 1,
-      "tags": [],
+      "tags": [
+        "Haus",
+        "Grunderzeit",
+        "Altbau",
+        "Backstein",
+        "rot",
+        "Gebäude",
+        "Wohnen",
+        "Wohnhaus",
+        "Stadt",
+        "Gotik",
+        "dreistöckig"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
@@ -9196,7 +9685,17 @@
       "type": "UNDER",
       "w": 3,
       "h": 2,
-      "tags": [],
+      "tags": [
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Station",
+        "Haltestelle",
+        "HBF",
+        "Hauptbahnhof"
+      ],
       "status": "ready",
       "profile": null,
       "rules": {
