@@ -12,7 +12,12 @@ function buildTileDefs(manifest) {
 
   for (const category of data.categories) {
     if (!category.tiles.length) continue;
-    const indices = category.tiles.map((tile) => defs.push({ ...tile, category: category.name, url: url(imagePath(tile, category.name)) + (tile.hash ? `?v=${tile.hash}` : "") }) - 1);
+    const indices = [];
+    for (const tile of category.tiles) {
+      const index = defs.push({ ...tile, category: category.name, url: url(imagePath(tile, category.name)) + (tile.hash ? `?v=${tile.hash}` : "") }) - 1;
+      if (!tile.hiddenInPalette) indices.push(index);
+    }
+    if (!indices.length) continue;
     const firstTile = defs[indices[0]];
     categories.push({
       name: category.name, indices,
@@ -125,7 +130,7 @@ function buildTileDefs(manifest) {
         fixed: /^(fix|fest|ja|1|true)$/i.test(row.fix || ""),
       })).filter((row) => Number.isInteger(row.gx) && Number.isInteger(row.gy));
     } else console.warn(`Startlayout nicht geladen: HTTP ${layoutResponse.status}`);
-    const families = TileCatalogModel.resolveFamilies(catalog, valid, issues);
+    const families = TileCatalogModel.resolveFamilies(catalog, valid.filter((tile) => !tile.hiddenInPalette), issues);
     return { root: "Katalog", meadow, categories, layout, issues, profiles: catalog.profiles, families };
   }
 

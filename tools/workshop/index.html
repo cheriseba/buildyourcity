@@ -38,13 +38,18 @@
           <option value="new">Neu</option><option value="changed">Bild geändert</option>
           <option value="moved">Verschoben</option><option value="ambiguous">Mehrdeutig</option>
           <option value="missing">Fehlend</option><option value="invalid">Ungültig</option>
-          <option value="variants">Mitglied einer Variantenfamilie</option>
+          <option value="variants">Mitglied einer Variantenfamilie</option><option value="hidden">Im Spiel ausgeblendet</option>
         </select>
       </div>
+      <div class="view-controls" role="group" aria-label="Ansicht">
+        <label>Ansicht <select id="view-mode"><option value="details">Detaillierte Liste</option><option value="tiles">Kachelansicht</option><option value="compact">Kompakte Liste</option></select></label>
+        <label id="zoom-control" hidden>Kachelgröße <input id="tile-zoom" type="range" min="48" max="144" step="8" value="80"></label>
+      </div>
       <p id="count"></p>
-      <p class="hint">Pfeil ▾ / ▸: Kategorie oder Familie einklappen / ausklappen. Bild anklicken: vergrößerte Vorschau. Am ↕-Griff ziehen: Kategorien, ganze Familien oder einzelne Objekte verschieben. Innerhalb einer Farbfamilie: Objektgriff auf ein anderes Mitglied ziehen, um die Farben umzusortieren. Auf einem Kategoriekopf ablegen: Kategorie wechseln. Auf einem Familienkopf ablegen: davor einsortieren.</p>
-      <div class="bulk"><button id="new-folder">UI-Ordner anlegen</button><select id="bulk-profile" aria-label="Vorlage für Auswahl"></select><button id="apply-profile">Vorlage auf Auswahl anwenden</button></div>
-      <div class="table-wrap"><table><thead><tr><th><input type="checkbox" id="select-all" aria-label="Sichtbare Tiles auswählen"></th><th>Bild</th><th>Tile / Kategorie</th><th>Status</th></tr></thead><tbody id="rows"></tbody></table></div>
+      <p class="hint">Kategorien und Familien lassen sich einklappen. In der Kachel- und kompakten Ansicht kannst du ein Tile in eine Kategorie oder auf eine Familie ziehen. Mit dem Familiengriff verschiebst du die ganze Familie. In der detaillierten Liste öffnet ein Bild die Vorschau; ein Familienkopf sortiert davor ein.</p>
+      <div class="bulk"><button id="new-folder">UI-Ordner anlegen</button><label class="select-visible"><input type="checkbox" id="select-all"> Sichtbare Tiles auswählen</label><select id="bulk-profile" aria-label="Vorlage für Auswahl"></select><button id="apply-profile">Vorlage auf Auswahl anwenden</button></div>
+      <div class="table-wrap"><table><thead><tr><th>Auswahl</th><th>Bild</th><th>Tile / Kategorie</th><th>Status</th></tr></thead><tbody id="rows"></tbody></table></div>
+      <div id="overview" class="overview" hidden></div>
     </section>
     <aside id="detail"><p>Wähle ein Tile aus, um seine Eigenschaften zu bearbeiten.</p></aside>
   </main>

@@ -11,6 +11,7 @@
   --glass: rgba(255, 255, 255, 0.08);
   --glass-border: rgba(255, 255, 255, 0.16);
   --text: #eef1ff;
+  --copy-font: ui-monospace, "Courier New", monospace;
   --accent: #7c9cff;
   --accent-2: #b46cff;
   --radius: 16px;
@@ -38,11 +39,18 @@ body {
   overscroll-behavior: none;
   background: var(--bg, linear-gradient(135deg, var(--bg-1), var(--bg-2)));
   color: var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--copy-font);
 }
 
 body {
   height: 100dvh;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
 /* Handy Portrait / Tablet Portrait: Dock unten */
@@ -342,7 +350,7 @@ body {
   border: 2px solid rgba(238, 241, 255, 0.45);
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
-  font: 2.4rem/1 system-ui, sans-serif;
+  font: 2.4rem/1 var(--copy-font);
 }
 
 .tutorial-visual img {
@@ -366,7 +374,7 @@ body {
   border: 1px solid #eef1ff;
   background: #30386d;
   color: #fff;
-  font: 700 0.7rem/1 system-ui, sans-serif;
+  font: 700 0.7rem/1 var(--copy-font);
 }
 
 .tutorial-visual-key:nth-child(1) { grid-column: 2; grid-row: 1; }
@@ -410,7 +418,7 @@ body {
 .tutorial-copy {
   margin: 5px 0 0;
   color: #eef1ff;
-  font-family: ui-monospace, "Courier New", monospace;
+  font-family: var(--copy-font);
   font-size: 0.95rem;
   line-height: 1.4;
 }
@@ -1189,7 +1197,9 @@ body {
 @media (max-width: 700px), (max-height: 520px) {
   .tutorial-card {
     top: calc(72px + var(--safe-t));
-    width: min(440px, calc(100vw - 24px - var(--safe-l) - var(--safe-r)));
+    left: calc(12px + var(--safe-l));
+    transform: none;
+    width: min(440px, calc(100vw - var(--btn) - 44px - var(--safe-l) - var(--safe-r)));
     min-height: 0;
     max-height: min(190px, calc(100dvh - var(--dock-h) - 70px - var(--safe-t) - var(--safe-b)));
     padding: 8px;
@@ -1234,6 +1244,8 @@ body {
 @media (orientation: landscape) and (max-height: 480px) {
   .tutorial-card {
     top: calc(12px + var(--safe-t));
+    left: 50%;
+    transform: translateX(-50%);
     width: min(440px, calc(100vw - 4 * var(--btn) - 80px - 2 * max(var(--safe-l), var(--safe-r))));
     max-height: calc(100dvh - var(--dock-h) - var(--tile) - 90px - var(--safe-t) - var(--safe-b));
   }
@@ -1329,7 +1341,7 @@ body {
 
 .character-controls-label {
   color: var(--px-light);
-  font: 600 0.9rem/1.5 system-ui, sans-serif;
+  font: 600 0.9rem/1.5 var(--copy-font);
 }
 
 .character-controls-keys {
@@ -1703,7 +1715,7 @@ body {
 
 .notice-text {
   margin: 0;
-  font: 400 1rem/1.6 system-ui, sans-serif;
+  font: 400 1rem/1.6 var(--copy-font);
   text-align: center;
 }
 
@@ -1985,6 +1997,6 @@ body {
   border-radius: .6rem;
   background: #2f2517;
   color: #fff;
-  font: 14px/1.5 sans-serif;
+  font: 14px/1.5 var(--copy-font);
 }
 .catalog-warnings summary { cursor: pointer; font-weight: bold; }

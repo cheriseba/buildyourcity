@@ -82,6 +82,22 @@ test("Bildpfad, UI-Ordner und separates Ordner-Icon sind entkoppelt", () => {
   assert.equal(result.tileCategories[0].iconUrl, "Katalog/Icons/Natur.png");
 });
 
+test("Ausgeblendete Tiles bleiben fuer Spielstaende verfuegbar, aber fehlen in der Palette", () => {
+  const { run } = createGame();
+  const result = run(`buildTileDefs({
+    root: "Katalog", meadow: { file: "Wiese.png" },
+    categories: [
+      { name: "Haus", tiles: [{ id: "hidden", file: "alt.png", hiddenInPalette: true }, { id: "visible", file: "neu.png" }] },
+      { name: "Leer", tiles: [{ id: "only-hidden", file: "weg.png", hiddenInPalette: true }] }
+    ]
+  })`);
+  assert.deepEqual(Array.from(result.tileDefs, (tile) => tile.id), [undefined, "hidden", "visible", "only-hidden"]);
+  assert.deepEqual(Array.from(result.tileCategories, (category) => category.name), ["Haus"]);
+  assert.deepEqual(Array.from(result.tileCategories[0].indices), [2]);
+  run("board.place(board.get(20, 20), house, tileDefs[4], meadow); save.enable(); save.save(); tileDefs[4].hiddenInPalette = true; board.clearAll(meadow); save.load()");
+  assert.equal(run("board.get(20, 20).owner.image"), run("house"));
+});
+
 test("Platzierung, zwei Overlays, Undo, Gebaeude und feste Felder", () => {
   const { run } = createGame();
   run(`

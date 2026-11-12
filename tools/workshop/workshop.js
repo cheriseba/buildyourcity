@@ -5,6 +5,7 @@ let dirty = false;
 let checked = new Set();
 let reloadArmed = false;
 let dragged = null;
+let viewMode = "details";
 let collapseByDefault = false;
 const collapsedSections = new Map();
 const collapseButtons = new Map();
@@ -210,9 +211,9 @@ function errors(tile) {
 function status(entry) {
   const tile = tileFor(entry);
   if (entry.status !== "unchanged") return entry.status;
-  return tile && errors(tile).length ? "invalid" : "ready";
+  return tile && errors(tile).length ? "invalid" : tile?.hiddenInPalette ? "hidden" : "ready";
 }
-const labels = { ready: "Fertig", invalid: "Regeln prüfen", changed: "Bild geändert", moved: "Verschoben", new: "Neu", missing: "Datei fehlt", ambiguous: "Mehrdeutig" };
+const labels = { ready: "Fertig", hidden: "Ausgeblendet", invalid: "Regeln prüfen", changed: "Bild geändert", moved: "Verschoben", new: "Neu", missing: "Datei fehlt", ambiguous: "Mehrdeutig" };
 
 async function load(force = false) {
   if (!force && dirty) throw new Error("Ungespeicherte Änderungen; zum Verwerfen erneut auf Neu einlesen klicken.");
@@ -239,7 +240,8 @@ function entries() {
     const family = familyOf(tile);
     const matches = `${name} ${tile ? `${tile.name} ${tile.category} ${tile.tags.join(" ")}` : ""} ${family ? `${family.name} ${family.variants.find((variant) => variant.tileId === tile.id).label}` : ""}`.toLocaleLowerCase().includes(text);
     const type = status(entry);
-    return matches && (filter === "all" || (filter === "variants" ? Boolean(family) : filter === "attention" ? type !== "ready" : filter === type));
+    return matches && (filter === "all" || (filter === "variants" ? Boolean(family) :
+      filter === "hidden" ? Boolean(tile?.hiddenInPalette) : filter === "attention" ? !["ready", "hidden"].includes(type) : filter === type));
   });
 }
 function expandedEntries() {
@@ -266,6 +268,16 @@ function moveFamilyVariant(family, from, to) {
   const [variant] = family.variants.splice(from, 1);
   family.variants.splice(to, 0, variant);
   changed();
+}
+function detachVariant(tile) {
+  const family = familyOf(tile);
+  if (!family) return;
+  family.variants = family.variants.filter((variant) => variant.tileId !== tile.id);
+  if (family.variants.length < 2) {
+    state.catalog.families = state.catalog.families.filter((item) => item !== family);
+  } else if (family.defaultTileId === tile.id) {
+    family.defaultTileId = family.variants[0].tileId;
+  }
 }
 function dragHandle(label, payload, row) {
   const handle = button("↕", () => {});
@@ -319,8 +331,40 @@ function dropTile(folderName, beforeId = null) {
     tile = tileFor(entry);
   }
   if (!tile) return;
+  const family = familyOf(tile);
+  if (dragged.type === "tile" && family &&
+      (tile.category !== folderName || !beforeId || !family.variants.some((variant) => variant.tileId === beforeId))) detachVariant(tile);
   placeTile(tile, folderName, beforeId, dragged.type === "family");
   dragged = null;
+  render();
+}
+function dropOnFamily(family) {
+  if (!dragged) return;
+  if (dragged.type === "family") {
+    const first = state.catalog.tiles.find((tile) => tile.id === family.variants[0].tileId);
+    if (first) dropTile(family.category, first.id);
+    return;
+  }
+  if (dragged.type !== "tile") return;
+  const entry = state.inventory.find((item) =>
+    dragged.id ? item.previous?.id === dragged.id : item.current?.path === dragged.path);
+  const tile = entry && tileFor(entry);
+  if (!tile) return message("Bitte das Tile zuerst anlegen, bevor es einer Familie zugeordnet wird.", true);
+  if (familyOf(tile) === family) return;
+  if (!tile.category && tile.file.toLocaleLowerCase() === "wiese.png") return;
+  const source = familyOf(tile);
+  const variant = source?.variants.find((item) => item.tileId === tile.id) || { tileId: tile.id, label: tile.name, color: null };
+  const trial = { ...family, variants: [...family.variants, variant] };
+  const families = state.catalog.families.filter((item) => item !== source)
+    .map((item) => item === family ? trial : item);
+  const known = new Map(state.catalog.tiles.map((item) => [item.id, item === tile ? { ...item, category: family.category } : item]));
+  const problems = TileCatalogModel.validateFamily(trial, families, known, state.catalog.profiles);
+  if (problems.length) return message(`Zuordnung nicht möglich: ${problems.join(", ")}`, true);
+  detachVariant(tile);
+  placeTile(tile, family.category);
+  family.variants.push(variant);
+  dragged = null;
+  changed();
   render();
 }
 function handleFolderDrop(event, folderName) {
@@ -341,30 +385,33 @@ function handleFolderDrop(event, folderName) {
   }
   dropTile(folderName);
 }
+function sortedFolderEntries(visible, folderName) {
+  const entryOrder = (entry) => {
+    const tile = tileFor(entry);
+    const family = familyOf(tile);
+    return family ? Math.min(...family.variants.map((variant) => state.catalog.tiles.find((item) => item.id === variant.tileId)?.order ?? Number.MAX_SAFE_INTEGER))
+      : tile?.order ?? Number.MAX_SAFE_INTEGER;
+  };
+  return visible.filter((entry) => folderForEntry(entry) === folderName)
+    .sort((a, b) => {
+      const aTile = tileFor(a); const bTile = tileFor(b);
+      const family = familyOf(aTile);
+      const variantOrder = family && family === familyOf(bTile)
+        ? family.variants.findIndex((variant) => variant.tileId === aTile.id) - family.variants.findIndex((variant) => variant.tileId === bTile.id) : 0;
+      return entryOrder(a) - entryOrder(b) || variantOrder ||
+        (a.current || a.previous).path.localeCompare((b.current || b.previous).path, "de");
+    });
+}
 function renderList() {
   const rows = $("#rows");
   rows.replaceChildren();
   collapseButtons.clear();
   const visible = entries();
-  $("#count").textContent = `${expandedEntries().length} Objekte sichtbar · ${visible.length} gefiltert · ${state.inventory.filter((entry) => status(entry) !== "ready").length} mit Prüfbedarf`;
+  $("#count").textContent = `${expandedEntries().length} Objekte sichtbar · ${visible.length} gefiltert · ${state.inventory.filter((entry) => !["ready", "hidden"].includes(status(entry))).length} mit Prüfbedarf`;
   folderOrder();
   const groups = [...state.catalog.folders, { name: "", order: Number.MAX_SAFE_INTEGER, icon: null }];
   for (const folder of groups) {
-    const entryOrder = (entry) => {
-      const tile = tileFor(entry);
-      const family = familyOf(tile);
-      return family ? Math.min(...family.variants.map((variant) => state.catalog.tiles.find((item) => item.id === variant.tileId)?.order ?? Number.MAX_SAFE_INTEGER))
-        : tile?.order ?? Number.MAX_SAFE_INTEGER;
-    };
-    const folderEntries = visible.filter((entry) => folderForEntry(entry) === folder.name)
-      .sort((a, b) => {
-        const aTile = tileFor(a); const bTile = tileFor(b);
-        const family = familyOf(aTile);
-        const variantOrder = family && family === familyOf(bTile)
-          ? family.variants.findIndex((variant) => variant.tileId === aTile.id) - family.variants.findIndex((variant) => variant.tileId === bTile.id) : 0;
-        return entryOrder(a) - entryOrder(b) || variantOrder ||
-          (a.current || a.previous).path.localeCompare((b.current || b.previous).path, "de");
-      });
+    const folderEntries = sortedFolderEntries(visible, folder.name);
     if (!folderEntries.length) continue;
     const heading = node("tr", undefined, "folder-row");
     heading.dataset.folder = folder.name;
@@ -500,6 +547,99 @@ function renderList() {
   select.replaceChildren(option("", "Regelvorlage wählen"));
   state.catalog.profiles.forEach((profile) => select.append(option(profile.id, profile.name)));
   select.value = previous;
+  if (viewMode !== "details") renderOverview(visible, groups);
+}
+function renderOverview(visible, groups) {
+  const overview = $("#overview");
+  overview.replaceChildren();
+  overview.className = `overview ${viewMode}`;
+  for (const folder of groups) {
+    const folderEntries = sortedFolderEntries(visible, folder.name);
+    if (!folder.name && !folderEntries.length) continue;
+    const box = node("section", undefined, "overview-folder");
+    let hash = 0;
+    for (const char of folder.name) hash = (hash * 31 + char.charCodeAt(0)) % 360;
+    box.style.setProperty("--folder-hue", hash);
+    const header = node("div", undefined, "overview-heading");
+    header.append(collapseToggle(`folder:${folder.name}`, folder.name || "Ohne UI-Ordner"));
+    if (folder.name) header.append(dragHandle(`${folder.name} verschieben`, { type: "folder", name: folder.name }, box));
+    header.append(node("strong", folder.name || "Ohne UI-Ordner"), node("span", `${folderEntries.length} Tiles`, "sub"));
+    box.append(header);
+    box.addEventListener("dragover", (event) => { event.preventDefault(); box.classList.add("drop-target"); });
+    box.addEventListener("dragleave", () => box.classList.remove("drop-target"));
+    box.addEventListener("drop", (event) => {
+      event.stopPropagation();
+      box.classList.remove("drop-target");
+      handleFolderDrop(event, folder.name);
+    });
+    const content = node("div", undefined, "overview-items");
+    if (!isCollapsed(`folder:${folder.name}`)) {
+      const families = new Map();
+      for (const entry of folderEntries) {
+        const tile = tileFor(entry);
+        const family = familyOf(tile);
+        let parent = content;
+        if (family) {
+          if (!families.has(family.id)) {
+            const familyBox = node("section", undefined, "overview-family");
+            const familyHeader = node("div", undefined, "overview-heading");
+            familyHeader.append(collapseToggle(`family:${family.id}`, `Familie ${family.name}`),
+              dragHandle(`Familie ${family.name} verschieben`, { type: "family", id: tile.id }, familyBox),
+              node("strong", family.name));
+            const familyItems = node("div", undefined, "overview-items");
+            familyBox.append(familyHeader, familyItems);
+            familyBox.addEventListener("dragover", (event) => { event.preventDefault(); event.stopPropagation(); familyBox.classList.add("drop-target"); });
+            familyBox.addEventListener("dragleave", () => familyBox.classList.remove("drop-target"));
+            familyBox.addEventListener("drop", (event) => {
+              event.preventDefault(); event.stopPropagation(); familyBox.classList.remove("drop-target"); dropOnFamily(family);
+            });
+            content.append(familyBox);
+            families.set(family.id, familyItems);
+          }
+          if (isCollapsed(`family:${family.id}`)) continue;
+          parent = families.get(family.id);
+        }
+        const item = node("div", undefined, `overview-item${entry === selected ? " active" : ""}${tile?.hiddenInPalette ? " hidden-tile" : ""}`);
+        const name = tile ? tile.name : (entry.current || entry.previous).path;
+        const card = button("", () => { selected = entry; render(); });
+        card.className = "overview-card";
+        card.title = `${name} · ${labels[status(entry)]}`;
+        card.setAttribute("aria-label", card.title);
+        if (entry.current) {
+          const image = document.createElement("img");
+          image.src = assetUrl(entry.current.path);
+          image.alt = "";
+          image.draggable = false;
+          card.append(image);
+        } else card.append(node("span", "?", "missing-image"));
+        if (tile || entry.status === "new") {
+          card.draggable = true;
+          card.addEventListener("dragstart", (event) => {
+            event.stopPropagation();
+            dragged = { type: "tile", id: tile?.id, path: entry.current?.path };
+            event.dataTransfer.effectAllowed = "move";
+            event.dataTransfer.setData("text/plain", `tile:${dragged.id || dragged.path}`);
+            item.classList.add("dragging");
+          });
+          card.addEventListener("dragend", () => { dragged = null; item.classList.remove("dragging"); });
+        }
+        item.addEventListener("dragover", (event) => { event.preventDefault(); event.stopPropagation(); item.classList.add("drop-target"); });
+        item.addEventListener("dragleave", () => item.classList.remove("drop-target"));
+        item.addEventListener("drop", (event) => {
+          event.preventDefault(); event.stopPropagation(); item.classList.remove("drop-target");
+          if (tile) dropTile(tile.category, tile.id);
+        });
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox"; checkbox.disabled = !tile; checkbox.checked = Boolean(tile && checked.has(tile.id));
+        checkbox.setAttribute("aria-label", `${name} auswählen`);
+        checkbox.addEventListener("change", () => { if (checkbox.checked) checked.add(tile.id); else checked.delete(tile.id); });
+        item.append(card, checkbox);
+        parent.append(item);
+      }
+    }
+    box.append(content);
+    overview.append(box);
+  }
 }
 function field(container, title, element) {
   const label = node("label", title);
@@ -617,6 +757,18 @@ function renderFamilyEditor(container, tile) {
     preview.append(image, node("span", `${family.name} · ${family.variants.length} Farben`));
   }
   section.append(preview);
+  const compactControls = node("div", undefined, "actions family-compact-controls");
+  compactControls.append(
+    button("Varianten kompakt", () => {
+      family.variants.forEach((variant) => collapsedSections.set(`detail:variant:${variant.tileId}`, true));
+      renderDetail();
+    }),
+    button("Varianten ausklappen", () => {
+      family.variants.forEach((variant) => collapsedSections.set(`detail:variant:${variant.tileId}`, false));
+      renderDetail();
+    })
+  );
+  section.append(compactControls);
   family.variants.forEach((variant, index) => {
     const member = state.catalog.tiles.find((item) => item.id === variant.tileId);
     const row = collapsibleSection(`detail:variant:${variant.tileId}`,
@@ -627,7 +779,26 @@ function renderFamilyEditor(container, tile) {
       row.append(image);
     }
     field(row, "Farbname", input(variant.label, (value) => { variant.label = value; }));
-    field(row, "Kennfarbe (optional, z. B. #cc6677)", input(variant.color || "", (value) => { variant.color = value.trim() || null; }));
+    const colorControls = node("div", undefined, "color-controls");
+    const colorText = input(variant.color || "", (value) => { variant.color = value.trim() || null; });
+    colorText.setAttribute("aria-label", `${variant.label}: Kennfarbe als Hexwert`);
+    const colorPicker = document.createElement("input");
+    colorPicker.type = "color";
+    colorPicker.value = /^#[0-9a-f]{6}$/i.test(variant.color || "") ? variant.color : "#000000";
+    colorPicker.setAttribute("aria-label", `${variant.label}: Kennfarbe auswählen`);
+    colorText.addEventListener("input", () => {
+      if (/^#[0-9a-f]{6}$/i.test(colorText.value)) colorPicker.value = colorText.value;
+    });
+    colorPicker.addEventListener("input", () => {
+      variant.color = colorPicker.value;
+      colorText.value = colorPicker.value;
+      changed(); renderList();
+    });
+    colorControls.append(colorText, colorPicker, button("Keine Farbe", () => {
+      variant.color = null; colorText.value = ""; colorPicker.value = "#000000";
+      changed(); renderList();
+    }));
+    field(row, "Kennfarbe (optional)", colorControls);
     const controls = node("div", undefined, "actions");
     for (const [direction, caption] of [[-1, "Nach vorn"], [1, "Nach hinten"]]) {
       const move = button(caption, () => {
@@ -680,7 +851,7 @@ function renderFamilyEditor(container, tile) {
     state.catalog.families = state.catalog.families.filter((item) => item !== family);
     changed(); render();
   }));
-  section.append(node("p", "Auflösen und Entfernen ändern nur die Palette. Die Tiles und ihre Regeln werden nicht gelöscht. Farbvarianten müssen gleiche Grundflächen, Typen und Regeln haben.", "hint"));
+  section.append(node("p", "Auflösen und Entfernen ändern nur die Palette. Die Tiles und ihre Regeln werden nicht gelöscht. Farbvarianten müssen gleiche Grundflächen und Typen haben.", "hint"));
   container.append(section);
 }
 
@@ -816,6 +987,16 @@ function renderDetail() {
   field(grid, "Breite in Zellen", input(tile.w, (value) => { tile.w = Number(value); }, "number"));
   field(grid, "Tiefe in Zellen", input(tile.h, (value) => { tile.h = Number(value); }, "number"));
   properties.append(grid);
+  if (tile.category) {
+    const visibility = document.createElement("input");
+    visibility.type = "checkbox";
+    visibility.checked = Boolean(tile.hiddenInPalette);
+    visibility.addEventListener("change", () => {
+      tile.hiddenInPalette = visibility.checked;
+      changed(); render();
+    });
+    field(properties, "Im Spiel ausblenden (bestehende Tiles bleiben erhalten)", visibility);
+  }
   field(properties, "Suchbegriffe (mit Komma trennen)", input(tile.tags.join(", "), (value) => { tile.tags = value.split(",").map((tag) => tag.trim()).filter(Boolean); }));
   renderFamilyEditor(form, tile);
   const placement = collapsibleSection("detail:placement", "Platzierungsregeln und Vorlagen");
@@ -983,6 +1164,16 @@ function render() { renderList(); renderDetail(); }
 
 $("#search").addEventListener("input", renderList);
 $("#filter").addEventListener("change", renderList);
+$("#view-mode").addEventListener("change", (event) => {
+  viewMode = event.target.value;
+  $(".table-wrap").hidden = viewMode !== "details";
+  $("#overview").hidden = viewMode === "details";
+  $("#zoom-control").hidden = viewMode === "details";
+  renderList();
+});
+$("#tile-zoom").addEventListener("input", (event) => {
+  $("#overview").style.setProperty("--tile-size", `${event.target.value}px`);
+});
 $("#collapse-all").addEventListener("click", () => setAllCollapsed(true));
 $("#expand-all").addEventListener("click", () => setAllCollapsed(false));
 $("#new-folder").addEventListener("click", () => {

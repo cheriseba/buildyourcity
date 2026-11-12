@@ -1,5 +1,6 @@
 // Bildversatz nach oben in px bei Hoehe 1 (auf der Bruecke); bei Bedarf anpassen
 const BRIDGE_HEIGHT = 24;
+const CHARACTER_ASSET_VERSION = Date.now();
 
 // Character-Klasse für den Character-Modus
 class GameCharacter {
@@ -23,7 +24,7 @@ class GameCharacter {
   // Preload Assets
   preloadAssets() {
     for (const [direction, file] of [["Front", "animiert_vorn.gif"], ["Back", "animiert_hinten.gif"]]) {
-      const path = `${this.characterPath}/${file}`;
+      const path = `${this.characterPath}/${file}?character-update=${CHARACTER_ASSET_VERSION}`;
       const animKey = `anim${direction}`;
       const idleKey = `idle${direction}`;
       this.images[animKey] = loadImage(path, (image) => {

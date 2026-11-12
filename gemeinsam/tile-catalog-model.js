@@ -49,6 +49,7 @@
       errors.push("Ungueltiger Asset-Pfad");
     }
     if (tile.order !== undefined && (!Number.isInteger(tile.order) || tile.order < 0)) errors.push("Ungueltige Tile-Reihenfolge");
+    if (tile.hiddenInPalette !== undefined && typeof tile.hiddenInPalette !== "boolean") errors.push("Ungueltige Sichtbarkeit");
     if (!["UNDER", "OVER", "FULL"].includes(tile.type)) errors.push("Ungueltiger Typ");
     if (!Number.isInteger(tile.w) || !Number.isInteger(tile.h) || tile.w < 1 || tile.h < 1 || tile.w > 64 || tile.h > 64) errors.push("Ungueltige Groesse");
     if (tile.type === "OVER" && tile.w * tile.h !== 1) errors.push("OVER muss 1x1 sein");

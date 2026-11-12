@@ -184,6 +184,37 @@ class ModeSwitch {
   }
 }
 
+function centeredCharacterPreview(image) {
+  const source = image.canvas;
+  const width = source.width;
+  const height = source.height;
+  const pixels = source.getContext("2d").getImageData(0, 0, width, height).data;
+  let left = width;
+  let right = -1;
+  let top = height;
+  let bottom = -1;
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      if (pixels[(y * width + x) * 4 + 3] === 0) continue;
+      left = Math.min(left, x);
+      right = Math.max(right, x);
+      top = Math.min(top, y);
+      bottom = Math.max(bottom, y);
+    }
+  }
+  if (right < 0) {
+    console.warn("Charaktervorschau enthält keine sichtbaren Pixel.");
+    return source.toDataURL();
+  }
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  canvas.getContext("2d").drawImage(source,
+    Math.round((width - 1 - left - right) / 2),
+    Math.round((height - 1 - top - bottom) / 2));
+  return canvas.toDataURL();
+}
+
 // "Choose your fighter": modaler Pixel-Dialog mit scrollbarer Charakterliste
 class CharacterSelectionBar {
   constructor(containerElement, characters = []) {
@@ -342,8 +373,14 @@ class CharacterSelectionBar {
     list.addEventListener("scroll", () => requestAnimationFrame(updateFocus), { passive: true });
     
     const scrollBy = (dir) => {
-      const step = (cards[0] ? cards[0].offsetWidth : 120) + 12;
-      list.scrollBy({ left: dir * step, behavior: "smooth" });
+      if (!cards.length) return;
+      const current = this.characters.indexOf(this.selectedCharacter);
+      const target = (current + dir + cards.length) % cards.length;
+      const listRect = list.getBoundingClientRect();
+      const cardRect = cards[target].getBoundingClientRect();
+      const left = list.scrollLeft + cardRect.left + cardRect.width / 2 - listRect.left - listRect.width / 2;
+      const wraps = (dir > 0 && current === cards.length - 1) || (dir < 0 && current === 0);
+      list.scrollTo({ left, behavior: wraps ? "instant" : "smooth" });
     };
     prev.addEventListener("click", () => scrollBy(-1));
     next.addEventListener("click", () => scrollBy(1));

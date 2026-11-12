@@ -108,7 +108,7 @@ test("tile-spezifische OVER-Sonderregeln ergänzen und entfernen Einträge einer
   assert.deepEqual(validateTile(ground, [profile], known), []);
 });
 
-test("Ein fehlerhaftes Tile wird uebersprungen, gueltige Tiles bleiben verfuegbar", async () => {
+test("Fehlerhafte Tiles werden uebersprungen; ausgeblendete Tiles bleiben fuer Spielstaende verfuegbar", async () => {
   const bytes = Buffer.from("test image");
   const hash = crypto.createHash("sha256").update(bytes).digest("hex");
   const tile = (id, category, file) => ({
@@ -116,7 +116,9 @@ test("Ein fehlerhaftes Tile wird uebersprungen, gueltige Tiles bleiben verfuegba
     type: "UNDER", w: 1, h: 1, tags: [], status: "ready", profile: null,
     rules: { half: null, allowed: null, walk: null },
   });
-  const data = { version: 1, profiles: [], folders: [{ name: "A", order: 0, icon: "Icons/a.png" }], tiles: [tile("meadow", "", "meadow.png"), tile("broken", "A", "bad.png"), tile("ok", "A", "ok.png")] };
+  const hidden = { ...tile("hidden", "A", "hidden.png"), hiddenInPalette: true };
+  const data = { version: 1, profiles: [], folders: [{ name: "A", order: 0, icon: "Icons/a.png" }], tiles: [tile("meadow", "", "meadow.png"), tile("broken", "A", "bad.png"), tile("ok", "A", "ok.png"), hidden],
+    families: [{ id: "family", name: "Familie", category: "A", defaultTileId: "hidden", variants: [{ tileId: "ok", label: "OK", color: null }, { tileId: "hidden", label: "Versteckt", color: null }] }] };
   data.tiles[1].type = "bad";
   data.tiles[2].assetPath = "flat/ok.png";
   const checkedPaths = [];
@@ -140,8 +142,12 @@ test("Ein fehlerhaftes Tile wird uebersprungen, gueltige Tiles bleiben verfuegba
   assert.equal(result.root, "Katalog");
   assert.equal(result.issues.length, 1);
   assert.match(result.issues[0], /bad.png.*Ungueltiger Typ/);
-  assert.equal(result.categories[0].tiles.length, 1);
+  assert.equal(result.categories[0].tiles.length, 2);
   assert.equal(result.categories[0].tiles[0].id, "ok");
   assert.equal(result.categories[0].icon, "Icons/a.png");
+  assert.deepEqual(result.families[0].variants.map((variant) => variant.tileId), ["ok"]);
+  const definitions = testContext.buildTileDefs(result);
+  assert.ok(definitions.tileDefs.some((def) => def.id === "hidden"));
+  assert.deepEqual(Array.from(definitions.tileCategories[0].indices, (index) => definitions.tileDefs[index].id), ["ok"]);
   assert.ok(checkedPaths.includes("Katalog/flat/ok.png?tile-check=1"));
 });

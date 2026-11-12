@@ -21,14 +21,18 @@ self.addEventListener("fetch", (event) => {
   const isP5 = url.hostname === "cdnjs.cloudflare.com";
   if (!sameOrigin && !isP5) return;
 
-  const isCharacterAsset = url.pathname.startsWith("/character/");
+  const characterPath = new URL("character/", self.registration.scope).pathname;
+  const isCharacterAsset = sameOrigin && url.pathname.startsWith(characterPath);
   const networkFirst = request.mode === "navigate" || /\.(html|csv|json)$/i.test(url.pathname) || url.searchParams.has("tile-check") || isCharacterAsset;
 
   event.respondWith(
     caches.open(CACHE).then(async (cache) => {
-      const cached = await cache.match(request);
+      const cacheUrl = new URL(request.url);
+      if (isCharacterAsset) cacheUrl.searchParams.delete("character-update");
+      const cacheKey = isCharacterAsset ? cacheUrl.href : request;
+      const cached = await cache.match(cacheKey);
       const fetchAndStore = fetch(request, isCharacterAsset ? { cache: "no-cache" } : undefined).then((response) => {
-        if (response.ok) cache.put(request, response.clone());
+        if (response.ok) cache.put(cacheKey, response.clone());
         return response;
       });
 

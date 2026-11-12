@@ -73,7 +73,7 @@ function gameSetup() {
     height: 200px;
     background: rgba(0,0,0,0.8);
     color: #0f0;
-    font-family: monospace;
+    font-family: var(--copy-font);
     font-size: 11px;
     padding: 10px;
     border: 1px solid #0f0;
@@ -853,7 +853,7 @@ function createTilePalette() {
 
     const hits = tileDefs
       .map((def, index) => ({ def, index }))
-      .filter(({ def, index }) => index !== MEADOW_TILE_INDEX && terms.every((term) => normalize(`${def.name} ${def.category} ${(def.tags || []).join(" ")} ${tileVariants.searchText(index)}`).includes(term)));
+      .filter(({ def, index }) => index !== MEADOW_TILE_INDEX && !def.hiddenInPalette && terms.every((term) => normalize(`${def.name} ${def.category} ${(def.tags || []).join(" ")} ${tileVariants.searchText(index)}`).includes(term)));
 
     if (hits.length === 0) {
       const empty = document.createElement("span");
@@ -1089,7 +1089,7 @@ function disableBuildMode() {
 function showCharacterSelection() {
   const characters = Array.from(characterManager.characters, ([name, character]) => ({
     name,
-    previewImage: character.images.idleFront ? character.images.idleFront.canvas.toDataURL() : null
+    previewImage: character.images.idleFront ? centeredCharacterPreview(character.images.idleFront) : null
   }));
   
   const mainElement = document.querySelector("main.app");
@@ -1499,7 +1499,7 @@ async function startGame() {
     showCatalogWarnings([`Spielstart fehlgeschlagen: ${error.message}`]);
     document.body.insertAdjacentHTML(
       "beforeend",
-      '<p style="position:fixed;inset:0;margin:0;padding:24px;background:#222;color:#fff;font:16px sans-serif;z-index:99">Das Spiel konnte nicht gestartet werden. Bitte versuche es später erneut.</p>'
+      '<p style="position:fixed;inset:0;margin:0;padding:24px;background:#222;color:#fff;font:16px var(--copy-font);z-index:99">Das Spiel konnte nicht gestartet werden. Bitte versuche es später erneut.</p>'
     );
     return;
   }

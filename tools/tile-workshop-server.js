@@ -64,6 +64,8 @@ async function handle(req, res) {
           typeof tile.category !== "string" || typeof tile.file !== "string" || !tile.file ||
           /[\\/]/.test(tile.file) || (tile.category && !folderNames.has(tile.category)) ||
           (tile.order !== undefined && (!Number.isInteger(tile.order) || tile.order < 0)) ||
+          (tile.hiddenInPalette !== undefined && typeof tile.hiddenInPalette !== "boolean") ||
+          (tile.category === "" && tile.hiddenInPalette === true) ||
           (tile.assetPath !== undefined && typeof tile.assetPath !== "string")) {
         return respond(res, 400, { error: "Ungueltige Tile-Metadaten" });
       }

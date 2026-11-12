@@ -44,7 +44,12 @@ Desktop- oder Startbildschirm-Icon angelegt wird, haengt vom Browser ab.
 Charakterordner heissen fortlaufend `character/char_1`, `char_2` usw. und
 enthalten `animiert_vorn.gif` und `animiert_hinten.gif`. Das jeweils erste
 GIF-Bild dient als Standbild; das vordere Standbild auch als Auswahlvorschau.
+Fuer die Auswahl werden dessen sichtbare Pixel zentriert, ohne Bildgroesse
+oder Darstellung des Charakters im Spiel zu veraendern.
 Die Charaktererkennung endet beim ersten fehlenden `animiert_vorn.gif`.
+Charakterbilder erhalten bei jedem Seitenaufruf eine neue Cache-Version. Der
+Service Worker aktualisiert sie aus dem Netz und speichert sie ohne diese
+Version, damit ein vorhandenes Bild bei Netzfehlern weiter nutzbar bleibt.
 
 Die Dateien sind klassische Skripte und werden in der Reihenfolge in
 `index.html` geladen. Es bestehen noch globale Abhaengigkeiten; insbesondere
@@ -300,6 +305,19 @@ die Dateien mit den im Katalog gespeicherten SHA-256-Pruefsummen:
   Mit Checkboxen und **Vorlage auf Auswahl anwenden**
   koennen mehrere Tiles gleichzeitig zugeordnet werden. Unterschiedliche Typen
   koennen eine Vorlage ungueltig machen; die Pruefung zeigt dies an.
+- **Im Spiel ausblenden** entfernt ein Tile einschliesslich seiner Farbvariante
+  aus Palette und Suche, nicht aber aus dem Katalog oder bestehenden
+  Spielstaenden. Es kann jederzeit wieder eingeblendet werden. Die Wiese
+  bleibt immer verfuegbar. Das dauerhafte Loeschen von Bilddateien wird
+  nicht angeboten.
+- Neben der detaillierten Liste gibt es eine zoombare Kachelansicht mit
+  farbigen Kategorien und Familien sowie eine kompakte Liste mit eingerueckten
+  Bildern. Suche, Statusfilter und Auswahl gelten fuer alle Ansichten.
+  In den bildlichen Ansichten verschiebt Ziehen eines Bilds ein einzelnes
+  Tile; beim Wechsel der Kategorie loest es sich aus seiner Familie. Ziehen
+  auf eine Familienbox ordnet es bei passendem Typ und Grundflaeche zu.
+  Der Familiengriff verschiebt weiterhin die ganze Familie. Bleibt nach dem
+  Herausloesen nur ein Mitglied uebrig, wird die Gruppierung aufgeloest.
 - Die Suchbegriffe enthalten vorhandene CSV-Tags sowie aus Tile-Namen und
   Ordnern ergaenzte deutsche Synonyme. Sie koennen pro Tile weiter bearbeitet
   werden.
@@ -335,7 +353,9 @@ In der Werkstatt im Tile-Detailbereich **Variantenfamilie** verwenden:
   kompatible Tiles hinzufuegen. Alternativ ein Tile einer bestehenden Familie
   im gleichen UI-Ordner zuordnen.
 - Familienname, Standardvariante, Farbnamen, Kennfarben und Reihenfolge
-  bearbeiten. Die Vorschau zeigt den Standard-Paletteneintrag; im Spiel
+  bearbeiten. Kennfarben koennen per Farbfeld oder Hexwert gesetzt und
+  wieder entfernt werden; die Varianteneigenschaften lassen sich gemeinsam
+  kompakt einklappen. Die Vorschau zeigt den Standard-Paletteneintrag; im Spiel
   uebersteuert die zuletzt gewaehlte Farbe diesen Standard.
 - Die Uebersicht zeigt eine Familienzeile und eingerueckte Mitglieder. Der
   Statusfilter kann auf Familienmitglieder eingeschraenkt werden.
@@ -351,7 +371,7 @@ In der Werkstatt im Tile-Detailbereich **Variantenfamilie** verwenden:
   Gruppierung, keine Tiles oder Regeln. Eine speicherbare Familie braucht
   mindestens zwei Mitglieder. Wird ihr letztes Mitglied entfernt, wird
   auch die leere Familie entfernt.
-- Verschieben eines Mitglieds in einen anderen UI-Ordner verschiebt die
+- Der Familiengriff und die UI-Ordner-Auswahl im Detail verschieben die
   gesamte Familie. Die einzelnen Dateipfade bleiben erhalten.
 
 Die gemeinsame Pruefung in

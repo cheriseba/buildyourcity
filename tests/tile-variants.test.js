@@ -116,6 +116,18 @@ test("Fehlendes Standardbild laesst Geschwister nutzbar; eine einzelne verbleibe
   assert.deepEqual(Model.resolveFamilies(catalog, [], issues), []);
 });
 
+test("Ausgeblendete Familienvarianten werden nicht mehr angeboten", () => {
+  const game = fixture();
+  game.tiles[0].hiddenInPalette = true;
+  const issues = [];
+  const families = Model.resolveFamilies(game.catalog, game.tiles.filter((tile) => !tile.hiddenInPalette), issues);
+  const selection = new TileVariants({ definitions: game.tiles, families, storage: { getItem: () => null } });
+  assert.equal(families[0].defaultTileId, "yellow");
+  assert.deepEqual(families[0].variants.map((variant) => variant.tileId), ["yellow", "red"]);
+  assert.deepEqual(selection.collapse([1, 2]), [1]);
+  assert.deepEqual(issues, []);
+});
+
 test("Grundflaechen, Kategorien und Typen muessen passen, Lauf- und Platzierungsregeln duerfen abweichen", () => {
   for (const change of [
     (tile) => { tile.w = 2; },

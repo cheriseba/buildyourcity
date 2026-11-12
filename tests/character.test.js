@@ -4,11 +4,12 @@ const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
 
-function createCharacter() {
+function createCharacter(version = 123) {
   const requests = [];
   const errors = [];
   const context = vm.createContext({
     console: { error: (...args) => errors.push(args) },
+    Date: { now: () => version },
     loadImage(url, onLoad, onError) {
       const image = {
         width: 23, height: 24, frame: 2,
@@ -28,8 +29,8 @@ function createCharacter() {
 test("Standbilder werden aus dem ersten GIF-Frame beider Richtungen kopiert", () => {
   const { character, requests } = createCharacter();
   assert.deepEqual(requests.map((request) => request.url), [
-    "character/char_1/animiert_vorn.gif",
-    "character/char_1/animiert_hinten.gif",
+    "character/char_1/animiert_vorn.gif?character-update=123",
+    "character/char_1/animiert_hinten.gif?character-update=123",
   ]);
   for (const request of requests) request.onLoad(request.image);
 
@@ -43,6 +44,13 @@ test("Standbilder werden aus dem ersten GIF-Frame beider Richtungen kopiert", ()
     character.isMoving = true;
     assert.equal(character.getDisplayImage(), request.image);
   }
+});
+
+test("Ein neuer Seitenaufruf verwendet neue URLs fuer beide Charakterbilder", () => {
+  const first = createCharacter(123).requests;
+  const next = createCharacter(456).requests;
+  assert.notEqual(first[0].url, next[0].url);
+  assert.notEqual(first[1].url, next[1].url);
 });
 
 test("Fehlgeschlagene GIF-Ladung wird gemeldet und nicht als Bild verwendet", () => {

@@ -179,6 +179,88 @@ test("Verschieben einer Familie nimmt alle Mitglieder mit, aber keine anderen Ti
   assert.equal(yellow.order, 1);
 });
 
+test("Einzeln verschobene Familienmitglieder loesen sich; eine einzelne Restvariante bleibt keine Familie", () => {
+  const tile = {
+    id: "red", name: "Rot", category: "Haus", file: "rot.png",
+    hash: "a".repeat(64), legacyIds: [], tags: [], status: "ready",
+    type: "FULL", w: 1, h: 1, profile: null, rules: { half: null, allowed: null, walk: null },
+  };
+  const other = { ...tile, id: "yellow", file: "gelb.png", name: "Gelb" };
+  const family = {
+    id: "house", name: "Haus", category: "Haus", defaultTileId: tile.id,
+    variants: [tile, other].map((item) => ({ tileId: item.id, label: item.name, color: null })),
+  };
+  const workshop = createWorkshop(tile, [], [other], [family]);
+  workshop.run(`
+    state.inventory = state.catalog.tiles.map(tile => ({
+      status: "unchanged", previous: { id: tile.id, path: tile.file },
+      current: { path: tile.file, hash: tile.hash }
+    }));
+    dragged = { type: "tile", id: "red" };
+    dropTile("Neu");
+  `);
+  assert.equal(tile.category, "Neu");
+  assert.equal(other.category, "Haus");
+  assert.equal(workshop.run("state.catalog.families.length"), 0);
+  assert.equal(workshop.isDirty(), true);
+});
+
+test("Auf einer Familie abgelegte Tiles werden nur bei passendem Typ und Grundflaeche zugeordnet", () => {
+  const tile = {
+    id: "red", name: "Rot", category: "Haus", file: "rot.png",
+    hash: "a".repeat(64), legacyIds: [], tags: [], status: "ready",
+    type: "FULL", w: 1, h: 1, profile: null, rules: { half: null, allowed: null, walk: null },
+  };
+  const yellow = { ...tile, id: "yellow", file: "gelb.png", name: "Gelb" };
+  const other = { ...tile, id: "blue", file: "blau.png", name: "Blau", category: "Neu", w: 2 };
+  const family = {
+    id: "house", name: "Haus", category: "Haus", defaultTileId: tile.id,
+    variants: [tile, yellow].map((item) => ({ tileId: item.id, label: item.name, color: null })),
+  };
+  const workshop = createWorkshop(tile, [], [yellow, other], [family]);
+  workshop.run(`
+    state.inventory = state.catalog.tiles.map(tile => ({
+      status: "unchanged", previous: { id: tile.id, path: tile.file },
+      current: { path: tile.file, hash: tile.hash }
+    }));
+    dragged = { type: "tile", id: "blue" }; dropOnFamily(state.catalog.families[0]);
+  `);
+  assert.equal(other.category, "Neu");
+  assert.equal(family.variants.length, 2);
+  assert.match(workshop.run('document.querySelector("#message").textContent'), /Grundflaeche/);
+  other.w = 1;
+  workshop.run('dragged = { type: "tile", id: "blue" }; dropOnFamily(state.catalog.families[0])');
+  assert.equal(other.category, "Haus");
+  assert.deepEqual(family.variants.map((variant) => variant.tileId), ["red", "yellow", "blue"]);
+  assert.deepEqual(workshop.run("familyErrors(state.catalog.families[0])"), []);
+});
+
+test("Beim Wechsel zwischen Familien bleiben Farbname und Kennfarbe erhalten", () => {
+  const tile = {
+    id: "red", name: "Rot", category: "Haus", file: "rot.png",
+    hash: "a".repeat(64), legacyIds: [], tags: [], status: "ready",
+    type: "FULL", w: 1, h: 1, profile: null, rules: { half: null, allowed: null, walk: null },
+  };
+  const yellow = { ...tile, id: "yellow", file: "gelb.png", name: "Gelb" };
+  const blue = { ...tile, id: "blue", file: "blau.png", name: "Blau", category: "Neu" };
+  const green = { ...tile, id: "green", file: "gruen.png", name: "Grün", category: "Neu" };
+  const source = { id: "source", name: "Quelle", category: "Haus", defaultTileId: "red",
+    variants: [{ tileId: "red", label: "Purpur", color: "#cc6677" }, { tileId: "yellow", label: "Gelb", color: null }] };
+  const target = { id: "target", name: "Ziel", category: "Neu", defaultTileId: "blue",
+    variants: [{ tileId: "blue", label: "Blau", color: null }, { tileId: "green", label: "Grün", color: null }] };
+  const workshop = createWorkshop(tile, [], [yellow, blue, green], [source, target]);
+  workshop.run(`
+    state.inventory = state.catalog.tiles.map(tile => ({
+      status: "unchanged", previous: { id: tile.id, path: tile.file },
+      current: { path: tile.file, hash: tile.hash }
+    }));
+    dragged = { type: "tile", id: "red" }; dropOnFamily(state.catalog.families[1]);
+  `);
+  assert.equal(tile.category, "Neu");
+  assert.equal(workshop.run("state.catalog.families.length"), 1);
+  assert.deepEqual(target.variants[2], { tileId: "red", label: "Purpur", color: "#cc6677" });
+});
+
 test("Familienmitglieder lassen sich in beide Richtungen umsortieren, ohne Standard oder Tiles zu aendern", () => {
   const tile = {
     id: "red", name: "Haus rot", category: "Haus", file: "rot.png", order: 0,
