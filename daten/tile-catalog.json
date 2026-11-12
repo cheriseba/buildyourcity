@@ -1536,6 +1536,164 @@
           "color": "#be2633"
         }
       ]
+    },
+    {
+      "id": "32e0e0c7-9648-447b-9823-97c2f75c672a",
+      "name": "Auffahrt_gleis",
+      "category": "14_Brucke",
+      "defaultTileId": "332c92b3-6b6c-4a60-bdbe-7f1dd5cfee5e",
+      "variants": [
+        {
+          "tileId": "332c92b3-6b6c-4a60-bdbe-7f1dd5cfee5e",
+          "label": "B_17",
+          "color": null
+        },
+        {
+          "tileId": "00cebcc2-5241-4291-a000-38d3dc16fa92",
+          "label": "B_18",
+          "color": null
+        },
+        {
+          "tileId": "385f7b21-c58c-4591-9a5c-9d3084399ab0",
+          "label": "B_19",
+          "color": null
+        },
+        {
+          "tileId": "d5a72314-25ab-47ce-9a6e-be11e14a70ff",
+          "label": "B_20",
+          "color": null
+        },
+        {
+          "tileId": "e28875a7-813c-4cab-a1aa-398c6cd0af0c",
+          "label": "B_12",
+          "color": null
+        },
+        {
+          "tileId": "07195c0f-ccf7-4934-8ab4-e3e73f3ef055",
+          "label": "B_13",
+          "color": null
+        },
+        {
+          "tileId": "87823444-328e-460f-8c3e-9f783f66f5b6",
+          "label": "B_14",
+          "color": null
+        },
+        {
+          "tileId": "0273ef1b-10d9-4170-9773-96fde1519e04",
+          "label": "B_15",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "cf9891e7-de3c-4661-bf61-cab3b624ef63",
+      "name": "Oben_str",
+      "category": "14_Brucke",
+      "defaultTileId": "4ce7895a-bb7d-43fe-a77d-d2568c3506af",
+      "variants": [
+        {
+          "tileId": "4ce7895a-bb7d-43fe-a77d-d2568c3506af",
+          "label": "B_1",
+          "color": null
+        },
+        {
+          "tileId": "3d51da2e-2d57-4c55-b542-ccfb30459efa",
+          "label": "B_2",
+          "color": null
+        },
+        {
+          "tileId": "8b489904-80a7-41e7-abf4-8223d676481f",
+          "label": "B_3",
+          "color": null
+        },
+        {
+          "tileId": "d9401448-9981-4a2e-a240-293948fbc5c6",
+          "label": "B_4",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "12d7b1b5-146a-4dc5-ba94-345f8435c5e2",
+      "name": "Oben",
+      "category": "14_Brucke",
+      "defaultTileId": "c70d0287-1e79-4c57-a6bc-c972b4db0155",
+      "variants": [
+        {
+          "tileId": "c70d0287-1e79-4c57-a6bc-c972b4db0155",
+          "label": "B_16",
+          "color": null
+        },
+        {
+          "tileId": "af466bba-3fa6-40be-8a44-274ed7ce74f0",
+          "label": "B_21",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "c3c90335-888d-468b-a137-9f7b37657ed9",
+      "name": "Bahnsteig",
+      "category": "14_Brucke",
+      "defaultTileId": "dbd038d7-0a5d-41ed-8014-1c053ae9fa98",
+      "variants": [
+        {
+          "tileId": "dbd038d7-0a5d-41ed-8014-1c053ae9fa98",
+          "label": "B_22",
+          "color": null
+        },
+        {
+          "tileId": "c8018f67-42c6-43cb-a4a8-dd8a89aeb04a",
+          "label": "B_23",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "d43ac95e-7e07-431d-9ad4-90cfd25f4e86",
+      "name": "T-Bahnsteig",
+      "category": "14_Brucke",
+      "defaultTileId": "626863d3-9be2-4bc8-9002-bea9fb17df14",
+      "variants": [
+        {
+          "tileId": "626863d3-9be2-4bc8-9002-bea9fb17df14",
+          "label": "B_6",
+          "color": null
+        },
+        {
+          "tileId": "12235e77-92ec-4186-86fc-15b4f6a2a2bd",
+          "label": "B_7",
+          "color": null
+        },
+        {
+          "tileId": "bbe02721-b634-43aa-bb2c-dc0b700a95cb",
+          "label": "B_8",
+          "color": null
+        },
+        {
+          "tileId": "85f6f3de-a0e6-4908-883b-578dca402526",
+          "label": "B_9",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "e51a8c5f-62a4-4dc8-b750-66b7c34b12a9",
+      "name": "Oben_str",
+      "category": "14_Brucke",
+      "defaultTileId": "9652820a-7a22-4731-90a5-ff46af43e9d3",
+      "variants": [
+        {
+          "tileId": "9652820a-7a22-4731-90a5-ff46af43e9d3",
+          "label": "B_11",
+          "color": null
+        },
+        {
+          "tileId": "8b98c5b1-ee50-4853-88d5-6eb4fde468d6",
+          "label": "B_10",
+          "color": null
+        }
+      ]
     }
   ],
   "profiles": [
@@ -5255,7 +5413,7 @@
         ]
       },
       "assetPath": "14_Brucke/Auffahrt_2.png",
-      "order": 1
+      "order": 2
     },
     {
       "id": "963f3eed-71f0-405b-8cb2-2da0b301702a",
@@ -5306,7 +5464,7 @@
         ]
       },
       "assetPath": "14_Brucke/Auffahrt_3.png",
-      "order": 2
+      "order": 1
     },
     {
       "id": "25e47806-89db-46c4-9ccd-da3ea682e03b",
@@ -5400,7 +5558,7 @@
         ]
       },
       "assetPath": "14_Brucke/Hohe_1.png",
-      "order": 4
+      "order": 8
     },
     {
       "id": "ad9a88b6-d73e-441f-8099-aa683cf9b8ae",
@@ -5442,7 +5600,7 @@
         ]
       },
       "assetPath": "14_Brucke/Hohe_2.png",
-      "order": 5
+      "order": 9
     },
     {
       "id": "3d840f45-d863-416c-a7c4-2e22452221a5",
@@ -5484,7 +5642,7 @@
         ]
       },
       "assetPath": "14_Brucke/Hohe_3.png",
-      "order": 6
+      "order": 10
     },
     {
       "id": "bf04ba5e-fdb0-4be2-b133-f6d367f30600",
@@ -5526,7 +5684,7 @@
         ]
       },
       "assetPath": "14_Brucke/Hohe_4.png",
-      "order": 7
+      "order": 11
     },
     {
       "id": "d280861c-8edd-4074-80e8-096e883d6f51",
@@ -5568,7 +5726,7 @@
         ]
       },
       "assetPath": "14_Brucke/Hohe_5.png",
-      "order": 8
+      "order": 12
     },
     {
       "id": "1a7f98c5-e81d-4ef0-bbae-3d87a152b8c0",
@@ -5618,7 +5776,7 @@
         ]
       },
       "assetPath": "14_Brucke/Oben_1.png",
-      "order": 9
+      "order": 4
     },
     {
       "id": "e61111ff-0737-4a59-b558-1b132fac590f",
@@ -5669,7 +5827,7 @@
         ]
       },
       "assetPath": "14_Brucke/Oben_2.png",
-      "order": 10
+      "order": 7
     },
     {
       "id": "7db67ad8-bbe7-4eba-a3a7-56ec920a1960",
@@ -5720,7 +5878,7 @@
         ]
       },
       "assetPath": "14_Brucke/Oben_3.png",
-      "order": 11
+      "order": 5
     },
     {
       "id": "49c6a11f-0f01-4109-858d-66a7ada780fa",
@@ -5771,7 +5929,7 @@
         ]
       },
       "assetPath": "14_Brucke/Oben_4.png",
-      "order": 12
+      "order": 6
     },
     {
       "id": "3e8d21fb-81e3-4765-945f-4c7db6faf141",
@@ -6984,7 +7142,8 @@
         "walk": null
       },
       "assetPath": "21_Tiere/Taube_2.png",
-      "order": 9
+      "order": 9,
+      "hiddenInPalette": true
     },
     {
       "id": "ba00f277-3ade-45b8-a263-91d19e6f45bc",
@@ -11196,6 +11355,1141 @@
               "A": "-",
               "S": "0",
               "D": "0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "4ce7895a-bb7d-43fe-a77d-d2568c3506af",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_1.png",
+      "order": 13,
+      "file": "B_1.png",
+      "hash": "c7e5ba725e91f93156d89914db569f8f0b6f05cc2c6421e3686efe68a1c91562",
+      "legacyIds": [],
+      "name": "B_1",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Auffahrt",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "Rampe",
+        "fußgängerbrücke",
+        "skatepark"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "0>1",
+              "A": "-",
+              "S": "1>0",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "8b98c5b1-ee50-4853-88d5-6eb4fde468d6",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_10.png",
+      "order": 18,
+      "file": "B_10.png",
+      "hash": "7dd17e0f7f281b066c8146b2943c9a9b23e25196e67a39adee873d007159306c",
+      "legacyIds": [],
+      "name": "B_10",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Oben",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "Fahrbahn",
+        "fußgängerbrücke"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "0",
+              "S": "-",
+              "D": "0"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "-",
+              "S": "1",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "9652820a-7a22-4731-90a5-ff46af43e9d3",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_11.png",
+      "order": 17,
+      "file": "B_11.png",
+      "hash": "766ff9255b171b9d2b597c98c45aba220c64679c7e75cc42c87204438229e7bf",
+      "legacyIds": [],
+      "name": "B_11",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Oben",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "Fahrbahn",
+        "fußgängerbrücke"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "0",
+              "A": "-",
+              "S": "0",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "1",
+              "S": "-",
+              "D": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "e28875a7-813c-4cab-a1aa-398c6cd0af0c",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_12.png",
+      "order": 28,
+      "file": "B_12.png",
+      "hash": "8d1b5486bf6037920a8ef9468f804f2a0ed8a80d324b7bbc65d0ebf8979dffaf",
+      "legacyIds": [],
+      "name": "B_12",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "0>1",
+              "A": "-",
+              "S": "1>0",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "07195c0f-ccf7-4934-8ab4-e3e73f3ef055",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_13.png",
+      "order": 29,
+      "file": "B_13.png",
+      "hash": "6c1f69506a8d7515974c141fa4aec01f44530f77f3d05aa5b8698fb6d927dbb5",
+      "legacyIds": [],
+      "name": "B_13",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "0>1",
+              "S": "-",
+              "D": "1>0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "87823444-328e-460f-8c3e-9f783f66f5b6",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_14.png",
+      "order": 30,
+      "file": "B_14.png",
+      "hash": "0615f321c438d75eec270df1261de5eea4af418f459986bf07b0068d007e1939",
+      "legacyIds": [],
+      "name": "B_14",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "1>0",
+              "S": "-",
+              "D": "0>1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "0273ef1b-10d9-4170-9773-96fde1519e04",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_15.png",
+      "order": 31,
+      "file": "B_15.png",
+      "hash": "505bc654fb1ecbfc156a8cdc73b7b609217e5c336eeca78c5ce21649f90c40d5",
+      "legacyIds": [],
+      "name": "B_15",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1>0",
+              "A": "-",
+              "S": "0>1",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "c70d0287-1e79-4c57-a6bc-c972b4db0155",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_16.png",
+      "order": 32,
+      "file": "B_16.png",
+      "hash": "f15c5a700e1866cd41b05fddfd2cd8fd02624e15ecb9517b8407b77f8f0d1327",
+      "legacyIds": [],
+      "name": "B_16",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Gleis",
+        "Brucke",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Brücke",
+        "oben",
+        "hohe",
+        "hoch",
+        "überführung"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "1",
+              "S": "1",
+              "D": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "332c92b3-6b6c-4a60-bdbe-7f1dd5cfee5e",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_17.png",
+      "order": 24,
+      "file": "B_17.png",
+      "hash": "d700090b2566d200716d6e766aef418283a1b2c9aa1879ad3c9744917e668c3e",
+      "legacyIds": [],
+      "name": "B_17",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "0>1",
+              "A": "-",
+              "S": "1>0",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "00cebcc2-5241-4291-a000-38d3dc16fa92",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_18.png",
+      "order": 25,
+      "file": "B_18.png",
+      "hash": "78a1e7ae9b7466bedc4f3f1e7c569faa88d60a57ffa5caf14fe47d18da87846b",
+      "legacyIds": [],
+      "name": "B_18",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "0>1",
+              "S": "-",
+              "D": "1>0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "385f7b21-c58c-4591-9a5c-9d3084399ab0",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_19.png",
+      "order": 27,
+      "file": "B_19.png",
+      "hash": "53c08d4444eb10b61c7f2be28b5c4aa4b7cb02de74e504a7a31f4db9a3e31ba7",
+      "legacyIds": [],
+      "name": "B_19",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "1>0",
+              "S": "-",
+              "D": "0>1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "3d51da2e-2d57-4c55-b542-ccfb30459efa",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_2.png",
+      "order": 14,
+      "file": "B_2.png",
+      "hash": "ce4636fd96de4752c56c0fe1229ae87215b3040b4310b6224e1514d9acc2e69c",
+      "legacyIds": [],
+      "name": "B_2",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Auffahrt",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "Rampe",
+        "fußgängerbrücke",
+        "skatepark"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "0>1",
+              "S": "-",
+              "D": "0>1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "d5a72314-25ab-47ce-9a6e-be11e14a70ff",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_20.png",
+      "order": 26,
+      "file": "B_20.png",
+      "hash": "003fe5f4d384552f9ce46e1517adbd484df6597ebfef638cb54331ffcf9c3f86",
+      "legacyIds": [],
+      "name": "B_20",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1>0",
+              "A": "-",
+              "S": "0>1",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "af466bba-3fa6-40be-8a44-274ed7ce74f0",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_21.png",
+      "order": 33,
+      "file": "B_21.png",
+      "hash": "9c6e46b01557a842b8b954fa42c7a676bf4f0bb76ffedfc92eb1cce64e354926",
+      "legacyIds": [],
+      "name": "B_21",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Gleis",
+        "Brucke",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Brücke",
+        "oben",
+        "hohe",
+        "hoch",
+        "überführung"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "1",
+              "S": "1",
+              "D": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "dbd038d7-0a5d-41ed-8014-1c053ae9fa98",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_22.png",
+      "order": 34,
+      "file": "B_22.png",
+      "hash": "fca147d52b5ad6e3d7ca5dc5fbcb8b8dab936e8843b899e5b450bf98ef47c23b",
+      "legacyIds": [],
+      "name": "B_22",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Gleis",
+        "Brucke",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Brücke",
+        "oben",
+        "hohe",
+        "hoch",
+        "überführung",
+        "bahnsteig"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "1",
+              "S": "1",
+              "D": "1"
+            }
+          },
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "c8018f67-42c6-43cb-a4a8-dd8a89aeb04a",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_23.png",
+      "order": 35,
+      "file": "B_23.png",
+      "hash": "c2babe9c44ee46a00c9474454f8dd31f438ac4f0a9d7276ae54c318b64fe69fe",
+      "legacyIds": [],
+      "name": "B_23",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Gleis",
+        "Brucke",
+        "Bahnhof",
+        "Bahn",
+        "Zug",
+        "Eisenbahn",
+        "Schiene",
+        "Brücke",
+        "oben",
+        "hohe",
+        "hoch",
+        "überführung",
+        "bahnsteig"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "1",
+              "S": "1",
+              "D": "1"
+            }
+          },
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "8b489904-80a7-41e7-abf4-8223d676481f",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_3.png",
+      "order": 15,
+      "file": "B_3.png",
+      "hash": "220ea3fd081314eba0683dc2a2f4c2fee9ffc1dc4f6972f6289c1233832af4c6",
+      "legacyIds": [],
+      "name": "B_3",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Auffahrt",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "Rampe",
+        "fußgängerbrücke",
+        "skatepark"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "1>0",
+              "S": "-",
+              "D": "0>1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "d9401448-9981-4a2e-a240-293948fbc5c6",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_4.png",
+      "order": 16,
+      "file": "B_4.png",
+      "hash": "329cc76bb5eca64cd9b465f8fb701372faa6ba9973cd0494443c3a9edb22fc8e",
+      "legacyIds": [],
+      "name": "B_4",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Auffahrt",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "Rampe",
+        "fußgängerbrücke",
+        "skatepark"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1>0",
+              "A": "-",
+              "S": "0>1",
+              "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "d47bb39d-1e14-42d4-9482-a9452467b07f",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_5.png",
+      "order": 19,
+      "file": "B_5.png",
+      "hash": "23fc7b0dea1408c9894ec93d51d30022e1b1e1773aef1e963cd162ad798d19d5",
+      "legacyIds": [],
+      "name": "B_5",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch",
+        "fußgängerbrücke",
+        "oben",
+        "skatepark"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "1",
+              "S": "1",
+              "D": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "626863d3-9be2-4bc8-9002-bea9fb17df14",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_6.png",
+      "order": 20,
+      "file": "B_6.png",
+      "hash": "40b1cfafc3457e81d60341d312077da39a109cce65d9eabef3276fc349c43c94",
+      "legacyIds": [],
+      "name": "B_6",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "-",
+              "S": "1",
+              "D": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "12235e77-92ec-4186-86fc-15b4f6a2a2bd",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_7.png",
+      "order": 21,
+      "file": "B_7.png",
+      "hash": "2e219890da726be009bfe0b9b78ca15a51bc5decf1b1c27796f2e76db79a3b84",
+      "legacyIds": [],
+      "name": "B_7",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
+              "A": "1",
+              "S": "1",
+              "D": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "bbe02721-b634-43aa-bb2c-dc0b700a95cb",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_8.png",
+      "order": 22,
+      "file": "B_8.png",
+      "hash": "6c6ca3ef8eccc42f07bae156916f222b356d7cc11c29047f5045dc02043a6266",
+      "legacyIds": [],
+      "name": "B_8",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "1",
+              "S": "-",
+              "D": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "85f6f3de-a0e6-4908-883b-578dca402526",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_9.png",
+      "order": 23,
+      "file": "B_9.png",
+      "hash": "35cd48bced0b6b53bc53c9881ee52319c443e9f2256326ad6d40faecdaa9eb7d",
+      "legacyIds": [],
+      "name": "B_9",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [
+        "Hohe",
+        "Brücke",
+        "Bruecke",
+        "Übergang",
+        "Überführung",
+        "hoch",
+        "fußgängerbrücke",
+        "Oben"
+      ],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "1",
+              "S": "1",
+              "D": "-"
             }
           }
         ]
