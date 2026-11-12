@@ -4,7 +4,7 @@ const path = require("node:path");
 const crypto = require("node:crypto");
 const { spawn } = require("node:child_process");
 const { scanTileImages, compareInventory } = require("./tile-inventory");
-const { assetPathOf } = require("../gemeinsam/tile-catalog-model");
+const { assetPathOf, validateFamily } = require("../gemeinsam/tile-catalog-model");
 
 const root = path.resolve(__dirname, "..");
 const catalogPath = path.join(root, "daten", "tile-catalog.json");
@@ -75,6 +75,14 @@ async function handle(req, res) {
       }
       ids.add(tile.id);
       paths.add(tilePath.toLowerCase());
+    }
+    if (catalog.families !== undefined && !Array.isArray(catalog.families)) {
+      return respond(res, 400, { error: "Ungueltige Variantenfamilien" });
+    }
+    const known = new Map(catalog.tiles.map((tile) => [tile.id, tile]));
+    for (const family of catalog.families || []) {
+      const errors = validateFamily(family, catalog.families, known, catalog.profiles);
+      if (errors.length) return respond(res, 400, { error: `Variantenfamilie ${family?.name || "?"}: ${errors.join(", ")}` });
     }
     const temp = `${catalogPath}.${crypto.randomUUID()}.tmp`;
     try {

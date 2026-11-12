@@ -97,7 +97,63 @@
     return errors;
   }
 
-  const api = { assetPathOf, encodedAssetPath, resolveRules, validateTile };
+  function validateFamily(family, families, tiles, profiles) {
+    const errors = [];
+    if (!family || typeof family !== "object") return ["Variantenfamilie ist kein Objekt"];
+    if (typeof family.id !== "string" || !family.id ||
+        families.filter((item) => item && item.id === family.id).length !== 1) errors.push("Familien-ID fehlt oder ist nicht eindeutig");
+    if (typeof family.name !== "string" || !family.name.trim()) errors.push("Familienname fehlt");
+    if (typeof family.category !== "string" || !family.category) errors.push("UI-Ordner fehlt");
+    if (!Array.isArray(family.variants) || family.variants.length < 2) return [...errors, "Mindestens zwei Varianten erforderlich"];
+    const members = new Set();
+    let first;
+    for (const variant of family.variants) {
+      if (!variant || typeof variant.tileId !== "string") {
+        errors.push("Ungueltige Variantenreferenz");
+        continue;
+      }
+      if (members.has(variant.tileId) || families.some((other) => other !== family &&
+          Array.isArray(other?.variants) && other.variants.some((item) => item?.tileId === variant.tileId))) {
+        errors.push("Ein Tile darf nur einmal und in einer Familie vorkommen");
+      }
+      members.add(variant.tileId);
+      if (typeof variant.label !== "string" || !variant.label.trim()) errors.push("Farbname fehlt");
+      if (variant.color !== undefined && variant.color !== null && (typeof variant.color !== "string" || !/^#[0-9a-f]{6}$/i.test(variant.color))) errors.push("Kennfarbe muss ein sechsstelliger Hex-Farbwert sein");
+      const tile = tiles.get(variant.tileId);
+      if (!tile) { errors.push(`Varianten-Tile fehlt: ${variant.tileId}`); continue; }
+      if (!tile.category || tile.category !== family.category) errors.push("Varianten muessen im UI-Ordner der Familie liegen");
+      if (first && (first.type !== tile.type || first.w !== tile.w || first.h !== tile.h)) errors.push("Farbvarianten brauchen denselben Typ und dieselbe Grundflaeche");
+      first = first || tile;
+    }
+    if (!members.has(family.defaultTileId)) errors.push("Standardvariante fehlt in der Familie");
+    return [...new Set(errors)];
+  }
+
+  function resolveFamilies(catalog, availableTiles, issues) {
+    if (catalog.families === undefined) return [];
+    if (!Array.isArray(catalog.families)) {
+      issues.push("Variantenfamilien sind ungueltig; Tiles werden einzeln angezeigt");
+      return [];
+    }
+    const known = new Map(catalog.tiles.map((tile) => [tile?.id, tile]));
+    const available = new Set(availableTiles.map((tile) => tile.id));
+    const result = [];
+    for (const family of catalog.families) {
+      const errors = validateFamily(family, catalog.families, known, catalog.profiles);
+      if (errors.length) {
+        issues.push(`Variantenfamilie ${family?.name || "?"}: ${errors.join(", ")}; verfuegbare Tiles werden einzeln angezeigt`);
+        continue;
+      }
+      const variants = family.variants.filter((variant) => available.has(variant.tileId));
+      if (variants.length) result.push({
+        ...family, variants,
+        defaultTileId: variants.some((variant) => variant.tileId === family.defaultTileId) ? family.defaultTileId : variants[0].tileId,
+      });
+    }
+    return result;
+  }
+
+  const api = { assetPathOf, encodedAssetPath, resolveRules, validateTile, validateFamily, resolveFamilies };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.TileCatalogModel = api;
 })(globalThis);

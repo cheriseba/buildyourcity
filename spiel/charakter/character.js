@@ -22,17 +22,17 @@ class GameCharacter {
   
   // Preload Assets
   preloadAssets() {
-    const paths = {
-      idleFront: `${this.characterPath}/vorn.png`,
-      idleBack: `${this.characterPath}/hinten.png`,
-      animFront: `${this.characterPath}/animiert_vorn.gif`,
-      animBack: `${this.characterPath}/animiert_hinten.gif`
-    };
-
-    for (const [key, path] of Object.entries(paths)) {
-      this.images[key] = loadImage(path, undefined, (error) => {
+    for (const [direction, file] of [["Front", "animiert_vorn.gif"], ["Back", "animiert_hinten.gif"]]) {
+      const path = `${this.characterPath}/${file}`;
+      const animKey = `anim${direction}`;
+      const idleKey = `idle${direction}`;
+      this.images[animKey] = loadImage(path, (image) => {
+        image.setFrame(0);
+        this.images[idleKey] = image.get();
+      }, (error) => {
         console.error(`Charakterbild konnte nicht geladen werden: ${path}`, error);
-        this.images[key] = null;
+        this.images[animKey] = null;
+        this.images[idleKey] = null;
       });
     }
   }

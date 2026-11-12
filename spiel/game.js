@@ -24,6 +24,7 @@ let lastOverlayTap = null;
 const RECENT_CATEGORY_NAME = "Zuletzt benutzt";
 const RECENT_LIMIT = 24;
 let recentTileIndices = [];
+let tileVariants = null;
 let tutorialActionHandler = null;
 
 // Character-Mode
@@ -429,6 +430,7 @@ function canvasPoint(event) {
 function handleTap(px, py, withCtrl) {
   if (resetChoiceOpen()) return;
   if (landExpansion && landExpansion.active) return;
+  if (tileVariants) tileVariants.close();
   console.log(`[handleTap] Click at canvas (${px}, ${py}), gameMode=${gameMode}`);
   
   const worldX = cam.x + px / cam.scale;
@@ -655,10 +657,22 @@ function createTilePalette() {
     return;
   }
 
+  tileVariants = new TileVariants({
+    definitions: tileDefs, families: window.TILE_MANIFEST.families || [],
+    storage: {
+      getItem: (key) => localStorage.getItem(key),
+      setItem: (key, value) => localStorage.setItem(key, value),
+    },
+  });
+  tileVariants.mount({
+    select: (index) => selectPaletteTile(index, true),
+    getSelected: () => selectedPaletteIndex,
+  });
 
   const normalize = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
   const makeTileButton = (index) => {
+    index = tileVariants.representative(index);
     const def = tileDefs[index];
     const button = document.createElement("button");
     button.className = "tile-button";
@@ -676,7 +690,13 @@ function createTilePalette() {
     imageElement.draggable = false;
     button.appendChild(imageElement);
 
-    button.addEventListener("click", () => selectPaletteTile(index));
+    tileVariants.decorate(button, index);
+    button.addEventListener("click", (event) => {
+      const current = Number(button.dataset.tileIndex);
+      selectPaletteTile(current, Boolean(button.dataset.familyId));
+      if (selectedPaletteIndex === current && button.closest("#left-palette") &&
+          (button.closest(".cat-flyout") || button.closest(".dock-scroll"))) tileVariants.open(button, event.detail === 0);
+    });
     return button;
   };
 
@@ -736,7 +756,7 @@ function createTilePalette() {
     const items = document.createElement("div");
     items.className = "cat-items";
     items.hidden = true;
-    category.indices.forEach((index) => items.appendChild(makeTileButton(index)));
+    tileVariants.collapse(category.indices).forEach((index) => items.appendChild(makeTileButton(index)));
 
     el.append(head, items);
     return { el, head, items };
@@ -771,7 +791,7 @@ function createTilePalette() {
         empty.textContent = "Noch nichts benutzt";
         recentItems.replaceChildren(empty);
       } else {
-        recentItems.replaceChildren(...recentTileIndices.map(makeTileButton));
+        recentItems.replaceChildren(...tileVariants.collapse(recentTileIndices).map(makeTileButton));
         syncPaletteSelection();
       }
     }
@@ -800,6 +820,7 @@ function createTilePalette() {
   };
 
   const closeAll = () => {
+    tileVariants.close();
     groups.forEach((group) => setOpen(group, false));
     flyout.hidden = true;
   };
@@ -832,7 +853,7 @@ function createTilePalette() {
 
     const hits = tileDefs
       .map((def, index) => ({ def, index }))
-      .filter(({ def, index }) => index !== MEADOW_TILE_INDEX && terms.every((term) => normalize(`${def.name} ${def.category} ${(def.tags || []).join(" ")}`).includes(term)));
+      .filter(({ def, index }) => index !== MEADOW_TILE_INDEX && terms.every((term) => normalize(`${def.name} ${def.category} ${(def.tags || []).join(" ")} ${tileVariants.searchText(index)}`).includes(term)));
 
     if (hits.length === 0) {
       const empty = document.createElement("span");
@@ -842,7 +863,7 @@ function createTilePalette() {
       return;
     }
 
-    scroller.replaceChildren(...hits.map(({ index }) => makeTileButton(index)));
+    scroller.replaceChildren(...tileVariants.collapse(hits.map(({ index }) => index)).map(makeTileButton));
     scroller.scrollLeft = 0;
     syncPaletteSelection();
   };
@@ -874,6 +895,7 @@ function createTilePalette() {
 }
 
 function syncPaletteSelection() {
+  if (tileVariants) tileVariants.updateButtons();
   document.querySelectorAll(".tile-button[data-tile-index]").forEach((button) => {
     const on = Number(button.dataset.tileIndex) === selectedPaletteIndex;
     button.classList.toggle("selected", on);
@@ -881,11 +903,13 @@ function syncPaletteSelection() {
   });
 }
 
-function selectPaletteTile(index) {
+function selectPaletteTile(index, force = false) {
   lastOverlayTap = null;
-  selectedPaletteIndex = selectedPaletteIndex === index ? null : index;
+  if (tileVariants && !force) tileVariants.close();
+  selectedPaletteIndex = selectedPaletteIndex === index && !force ? null : index;
   if (selectedPaletteIndex !== null && index !== MEADOW_TILE_INDEX) {
-    recentTileIndices = [index, ...recentTileIndices.filter((i) => i !== index)].slice(0, RECENT_LIMIT);
+    if (tileVariants) tileVariants.remember(index);
+    recentTileIndices = [index, ...recentTileIndices.filter((i) => tileVariants ? tileVariants.key(i) !== tileVariants.key(index) : i !== index)].slice(0, RECENT_LIMIT);
   }
   syncPaletteSelection();
   notifyTutorialAction("palette-selected", { index, def: tileDefs[index] });
@@ -960,10 +984,10 @@ function updateCharacterMovement() {
   
   // Desktop: WASD - aber nur Bewegung starten wenn nicht bereits in Bewegung
   if (!currentCharacter.isMoving) {
-    if (keysPressed.w) currentCharacter.startMovement("up-right");
-    else if (keysPressed.s) currentCharacter.startMovement("down-left");
-    else if (keysPressed.a) currentCharacter.startMovement("up-left");
-    else if (keysPressed.d) currentCharacter.startMovement("down-right");
+    if (keysPressed.w) startCharacterMovement("up-right");
+    else if (keysPressed.s) startCharacterMovement("down-left");
+    else if (keysPressed.a) startCharacterMovement("up-left");
+    else if (keysPressed.d) startCharacterMovement("down-right");
   }
   
   // Mobile: Touch-Controller (nur wenn nicht null)
@@ -971,8 +995,16 @@ function updateCharacterMovement() {
     const direction = touchController.getDirection();
     if (direction) {
       characterCameraFollowing = true;
-      currentCharacter.startMovement(direction);
+      startCharacterMovement(direction);
     }
+  }
+}
+
+function startCharacterMovement(direction) {
+  const wasMoving = currentCharacter.isMoving;
+  currentCharacter.startMovement(direction);
+  if (!wasMoving && currentCharacter.isMoving) {
+    notifyTutorialAction("character-moved", { direction });
   }
 }
 
@@ -981,7 +1013,7 @@ async function loadCharacters() {
   let index = 1;
   while (true) {
     const folder = `char_${index}`;
-    const response = await fetch(`character/${folder}/vorn.png`, {
+    const response = await fetch(`character/${folder}/animiert_vorn.gif`, {
       method: "HEAD",
       cache: "no-cache"
     });
@@ -990,7 +1022,7 @@ async function loadCharacters() {
       break;
     }
     if (!response.ok) {
-      throw new Error(`character/${folder}/vorn.png: ${response.status}`);
+      throw new Error(`character/${folder}/animiert_vorn.gif: ${response.status}`);
     }
 
     characterManager.addCharacter(`Charakter ${index}`, `character/${folder}`);
@@ -1003,6 +1035,7 @@ async function loadCharacters() {
 }
 
 function switchGameMode(newMode) {
+  if (tileVariants) tileVariants.close();
   if (landExpansion) landExpansion.close(false);
   gameMode = newMode;
   characterCameraFollowing = true;
@@ -1031,6 +1064,8 @@ function switchGameMode(newMode) {
     camTarget.scale = Math.max(window.innerWidth >= 900 ? 4 : 3, view.minScale);
     clampCamera(camTarget);
   }
+
+  notifyTutorialAction("mode-changed", { mode: gameMode });
 }
 
 function enableBuildMode() {
@@ -1054,7 +1089,7 @@ function disableBuildMode() {
 function showCharacterSelection() {
   const characters = Array.from(characterManager.characters, ([name, character]) => ({
     name,
-    previewImage: `${character.characterPath}/vorn.png`
+    previewImage: character.images.idleFront ? character.images.idleFront.canvas.toDataURL() : null
   }));
   
   const mainElement = document.querySelector("main.app");
@@ -1070,8 +1105,10 @@ function showCharacterSelection() {
   
   // Warnhinweis zuerst; erst nach "Verstanden" folgt die Charakterauswahl
   characterSelectionBar.showNotice(
-    () =>
-      characterSelectionBar.show((selectedName) => placeCharacterAtViewCenter(selectedName), backToBuild),
+    () => {
+      characterSelectionBar.show((selectedName) => placeCharacterAtViewCenter(selectedName), backToBuild);
+      notifyTutorialAction("explore-confirmed");
+    },
     backToBuild
   );
 }
@@ -1138,8 +1175,10 @@ function placeCharacterAtViewCenter(characterName) {
     if (touchController) {
       touchController.destroy();
     }
-    touchController = new TouchController(mainElement, 140, 140);
+    touchController = new TouchController(mainElement);
   }
+
+  notifyTutorialAction("character-ready");
 }
 
 function createModeSwitch() {
@@ -1580,50 +1619,137 @@ function openTutorial() {
   const scroller = document.getElementById("palette-scroll");
   const focus = document.getElementById("tutorial-focus");
   const card = tutorial && tutorial.querySelector(".tutorial-card");
+  const visual = document.getElementById("tutorial-visual");
   const title = document.getElementById("tutorial-title");
   const copy = document.getElementById("tutorial-copy");
-  const progress = document.getElementById("tutorial-progress");
   const next = document.getElementById("tutorial-next");
   const close = document.getElementById("tutorial-close");
   const menuToggle = document.getElementById("menu-toggle");
   const menuPanel = document.getElementById("menu-panel");
   const canvas = document.querySelector("#sketch canvas");
+  const app = document.querySelector(".app");
 
-  if (!tutorial || !palette || !scroller || !focus || !card || !canvas || !menuPanel) {
+  if (!tutorial || !palette || !scroller || !focus || !card || !visual || !title || !copy || !next || !close || !canvas || !menuToggle || !menuPanel || !app) {
     return;
   }
 
+  const isTouch = TouchController.prototype.detectMobile();
+  const tap = isTouch ? "Tippe" : "Klicke";
   const steps = [
-    { type: "category", category: "1_Hauslinks", title: "Kategorie \u00f6ffnen", text: "\u00d6ffne eine Tile-Kategorie in der Leiste. Die Tiles klappen dar\u00fcber auf." },
-    { type: "scroll", title: "Leiste scrollen", text: "Schiebe die aufgeklappte Leiste seitlich weiter. Am PC kannst du ziehen oder das Mausrad nutzen." },
-    { type: "tile", category: "1_Hauslinks", file: "Altbau_1.png", title: "Haus ausw\u00e4hlen", text: "W\u00e4hle das markierte Haus aus." },
-    { type: "board", point: "center", title: "Haus platzieren", text: "Setze das Haus auf ein freies Feld." },
-    { type: "meadow", title: "Wiese ausw\u00e4hlen", text: "W\u00e4hle links die Wiese. Sie setzt ein Feld zur\u00fcck." },
-    { type: "board", point: "house", title: "Durch Wiese ersetzen", text: "Klicke auf dasselbe Feld, um das Haus durch Wiese zu ersetzen." },
-    { type: "undo", title: "R\u00fcckg\u00e4ngig", text: "Dr\u00fccke den markierten Pfeil, um das Haus wiederherzustellen." },
-    { type: "tile", category: "21_Tiere", file: "Katze_1.png", title: "Katze ausw\u00e4hlen", text: "Auf B\u00f6den kannst du auch Objekte und Tiere platzieren. Die passende Kategorie \u00f6ffnet sich automatisch." },
-    { type: "board", point: "cat", title: "Katze platzieren", text: "Setze die Katze auf ein freies Feld." },
-    { type: "tile", category: "13_Stadtboden", file: "Asphalt_1.png", title: "Parkplatz-Untergrund w\u00e4hlen", text: "W\u00e4hle Asphalt. Ein UNDER-Tile \u00e4ndert den Boden unter der Katze." },
-    { type: "board", point: "cat", title: "Untergrund \u00e4ndern", text: "Klicke auf dasselbe Katzenfeld, um den Untergrund zu \u00e4ndern." },
-    { type: "board", point: "cat", title: "Katze entfernen", text: "Doppelklicke oder doppeltippe auf das Feld. Die Katze verschwindet, der Asphalt bleibt. Ein weiterer Doppelklick setzt das Feld auf Wiese." },
-    { type: "menu", title: "Men\u00fc \u00f6ffnen", text: "\u00d6ffne das Men\u00fc oben rechts." },
-    { type: "save", title: "Speichern", text: "Klicke auf Speichern, um deine Stadt zu teilen oder als Bild herunterzuladen." },
-    { type: "reset", title: "Reset", text: "Klicke auf Reset und w\u00e4hle, ob du nur die gebaute Stadt oder den gesamten Spielstand zur\u00fccksetzen m\u00f6chtest." },
+    { type: "category", category: "1_Hauslinks", title: "Deine Stadt beginnt", text: `Lass uns eine Stadt bauen! ${tap} dafür zuerst auf die Haus-Kategorie.` },
+    { type: "tile", category: "1_Hauslinks", title: "Haus auswählen", text: `Wähle ein Haus. ${isTouch ? "Wische" : "Ziehe"} seitlich, um mehr Häuser zu entdecken.` },
+    { type: "board", title: "Haus bauen", text: `${tap} auf ein freies Feld.` },
+    { type: "undo", title: "Upsi", text: `Wenn du mal einen Fehler machst, ist das nicht schlimm. ${tap} auf den Pfeil, um den Bau rückgängig zu machen.` },
+    { type: "tile", category: "13_Stadtboden", file: "Asphalt_1.png", title: "Den Boden gestalten", text: "Du kannst den Boden verändern. Das geht zum Beispiel mit Asphalt." },
+    { type: "ground", title: "Boden verlegen", text: `${tap} auf ein freies Feld um den Boden zu verändern.` },
+    { type: "tile", category: "21_Tiere", file: "Katze_1.png", title: "Spaß haben!", text: "Du kannst die Stadt neben Häusern und Böden mit vielen verschiedenen Objekten gestalten. Was wäre eine Stadt ohne eine Katze?" },
+    { type: "overlay", title: "Objekt platzieren", text: `${tap} auf den Asphalt, um die Katze draufzusetzen.` },
+    { type: "remove-overlay", title: "Objekt entfernen", text: `${isTouch ? "Tippe zweimal schnell" : "Klicke zweimal schnell"} auf ein Objekt, um es wieder zu entfernen` },
+    { type: "erase", title: "Feld zurücksetzen", text: `Nutze die Wiese um deine Felder wieder zurückzusetzen.` },
+    { type: "explore", title: "Stadt erkunden", text: `${tap} oben links auf die Figur um in den Entdecker Modus zu wechseln. Wähle dort eine Figur, mit der du deinen Stadtteil erkunden möchtest.` },
+    { type: "move", title: "Unterwegs", text: isTouch ? "Nutze die Richtungspfeile um deine Figur zu bewegen." : "Nutze W A S D, um deine Figur zu bewegen." },
+    { type: "menu", title: "fast geschafft!", text: `${tap} oben rechts auf das Menü um weitere Aktionen zu entdecken.` },
+    { type: "menu-info", title: "Deine Möglichkeiten", text: `Im Menü kannst du ein Foto deiner Stadt speichern oder sie komplett zurücksetzen.` },
+    { type: "done", title: "Jetzt bist du dran!", text: "Beende das Tutorial und starte den Ausbau deiner Nordstadt mit Häusern, Tieren und noch ganz vielem weiteren zum Entdecken." },
   ];
 
   let step = 0;
-  let houseTile = null;
-  let catTile = null;
-  let resetDone = false;
+  let houseDef = null;
+  let groundDef = null;
+  let overlayDef = null;
+  let lessonCell = null;
+  let tutorialHouseCell = null;
   let activeTarget = null;
-  let scrollStart = 0;
-  let scrollIntent = false;
-  let scrollTarget = null;
-  let pointerStart = null;
+  let activePoint = null;
+  let focusFrame = null;
+  let cardBottom = null;
+  let positionedToast = null;
+  let renderedStep = -1;
+  const savedState = {
+    land: board.land.snapshot(),
+    board: board.snapshot(true),
+    history: board.history.slice(),
+    recentTileIndices: recentTileIndices.slice(),
+    selectedPaletteIndex,
+    selectedBoardTileIndices: [...selectedBoardTileIndices],
+    cameraFitsWorld,
+    cam: { ...cam },
+    camTarget: { ...camTarget },
+    lastOverlayTap,
+    saveEnabled: saveGame.enabled,
+  };
+  let tutorialBoardActive = false;
   const flyout = palette.querySelector(".cat-flyout");
-  const scrollables = [flyout, scroller].filter(Boolean);
-  const overflows = (el) => el.scrollWidth > el.clientWidth + 8;
-  const pickScrollTarget = () => scrollables.find((el) => !el.hidden && overflows(el)) || null;
+
+  const startTutorialBoard = () => {
+    saveGame.save();
+    saveGame.disable();
+    buildBoard(board, img[MEADOW_TILE_INDEX], new WorldLand());
+    resetToStartLayout(initialCityLayout(), board, tileDefs, img, MEADOW_TILE_INDEX);
+    board.history = [];
+    recentTileIndices = [];
+    selectedBoardTileIndices.clear();
+    selectedPaletteIndex = null;
+    syncPaletteSelection();
+    const undoButton = document.getElementById("undo-button");
+    if (undoButton) {
+      undoButton.disabled = true;
+    }
+    cameraFitsWorld = false;
+    if (landExpansion) {
+      landExpansion.refresh();
+    }
+    updateViewportLayout();
+    resetCamera();
+    Object.assign(cam, camTarget);
+    tutorialBoardActive = true;
+  };
+
+  const restoreTutorialBoard = () => {
+    if (!tutorialBoardActive) {
+      return;
+    }
+    if (gameMode !== "build" && modeSwitch) {
+      modeSwitch.setMode("build");
+    }
+    if (characterSelectionBar) {
+      characterSelectionBar.hide();
+    }
+    const resetPanel = document.getElementById("reset-panel");
+    const app = document.querySelector(".app");
+    if (resetPanel) {
+      resetPanel.hidden = true;
+    }
+    if (app) {
+      app.classList.remove("resetting");
+    }
+    menuPanel.hidden = true;
+    menuToggle.setAttribute("aria-expanded", "false");
+    buildBoard(board, img[MEADOW_TILE_INDEX], new WorldLand(savedState.land));
+    board.restore(savedState.board);
+    board.history = savedState.history;
+    recentTileIndices = savedState.recentTileIndices;
+    selectedPaletteIndex = savedState.selectedPaletteIndex;
+    if (selectedPaletteIndex !== null && tileVariants) tileVariants.remember(selectedPaletteIndex);
+    selectedBoardTileIndices = new Set(savedState.selectedBoardTileIndices);
+    lastOverlayTap = savedState.lastOverlayTap;
+    cameraFitsWorld = savedState.cameraFitsWorld;
+    if (landExpansion) {
+      landExpansion.refresh();
+    }
+    updateViewportLayout();
+    Object.assign(camTarget, savedState.camTarget);
+    Object.assign(cam, savedState.cam);
+    const undoButton = document.getElementById("undo-button");
+    if (undoButton) {
+      undoButton.disabled = board.history.length === 0;
+    }
+    syncPaletteSelection();
+    if (savedState.saveEnabled) {
+      saveGame.enable();
+    }
+    tutorialBoardActive = false;
+  };
 
   // Altes Auswahl-Toggle darf das Tutorial nicht blockieren
   selectedPaletteIndex = null;
@@ -1635,6 +1761,70 @@ function openTutorial() {
     [...palette.querySelectorAll(".tile-button[data-tile-index]")].find(
       (button) => button.dataset.tileCategory === category && button.dataset.tileFile === file
     ) || null;
+  const findFreeHouseCell = (def) => {
+    const w = def.w || 1;
+    const h = def.h || 1;
+    const centerX = cam.x + view.w / cam.scale / 2;
+    const canvasRect = canvas.getBoundingClientRect();
+    const cardBottom = card.getBoundingClientRect().bottom;
+    const visibleY = Math.max(0.5, Math.min(0.75, (cardBottom - canvasRect.top + 70) / canvasRect.height));
+    const centerY = cam.y + view.h * visibleY / cam.scale;
+    return board.sorted()
+      .filter((cell) => {
+        const anchor = board.get(cell.gx - w + 1, cell.gy - h + 1);
+        const footprint = anchor && board.footprint(anchor, w, h);
+        return footprint && footprint.every((part) =>
+          !board.isLocked(part) &&
+          !part.owner &&
+          part.ground === img[MEADOW_TILE_INDEX] &&
+          part.groundType === "UNDER" &&
+          !part.overlay &&
+          !part.overlayBack
+        );
+      })
+      .sort((a, b) => {
+        const aDistance = Math.hypot(a.x + CELL_CENTER_X - centerX, a.y + CELL_CENTER_Y - centerY);
+        const bDistance = Math.hypot(b.x + CELL_CENTER_X - centerX, b.y + CELL_CENTER_Y - centerY);
+        return aDistance - bDistance;
+      })[0] || null;
+  };
+
+  const drawVisual = (current, target) => {
+    visual.replaceChildren();
+    if (current.type === "move") {
+      const keys = document.createElement("span");
+      keys.classList.add("tutorial-visual-keys");
+      for (const key of (isTouch ? ["↖", "↗", "↙", "↘"] : ["W", "A", "S", "D"])) {
+        const keyTile = document.createElement("span");
+        keyTile.classList.add("tutorial-visual-key");
+        keyTile.textContent = key;
+        keys.appendChild(keyTile);
+      }
+      visual.appendChild(keys);
+      return;
+    }
+
+    const image = target && target.querySelector("img");
+    if (image && image.src) {
+      const picture = document.createElement("img");
+      picture.src = image.src;
+      picture.alt = "";
+      visual.appendChild(picture);
+      return;
+    }
+
+    const symbols = {
+      category: "▦",
+      board: "⌖",
+      ground: "⌖",
+      overlay: "⌖",
+      "remove-overlay": "⌖",
+      erase: "⌖",
+      "menu-info": "✦",
+      done: "✓",
+    };
+    visual.textContent = symbols[current.type] || "●";
+  };
 
   const openCategory = (name) => {
     const button = categoryButton(name);
@@ -1656,133 +1846,95 @@ function openTutorial() {
     };
   };
 
-  const placeCard = (target, point) => {
-    const margin = 10;
-    const width = card.offsetWidth;
-    const height = card.offsetHeight;
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-    const rect = target ? target.getBoundingClientRect() : null;
-    let left;
-    let top;
-
-    if (rect && rect.top > viewportHeight * 0.58) {
-      left = window.matchMedia("(max-width: 600px)").matches
-        ? margin
-        : rect.left + rect.width / 2 - width / 2;
-      top = rect.top - height - margin;
-    } else if (window.matchMedia("(max-width: 600px)").matches) {
-      left = margin;
-      if (point) {
-        top = margin + 4;
-      } else {
-        top = rect ? rect.bottom + margin : margin;
-      }
-    } else if (point) {
-      const markerRadius = 34;
-      left =
-        point.x + markerRadius + width + margin <= viewportWidth - margin
-          ? point.x + markerRadius + margin
-          : point.x - markerRadius - width - margin;
-      top = point.y - height / 2;
-    } else if (rect) {
-      left = rect.right + width + margin <= viewportWidth - margin ? rect.right + margin : rect.left - width - margin;
-      top = rect.top + rect.height / 2 - height / 2;
-    } else {
-      left = margin;
-      top = margin;
-    }
-
-    card.style.left = `${Math.max(margin, Math.min(viewportWidth - width - margin, left))}px`;
-    card.style.top = `${Math.max(margin, Math.min(viewportHeight - height - margin, top))}px`;
-  };
-
   const render = () => {
-    // Scroll-Schritt entfaellt, wenn nichts zu scrollen ist (z. B. grosse Bildschirme)
-    while (steps[step].type === "scroll" && !pickScrollTarget()) {
-      step++;
-    }
     const current = steps[step];
+    if (!current) {
+      return;
+    }
     if (activeTarget) {
       activeTarget.classList.remove("tutorial-target");
       activeTarget = null;
     }
     focus.hidden = true;
+    activePoint = null;
+    if (renderedStep !== step && copy.parentElement) copy.parentElement.scrollTop = 0;
+    renderedStep = step;
     title.textContent = current.title;
-    copy.textContent = current.type === "reset" && resetDone
-      ? "Die Stadt wurde entsprechend deiner Auswahl zur\u00fcckgesetzt. Klicke auf Fertig, um das Tutorial zu beenden."
-      : current.text;
-    progress.textContent = `${step + 1} / ${steps.length}`;
-    next.textContent = step === steps.length - 1 ? "Fertig" : "Weiter";
-    next.disabled = step !== steps.length - 1 || (current.type === "reset" && !resetDone);
+    copy.textContent = current.text;
+    next.textContent = current.type === "done" ? "Fertig" : current.type === "menu-info" ? "Weiter" : "Auslassen";
 
     let target = null;
-    let point = null;
     if (current.type === "category") {
       target = categoryButton(current.category);
-      if (target && target.getAttribute("aria-expanded") === "true") {
-        target.click();
-      }
-    } else if (current.type === "scroll") {
-      target = pickScrollTarget();
-      scrollTarget = target;
-      scrollStart = target.scrollLeft;
-      scrollIntent = false;
     } else if (current.type === "tile") {
       openCategory(current.category);
-      target = tileButton(current.category, current.file);
-    } else if (current.type === "meadow") {
-      target = palette.querySelector(".dock-meadow");
+      target = current.file ? tileButton(current.category, current.file) : flyout;
+      if (!target) copy.textContent = "Diese Übungskachel ist nicht verfügbar. Wähle „Auslassen“.";
     } else if (current.type === "board") {
-      point = current.point === "house" ? tilePoint(houseTile) : current.point === "cat" && catTile ? tilePoint(catTile) : (() => {
-        const rect = canvas.getBoundingClientRect();
-        return {
-          x: rect.left + rect.width * 0.5 + (current.point === "cat" ? 110 : 0),
-          y: rect.top + rect.height * 0.5,
-        };
-      })();
+      tutorialHouseCell = findFreeHouseCell(houseDef);
+      activePoint = tutorialHouseCell;
+    } else if (current.type === "ground") {
+      activePoint = findFreeHouseCell(groundDef);
+    } else if (current.type === "overlay" || current.type === "remove-overlay") {
+      activePoint = lessonCell;
+    } else if (current.type === "erase") {
+      if (selectedPaletteIndex === MEADOW_TILE_INDEX) {
+        activePoint = lessonCell;
+      } else {
+        target = palette.querySelector(".dock-meadow");
+      }
     } else if (current.type === "undo") {
       target = document.getElementById("undo-button");
     } else if (current.type === "menu") {
       target = menuToggle;
-    } else if (current.type === "save" || current.type === "reset") {
-      if (!resetDone && menuPanel.hidden) {
-        menuPanel.hidden = false;
-        menuToggle.setAttribute("aria-expanded", "true");
-      }
-      if (!resetDone) {
-        target = document.getElementById(current.type === "save" ? "save-image" : "mode-meadow");
-      }
+    } else if (current.type === "explore") {
+      target = document.getElementById("character-notice-continue") ||
+        document.querySelector(".char-select-list") ||
+        document.getElementById("mode-button-character");
+    } else if (current.type === "move") {
+      target = (touchController && touchController.pad) || document.querySelector(".character-controls-hint:not([hidden])");
     }
 
+    drawVisual(current, target);
+
     if (target) {
-      if (!current.noFocus) {
-        activeTarget = target;
-        target.classList.add("tutorial-target");
+      activeTarget = target;
+      target.classList.add("tutorial-target");
+      if (current.type === "category" || (current.type === "tile" && current.file)) {
         target.scrollIntoView({ behavior: "auto", block: "nearest", inline: "nearest" });
-        if (current.type !== "save" && current.type !== "reset") {
-          const rect = target.getBoundingClientRect();
-          focus.style.left = `${rect.left - 5}px`;
-          focus.style.top = `${rect.top - 5}px`;
-          focus.style.width = `${rect.width + 10}px`;
-          focus.style.height = `${rect.height + 10}px`;
-          focus.hidden = false;
-        }
-        placeCard(target, null);
-      } else {
-        placeCard(null, null);
       }
-    } else if (point) {
-      const size = 68;
-      focus.style.left = `${point.x - size / 2}px`;
-      focus.style.top = `${point.y - size / 2}px`;
-      focus.style.width = `${size}px`;
-      focus.style.height = `${size}px`;
-      focus.hidden = false;
-      placeCard(null, point);
-    } else {
-      placeCard(null, null);
     }
+  };
+
+  const updateFocus = () => {
+    const point = activePoint && tilePoint(activePoint);
+    if (activeTarget && activeTarget.isConnected) {
+      const rect = activeTarget.getBoundingClientRect();
+      focus.style.left = `${rect.left - 5}px`;
+      focus.style.top = `${rect.top - 5}px`;
+      focus.style.width = `${rect.width + 10}px`;
+      focus.style.height = `${rect.height + 10}px`;
+      focus.hidden = false;
+    } else if (point) {
+      focus.style.left = `${point.x - 34}px`;
+      focus.style.top = `${point.y - 34}px`;
+      focus.style.width = "68px";
+      focus.style.height = "68px";
+      focus.hidden = false;
+    } else {
+      focus.hidden = true;
+    }
+    const bottom = card.getBoundingClientRect().bottom;
+    const toast = document.getElementById("toast");
+    if (toast && (toast !== positionedToast || bottom !== cardBottom)) {
+      toast.style.setProperty("--tutorial-bottom", `${bottom}px`);
+      positionedToast = toast;
+    }
+    if (bottom !== cardBottom) {
+      cardBottom = bottom;
+      app.style.setProperty("--tutorial-bottom", `${bottom}px`);
+    }
+    focusFrame = requestAnimationFrame(updateFocus);
   };
 
   const finish = () => {
@@ -1793,17 +1945,14 @@ function openTutorial() {
       activeTarget = null;
     }
     tutorialActionHandler = null;
+    cancelAnimationFrame(focusFrame);
+    if (positionedToast) positionedToast.style.removeProperty("--tutorial-bottom");
+    app.classList.remove("tutorial-active");
+    app.style.removeProperty("--tutorial-bottom");
+    restoreTutorialBoard();
     close.removeEventListener("click", finish);
-    next.removeEventListener("click", finish);
+    next.removeEventListener("click", onNextClick);
     palette.removeEventListener("click", onPaletteClick);
-    scrollables.forEach((el) => {
-      el.removeEventListener("pointerdown", onPointerDown);
-      el.removeEventListener("wheel", onWheel);
-      el.removeEventListener("scroll", onScroll);
-    });
-    window.removeEventListener("pointermove", onPointerMove);
-    window.removeEventListener("pointerup", onPointerUp);
-    document.removeEventListener("click", onDocumentClick);
     window.removeEventListener("resize", render);
     window.removeEventListener("keydown", onKeydown);
   };
@@ -1817,32 +1966,24 @@ function openTutorial() {
     }
   };
 
-  const onPointerDown = (event) => {
-    scrollStart = scrollTarget ? scrollTarget.scrollLeft : 0;
-    pointerStart = { x: event.clientX, y: event.clientY };
-    scrollIntent = false;
-  };
-  const onPointerMove = (event) => {
-    if (pointerStart && Math.hypot(event.clientX - pointerStart.x, event.clientY - pointerStart.y) > 10) {
-      scrollIntent = true;
-    }
-  };
-  const onPointerUp = () => {
-    pointerStart = null;
-  };
-  const onWheel = () => {
-    scrollIntent = true;
-  };
-  const onScroll = (event) => {
-    if (steps[step].type === "scroll" && scrollIntent && event.target === scrollTarget && Math.abs(scrollTarget.scrollLeft - scrollStart) > 24) {
+  const onNextClick = () => {
+    if (steps[step].type === "menu-info") {
       step++;
-      scrollIntent = false;
       render();
-    }
-  };
-  const onDocumentClick = (event) => {
-    if (steps[step].type === "save" && event.target.closest("#save-image")) {
-      step++;
+    } else if (steps[step].type === "done") {
+      finish();
+    } else {
+      const current = steps[step].type;
+      if (current === "category") {
+        step++;
+      } else if ((current === "tile" && !steps[step].file) || current === "board" || current === "undo") {
+        step = steps.findIndex((item) => item.type === "tile" && item.file === "Asphalt_1.png");
+      } else if (["tile", "ground", "overlay", "remove-overlay", "erase"].includes(current)) {
+        step = steps.findIndex((item) => item.type === "explore");
+      } else {
+        if (gameMode === "character" && modeSwitch) modeSwitch.setMode("build");
+        step = steps.findIndex((item) => item.type === "menu-info");
+      }
       render();
     }
   };
@@ -1856,37 +1997,56 @@ function openTutorial() {
     const current = steps[step];
     let completed = false;
 
-    if (current.type === "tile" && action === "palette-selected" && detail.def && detail.def.category === current.category && detail.def.file === current.file) {
+    if (
+      current.type === "tile" &&
+      action === "palette-selected" &&
+      detail.def &&
+      detail.def.category === current.category &&
+      (!current.file || detail.def.file === current.file) &&
+      selectedPaletteIndex === detail.index
+    ) {
+      if (!current.file) houseDef = detail.def;
+      else if (detail.def.type === "UNDER") groundDef = detail.def;
+      else if (detail.def.type === "OVER") overlayDef = detail.def;
       step++;
+      const openButton = categoryButton(current.category);
+      if (openButton && openButton.getAttribute("aria-expanded") === "true") openButton.click();
       completed = true;
-    } else if (current.type === "meadow" && action === "palette-selected" && detail.index === MEADOW_TILE_INDEX) {
-      step++;
-      completed = true;
-    } else if (current.type === "board" && current.point === "center" && action === "tile-placed" && detail.def && detail.def.file === "Altbau_1.png") {
-      houseTile = detail.tile;
-      step++;
-      completed = true;
-    } else if (current.type === "board" && current.point === "house" && action === "meadow-placed" && detail.tile.key === houseTile.key) {
+    } else if (current.type === "board" && action === "tile-placed" && detail.def === houseDef) {
       step++;
       completed = true;
     } else if (current.type === "undo" && action === "undo") {
       step++;
       completed = true;
-    } else if (current.type === "board" && current.point === "cat" && action === "tile-placed" && detail.def && detail.def.file === "Katze_1.png" && detail.tile.key !== houseTile.key) {
-      catTile = detail.tile;
+    } else if (current.type === "ground" && action === "tile-placed" && detail.def === groundDef) {
+      lessonCell = detail.tile;
       step++;
       completed = true;
-    } else if (current.type === "board" && current.point === "cat" && action === "tile-placed" && detail.def && detail.def.file === "Asphalt_1.png" && detail.tile.key === catTile.key) {
+    } else if (current.type === "overlay" && action === "tile-placed" && detail.def === overlayDef && detail.tile.key === lessonCell.key) {
+      lastOverlayTap = null;
       step++;
       completed = true;
-    } else if (current.type === "board" && current.point === "cat" && action === "overlay-removed" && detail.tile.key === catTile.key) {
+    } else if (current.type === "remove-overlay" && action === "overlay-removed" && detail.tile.key === lessonCell.key) {
       step++;
+      completed = true;
+    } else if (current.type === "erase" && action === "meadow-placed" && detail.tile.key === lessonCell.key) {
+      step++;
+      completed = true;
+    } else if (current.type === "erase" && action === "palette-selected") {
       completed = true;
     } else if (current.type === "menu" && action === "menu-toggled" && detail.open) {
       step++;
       completed = true;
-    } else if (current.type === "reset" && action === "reset-confirmed") {
-      resetDone = true;
+    } else if (current.type === "explore" && action === "character-ready") {
+      step++;
+      completed = true;
+    } else if (current.type === "explore" && (action === "explore-confirmed" || action === "mode-changed")) {
+      completed = true;
+    } else if (current.type === "move" && action === "character-moved") {
+      step++;
+      completed = true;
+    } else if (current.type === "move" && action === "mode-changed" && detail.mode === "build") {
+      step = steps.findIndex((tutorialStep) => tutorialStep.type === "explore");
       completed = true;
     }
 
@@ -1895,19 +2055,18 @@ function openTutorial() {
     }
   };
 
+  startTutorialBoard();
   tutorial.hidden = false;
+  app.classList.add("tutorial-active");
+  const searchButton = palette.querySelector(".search-toggle");
+  if (searchButton && searchButton.getAttribute("aria-expanded") === "true") searchButton.click();
+  const initialCategory = categoryButton(steps[0].category);
+  if (initialCategory && initialCategory.getAttribute("aria-expanded") === "true") initialCategory.click();
   render();
+  updateFocus();
   close.addEventListener("click", finish);
-  next.addEventListener("click", finish);
+  next.addEventListener("click", onNextClick);
   palette.addEventListener("click", onPaletteClick);
-  scrollables.forEach((el) => {
-    el.addEventListener("pointerdown", onPointerDown);
-    el.addEventListener("wheel", onWheel, { passive: true });
-    el.addEventListener("scroll", onScroll, { passive: true });
-  });
-  window.addEventListener("pointermove", onPointerMove);
-  window.addEventListener("pointerup", onPointerUp);
-  document.addEventListener("click", onDocumentClick);
   window.addEventListener("resize", render);
   window.addEventListener("keydown", onKeydown);
 }

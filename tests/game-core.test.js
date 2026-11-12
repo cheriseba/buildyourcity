@@ -503,6 +503,10 @@ test("Die CSV-Startvorlage passt auf die gemeinsame 1x2-Startflaeche", () => {
   `);
   assert.ok(run("realLayout.length") > 0);
   assert.deepEqual(warnings, []);
+  assert.equal(run("realLayout.every((entry) => entry.fixed && board.get(entry.gx, entry.gy).locked)"), true);
+  assert.equal(run("[...board.buildings].every((building) => building.locked && building.cells.every((cell) => cell.locked))"), true);
+  assert.equal(run("board.erase(board.get(realLayout[0].gx, realLayout[0].gy), realImages[realMeadowIndex])"), false);
+  assert.equal(run("board.place(board.get(realLayout[0].gx, realLayout[0].gy), realImages[realMeadowIndex], realDefs[realMeadowIndex], realImages[realMeadowIndex])"), "locked");
   assert.equal(run("board.land.parcels.size"), 2);
   assert.equal(run(`board.get(20, 28).ground === realImages[realDefs.findIndex(
     (def) => def.category === "10_Strassen" && def.file === "Strasse_2.png"

@@ -1,5 +1,1540 @@
 {
   "version": 1,
+  "families": [
+    {
+      "id": "41e5fb7a-0cf5-4516-b66d-9e40b93361d3",
+      "name": "Altbau",
+      "category": "1_Hauslinks",
+      "defaultTileId": "e68b30fb-dbfc-4d27-8a3f-2f6e16114f09",
+      "variants": [
+        {
+          "tileId": "e68b30fb-dbfc-4d27-8a3f-2f6e16114f09",
+          "label": "Weiss",
+          "color": "#eee0db"
+        },
+        {
+          "tileId": "6e9751e4-ea5c-4fb6-8987-ee9743a3cd5c",
+          "label": "Gelb",
+          "color": "#ecb56d"
+        },
+        {
+          "tileId": "942e5f40-4519-4d2c-8e6f-3c497090cb7b",
+          "label": "Rot",
+          "color": "#ce475b"
+        }
+      ]
+    },
+    {
+      "id": "923cff10-b373-4fb3-a202-b59d2e32ce79",
+      "name": "Reihenhaus",
+      "category": "1_Hauslinks",
+      "defaultTileId": "79abde5a-bea3-487f-adf2-7fd06493a9f0",
+      "variants": [
+        {
+          "tileId": "79abde5a-bea3-487f-adf2-7fd06493a9f0",
+          "label": "Reihenhaus_1",
+          "color": null
+        },
+        {
+          "tileId": "7526ac6b-28c7-4a32-81bb-7d8bff4a7ccf",
+          "label": "Reihenhaus_2",
+          "color": null
+        },
+        {
+          "tileId": "88c58ae4-5020-4fcf-a296-96ebf21bd7c1",
+          "label": "Reihenhaus_3",
+          "color": null
+        },
+        {
+          "tileId": "9cea62b6-7fb3-4529-b6ac-58c97c97d05d",
+          "label": "Reihenhaus_4",
+          "color": null
+        },
+        {
+          "tileId": "4672a9ef-d6f1-4443-b8f9-21c4a4d803f8",
+          "label": "Haus_10",
+          "color": null
+        },
+        {
+          "tileId": "da89b43e-00ac-4f9f-aa31-ebc70a3b7492",
+          "label": "Haus_11",
+          "color": null
+        },
+        {
+          "tileId": "ac607054-04bf-4004-b8a9-45d1ee5132e7",
+          "label": "Haus_12",
+          "color": null
+        },
+        {
+          "tileId": "fbaa7398-eb05-430f-88bb-5b366c58dca1",
+          "label": "Haus_13",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "78432a90-b1c2-4d0d-8bb1-e7eda0f7013f",
+      "name": "Wohnhäuser",
+      "category": "1_Hauslinks",
+      "defaultTileId": "92ebe456-d2aa-4f30-82ad-b14c6ce12af3",
+      "variants": [
+        {
+          "tileId": "92ebe456-d2aa-4f30-82ad-b14c6ce12af3",
+          "label": "Wohnhaus_1",
+          "color": null
+        },
+        {
+          "tileId": "636ebc19-9f3d-4631-98b8-9a86301d5e90",
+          "label": "Wohnhaus_2",
+          "color": null
+        },
+        {
+          "tileId": "ebc40789-4e9d-4d35-bc67-e8162cd984e7",
+          "label": "Wohnhaus_3",
+          "color": null
+        },
+        {
+          "tileId": "16532e8b-335f-4031-b015-97c82e5bc754",
+          "label": "Wohnhaus_3",
+          "color": null
+        },
+        {
+          "tileId": "6f029082-ff3b-4d18-ba2e-214b0ab0313e",
+          "label": "Wohnhaus_2",
+          "color": null
+        },
+        {
+          "tileId": "f30c3263-092d-4682-9469-6747ef9e96ca",
+          "label": "Wohnhaus_1",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "a246fb83-9664-487b-b9ca-0b3b831e4cab",
+      "name": "Historische",
+      "category": "1_Hauslinks",
+      "defaultTileId": "ed08aa11-23a1-4f03-8c9b-76e0902b0971",
+      "variants": [
+        {
+          "tileId": "ed08aa11-23a1-4f03-8c9b-76e0902b0971",
+          "label": "Historische_7",
+          "color": null
+        },
+        {
+          "tileId": "be8eff43-48c5-4043-acbc-dfc81519d3b2",
+          "label": "Historische_8",
+          "color": null
+        },
+        {
+          "tileId": "3986256d-55b0-4684-991c-7c46ac311bd7",
+          "label": "Historische_9",
+          "color": null
+        },
+        {
+          "tileId": "85192247-1f11-4077-a253-fc656984c1d5",
+          "label": "Historische_7",
+          "color": null
+        },
+        {
+          "tileId": "e747e406-5737-4928-8506-5570be9fb9fa",
+          "label": "Historische_8",
+          "color": null
+        },
+        {
+          "tileId": "d809c34b-d960-4df0-b1cf-f0114ab731ff",
+          "label": "Historische_9",
+          "color": null
+        },
+        {
+          "tileId": "81278e77-7e07-44ee-a5c5-c5bf8ca26a62",
+          "label": "Haus_2",
+          "color": null
+        },
+        {
+          "tileId": "02e48290-50d6-42c4-85be-0df5debbec7f",
+          "label": "Haus_8",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "e5f70423-ef69-4666-9c40-29b94e20ae91",
+      "name": "Historische_schmal",
+      "category": "1_Hauslinks",
+      "defaultTileId": "bd516877-635c-4d99-b4f2-e1189664de92",
+      "variants": [
+        {
+          "tileId": "bd516877-635c-4d99-b4f2-e1189664de92",
+          "label": "Historische_3",
+          "color": null
+        },
+        {
+          "tileId": "8fc90d5d-34aa-4683-822b-a784e0af10f4",
+          "label": "Historische_3",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "cbd6cec4-14ab-4231-9c05-21ebce4ed1b6",
+      "name": "Geisterhaus",
+      "category": "1_Hauslinks",
+      "defaultTileId": "abc238c6-c3b0-4c84-bfdd-fe5f8de60317",
+      "variants": [
+        {
+          "tileId": "abc238c6-c3b0-4c84-bfdd-fe5f8de60317",
+          "label": "Historische_5",
+          "color": null
+        },
+        {
+          "tileId": "429aca24-8094-406a-a4c7-4539b961ae19",
+          "label": "Historische_6",
+          "color": null
+        },
+        {
+          "tileId": "60a6122c-1247-439d-acdd-bf507728d718",
+          "label": "Historische_8",
+          "color": null
+        },
+        {
+          "tileId": "b05b20d9-209f-4d9a-b6da-e4c95963ac01",
+          "label": "Historische_9",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "1afdaa63-c30f-4542-9fda-6815d4ef74b1",
+      "name": "Reihenhaus_G",
+      "category": "1_Hauslinks",
+      "defaultTileId": "898871a9-b9ee-4dbc-b0d1-da9775e76b93",
+      "variants": [
+        {
+          "tileId": "898871a9-b9ee-4dbc-b0d1-da9775e76b93",
+          "label": "Reihenhaus_G_1",
+          "color": null
+        },
+        {
+          "tileId": "f37e9560-fac1-4b48-8644-6369486eab14",
+          "label": "Reihenhaus_G_2",
+          "color": null
+        },
+        {
+          "tileId": "b8259376-5eac-4919-9e7a-6755795ccd62",
+          "label": "Reihenhaus_G_3",
+          "color": null
+        },
+        {
+          "tileId": "a5cc1065-bb46-4add-b8c1-79ad2db45741",
+          "label": "Reihenhaus_G_4",
+          "color": null
+        },
+        {
+          "tileId": "4dcce186-fcff-42a8-b2b7-53051e4947d1",
+          "label": "Reihenhaus_G_1",
+          "color": null
+        },
+        {
+          "tileId": "851ab28f-ebb8-4126-abaa-7a81bc129fbc",
+          "label": "Reihenhaus_G_3",
+          "color": null
+        },
+        {
+          "tileId": "d1dc503e-072c-4660-8ab7-24e87a0d306a",
+          "label": "Reihenhaus_G_2",
+          "color": null
+        },
+        {
+          "tileId": "b901d3f3-5a9b-4d58-83d4-a4dab18fc469",
+          "label": "Reihenhaus_G_4",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "ef48a60b-5bbf-4cf3-b6d4-ba123db4df3c",
+      "name": "Schloss",
+      "category": "1_Hauslinks",
+      "defaultTileId": "f0f09310-e250-43f1-91d2-74ee7cbb1822",
+      "variants": [
+        {
+          "tileId": "f0f09310-e250-43f1-91d2-74ee7cbb1822",
+          "label": "Haus_2",
+          "color": null
+        },
+        {
+          "tileId": "d6012955-72f7-4827-b3fe-2ff43add4890",
+          "label": "Haus_3",
+          "color": null
+        },
+        {
+          "tileId": "c2a60bbc-1f54-4c2a-a6e0-512899f5dafb",
+          "label": "Haus_1",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "be28071d-cb58-4424-a12d-24d220b2ac46",
+      "name": "Historische_c",
+      "category": "1_Hauslinks",
+      "defaultTileId": "71d09c72-b779-4896-844f-8d56ed6c87e8",
+      "variants": [
+        {
+          "tileId": "71d09c72-b779-4896-844f-8d56ed6c87e8",
+          "label": "Historische_4",
+          "color": null
+        },
+        {
+          "tileId": "7e2b5575-05d4-43ac-839e-ae1dd7a0eb4e",
+          "label": "Historische_4",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "ebd76200-11c4-4f1f-b9a1-73136f325c90",
+      "name": "Haus_X",
+      "category": "1_Hauslinks",
+      "defaultTileId": "bc9bf90b-a37f-46c9-b88f-eeab1ad9ae2f",
+      "variants": [
+        {
+          "tileId": "bc9bf90b-a37f-46c9-b88f-eeab1ad9ae2f",
+          "label": "Altbau_4",
+          "color": null
+        },
+        {
+          "tileId": "38297770-a605-4aa2-8fae-798a2c19e105",
+          "label": "Altbau_1",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "a1c9af0b-7b1e-4eee-b06c-389f95c15a9c",
+      "name": "4 Etage Altbau",
+      "category": "1_Hauslinks",
+      "defaultTileId": "09a7c2b0-4877-4927-98e6-155b4f3bb494",
+      "variants": [
+        {
+          "tileId": "09a7c2b0-4877-4927-98e6-155b4f3bb494",
+          "label": "Haus_5",
+          "color": null
+        },
+        {
+          "tileId": "76b32d47-0c98-4a0f-b534-c95d1e5062f7",
+          "label": "Haus_7",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "f4dc905c-4028-45e2-a82a-9217e6581e19",
+      "name": "Haus_Y",
+      "category": "1_Hauslinks",
+      "defaultTileId": "f64e8bee-31f6-4e39-a0c9-5877e986f8ee",
+      "variants": [
+        {
+          "tileId": "f64e8bee-31f6-4e39-a0c9-5877e986f8ee",
+          "label": "Historische_2",
+          "color": null
+        },
+        {
+          "tileId": "b656d427-cac8-4011-97fd-86ff426fc394",
+          "label": "Historische_2",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "a31d182a-4fa6-4ead-80b2-1c2cc6da7838",
+      "name": "Haus_Z",
+      "category": "1_Hauslinks",
+      "defaultTileId": "64783967-0a2b-4145-b9fd-c5dc676f9f58",
+      "variants": [
+        {
+          "tileId": "64783967-0a2b-4145-b9fd-c5dc676f9f58",
+          "label": "Historische_1",
+          "color": null
+        },
+        {
+          "tileId": "6d4af7b4-ef3b-4e8a-9672-0cd808764bbd",
+          "label": "Historische_1",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "9f99da47-1b68-47da-b3b9-f2a46c3d228f",
+      "name": "Halle",
+      "category": "3_Spezialhaus",
+      "defaultTileId": "54b6e510-3125-4830-bcca-7f1a1f926e35",
+      "variants": [
+        {
+          "tileId": "54b6e510-3125-4830-bcca-7f1a1f926e35",
+          "label": "Halle_1",
+          "color": null
+        },
+        {
+          "tileId": "cc483972-1e10-452e-a1e2-153e34e7cedf",
+          "label": "Halle_2",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "daa06973-1887-4f66-9dcf-8cd0c03da50a",
+      "name": "Gerade",
+      "category": "10_Strassen",
+      "defaultTileId": "72cc95e2-fad3-4ad7-9af2-3caf23bcc4a5",
+      "variants": [
+        {
+          "tileId": "72cc95e2-fad3-4ad7-9af2-3caf23bcc4a5",
+          "label": "Strasse_1",
+          "color": null
+        },
+        {
+          "tileId": "758e48c9-315b-442d-8a66-252d8278ee46",
+          "label": "Strasse_2",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "03bcef8a-cbe6-4d21-983b-028d59ef5992",
+      "name": "Kurve",
+      "category": "10_Strassen",
+      "defaultTileId": "02354e6c-8abb-4a89-9f71-3747b3f05842",
+      "variants": [
+        {
+          "tileId": "02354e6c-8abb-4a89-9f71-3747b3f05842",
+          "label": "Strasse_4",
+          "color": null
+        },
+        {
+          "tileId": "b3a1f179-9a46-4d65-9033-3c411971d659",
+          "label": "Strasse_5",
+          "color": null
+        },
+        {
+          "tileId": "d1a4c1e9-79b0-40e5-ad74-5d180d9440f7",
+          "label": "Strasse_6",
+          "color": null
+        },
+        {
+          "tileId": "72986513-b1fe-44a5-8892-8e8e0b585427",
+          "label": "Strasse_7",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "978b01b1-4a07-4d60-852f-4c5c8d578e4a",
+      "name": "T-Kreuzung",
+      "category": "10_Strassen",
+      "defaultTileId": "aa24864c-b971-45fe-84bc-11352ddf53b0",
+      "variants": [
+        {
+          "tileId": "aa24864c-b971-45fe-84bc-11352ddf53b0",
+          "label": "Strasse_8",
+          "color": null
+        },
+        {
+          "tileId": "0dedceae-677c-456b-aafc-76ed2935da12",
+          "label": "Strasse_11",
+          "color": null
+        },
+        {
+          "tileId": "af71fa3a-fb42-43fc-9e05-115bfe5fcdff",
+          "label": "Strasse_9",
+          "color": null
+        },
+        {
+          "tileId": "7bc6fa17-0c49-4df4-a689-14947db637d7",
+          "label": "Strasse_10",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "fe68b290-2163-498a-94a7-c3464a046793",
+      "name": "Zebra",
+      "category": "10_Strassen",
+      "defaultTileId": "0b41c402-0b73-4adc-8a77-fc4ef2d65950",
+      "variants": [
+        {
+          "tileId": "0b41c402-0b73-4adc-8a77-fc4ef2d65950",
+          "label": "Zebra_1",
+          "color": null
+        },
+        {
+          "tileId": "8a5528e8-3655-46fc-8a5f-0a53128e1b3d",
+          "label": "Zebra_2",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "071fab12-7b40-455a-b755-5bc4ea93aa99",
+      "name": "Wiese",
+      "category": "11_Boden",
+      "defaultTileId": "9de08e07-54fd-4aaa-be1e-8c763a628ec9",
+      "variants": [
+        {
+          "tileId": "9de08e07-54fd-4aaa-be1e-8c763a628ec9",
+          "label": "Wiese_1",
+          "color": null
+        },
+        {
+          "tileId": "383421f8-5d85-467b-a6d2-f93fb25a7a4f",
+          "label": "Wiese_2",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "ccd140ed-efab-41d3-ac16-89f881e0e1ec",
+      "name": "A_Gerade",
+      "category": "12_Wege",
+      "defaultTileId": "cd5aa88d-d296-4ba9-8223-d510dae5d154",
+      "variants": [
+        {
+          "tileId": "cd5aa88d-d296-4ba9-8223-d510dae5d154",
+          "label": "A_Gerade_1",
+          "color": null
+        },
+        {
+          "tileId": "574d6694-e9eb-4a35-b82b-9924c3ee99d5",
+          "label": "A_Gerade_2",
+          "color": null
+        },
+        {
+          "tileId": "998405f1-28f9-4762-a643-42a2c6dba107",
+          "label": "A_Gerade_3",
+          "color": null
+        },
+        {
+          "tileId": "843f2062-0fea-499a-ad3a-c0c5024a1d6b",
+          "label": "A_Gerade_4",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "bca88399-323d-445a-88c0-d55d717a82a6",
+      "name": "Kreuzung",
+      "category": "12_Wege",
+      "defaultTileId": "ba320970-16ac-4b09-a8a5-60a021ded57e",
+      "variants": [
+        {
+          "tileId": "ba320970-16ac-4b09-a8a5-60a021ded57e",
+          "label": "A_Gerade_5",
+          "color": null
+        },
+        {
+          "tileId": "75d97dd2-801c-452e-9b53-1963fb9797f3",
+          "label": "A_Gerade_6",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "7bc47e2d-8589-4076-9256-d2fb407ff335",
+      "name": "Kurve",
+      "category": "12_Wege",
+      "defaultTileId": "78d82525-8139-4ceb-8853-80438da6d2d8",
+      "variants": [
+        {
+          "tileId": "78d82525-8139-4ceb-8853-80438da6d2d8",
+          "label": "Eck_2",
+          "color": null
+        },
+        {
+          "tileId": "11192a7a-0127-48d5-94e9-d71db293f8df",
+          "label": "Eck_3",
+          "color": null
+        },
+        {
+          "tileId": "659e9911-7552-4aa9-8e47-a7576a06a10a",
+          "label": "Eck_4",
+          "color": null
+        },
+        {
+          "tileId": "65801e8c-92ce-4347-8dd6-446e5b652954",
+          "label": "Eck_5",
+          "color": null
+        },
+        {
+          "tileId": "f437572d-de5e-465e-9e44-3af734a25e7a",
+          "label": "Eck_6",
+          "color": null
+        },
+        {
+          "tileId": "f781b59c-932a-4cd1-a4f6-460d8686944a",
+          "label": "Eck_7",
+          "color": null
+        },
+        {
+          "tileId": "69cd4648-2d60-4b10-b2ad-df9a3273432a",
+          "label": "Eck_8",
+          "color": null
+        },
+        {
+          "tileId": "b811667a-314f-4ca7-8782-b44bae4411da",
+          "label": "Eck_1",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "ac3aa7f0-9f0b-451b-8add-72fa241f7b60",
+      "name": "Ende",
+      "category": "12_Wege",
+      "defaultTileId": "0e842dbd-c909-45f8-9822-6bb8d77611c1",
+      "variants": [
+        {
+          "tileId": "0e842dbd-c909-45f8-9822-6bb8d77611c1",
+          "label": "End_1",
+          "color": null
+        },
+        {
+          "tileId": "8610a06e-f9cd-416a-ac1a-0f8aaa215403",
+          "label": "End_2",
+          "color": null
+        },
+        {
+          "tileId": "a1f67e6b-eaac-4a3e-b1a8-ae708cca4533",
+          "label": "End_3",
+          "color": null
+        },
+        {
+          "tileId": "10591aa8-024f-4ff5-8d5c-c09eea8e6f43",
+          "label": "End_4",
+          "color": null
+        },
+        {
+          "tileId": "8bfb7afc-5f4e-475f-a198-5f083ff24c95",
+          "label": "End_5",
+          "color": null
+        },
+        {
+          "tileId": "5c172b8c-fc92-4121-8227-b5c2f8d107e1",
+          "label": "End_6",
+          "color": null
+        },
+        {
+          "tileId": "1668ef81-1c60-4f68-b833-2ad71706d7ab",
+          "label": "End_7",
+          "color": null
+        },
+        {
+          "tileId": "40ef70c9-12c5-48ad-a02f-9db93b763702",
+          "label": "End_8",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "c21b5dc8-b33d-446e-a13a-155a6d9d0852",
+      "name": "Asphalt",
+      "category": "13_Stadtboden",
+      "defaultTileId": "72ab4c51-a198-4cdd-bcb3-0e69a9b4d5cd",
+      "variants": [
+        {
+          "tileId": "72ab4c51-a198-4cdd-bcb3-0e69a9b4d5cd",
+          "label": "Asphalt_1",
+          "color": null
+        },
+        {
+          "tileId": "0fc7b23b-26f4-48b4-9873-3d3cae28188a",
+          "label": "Asphalt_6",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "5de701ad-fbdf-4ac1-9cd7-15270766f812",
+      "name": "Parkplatz",
+      "category": "13_Stadtboden",
+      "defaultTileId": "3b4179cf-3b2c-449b-a302-4a3c76b3f1ef",
+      "variants": [
+        {
+          "tileId": "3b4179cf-3b2c-449b-a302-4a3c76b3f1ef",
+          "label": "Asphalt_2",
+          "color": null
+        },
+        {
+          "tileId": "df923b7e-dd83-4584-b642-07368d224c01",
+          "label": "Asphalt_3",
+          "color": null
+        },
+        {
+          "tileId": "d1bf1cee-fd4b-4efe-a1a7-4e6a17b63d60",
+          "label": "Asphalt_4",
+          "color": null
+        },
+        {
+          "tileId": "7070243a-6708-4347-a76d-cf66bffeca1b",
+          "label": "Asphalt_5",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "2bb58c8d-026f-4b6b-aa26-4932d85b6f4a",
+      "name": "Backstein",
+      "category": "13_Stadtboden",
+      "defaultTileId": "67215932-3def-44fc-a75c-9a8c367ab60f",
+      "variants": [
+        {
+          "tileId": "67215932-3def-44fc-a75c-9a8c367ab60f",
+          "label": "Backstein_1",
+          "color": null
+        },
+        {
+          "tileId": "5cfd1e7c-5c03-4f97-97be-f7e0ff5f98d8",
+          "label": "Backstein_2",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "175cd505-0098-4c1d-bb6d-16ff56ea562e",
+      "name": "Einfahrt",
+      "category": "13_Stadtboden",
+      "defaultTileId": "bd137615-9fa1-4d6c-b7c1-cf188de22978",
+      "variants": [
+        {
+          "tileId": "bd137615-9fa1-4d6c-b7c1-cf188de22978",
+          "label": "Boden_3",
+          "color": null
+        },
+        {
+          "tileId": "68283fc4-eb11-4b49-927a-131cf892dd6e",
+          "label": "Boden_4",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "884fda67-aa0e-450e-b238-1d0a3a362b2d",
+      "name": "Kacheln",
+      "category": "13_Stadtboden",
+      "defaultTileId": "18b12e32-6aa7-41d9-a860-edc260c4fdf0",
+      "variants": [
+        {
+          "tileId": "18b12e32-6aa7-41d9-a860-edc260c4fdf0",
+          "label": "Kacheln_1",
+          "color": null
+        },
+        {
+          "tileId": "311392e8-ccfd-4876-afeb-ad8a78c2eb5a",
+          "label": "Kacheln_2",
+          "color": null
+        },
+        {
+          "tileId": "2f1f9cb8-a99a-435d-8f1f-418735cf6098",
+          "label": "Kacheln_3",
+          "color": null
+        },
+        {
+          "tileId": "1290a443-b71f-456c-bd58-b4c4556a4fc9",
+          "label": "Kacheln_4",
+          "color": null
+        },
+        {
+          "tileId": "9f608d51-df0d-46ed-9643-febff2101b79",
+          "label": "Kacheln_5",
+          "color": null
+        },
+        {
+          "tileId": "c239ebe5-9194-48df-9718-1e497be5b2a5",
+          "label": "Kacheln_6",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "ed100bda-e2b7-4d0b-921e-f4ca158cbd25",
+      "name": "Bäume",
+      "category": "20_Naturdeko",
+      "defaultTileId": "3e8d21fb-81e3-4765-945f-4c7db6faf141",
+      "variants": [
+        {
+          "tileId": "3e8d21fb-81e3-4765-945f-4c7db6faf141",
+          "label": "Baum_1",
+          "color": null
+        },
+        {
+          "tileId": "9702320f-4062-41ae-b1d9-e45f892e3ac8",
+          "label": "Baum_2",
+          "color": null
+        },
+        {
+          "tileId": "e7cf1a1f-3493-4d0a-9b81-a70201d2abd0",
+          "label": "Baum_3",
+          "color": null
+        },
+        {
+          "tileId": "218ff66b-8c5c-4630-87c3-874731e61b23",
+          "label": "Baum_4",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "dd503b3d-138b-4b4a-92b1-342425b1630b",
+      "name": "Tanne",
+      "category": "20_Naturdeko",
+      "defaultTileId": "d902b53d-7870-402f-b7ce-b3c5b9431efb",
+      "variants": [
+        {
+          "tileId": "d902b53d-7870-402f-b7ce-b3c5b9431efb",
+          "label": "Baum_5",
+          "color": null
+        },
+        {
+          "tileId": "65a5fbeb-9caf-4c8a-9369-6200aa183ec4",
+          "label": "Baum_6",
+          "color": null
+        },
+        {
+          "tileId": "66639be0-512f-478e-86ef-0c529ab8ac38",
+          "label": "Baum_7",
+          "color": null
+        },
+        {
+          "tileId": "4525ab46-b203-4533-9287-945d2d9cf807",
+          "label": "Baum_8",
+          "color": null
+        },
+        {
+          "tileId": "95d2f14d-a362-4b7a-8995-0939dd6557aa",
+          "label": "Baum_9",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "08471819-8103-42d7-9464-9b60a1e83c40",
+      "name": "Busch",
+      "category": "20_Naturdeko",
+      "defaultTileId": "95322fd2-300e-44d8-93a5-aac13d5b8729",
+      "variants": [
+        {
+          "tileId": "95322fd2-300e-44d8-93a5-aac13d5b8729",
+          "label": "Busch_1",
+          "color": null
+        },
+        {
+          "tileId": "8588279d-cfe7-411b-94e3-fae6761c0f9b",
+          "label": "Busch_2",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "1a6570e1-4456-4a46-b109-dd311db0bd3e",
+      "name": "Busch_2",
+      "category": "20_Naturdeko",
+      "defaultTileId": "84d5187c-cde0-482f-a7d3-0d2c1aab9e75",
+      "variants": [
+        {
+          "tileId": "84d5187c-cde0-482f-a7d3-0d2c1aab9e75",
+          "label": "Busch_3",
+          "color": null
+        },
+        {
+          "tileId": "c4430444-42d6-40de-adb1-3b89d2048946",
+          "label": "Busch_4",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "576d3719-1100-4f46-878f-a852df884c08",
+      "name": "Blume",
+      "category": "20_Naturdeko",
+      "defaultTileId": "7d5eac1a-22ff-4f53-9bae-16dd6734e4fb",
+      "variants": [
+        {
+          "tileId": "7d5eac1a-22ff-4f53-9bae-16dd6734e4fb",
+          "label": "Blume_1",
+          "color": null
+        },
+        {
+          "tileId": "fc5b9f75-f9b7-4e1c-b2a4-b330a1c50f6b",
+          "label": "Blume_2",
+          "color": null
+        },
+        {
+          "tileId": "1fab90da-dd2e-4c12-b7a8-5adbbddfb84e",
+          "label": "Blume_3",
+          "color": null
+        },
+        {
+          "tileId": "4801b142-5919-420c-9d08-61e49d376cdb",
+          "label": "Blume_4",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "0bdadf92-4bb1-4877-8bf7-d87995f13885",
+      "name": "Katze",
+      "category": "21_Tiere",
+      "defaultTileId": "b2950ffe-0a6a-4c1b-b49a-79c4b577a267",
+      "variants": [
+        {
+          "tileId": "b2950ffe-0a6a-4c1b-b49a-79c4b577a267",
+          "label": "Katze_1",
+          "color": null
+        },
+        {
+          "tileId": "fdafcc8f-3d27-4794-82b9-cb0589b02f40",
+          "label": "Katze_2",
+          "color": null
+        },
+        {
+          "tileId": "9720efdc-da67-42f8-aed3-1321fcb0afd3",
+          "label": "Katze_3",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "2ec0e65c-d695-4664-a080-147e48d26dcb",
+      "name": "Laterne",
+      "category": "22_Infrastruktur",
+      "defaultTileId": "e56a890f-8c91-4d84-a281-ece7ec2c537f",
+      "variants": [
+        {
+          "tileId": "e56a890f-8c91-4d84-a281-ece7ec2c537f",
+          "label": "Stadtdeko_2",
+          "color": null
+        },
+        {
+          "tileId": "8bb50e57-3a6c-4444-9056-bf26a4c6c8f3",
+          "label": "Stadtdeko_3",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "301a98f8-c186-4cf1-a162-86bf9601736a",
+      "name": "Pfosten",
+      "category": "22_Infrastruktur",
+      "defaultTileId": "ad577a22-6986-4afc-8b7a-7461a96509ab",
+      "variants": [
+        {
+          "tileId": "ad577a22-6986-4afc-8b7a-7461a96509ab",
+          "label": "Stadtdeko_4",
+          "color": null
+        },
+        {
+          "tileId": "217fd01e-15f0-400d-968e-df4443a07165",
+          "label": "Stadtdeko_5",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "effd10bd-69de-4cc3-9775-ba4bcd0d7b64",
+      "name": "Spielplatz",
+      "category": "25_Spielplatz",
+      "defaultTileId": "8e80faaa-052c-447a-a63a-a96d19cb52bb",
+      "variants": [
+        {
+          "tileId": "8e80faaa-052c-447a-a63a-a96d19cb52bb",
+          "label": "Spielplatz_1",
+          "color": null
+        },
+        {
+          "tileId": "56abd5aa-8077-424a-9818-f93b1384980c",
+          "label": "Spielplatz_2",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "37bffdd9-9db3-4eaa-bb56-6cc67e78d650",
+      "name": "Rutsche",
+      "category": "25_Spielplatz",
+      "defaultTileId": "3efd31e6-f2bb-4b1c-b846-37d1e09da98c",
+      "variants": [
+        {
+          "tileId": "3efd31e6-f2bb-4b1c-b846-37d1e09da98c",
+          "label": "Spielplatz_5",
+          "color": null
+        },
+        {
+          "tileId": "ce4f00d4-269a-4ae9-9d1f-79c6ac9b8be3",
+          "label": "Spielplatz_6",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "fb26050e-1df6-48eb-81d6-d7d99daece5d",
+      "name": "Gerade",
+      "category": "30_Bahnhof",
+      "defaultTileId": "6f447883-92ef-486b-bf5c-a32f5ccb692c",
+      "variants": [
+        {
+          "tileId": "6f447883-92ef-486b-bf5c-a32f5ccb692c",
+          "label": "Gleis_1",
+          "color": null
+        },
+        {
+          "tileId": "a8041cf9-2c4b-4a7a-8eae-503990bfea7c",
+          "label": "Gleis_2",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "2ddab0eb-2750-41d7-8df6-03875500e501",
+      "name": "Kurve",
+      "category": "30_Bahnhof",
+      "defaultTileId": "07bb42d1-4bc5-40de-8ec6-1dd99f02c5c9",
+      "variants": [
+        {
+          "tileId": "07bb42d1-4bc5-40de-8ec6-1dd99f02c5c9",
+          "label": "Gleis_3",
+          "color": null
+        },
+        {
+          "tileId": "d46d51a3-e4b3-4c11-904d-653385d402bd",
+          "label": "Gleis_4",
+          "color": null
+        },
+        {
+          "tileId": "e479319a-de9c-4824-bf75-e8e918799f92",
+          "label": "Gleis_5",
+          "color": null
+        },
+        {
+          "tileId": "8c1ee77f-5f0d-42dd-af95-ac3da7ac163b",
+          "label": "Gleis_6",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "0f44f300-f70e-4e35-9e44-bf068b8aea18",
+      "name": "ICE",
+      "category": "30_Bahnhof",
+      "defaultTileId": "5e231c50-1d19-4a14-aaa5-c09091c634b5",
+      "variants": [
+        {
+          "tileId": "5e231c50-1d19-4a14-aaa5-c09091c634b5",
+          "label": "ICE_1",
+          "color": null
+        },
+        {
+          "tileId": "26958e00-8847-4096-984d-926c653e0d15",
+          "label": "ICE_2",
+          "color": null
+        },
+        {
+          "tileId": "49481338-18eb-4808-9fd0-4d812d0b9e59",
+          "label": "ICE_3",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "7e707875-295e-4591-9ffa-4118f0b25381",
+      "name": "X_Bahnhof",
+      "category": "30_Bahnhof",
+      "defaultTileId": "647809f9-da50-4803-8c6e-129fdfebcce4",
+      "variants": [
+        {
+          "tileId": "647809f9-da50-4803-8c6e-129fdfebcce4",
+          "label": "X_Bahnhof_1",
+          "color": null
+        },
+        {
+          "tileId": "f05421f4-a46c-463f-99e8-5a9c25a06b9e",
+          "label": "X_Bahnhof_2",
+          "color": null
+        },
+        {
+          "tileId": "46393974-6677-4136-902d-762e968f1ab6",
+          "label": "X_Bahnhof_3",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "bbe6fd05-7f77-400b-8be0-2c3aafaec65f",
+      "name": "Auto",
+      "category": "31_Fahrzeug",
+      "defaultTileId": "77a3cd80-f3f7-42a5-ac47-f6c61f988a44",
+      "variants": [
+        {
+          "tileId": "77a3cd80-f3f7-42a5-ac47-f6c61f988a44",
+          "label": "Auto_2",
+          "color": null
+        },
+        {
+          "tileId": "a413479f-7218-47dd-8cf5-19865cdc3179",
+          "label": "Auto_3",
+          "color": null
+        },
+        {
+          "tileId": "7baafeee-fdca-448e-b037-b1e1a67b7e88",
+          "label": "Auto_4",
+          "color": null
+        },
+        {
+          "tileId": "53edea94-7648-436a-9218-579f6f79d243",
+          "label": "Auto_5",
+          "color": null
+        },
+        {
+          "tileId": "9b5f7227-03bd-4021-bca8-16739678e42f",
+          "label": "Auto_6",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "148604da-647f-4e1d-8ac8-f5130a0442af",
+      "name": "Bus",
+      "category": "31_Fahrzeug",
+      "defaultTileId": "6e7b03bd-f2c5-40d4-98ea-4110ac6bec30",
+      "variants": [
+        {
+          "tileId": "6e7b03bd-f2c5-40d4-98ea-4110ac6bec30",
+          "label": "Bus_2",
+          "color": null
+        },
+        {
+          "tileId": "024ab379-bcdc-44ac-859b-833f5e6db66e",
+          "label": "Bus_3",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "c73d9075-775b-468e-9794-cab648e4c277",
+      "name": "Gerade",
+      "category": "40_Wasser",
+      "defaultTileId": "0e94e6b1-67ed-438a-a114-c33f6e2c730f",
+      "variants": [
+        {
+          "tileId": "0e94e6b1-67ed-438a-a114-c33f6e2c730f",
+          "label": "Andere_2",
+          "color": null
+        },
+        {
+          "tileId": "abef7eb0-15f2-489e-ab00-5d522ab62fd3",
+          "label": "Andere_4",
+          "color": null
+        },
+        {
+          "tileId": "5b52902b-1531-4f39-85ba-0b3fe4c03fe6",
+          "label": "Andere_3",
+          "color": null
+        },
+        {
+          "tileId": "896c4287-f09c-4bdf-96d0-7e157c6d1fcd",
+          "label": "Andere_5",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "718df418-9b68-4200-b5f4-f2140cf8745c",
+      "name": "Halb",
+      "category": "40_Wasser",
+      "defaultTileId": "4c2572da-1c8a-421e-9377-91b66ab17834",
+      "variants": [
+        {
+          "tileId": "4c2572da-1c8a-421e-9377-91b66ab17834",
+          "label": "Halb_1",
+          "color": null
+        },
+        {
+          "tileId": "719decd0-0c7f-469c-828e-195cc9b844bf",
+          "label": "Halb_2",
+          "color": null
+        },
+        {
+          "tileId": "497d454e-666e-4fe7-bfd5-181283b58e66",
+          "label": "Halb_3",
+          "color": null
+        },
+        {
+          "tileId": "33c136a7-79e9-4580-8cc0-a15f60b36599",
+          "label": "Halb_4",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "6b527034-e7c5-42cd-8ec5-b645bee47b06",
+      "name": "Viertel",
+      "category": "40_Wasser",
+      "defaultTileId": "b45c4ee3-7353-48ce-b4d0-b6c306bcbe24",
+      "variants": [
+        {
+          "tileId": "b45c4ee3-7353-48ce-b4d0-b6c306bcbe24",
+          "label": "Viertel_1",
+          "color": null
+        },
+        {
+          "tileId": "a164dcf3-03df-4bc2-8e1a-2af2d6398cd2",
+          "label": "Viertel_2",
+          "color": null
+        },
+        {
+          "tileId": "42c30ef4-45bf-48b8-9820-891c9e61e0e6",
+          "label": "Viertel_3",
+          "color": null
+        },
+        {
+          "tileId": "7527d404-6c0c-4eb1-beea-45d7bab6ff11",
+          "label": "Viertel_4",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "f5ad8526-249d-4d89-8311-348a8a87b226",
+      "name": "Dreiviertel",
+      "category": "40_Wasser",
+      "defaultTileId": "15f7eb18-d2f5-49d2-a220-44cca32f6212",
+      "variants": [
+        {
+          "tileId": "15f7eb18-d2f5-49d2-a220-44cca32f6212",
+          "label": "Dreiviertel_1",
+          "color": null
+        },
+        {
+          "tileId": "77b013f3-f62b-41c7-ac44-ffe32084c597",
+          "label": "Dreiviertel_2",
+          "color": null
+        },
+        {
+          "tileId": "892c420a-16eb-4590-b748-1c8e4d80e74b",
+          "label": "Dreiviertel_3",
+          "color": null
+        },
+        {
+          "tileId": "063627f8-38af-405e-9541-c58e17417274",
+          "label": "Dreiviertel_4",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "820a1431-b78a-4f55-944e-d33c9845f4a9",
+      "name": "Halb_2",
+      "category": "40_Wasser",
+      "defaultTileId": "0811cd50-f9c9-4051-94b6-2eaf5a0d4c8d",
+      "variants": [
+        {
+          "tileId": "0811cd50-f9c9-4051-94b6-2eaf5a0d4c8d",
+          "label": "Halb_5",
+          "color": null
+        },
+        {
+          "tileId": "ec11dafa-deac-48e2-98fe-0dda8a757579",
+          "label": "Halb_6",
+          "color": null
+        },
+        {
+          "tileId": "321fad5d-0b9f-4b02-b865-f9905b6a615d",
+          "label": "Halb_7",
+          "color": null
+        },
+        {
+          "tileId": "649a8d8b-8684-4a28-a740-c50d825cf6dd",
+          "label": "Halb_8",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "42250fe0-29b3-4de1-8c7b-5d0a0c47a6c6",
+      "name": "Auffahrt",
+      "category": "14_Brucke",
+      "defaultTileId": "3fa8c459-b500-4d11-a7d5-8e8044776fd8",
+      "variants": [
+        {
+          "tileId": "3fa8c459-b500-4d11-a7d5-8e8044776fd8",
+          "label": "Auffahrt_1",
+          "color": null
+        },
+        {
+          "tileId": "963f3eed-71f0-405b-8cb2-2da0b301702a",
+          "label": "Auffahrt_3",
+          "color": null
+        },
+        {
+          "tileId": "df475d5d-6534-44a1-9bf2-b0d8ceafade0",
+          "label": "Auffahrt_2",
+          "color": null
+        },
+        {
+          "tileId": "25e47806-89db-46c4-9ccd-da3ea682e03b",
+          "label": "Auffahrt_4",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "258777dd-08ca-471e-a735-7cfba795aed1",
+      "name": "T",
+      "category": "14_Brucke",
+      "defaultTileId": "ad9a88b6-d73e-441f-8099-aa683cf9b8ae",
+      "variants": [
+        {
+          "tileId": "ad9a88b6-d73e-441f-8099-aa683cf9b8ae",
+          "label": "Hohe_2",
+          "color": null
+        },
+        {
+          "tileId": "bf04ba5e-fdb0-4be2-b133-f6d367f30600",
+          "label": "Hohe_4",
+          "color": null
+        },
+        {
+          "tileId": "3d840f45-d863-416c-a7c4-2e22452221a5",
+          "label": "Hohe_3",
+          "color": null
+        },
+        {
+          "tileId": "d280861c-8edd-4074-80e8-096e883d6f51",
+          "label": "Hohe_5",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "47bb2f58-f678-4aef-81c5-2d5b5511b8ef",
+      "name": "Oben",
+      "category": "14_Brucke",
+      "defaultTileId": "1a7f98c5-e81d-4ef0-bbae-3d87a152b8c0",
+      "variants": [
+        {
+          "tileId": "1a7f98c5-e81d-4ef0-bbae-3d87a152b8c0",
+          "label": "Oben_1",
+          "color": null
+        },
+        {
+          "tileId": "7db67ad8-bbe7-4eba-a3a7-56ec920a1960",
+          "label": "Oben_3",
+          "color": null
+        },
+        {
+          "tileId": "49c6a11f-0f01-4109-858d-66a7ada780fa",
+          "label": "Oben_4",
+          "color": null
+        },
+        {
+          "tileId": "e61111ff-0737-4a59-b558-1b132fac590f",
+          "label": "Oben_2",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "b3d5d758-ef2b-4301-8d93-421a26c1a87b",
+      "name": "Schild",
+      "category": "22_Infrastruktur",
+      "defaultTileId": "3ac1bfd3-002d-4d5f-9a82-8ab6dcd86012",
+      "variants": [
+        {
+          "tileId": "3ac1bfd3-002d-4d5f-9a82-8ab6dcd86012",
+          "label": "Schild_1",
+          "color": null
+        },
+        {
+          "tileId": "7bc37f45-22ac-4c4a-851c-02042aa00bda",
+          "label": "Schild_2",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "82bf3a0f-1476-4e60-9479-06ff80a0ec3a",
+      "name": "Fahrradständer",
+      "category": "22_Infrastruktur",
+      "defaultTileId": "47486bb7-a7f5-400f-9370-c78d76be1ffa",
+      "variants": [
+        {
+          "tileId": "47486bb7-a7f5-400f-9370-c78d76be1ffa",
+          "label": "Fahrrad_2",
+          "color": null
+        },
+        {
+          "tileId": "c88edaaa-71d0-4fee-bb63-89d84b5a0eb7",
+          "label": "Fahrrad_3",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "f8e8d062-c73a-40b4-a6f2-a562143c3ea5",
+      "name": "hürde",
+      "category": "22_Infrastruktur",
+      "defaultTileId": "25ceaa8a-57a5-4666-8ba2-c9eaaa85521e",
+      "variants": [
+        {
+          "tileId": "25ceaa8a-57a5-4666-8ba2-c9eaaa85521e",
+          "label": "Fahrrad_4",
+          "color": null
+        },
+        {
+          "tileId": "6e4a6765-8dd4-490d-97ed-4e9a5bf9b399",
+          "label": "Fahrrad_5",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "cb1f14c0-3c86-485d-b751-e2b32411d3cd",
+      "name": "Mull",
+      "category": "22_Infrastruktur",
+      "defaultTileId": "9ee35070-1032-457f-b9df-ba5768b412af",
+      "variants": [
+        {
+          "tileId": "9ee35070-1032-457f-b9df-ba5768b412af",
+          "label": "Mull_1",
+          "color": null
+        },
+        {
+          "tileId": "323061da-751c-42e4-a27e-dbd902b00261",
+          "label": "Mull_2",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "642c1afa-2c37-49c8-a5b4-21fce52c9d45",
+      "name": "Auffahrt",
+      "category": "30_Bahnhof",
+      "defaultTileId": "15ccbde3-4ba5-4903-9478-e59eb3dc8308",
+      "variants": [
+        {
+          "tileId": "15ccbde3-4ba5-4903-9478-e59eb3dc8308",
+          "label": "Gleis_Brucke_1",
+          "color": null
+        },
+        {
+          "tileId": "e58fd1cc-4e79-4669-b9d6-cc472384ab57",
+          "label": "Gleis_Brucke_3",
+          "color": null
+        },
+        {
+          "tileId": "a18566ce-3b8a-482d-8b7c-b2f473b63176",
+          "label": "Gleis_Brucke_6",
+          "color": null
+        },
+        {
+          "tileId": "d5e7cbbd-dc3d-43b1-978e-bc6c0d9373b7",
+          "label": "Gleis_Brucke_7",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "b21f0987-bd5e-4bd3-bde7-f479e77d5bee",
+      "name": "Gleis_Brucke",
+      "category": "30_Bahnhof",
+      "defaultTileId": "93ad1804-061c-4295-a2a3-b8e76bd4d673",
+      "variants": [
+        {
+          "tileId": "93ad1804-061c-4295-a2a3-b8e76bd4d673",
+          "label": "Gleis_Brucke_2",
+          "color": null
+        },
+        {
+          "tileId": "56d425ad-1d3a-4a83-9e4b-dccd576300c8",
+          "label": "Gleis_Brucke_4",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "ccd3bf1b-0176-4f25-b547-a9b3b2d3fa02",
+      "name": "Zaun",
+      "category": "32_Zaune",
+      "defaultTileId": "e5e69ce2-c635-4c65-813a-254090ceeb22",
+      "variants": [
+        {
+          "tileId": "e5e69ce2-c635-4c65-813a-254090ceeb22",
+          "label": "Zaun_1",
+          "color": null
+        },
+        {
+          "tileId": "4097d2b9-8a35-4871-8495-5a4a2e52c20e",
+          "label": "Zaun_3",
+          "color": null
+        },
+        {
+          "tileId": "a11854a5-e687-4925-8654-bf0136730b66",
+          "label": "Zaun_2",
+          "color": null
+        },
+        {
+          "tileId": "2c5ecef7-f6fa-4ce2-8276-26c01d68491b",
+          "label": "Zaun_4",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "89b84729-6221-434d-ba06-e2572f2a42f7",
+      "name": "Zaun_2",
+      "category": "32_Zaune",
+      "defaultTileId": "9361195b-6777-4a34-a040-b9975293eba9",
+      "variants": [
+        {
+          "tileId": "9361195b-6777-4a34-a040-b9975293eba9",
+          "label": "Zaun_5",
+          "color": null
+        },
+        {
+          "tileId": "2a994fe8-961b-4883-9398-038051bdcdec",
+          "label": "Zaun_6",
+          "color": null
+        },
+        {
+          "tileId": "7e67a0cd-8609-4651-b259-7f596db6911d",
+          "label": "Zaun_7",
+          "color": null
+        },
+        {
+          "tileId": "5a1ff156-ab02-4067-b634-da658bafa6ad",
+          "label": "Zaun_8",
+          "color": null
+        }
+      ]
+    },
+    {
+      "id": "2d76edd2-b2e6-4ddd-9b66-52967ff3f99e",
+      "name": "Auffahrt",
+      "category": "32_Zaune",
+      "defaultTileId": "d0d6125a-e9df-4170-b7fe-32e10204cd23",
+      "variants": [
+        {
+          "tileId": "d0d6125a-e9df-4170-b7fe-32e10204cd23",
+          "label": "Zaun_9",
+          "color": null
+        },
+        {
+          "tileId": "3941df6b-25f6-46bb-93be-7f099a5c754c",
+          "label": "Zaun_10",
+          "color": null
+        }
+      ]
+    }
+  ],
   "profiles": [
     {
       "id": "405b7eb7-a3e4-4969-8293-8777a938b3e3",
@@ -159,7 +1694,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Altbau_3.png",
-      "order": 3
+      "order": 2
     },
     {
       "id": "bc9bf90b-a37f-46c9-b88f-eeab1ad9ae2f",
@@ -193,7 +1728,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Altbau_4.png",
-      "order": 4
+      "order": 30
     },
     {
       "id": "2457a4a4-651e-4708-9862-92e37a514539",
@@ -228,7 +1763,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Altbau_5.png",
-      "order": 5
+      "order": 49
     },
     {
       "id": "9861ba59-06b7-4d5c-af81-9abdeb4744ca",
@@ -261,7 +1796,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Haus_1.png",
-      "order": 6
+      "order": 50
     },
     {
       "id": "f0f09310-e250-43f1-91d2-74ee7cbb1822",
@@ -295,7 +1830,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Haus_2.png",
-      "order": 7
+      "order": 3
     },
     {
       "id": "d6012955-72f7-4827-b3fe-2ff43add4890",
@@ -329,7 +1864,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Haus_3.png",
-      "order": 8
+      "order": 4
     },
     {
       "id": "64783967-0a2b-4145-b9fd-c5dc676f9f58",
@@ -364,7 +1899,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Historische_1.png",
-      "order": 9
+      "order": 5
     },
     {
       "id": "f64e8bee-31f6-4e39-a0c9-5877e986f8ee",
@@ -399,7 +1934,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Historische_2.png",
-      "order": 10
+      "order": 6
     },
     {
       "id": "bd516877-635c-4d99-b4f2-e1189664de92",
@@ -433,7 +1968,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Historische_3.png",
-      "order": 11
+      "order": 18
     },
     {
       "id": "79abde5a-bea3-487f-adf2-7fd06493a9f0",
@@ -467,7 +2002,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Reihenhaus_1.png",
-      "order": 12
+      "order": 19
     },
     {
       "id": "7526ac6b-28c7-4a32-81bb-7d8bff4a7ccf",
@@ -501,7 +2036,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Reihenhaus_2.png",
-      "order": 13
+      "order": 20
     },
     {
       "id": "88c58ae4-5020-4fcf-a296-96ebf21bd7c1",
@@ -535,7 +2070,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Reihenhaus_3.png",
-      "order": 14
+      "order": 21
     },
     {
       "id": "9cea62b6-7fb3-4529-b6ac-58c97c97d05d",
@@ -568,7 +2103,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Reihenhaus_4.png",
-      "order": 15
+      "order": 22
     },
     {
       "id": "898871a9-b9ee-4dbc-b0d1-da9775e76b93",
@@ -602,7 +2137,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Reihenhaus_G_1.png",
-      "order": 16
+      "order": 23
     },
     {
       "id": "f37e9560-fac1-4b48-8644-6369486eab14",
@@ -636,7 +2171,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Reihenhaus_G_2.png",
-      "order": 17
+      "order": 24
     },
     {
       "id": "b8259376-5eac-4919-9e7a-6755795ccd62",
@@ -670,7 +2205,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Reihenhaus_G_3.png",
-      "order": 18
+      "order": 25
     },
     {
       "id": "a5cc1065-bb46-4add-b8c1-79ad2db45741",
@@ -704,7 +2239,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Reihenhaus_G_4.png",
-      "order": 19
+      "order": 26
     },
     {
       "id": "92ebe456-d2aa-4f30-82ad-b14c6ce12af3",
@@ -714,7 +2249,7 @@
       "legacyIds": [
         "1_Hauslinks/Wohnhaus_1.png"
       ],
-      "name": "Wohnhaus_1",
+      "name": "Einfamilienhaus_1",
       "type": "FULL",
       "w": 1,
       "h": 1,
@@ -738,7 +2273,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Wohnhaus_1.png",
-      "order": 20
+      "order": 27
     },
     {
       "id": "636ebc19-9f3d-4631-98b8-9a86301d5e90",
@@ -748,7 +2283,7 @@
       "legacyIds": [
         "1_Hauslinks/Wohnhaus_2.png"
       ],
-      "name": "Wohnhaus_2",
+      "name": "Einfamilienhaus_3",
       "type": "FULL",
       "w": 1,
       "h": 1,
@@ -772,7 +2307,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Wohnhaus_2.png",
-      "order": 21
+      "order": 28
     },
     {
       "id": "ebc40789-4e9d-4d35-bc67-e8162cd984e7",
@@ -782,7 +2317,7 @@
       "legacyIds": [
         "1_Hauslinks/Wohnhaus_3.png"
       ],
-      "name": "Wohnhaus_3",
+      "name": "Einfamilienhaus_5",
       "type": "FULL",
       "w": 1,
       "h": 1,
@@ -808,11 +2343,11 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Wohnhaus_3.png",
-      "order": 22
+      "order": 29
     },
     {
       "id": "38297770-a605-4aa2-8fae-798a2c19e105",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Altbau_1.png",
       "hash": "cdf95e268460b3f37968f455ee35e831a6a913f628a69ca9e55a57a08071d38c",
       "legacyIds": [
@@ -842,11 +2377,11 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Altbau_1.png",
-      "order": 0
+      "order": 36
     },
     {
       "id": "d0b1e910-49eb-42a5-97b5-ab60a5e28b19",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Altbau_2.png",
       "hash": "0ecc3d1b8a09c13486f6b79332c5fd0502d2c03ee0987ec290f42695aaa0c836",
       "legacyIds": [
@@ -878,17 +2413,17 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Altbau_2.png",
-      "order": 1
+      "order": 47
     },
     {
       "id": "4672a9ef-d6f1-4443-b8f9-21c4a4d803f8",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Reihenhaus_1.png",
       "hash": "0ec1c2632a3b3046d932dfa04f5f8a07349cae88875b96ff31c0751a4694f2de",
       "legacyIds": [
         "2_Hausrechts/Reihenhaus_1.png"
       ],
-      "name": "Reihenhaus_1",
+      "name": "Haus_10",
       "type": "FULL",
       "w": 1,
       "h": 1,
@@ -912,17 +2447,17 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Reihenhaus_1.png",
-      "order": 2
+      "order": 37
     },
     {
       "id": "da89b43e-00ac-4f9f-aa31-ebc70a3b7492",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Reihenhaus_2.png",
       "hash": "c207a9459d87dc70819dab03c0c33cfffff849e88157738ac9af9f9d7baa2675",
       "legacyIds": [
         "2_Hausrechts/Reihenhaus_2.png"
       ],
-      "name": "Reihenhaus_2",
+      "name": "Haus_11",
       "type": "FULL",
       "w": 1,
       "h": 1,
@@ -946,17 +2481,17 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Reihenhaus_2.png",
-      "order": 3
+      "order": 38
     },
     {
       "id": "ac607054-04bf-4004-b8a9-45d1ee5132e7",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Reihenhaus_3.png",
       "hash": "a0a561efa6df3422ab7418fd70a3481878d05c7b4c1a3f07ac1c45d6ab7bfaa5",
       "legacyIds": [
         "2_Hausrechts/Reihenhaus_3.png"
       ],
-      "name": "Reihenhaus_3",
+      "name": "Haus_12",
       "type": "FULL",
       "w": 1,
       "h": 1,
@@ -980,17 +2515,17 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Reihenhaus_3.png",
-      "order": 4
+      "order": 39
     },
     {
       "id": "fbaa7398-eb05-430f-88bb-5b366c58dca1",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Reihenhaus_4.png",
       "hash": "33fbb3ff88a11087ddc945ec08317babb85da69403405c7741c1d882dd1f8729",
       "legacyIds": [
         "2_Hausrechts/Reihenhaus_4.png"
       ],
-      "name": "Reihenhaus_4",
+      "name": "Haus_13",
       "type": "FULL",
       "w": 1,
       "h": 1,
@@ -1014,11 +2549,11 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Reihenhaus_4.png",
-      "order": 5
+      "order": 40
     },
     {
       "id": "4dcce186-fcff-42a8-b2b7-53051e4947d1",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Reihenhaus_G_1.png",
       "hash": "e52247d14c9f1bb073a288c3d8539a69f4a3b3faa4ca32c7f4265c422421664c",
       "legacyIds": [
@@ -1049,11 +2584,11 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Reihenhaus_G_1.png",
-      "order": 6
+      "order": 41
     },
     {
       "id": "d1dc503e-072c-4660-8ab7-24e87a0d306a",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Reihenhaus_G_2.png",
       "hash": "f874da524ae327e4b22be18b89d7826fe30027eb62e045616708c1c45d153f04",
       "legacyIds": [
@@ -1083,11 +2618,11 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Reihenhaus_G_2.png",
-      "order": 7
+      "order": 43
     },
     {
       "id": "851ab28f-ebb8-4126-abaa-7a81bc129fbc",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Reihenhaus_G_3.png",
       "hash": "83ef19d3a22899d4cf3b4c9b58f1a2354a0b597af226f2ccdeed3717ce4c0d58",
       "legacyIds": [
@@ -1117,11 +2652,11 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Reihenhaus_G_3.png",
-      "order": 8
+      "order": 42
     },
     {
       "id": "b901d3f3-5a9b-4d58-83d4-a4dab18fc469",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Reihenhaus_G_4.png",
       "hash": "96d77c99e287b834a23124bb2a8aaf386a99cd717ece6f31d934c6ca9d88b5c2",
       "legacyIds": [
@@ -1151,17 +2686,17 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Reihenhaus_G_4.png",
-      "order": 9
+      "order": 44
     },
     {
       "id": "f30c3263-092d-4682-9469-6747ef9e96ca",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Wohnhaus_1.png",
       "hash": "e17083563b0095040a0de54e4e81bdfbfe2c5f386b8bf5e146efa26adaa19034",
       "legacyIds": [
         "2_Hausrechts/Wohnhaus_1.png"
       ],
-      "name": "Wohnhaus_1",
+      "name": "Einfamilienhaus_2",
       "type": "FULL",
       "w": 1,
       "h": 1,
@@ -1185,17 +2720,17 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Wohnhaus_1.png",
-      "order": 10
+      "order": 33
     },
     {
       "id": "6f029082-ff3b-4d18-ba2e-214b0ab0313e",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Wohnhaus_2.png",
       "hash": "2358f610e802b2d7a156129d19dcdbe9fef8af6111422e7076e12549bc1d1e4a",
       "legacyIds": [
         "2_Hausrechts/Wohnhaus_2.png"
       ],
-      "name": "Wohnhaus_2",
+      "name": "Einfamilienhaus_4",
       "type": "FULL",
       "w": 1,
       "h": 1,
@@ -1219,17 +2754,17 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Wohnhaus_2.png",
-      "order": 11
+      "order": 34
     },
     {
       "id": "16532e8b-335f-4031-b015-97c82e5bc754",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Wohnhaus_3.png",
       "hash": "13b8e40b0cffa46163a40a1820c048d924e39c94d461bde92abff7ae7c4e81cc",
       "legacyIds": [
         "2_Hausrechts/Wohnhaus_3.png"
       ],
-      "name": "Wohnhaus_3",
+      "name": "Einfamilienhaus_6",
       "type": "FULL",
       "w": 1,
       "h": 1,
@@ -1255,11 +2790,11 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Wohnhaus_3.png",
-      "order": 12
+      "order": 35
     },
     {
       "id": "c2a60bbc-1f54-4c2a-a6e0-512899f5dafb",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Haus_1.png",
       "hash": "64a8f5f3a73e5bb7ab8131757dfd9903ebd50d794e656b310ca35ddd03e4dd05",
       "legacyIds": [
@@ -1290,7 +2825,7 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Haus_1.png",
-      "order": 13
+      "order": 55
     },
     {
       "id": "9da6bf2c-2ed7-4258-bfe9-114a20d137c9",
@@ -3290,7 +4825,7 @@
         "walk": null
       },
       "assetPath": "13_Stadtboden/Boden_1.png",
-      "order": 8
+      "order": 9
     },
     {
       "id": "081294fd-54c5-4a0a-b244-0b94012751a1",
@@ -3321,7 +4856,7 @@
         "walk": null
       },
       "assetPath": "13_Stadtboden/Boden_2.png",
-      "order": 9
+      "order": 8
     },
     {
       "id": "bd137615-9fa1-4d6c-b7c1-cf188de22978",
@@ -5437,7 +6972,7 @@
         "mülleimer",
         "bird"
       ],
-      "status": "ready",
+      "status": "draft",
       "profile": null,
       "rules": {
         "half": null,
@@ -8207,7 +9742,7 @@
         ]
       },
       "assetPath": "40_Wasser/Andere_3.png",
-      "order": 2
+      "order": 3
     },
     {
       "id": "abef7eb0-15f2-489e-ab00-5d522ab62fd3",
@@ -8258,7 +9793,7 @@
         ]
       },
       "assetPath": "40_Wasser/Andere_4.png",
-      "order": 3
+      "order": 2
     },
     {
       "id": "896c4287-f09c-4bdf-96d0-7e157c6d1fcd",
@@ -8863,7 +10398,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Haus_4.png",
-      "order": 23
+      "order": 46
     },
     {
       "id": "09a7c2b0-4877-4927-98e6-155b4f3bb494",
@@ -8897,7 +10432,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Haus_5.png",
-      "order": 24
+      "order": 45
     },
     {
       "id": "76b32d47-0c98-4a0f-b534-c95d1e5062f7",
@@ -8931,7 +10466,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Haus_7.png",
-      "order": 26
+      "order": 48
     },
     {
       "id": "02e48290-50d6-42c4-85be-0df5debbec7f",
@@ -8964,7 +10499,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Haus_8.png",
-      "order": 27
+      "order": 15
     },
     {
       "id": "71d09c72-b779-4896-844f-8d56ed6c87e8",
@@ -8996,7 +10531,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Historische_4.png",
-      "order": 28
+      "order": 16
     },
     {
       "id": "abc238c6-c3b0-4c84-bfdd-fe5f8de60317",
@@ -9031,7 +10566,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Historische_5.png",
-      "order": 29
+      "order": 31
     },
     {
       "id": "429aca24-8094-406a-a4c7-4539b961ae19",
@@ -9064,7 +10599,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Historische_6.png",
-      "order": 30
+      "order": 32
     },
     {
       "id": "ed08aa11-23a1-4f03-8c9b-76e0902b0971",
@@ -9097,7 +10632,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Historische_7.png",
-      "order": 31
+      "order": 7
     },
     {
       "id": "be8eff43-48c5-4043-acbc-dfc81519d3b2",
@@ -9130,7 +10665,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Historische_8.png",
-      "order": 32
+      "order": 8
     },
     {
       "id": "3986256d-55b0-4684-991c-7c46ac311bd7",
@@ -9164,7 +10699,7 @@
         "walk": null
       },
       "assetPath": "1_Hauslinks/Historische_9.png",
-      "order": 33
+      "order": 10
     },
     {
       "id": "0811cd50-f9c9-4051-94b6-2eaf5a0d4c8d",
@@ -9288,7 +10823,7 @@
     },
     {
       "id": "81278e77-7e07-44ee-a5c5-c5bf8ca26a62",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Haus_2.png",
       "hash": "ca398f440f96ee2728b210d7a3a96e519c4f8d720d82264270c4f798ab6b6837",
       "legacyIds": [],
@@ -9321,7 +10856,7 @@
     },
     {
       "id": "6d4af7b4-ef3b-4e8a-9672-0cd808764bbd",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Historische_1.png",
       "hash": "3078e89a0e332799977e5e5b4bb35035868a5497ab8d2888ec28f6c1753b2805",
       "legacyIds": [],
@@ -9350,11 +10885,11 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Historische_1.png",
-      "order": 15
+      "order": 56
     },
     {
       "id": "b656d427-cac8-4011-97fd-86ff426fc394",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Historische_2.png",
       "hash": "630d9f7b6f6e8b91744e9d11c0d9657f911bf9b964ed5973b13577f42133cd58",
       "legacyIds": [],
@@ -9383,11 +10918,11 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Historische_2.png",
-      "order": 16
+      "order": 51
     },
     {
       "id": "8fc90d5d-34aa-4683-822b-a784e0af10f4",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Historische_3.png",
       "hash": "6db5aa83358bd0f35a37b9c267912fbea86d1f7d649c4d3008fe0a10a31ce628",
       "legacyIds": [],
@@ -9416,11 +10951,11 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Historische_3.png",
-      "order": 17
+      "order": 52
     },
     {
       "id": "7e2b5575-05d4-43ac-839e-ae1dd7a0eb4e",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Historische_4.png",
       "hash": "b0555c25f330f7766685bf451875c4572e1c05e2da52a6895698c0c5ff912522",
       "legacyIds": [],
@@ -9449,15 +10984,15 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Historische_4.png",
-      "order": 18
+      "order": 17
     },
     {
       "id": "60a6122c-1247-439d-acdd-bf507728d718",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Historische_5.png",
       "hash": "04cbc2d679bee1392cd6ec8a5bbe2de829cc32475e00c9ae8121ead40dad3913",
       "legacyIds": [],
-      "name": "Historische_5",
+      "name": "Historische_8",
       "type": "FULL",
       "w": 1,
       "h": 1,
@@ -9486,15 +11021,15 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Historische_5.png",
-      "order": 19
+      "order": 53
     },
     {
       "id": "b05b20d9-209f-4d9a-b6da-e4c95963ac01",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Historische_6.png",
       "hash": "be0c44554a38606f344f461df007b2e4165a5cd5a25c48f2f50804d8eba3a462",
       "legacyIds": [],
-      "name": "Historische_6",
+      "name": "Historische_9",
       "type": "FULL",
       "w": 1,
       "h": 1,
@@ -9519,11 +11054,11 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Historische_6.png",
-      "order": 20
+      "order": 54
     },
     {
       "id": "85192247-1f11-4077-a253-fc656984c1d5",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Historische_7.png",
       "hash": "6cf8d000d13424478440dbad6118eb106facbd9c08d2702ec21da2da4557cc84",
       "legacyIds": [],
@@ -9552,11 +11087,11 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Historische_7.png",
-      "order": 21
+      "order": 11
     },
     {
       "id": "e747e406-5737-4928-8506-5570be9fb9fa",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Historische_8.png",
       "hash": "d5db031c0d3608f2198c3772fc450dc8a4dc9c9280623ed77ecf318aa4612f03",
       "legacyIds": [],
@@ -9585,11 +11120,11 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Historische_8.png",
-      "order": 22
+      "order": 12
     },
     {
       "id": "d809c34b-d960-4df0-b1cf-f0114ab731ff",
-      "category": "2_Hausrechts",
+      "category": "1_Hauslinks",
       "file": "Historische_9.png",
       "hash": "3889a1ea10b436e43ede38e364e9b490bc39c531e5ad53361acdc2a932bbad5b",
       "legacyIds": [],
@@ -9619,40 +11154,7 @@
         "walk": null
       },
       "assetPath": "2_Hausrechts/Historische_9.png",
-      "order": 23
-    },
-    {
-      "id": "45febedf-76ea-4c08-b36c-a76fe3377df2",
-      "category": "1_Hauslinks",
-      "assetPath": "2_Hauslinks/Haus_8.png",
-      "order": 33,
-      "file": "Haus_8.png",
-      "hash": "c7bdd070ee904e5b6b3f5ea35ab7b31c97402b490769b28dc82f470180dca823",
-      "legacyIds": [],
-      "name": "Haus_8",
-      "type": "FULL",
-      "w": 1,
-      "h": 1,
-      "tags": [
-        "Haus",
-        "Grunderzeit",
-        "Altbau",
-        "Backstein",
-        "rot",
-        "Gebäude",
-        "Wohnen",
-        "Wohnhaus",
-        "Stadt",
-        "Gotik",
-        "dreistöckig"
-      ],
-      "status": "ready",
-      "profile": null,
-      "rules": {
-        "half": null,
-        "allowed": null,
-        "walk": null
-      }
+      "order": 13
     },
     {
       "id": "9ed6c25e-ff4f-4cc4-a70f-ea7354e76148",

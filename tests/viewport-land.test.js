@@ -28,10 +28,12 @@ function createViewGame({ editor = false, small = false } = {}) {
         },
       },
       addEventListener: (type, callback) => events.set(type, callback),
+      removeEventListener: (type) => events.delete(type),
       fire: (type, event) => events.get(type)(event),
       setAttribute() {},
       appendChild(child) { this.children.push(child); },
       replaceChildren(...children) { this.children = children; },
+      querySelector() { return null; },
       add(child) { this.children.push(child); },
       focus() { this.focused = true; context.document.activeElement = this; },
     };
@@ -102,8 +104,202 @@ function createViewGame({ editor = false, small = false } = {}) {
     CameraGeometry.moveCenter(cam, view, { x: 512, y: 512 });
     Object.assign(camTarget, cam);
   `);
-  return { run, context, elements, app, stage, stageRect, dockRect, listeners, frames, observers, resizes, storage, messages };
+  return { run, context, elements, element, app, stage, stageRect, dockRect, listeners, frames, observers, resizes, storage, messages };
 }
+
+function createTutorialGame(mobile = false) {
+  const game = createViewGame();
+  const { element, elements, context, app } = game;
+  for (const id of ["tutorial", "tutorial-focus", "tutorial-visual", "tutorial-title", "tutorial-copy",
+    "tutorial-next", "tutorial-close", "palette-scroll", "undo-button"]) {
+    elements.set(id, element());
+  }
+  const card = element();
+  const canvas = element();
+  const flyout = element();
+  const palette = elements.get("left-palette");
+  const rect = { left: 0, top: 0, bottom: 150, width: 800, height: 1000 };
+  for (const node of [card, canvas, flyout]) {
+    node.getBoundingClientRect = () => rect;
+    node.querySelector = () => null;
+  }
+  const categories = ["1_Hauslinks", "13_Stadtboden", "21_Tiere"].map((name) => {
+    const category = element();
+    category.title = name;
+    category.isConnected = true;
+    category.getBoundingClientRect = () => rect;
+    category.scrollIntoView = () => {};
+    category.expanded = false;
+    category.getAttribute = () => String(category.expanded);
+    category.click = () => {
+      const wasExpanded = category.expanded;
+      categories.forEach((item) => { item.expanded = false; });
+      category.expanded = !wasExpanded;
+    };
+    return category;
+  });
+  const tileButtons = [["13_Stadtboden", "Asphalt_1.png"], ["21_Tiere", "Katze_1.png"]].map(([category, file]) => {
+    const button = element();
+    button.dataset = { tileCategory: category, tileFile: file };
+    button.isConnected = true;
+    button.getBoundingClientRect = () => rect;
+    button.scrollIntoView = () => {};
+    return button;
+  });
+  const meadowButton = element();
+  palette.querySelectorAll = (selector) => selector === ".cat-button" ? categories : tileButtons;
+  palette.querySelector = (selector) => selector === ".cat-flyout" ? flyout : selector === ".dock-meadow" ? meadowButton : null;
+  elements.get("tutorial").hidden = true;
+  elements.get("tutorial").querySelector = () => card;
+  app.style.setProperty = () => {};
+  context.document.querySelector = (selector) =>
+    selector === ".stage" ? game.stage : selector === ".app" ? app : selector === "#sketch canvas" ? canvas : null;
+  context.window.removeEventListener = () => {};
+  context.cancelAnimationFrame = () => {};
+  context.navigator = { userAgent: mobile ? "iPhone" : "desktop", maxTouchPoints: 0 };
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "spiel", "charakter", "character-ui.js"), "utf8"), context);
+  game.run(`
+    img.push({ width: 64, height: 64 });
+    img.push({ width: 64, height: 64 }, { width: 64, height: 64 });
+    tileDefs.push({ id: "house", category: "1_Hauslinks", file: "house.png", type: "FULL", w: 1, h: 1 });
+    tileDefs.push(
+      { id: "ground", category: "13_Stadtboden", file: "Asphalt_1.png", type: "UNDER", w: 1, h: 1 },
+      { id: "cat", category: "21_Tiere", file: "Katze_1.png", type: "OVER", w: 1, h: 1 }
+    );
+    board.place(board.get(15, 15), img[1], tileDefs[1], img[0]);
+    saveGame.enable();
+    selectedPaletteIndex = 1;
+    recentTileIndices = [1];
+  `);
+  return { ...game, category: categories[0] };
+}
+
+test("Tutorial fuehrt durch Bauen und Erkunden und stellt die Stadt beim Abschluss wieder her", () => {
+  const game = createTutorialGame();
+  const { run, elements, category } = game;
+  const before = run("JSON.stringify(board.snapshot(true))");
+  const history = run("board.history.length");
+  run("openTutorial()");
+  assert.equal(run("saveGame.enabled"), false);
+  assert.match(elements.get("tutorial-copy").textContent, /Klicke/);
+  category.click();
+  elements.get("left-palette").fire("click", { target: { closest: () => category } });
+  assert.equal(elements.get("tutorial-title").textContent, "Haus auswählen");
+  run('selectedPaletteIndex = 1; notifyTutorialAction("palette-selected", { index: 1, def: tileDefs[1] })');
+  assert.equal(category.getAttribute(), "false");
+  assert.equal(elements.get("tutorial-title").textContent, "Haus bauen");
+  run('notifyTutorialAction("tile-placed", { def: tileDefs[1] })');
+  run('notifyTutorialAction("undo")');
+  assert.equal(elements.get("tutorial-title").textContent, "UNDER: der Boden");
+  run('selectedPaletteIndex = 2; notifyTutorialAction("palette-selected", { index: 2, def: tileDefs[2] })');
+  run('var lessonCell = board.get(15, 15); board.place(lessonCell, img[2], tileDefs[2], img[0]); notifyTutorialAction("tile-placed", { tile: lessonCell, def: tileDefs[2] })');
+  assert.equal(elements.get("tutorial-title").textContent, "OVER: das Objekt");
+  run('selectedPaletteIndex = 3; notifyTutorialAction("palette-selected", { index: 3, def: tileDefs[3] })');
+  run('notifyTutorialAction("tile-placed", { tile: board.get(16, 16), def: tileDefs[3] })');
+  assert.equal(elements.get("tutorial-title").textContent, "Objekt platzieren");
+  run('board.place(lessonCell, img[3], tileDefs[3], img[0]); lastOverlayTap = { key: lessonCell.key, time: 1000 }; notifyTutorialAction("tile-placed", { tile: lessonCell, def: tileDefs[3] })');
+  assert.equal(run("lessonCell.overlay === img[3] && lessonCell.ground === img[2]"), true);
+  assert.equal(run("lastOverlayTap"), null);
+  run('notifyTutorialAction("overlay-removed", { tile: board.get(16, 16) })');
+  assert.equal(elements.get("tutorial-title").textContent, "Objekt entfernen");
+  run('board.eraseOverlay(lessonCell); notifyTutorialAction("overlay-removed", { tile: lessonCell })');
+  assert.equal(run("lessonCell.overlay === null && lessonCell.ground === img[2]"), true);
+  run('notifyTutorialAction("meadow-placed", { tile: board.get(16, 16) })');
+  assert.equal(elements.get("tutorial-title").textContent, "Feld zurücksetzen");
+  run('selectedPaletteIndex = 0; notifyTutorialAction("palette-selected", { index: 0, def: tileDefs[0] }); board.erase(lessonCell, img[0]); notifyTutorialAction("meadow-placed", { tile: lessonCell })');
+  assert.equal(run("lessonCell.ground === img[0]"), true);
+  assert.equal(elements.get("tutorial-title").textContent, "Stadt erkunden");
+  run('notifyTutorialAction("explore-confirmed"); notifyTutorialAction("character-ready")');
+  assert.match(elements.get("tutorial-copy").textContent, /W, A, S oder D/);
+  run('notifyTutorialAction("character-moved"); notifyTutorialAction("menu-toggled", { open: true })');
+  elements.get("tutorial-next").fire("click");
+  elements.get("tutorial-next").fire("click");
+  assert.equal(elements.get("tutorial").hidden, true);
+  assert.equal(run("JSON.stringify(board.snapshot(true))"), before);
+  assert.equal(run("board.history.length"), history);
+  assert.equal(run("selectedPaletteIndex"), 1);
+  assert.equal(run("saveGame.enabled"), true);
+});
+
+test("Handy-Tutorial erlaubt Ueberspringen und stellt beim Abbruch wieder her", () => {
+  const game = createTutorialGame(true);
+  const { run, elements } = game;
+  const before = run("JSON.stringify(board.snapshot(true))");
+  run("openTutorial()");
+  assert.match(elements.get("tutorial-copy").textContent, /Tippe/);
+  elements.get("tutorial-next").fire("click");
+  assert.equal(elements.get("tutorial-title").textContent, "Haus auswählen");
+  elements.get("tutorial-next").fire("click");
+  assert.equal(elements.get("tutorial-title").textContent, "UNDER: der Boden");
+  elements.get("tutorial-next").fire("click");
+  assert.equal(elements.get("tutorial-title").textContent, "Stadt erkunden");
+  run('notifyTutorialAction("character-ready")');
+  assert.match(elements.get("tutorial-copy").textContent, /Richtungspfeil/);
+  elements.get("tutorial-close").fire("click");
+  assert.equal(run("JSON.stringify(board.snapshot(true))"), before);
+  assert.equal(run("saveGame.enabled"), true);
+});
+
+test("Fehlende Uebungskacheln werden angezeigt und lassen sich ueberspringen", () => {
+  const game = createTutorialGame();
+  const palette = game.elements.get("left-palette");
+  const query = palette.querySelectorAll;
+  palette.querySelectorAll = (selector) => selector === ".cat-button" ? query(selector) : [];
+  game.run("openTutorial()");
+  game.elements.get("tutorial-next").fire("click");
+  game.elements.get("tutorial-next").fire("click");
+  assert.match(game.elements.get("tutorial-copy").textContent, /nicht verfügbar/);
+  game.elements.get("tutorial-next").fire("click");
+  assert.equal(game.elements.get("tutorial-title").textContent, "Stadt erkunden");
+  game.elements.get("tutorial-close").fire("click");
+});
+
+test("Erkunden zeigt die Tastaturhilfe nur auf Desktop-Geraeten", () => {
+  for (const mobile of [false, true]) {
+    const game = createTutorialGame(mobile);
+    game.run(`
+      const makeModeButton = () => ({
+        image: {}, classList: { add() {}, remove() {} },
+        querySelector() { return this.image; }
+      });
+      const fakeMode = {
+        currentMode: "character", buildBtn: makeModeButton(),
+        charBtn: makeModeButton(), controlsHint: {}
+      };
+      ModeSwitch.prototype.updateDisplay.call(fakeMode);
+    `);
+    assert.equal(game.run("fakeMode.controlsHint.hidden"), mobile);
+  }
+});
+
+test("Charaktererkennung verwendet fortlaufende vordere GIFs", async () => {
+  const game = createViewGame();
+  const requests = [];
+  const characters = [];
+  game.context.fetch = async (url, options) => {
+    requests.push({ url, options });
+    return { status: requests.length === 3 ? 404 : 200, ok: requests.length !== 3 };
+  };
+  game.context.manager = { addCharacter: (name, path) => characters.push([name, path]) };
+  game.run("characterManager = manager");
+  await game.run("loadCharacters()");
+  assert.deepEqual(requests.map((request) => request.url), [
+    "character/char_1/animiert_vorn.gif",
+    "character/char_2/animiert_vorn.gif",
+    "character/char_3/animiert_vorn.gif",
+  ]);
+  assert.ok(requests.every((request) => request.options.method === "HEAD" && request.options.cache === "no-cache"));
+  assert.deepEqual(characters, [
+    ["Charakter 1", "character/char_1"],
+    ["Charakter 2", "character/char_2"],
+  ]);
+});
+
+test("Charaktererkennung meldet Serverfehler statt die Suche zu beenden", async () => {
+  const game = createViewGame();
+  game.context.fetch = async () => ({ status: 500, ok: false });
+  await assert.rejects(game.run("loadCharacters()"), /character\/char_1\/animiert_vorn\.gif: 500/);
+});
 
 test("Rotation aktualisiert Canvas und behaelt Weltmittelpunkt und Zoom", () => {
   const game = createViewGame();

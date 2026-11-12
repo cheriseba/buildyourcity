@@ -41,6 +41,11 @@ Desktop- oder Startbildschirm-Icon angelegt wird, haengt vom Browser ab.
 - [character.js](spiel/charakter/character.js) und [character-ui.js](spiel/charakter/character-ui.js) enthalten Avatar und zugehoerige UI.
   [style.css](spiel/style.css) und [index.html](index.html) beschreiben Aussehen und Seitenstruktur.
 
+Charakterordner heissen fortlaufend `character/char_1`, `char_2` usw. und
+enthalten `animiert_vorn.gif` und `animiert_hinten.gif`. Das jeweils erste
+GIF-Bild dient als Standbild; das vordere Standbild auch als Auswahlvorschau.
+Die Charaktererkennung endet beim ersten fehlenden `animiert_vorn.gif`.
+
 Die Dateien sind klassische Skripte und werden in der Reihenfolge in
 `index.html` geladen. Es bestehen noch globale Abhaengigkeiten; insbesondere
 enthaelt `game.js` weiterhin Kamera, Eingabe, Palette, Modi und Tutorial. Neue
@@ -66,10 +71,17 @@ Freischaltungen auf die zwei Startgrundstuecke mit CSV-Startlayout zurueck. Beid
 den Bauverlauf und speichern sofort; ausstehendes Autosave kann den alten Stand
 nicht wiederherstellen. Andere localStorage-Schluessel bleiben unberuehrt.
 Abbrechen und Escape aendern nichts. Waehrend der Auswahl sind Kamera,
-Bauen und Undo gesperrt. Der Tutorial-Reset verwendet dieselbe Auswahl.
+Bauen und Undo gesperrt.
 Im Editor wird stattdessen das CSV-Startlayout wiederhergestellt; ein kompletter
 Reset stellt dort auch die zwei Startgrundstuecke wieder her, ohne Spielstaende
 zu veraendern. Bau-Undo behaelt freigeschaltete Grundstuecke.
+
+Das Tutorial verwendet eine temporaere Uebungsstadt und deaktiviert deren
+automatische Speicherung. Beim Beenden oder Abschluss werden Stadt, Bauverlauf,
+Auswahl und Kamera wiederhergestellt. Die Uebung zeigt UNDER als Boden, OVER
+als Objekt und das Entfernen beider Ebenen. Einzelne Aufgaben koennen uebersprungen
+werden; die Bewegungshinweise folgen derselben Geraeteerkennung wie die
+Touch-Steuerung. Das Tutorial ist ueber das Menue erneut erreichbar.
 
 Neue Staedte und der Editor beginnen mit denselben zwei waagerechten
 Grundstuecken: (0,1) und (1,1). Jedes Grundstueck umfasst 512x512
@@ -121,6 +133,7 @@ Ein neues Startlayout erstellen:
 4. Neue Spiele und ein kompletter Reset laden diese Vorlage. Ein vorhandener
    Spielstand hat Vorrang und wird durch eine neue CSV nicht ueberschrieben.
    `FIX` sperrt ein Tile im normalen Spiel, `FREI` erlaubt Aenderungen.
+   In der aktuellen Startvorlage sind alle Eintraege `FIX`.
    Im Editor bleiben auch `FIX`-Tiles bearbeitbar. Die CSV speichert keine
    Freischaltungen; Eintraege ausserhalb der Startflaeche werden mit
    Konsolenwarnung uebersprungen.
@@ -194,6 +207,29 @@ Das Raster erzeugt weder Bauzellen noch zusaetzliche Freischaltmoeglichkeiten.
 Waehrung, Gebaeudedrehung, Interaktionen und Minispiele sind noch nicht
 implementiert.
 
+### Groessen der Spieloberflaeche
+
+Die Groessenvorgaben liegen in [style.css](spiel/style.css): `--tile` plus
+16 Pixel bestimmt die Objekt-Klickflaeche, `--category-size` die Kategorie-
+und Wiesen-Kacheln, `--btn` die Werkzeugknopfgroesse. `--dock-pad` und
+`--dock-h` halten die unteren Abstaende und die Tutorial-Hoehen konsistent.
+Die Kamera misst die echte Dockhoehe weiterhin direkt am DOM.
+
+Mobil sind Kategorien 52 und Objekte 56 Pixel gross, in flachem Querformat
+48 beziehungsweise 52 Pixel. Auf dem Desktop sind Kategorien und Objekte
+gleich gross: jeweils 72 Pixel, in grossen Desktop-Ansichten jeweils
+80 Pixel. Werkzeuge bleiben 48 Pixel gross; die Bildschirmaufloesung
+vergroessert weder Schrift noch alle Knopfgroessen pauschal. Sichtbare
+Modus-Icons sind kleiner als ihre mindestens 44 Pixel grossen Klickflaechen.
+Die Bewegungstasten verwenden die 120-Pixel-Standardgroesse des
+[TouchController](spiel/charakter/character-ui.js).
+
+Die Objektleiste reserviert rechts Platz fuer die Suche. Tutorial und
+Reset-Auswahl nutzen auf kleinen Bildschirmen mehr Breite statt kleinerer
+Schrift oder unter 44 Pixel hoher Aktionsknopfe. Lange Tutorialtexte und
+Figuren-Auswahlen bleiben scrollbar. Hinweise sind an die nutzbare
+Bildschirmbreite begrenzt und duerfen umbrechen.
+
 ## Tests
 
 Mit installiertem Node.js die automatisierten Kern- und Kompatibilitaetstests
@@ -232,6 +268,15 @@ keine zusaetzlichen Pakete. Die Werkstatt bearbeitet `daten/tile-catalog.json`;
 erst **Aenderungen speichern** schreibt die Datei. Bei externen Aenderungen
 waehrend der Bearbeitung wird das Speichern verweigert und ein erneutes
 Einlesen verlangt.
+
+Kategorien und Farbfamilien lassen sich ueber den Aufklapppfeil einzeln
+einklappen. Die Detailabschnitte und die Tag-Sammlung sind ebenfalls
+einklappbar. **Alles einklappen** und **Alles ausklappen** gelten fuer alle
+Bereiche einschliesslich verschachtelter Familienmitglieder. Der Zustand bleibt
+beim Bearbeiten und Filtern bis zum Neuladen erhalten, aendert aber nicht den
+Katalog. Eingeklappte Ueberschriften bleiben Drag-and-drop-Ziele.
+**Sichtbare Tiles auswaehlen** beruecksichtigt nur ausgeklappte Objekte.
+Pruef- und Fehlermeldungen bleiben ausserhalb der einklappbaren Detailabschnitte.
 
 Die Werkstatt zeigt PNG- und GIF-Bilder ausser Kategorie-Icons und dem
 separaten `Katalog/Icons/`-Ordner. Tile-Bilder koennen zur vergroesserten
@@ -274,12 +319,78 @@ die Dateien mit den im Katalog gespeicherten SHA-256-Pruefsummen:
   gesperrt, eben, Rampe hinauf und Rampe hinunter; Ebenen werden passend in
   die bisherigen numerischen Laufwerte uebersetzt.
 
-Drehung, Spiegelung und Einfaerbung bleiben vorerst eigenstaendige Tiles. Das
-Metadatenmodell trennt bereits Bildpfad, UI-Zuordnung und Tile-Identitaet. Eine
-spaetere Varianten-Architektur soll die Vorschau aus dem Bildasset ableiten
-und Drehung, Spiegelung sowie Farbton auf der platzierten Instanz speichern,
-statt fuer jede Kombination ein neues Tile-Bild zu benoetigen. Diese
-Instanztransformationen sind noch nicht implementiert.
+## Farbvarianten
+
+Der Katalog kann unter `families` Farbvarianten zusammenfassen. Eine Familie
+hat eine stabile ID, einen Namen, einen UI-Ordner, eine `defaultTileId` und
+eine geordnete Liste `variants` mit `tileId`, `label` und optionaler Kennfarbe
+`color` (`null` oder sechsstelliger Hex-Farbwert). Die Bilddateien, Tile-IDs,
+Suchbegriffe und Regeln bleiben unveraendert. Als erste Beispielgruppe sind
+Altbau_1, Altbau_2 und Altbau_3 aus `1_Hauslinks` zusammengefasst; Altbau_4 und
+Altbau_5 sind andere Objekte und bleiben einzeln.
+
+In der Werkstatt im Tile-Detailbereich **Variantenfamilie** verwenden:
+
+- **Farbfamilie anlegen**, danach ueber die suchbare Bildauswahl weitere
+  kompatible Tiles hinzufuegen. Alternativ ein Tile einer bestehenden Familie
+  im gleichen UI-Ordner zuordnen.
+- Familienname, Standardvariante, Farbnamen, Kennfarben und Reihenfolge
+  bearbeiten. Die Vorschau zeigt den Standard-Paletteneintrag; im Spiel
+  uebersteuert die zuletzt gewaehlte Farbe diesen Standard.
+- Die Uebersicht zeigt eine Familienzeile und eingerueckte Mitglieder. Der
+  Statusfilter kann auf Familienmitglieder eingeschraenkt werden.
+- Innerhalb derselben Farbfamilie lassen sich Mitglieder durch Ziehen auf ein
+  anderes Mitglied umsortieren. Alternativ im Detailbereich **Nach vorn** und
+  **Nach hinten** verwenden. **Aenderungen speichern** sichert die Reihenfolge
+  fuer die Farbauswahl im Spiel; die Standardvariante bleibt unveraendert.
+- Die Uebersicht bietet einen **↕**-Griff fuer Kategorien, ganze Familien und
+  einzelne Objekte. Der Familiengriff verschiebt immer die gesamte Familie;
+  der Objektgriff sortiert innerhalb derselben Familie die einzelne Variante.
+  Familienkoepfe dienen ebenfalls als Ablageziel zum Einsortieren davor.
+- **Aus Familie loesen** und **Familie aufloesen** entfernen nur die
+  Gruppierung, keine Tiles oder Regeln. Eine speicherbare Familie braucht
+  mindestens zwei Mitglieder. Wird ihr letztes Mitglied entfernt, wird
+  auch die leere Familie entfernt.
+- Verschieben eines Mitglieds in einen anderen UI-Ordner verschiebt die
+  gesamte Familie. Die einzelnen Dateipfade bleiben erhalten.
+
+Die gemeinsame Pruefung in
+[tile-catalog-model.js](gemeinsam/tile-catalog-model.js) verlangt eindeutige
+Mitgliedschaften, gleiche Typen und Grundflaechen. Platzierungs- und Laufregeln
+duerfen sich zwischen Mitgliedern unterscheiden; Familien erben keine Regeln.
+Ungueltige Familien koennen nicht ueber die Werkstatt gespeichert werden. Im
+Spiel werden sie diagnostisch gemeldet und ihre verfuegbaren Tiles einzeln
+angezeigt; sie blockieren den Spielstart nicht. Fehlende oder ungueltige
+einzelne Bilder werden weiterhin uebersprungen; verbleibende Geschwister
+bleiben nutzbar.
+
+[tile-variants.js](spiel/ui/tile-variants.js) fasst Palette, Suche und
+**Zuletzt benutzt** nach Familie zusammen. Die Suche beruecksichtigt
+Mitgliedsnamen, Tags und Farbnamen. Ein Klick waehlt die zuletzt verwendete
+Variante und oeffnet direkt am Icon eine kompakte, rein bildliche Leiste:
+28-Pixel-Vorschauen in 44-Pixel-Klickflaechen, ohne sichtbare Beschriftung,
+Ueberschrift oder Schliessen-Knopf. Optionale Farbstreifen unter den Bildern
+helfen bei der Unterscheidung; Farbnamen bleiben fuer Screenreader erhalten.
+Die Leiste verschiebt keine anderen Icons. Farbauswahl aendert nur das
+Bauwerkzeug und die Familien-Icons, nie schon platzierte Objekte.
+Tippen ausserhalb, Platzieren, Kategorie-/Moduswechsel, Scrollen und Escape
+schliessen die Leiste.
+Bei Tastaturauswahl erhaelt die aktive Farbe direkt den Fokus. Mit Tab sind
+die weiteren Varianten erreichbar; Escape gibt den Fokus ans Icon zurueck.
+
+Die letzte Farbe wird pro Familie unabhaengig vom Stadtspielstand unter
+`nordstadt-tile-variants-v1` im lokalen Browser gespeichert. Nicht mehr
+verfuegbare Farben fallen auf die Standardvariante oder das erste verfuegbare
+Mitglied zurueck. Spielstaende speichern weiterhin konkrete Tile-IDs; fuer
+diese Gruppierung ist keine Spielstandmigration erforderlich.
+
+Familie und konkrete Variante sind getrennt und koennen spaeter um weitere
+Auswahleigenschaften ergaenzt werden. Drehung, Spiegelung und echte
+Einfaerbung/Instanztransformationen sind noch nicht implementiert. Insbesondere
+ist eine isometrische Drehung nicht einfach eine CSS-Drehung des Bilds:
+Grundflaeche, Laufrichtungen und passende Ansichten muessen mitgedacht werden.
+
+## Fehlerbehandlung und Dateiaktualisierungen
 
 Ein ungueltiges, nicht freigegebenes oder fehlendes Tile wird beim Spielstart
 uebersprungen und diagnostisch gemeldet. Auch ein Boden, der ein nicht verfuegbares

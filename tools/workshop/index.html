@@ -12,17 +12,23 @@
     <div class="actions"><button id="reload">Neu einlesen</button><button id="save" class="primary">Änderungen speichern</button></div>
   </header>
   <div id="message" role="status" aria-live="polite"></div>
-  <section class="tag-sharing" aria-labelledby="tag-sharing-title">
-    <div>
-      <h2 id="tag-sharing-title">Tags gemeinsam sammeln</h2>
-      <p>Lade einen ausfüllbaren Bilderbogen herunter und importiere anschließend die JSON-Rückmeldungen. Neue Tags werden ergänzt; vorhandene bleiben erhalten.</p>
+  <div class="actions collapse-controls" role="group" aria-label="Ansicht einklappen oder ausklappen">
+    <button id="collapse-all" type="button">Alles einklappen</button>
+    <button id="expand-all" type="button">Alles ausklappen</button>
+  </div>
+  <details id="tag-sharing" class="tag-sharing collapsible" open>
+    <summary>Tags gemeinsam sammeln</summary>
+    <div class="tag-sharing-content">
+      <div>
+        <p>Lade einen ausfüllbaren Bilderbogen herunter und importiere anschließend die JSON-Rückmeldungen. Neue Tags werden ergänzt; vorhandene bleiben erhalten.</p>
+      </div>
+      <div class="tag-sharing-actions">
+        <button id="export-tag-sheet" type="button">Bilderbogen herunterladen</button>
+        <button id="import-tag-response" type="button">Rückmeldungen importieren</button>
+        <input id="tag-response-file" type="file" accept=".json,application/json" hidden>
+      </div>
     </div>
-    <div class="tag-sharing-actions">
-      <button id="export-tag-sheet" type="button">Bilderbogen herunterladen</button>
-      <button id="import-tag-response" type="button">Rückmeldungen importieren</button>
-      <input id="tag-response-file" type="file" accept=".json,application/json" hidden>
-    </div>
-  </section>
+  </details>
   <main>
     <section class="list">
       <div class="filters">
@@ -32,10 +38,11 @@
           <option value="new">Neu</option><option value="changed">Bild geändert</option>
           <option value="moved">Verschoben</option><option value="ambiguous">Mehrdeutig</option>
           <option value="missing">Fehlend</option><option value="invalid">Ungültig</option>
+          <option value="variants">Mitglied einer Variantenfamilie</option>
         </select>
       </div>
       <p id="count"></p>
-      <p class="hint">Bild anklicken: vergrößerte Vorschau. Zeilen in einen Ordner ziehen: zuordnen; innerhalb eines Ordners ziehen: Reihenfolge ändern.</p>
+      <p class="hint">Pfeil ▾ / ▸: Kategorie oder Familie einklappen / ausklappen. Bild anklicken: vergrößerte Vorschau. Am ↕-Griff ziehen: Kategorien, ganze Familien oder einzelne Objekte verschieben. Innerhalb einer Farbfamilie: Objektgriff auf ein anderes Mitglied ziehen, um die Farben umzusortieren. Auf einem Kategoriekopf ablegen: Kategorie wechseln. Auf einem Familienkopf ablegen: davor einsortieren.</p>
       <div class="bulk"><button id="new-folder">UI-Ordner anlegen</button><select id="bulk-profile" aria-label="Vorlage für Auswahl"></select><button id="apply-profile">Vorlage auf Auswahl anwenden</button></div>
       <div class="table-wrap"><table><thead><tr><th><input type="checkbox" id="select-all" aria-label="Sichtbare Tiles auswählen"></th><th>Bild</th><th>Tile / Kategorie</th><th>Status</th></tr></thead><tbody id="rows"></tbody></table></div>
     </section>

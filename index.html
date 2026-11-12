@@ -51,7 +51,7 @@
   }
   @keyframes loader-blink { 50% { opacity: 0.15; } }
 </style>
-<link href="spiel/style.css?v=20261110-9" rel="stylesheet">
+<link href="spiel/style.css?v=20261112-7" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/nordstadt-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/nordstadt-180.png">
 <link rel="manifest" href="manifest.webmanifest">
@@ -86,14 +86,14 @@
 
   <div id="tutorial" class="tutorial" role="region" aria-label="Geführtes Tutorial" hidden>
     <div id="tutorial-focus" class="tutorial-focus" aria-hidden="true"></div>
-    <div class="tutorial-card">
-      <div class="tutorial-heading">
-        <p class="tutorial-progress" id="tutorial-progress"></p>
+    <div class="tutorial-card" aria-live="polite">
+      <div id="tutorial-visual" class="tutorial-visual" aria-hidden="true"></div>
+      <div class="tutorial-message" tabindex="0" aria-label="Tutorialtext, bei Bedarf scrollen">
         <h2 id="tutorial-title"></h2>
+        <p class="tutorial-copy" id="tutorial-copy"></p>
       </div>
-      <p class="tutorial-copy" id="tutorial-copy"></p>
       <div class="tutorial-actions">
-        <button id="tutorial-close" class="tutorial-secondary" type="button">&Uuml;berspringen</button>
+        <button id="tutorial-close" class="tutorial-secondary" type="button" aria-label="Tutorial beenden">Beenden</button>
         <button id="tutorial-next" class="intro-start" type="button">Weiter</button>
       </div>
     </div>
@@ -190,8 +190,8 @@
     <script src="spiel/daten/csv.js?v=20261108-3"></script>
     <script src="spiel/daten/diagnostics.js?v=20261108-1"></script>
     <script src="spiel/daten/start-layout.js?v=20261108-2"></script>
-    <script src="gemeinsam/tile-catalog-model.js?v=20261110-2"></script>
-    <script src="spiel/daten/catalog.js?v=20261110-10"></script>
+    <script src="gemeinsam/tile-catalog-model.js?v=20261112-2"></script>
+    <script src="spiel/daten/catalog.js?v=20261112-1"></script>
     <script src="spiel/welt/land.js?v=20261110-4"></script>
     <script src="spiel/welt/camera.js?v=20261110-2"></script>
     <script src="spiel/welt/land-ui.js?v=20261110-5"></script>
@@ -199,10 +199,11 @@
     <script src="spiel/welt/tile.js?v=20261110-1"></script>
     <script src="spiel/welt/walk.js?v=20261108-5"></script>
     <script src="spiel/welt/over-rules.js?v=20261110-1"></script>
-    <script src="spiel/charakter/character.js?v=20261106-2"></script>
-    <script src="spiel/charakter/character-ui.js?v=20261110-6"></script>
+    <script src="spiel/charakter/character.js?v=20261111-1"></script>
+    <script src="spiel/charakter/character-ui.js?v=20261111-3"></script>
     <script src="spiel/speichern/save-game.js?v=20261110-7"></script>
-    <script src="spiel/game.js?v=20261110-9"></script>
+    <script src="spiel/ui/tile-variants.js?v=20261112-4"></script>
+    <script src="spiel/game.js?v=20261112-5"></script>
 
     
     <script>

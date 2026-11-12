@@ -5,6 +5,45 @@ let dirty = false;
 let checked = new Set();
 let reloadArmed = false;
 let dragged = null;
+let collapseByDefault = false;
+const collapsedSections = new Map();
+const collapseButtons = new Map();
+
+function isCollapsed(key) {
+  return collapsedSections.get(key) ?? collapseByDefault;
+}
+function collapseToggle(key, label) {
+  const collapsed = isCollapsed(key);
+  const toggle = button(collapsed ? "▸" : "▾", (event) => {
+    event.stopPropagation();
+    collapsedSections.set(key, !isCollapsed(key));
+    renderList();
+    collapseButtons.get(key)?.focus();
+  });
+  toggle.className = "collapse-toggle";
+  toggle.dataset.collapseKey = key;
+  toggle.title = `${label} ${collapsed ? "ausklappen" : "einklappen"}`;
+  toggle.setAttribute("aria-label", toggle.title);
+  toggle.setAttribute("aria-expanded", String(!collapsed));
+  collapseButtons.set(key, toggle);
+  return toggle;
+}
+function collapsibleSection(key, title, className = "") {
+  const section = node("details", undefined, `collapsible ${className}`.trim());
+  section.dataset.collapseKey = key;
+  section.open = !isCollapsed(key);
+  section.append(node("summary", title));
+  section.addEventListener("toggle", () => {
+    if (section.isConnected) collapsedSections.set(key, !section.open);
+  });
+  return section;
+}
+function setAllCollapsed(collapsed) {
+  collapseByDefault = collapsed;
+  collapsedSections.clear();
+  $("#tag-sharing").open = !collapsed;
+  if (state) render();
+}
 
 function message(text, error = false) {
   $("#message").textContent = text;
@@ -151,10 +190,21 @@ function folderForEntry(entry) {
   return state.catalog.folders.some((folder) => folder.name === assetFolder) ? assetFolder : "";
 }
 function tileFor(entry) { return entry.previous && state.catalog.tiles.find((tile) => tile.id === entry.previous.id); }
+function familyOf(tile) {
+  return tile && (state.catalog.families || []).find((family) =>
+    Array.isArray(family?.variants) && family.variants.every((variant) => variant && typeof variant.tileId === "string") &&
+    family.variants.some((variant) => variant.tileId === tile.id));
+}
+function familyErrors(family, replacing = family) {
+  return TileCatalogModel.validateFamily(family, (state.catalog.families || []).map((item) => item === replacing ? family : item),
+    new Map(state.catalog.tiles.map((tile) => [tile.id, tile])), state.catalog.profiles);
+}
 function errors(tile) {
   const problems = TileCatalogModel.validateTile(tile, state.catalog.profiles, new Map(state.catalog.tiles.map((item) => [item.id, item])));
   const meadow = state.catalog.tiles.find((item) => item.category === "");
   if (tile.category === "" && meadow && tile.id !== meadow.id) problems.push("Nur die Wiese darf im Hauptordner liegen; bitte das Bild einer Kategorie zuordnen");
+  const family = familyOf(tile);
+  if (family) problems.push(...familyErrors(family).map((error) => `Variantenfamilie: ${error}`));
   return problems;
 }
 function status(entry) {
@@ -170,11 +220,15 @@ async function load(force = false) {
   const result = await response.json();
   if (!response.ok) throw new Error(result.error);
   state = result;
+  if (state.catalog.families === undefined) state.catalog.families = [];
+  if (!Array.isArray(state.catalog.families)) throw new Error("Variantenfamilien sind kein Array. Bitte Katalog prüfen.");
   selected = null;
   checked.clear();
   dirty = false;
   render();
-  message("Bestand eingelesen. Änderungen zuerst prüfen und anschließend speichern.");
+  const problems = state.catalog.families.flatMap((family) => familyErrors(family).map((error) => `${family?.name || "?"}: ${error}`));
+  message(problems.length ? `Variantenfamilien prüfen: ${problems.join("; ")}` :
+    "Bestand eingelesen. Änderungen zuerst prüfen und anschließend speichern.", problems.length > 0);
 }
 function entries() {
   const text = $("#search").value.toLocaleLowerCase();
@@ -182,9 +236,17 @@ function entries() {
   return state.inventory.filter((entry) => {
     const tile = tileFor(entry);
     const name = (entry.current || entry.previous).path;
-    const matches = `${name} ${tile ? `${tile.name} ${tile.category} ${tile.tags.join(" ")}` : ""}`.toLocaleLowerCase().includes(text);
+    const family = familyOf(tile);
+    const matches = `${name} ${tile ? `${tile.name} ${tile.category} ${tile.tags.join(" ")}` : ""} ${family ? `${family.name} ${family.variants.find((variant) => variant.tileId === tile.id).label}` : ""}`.toLocaleLowerCase().includes(text);
     const type = status(entry);
-    return matches && (filter === "all" || (filter === "attention" ? type !== "ready" : filter === type));
+    return matches && (filter === "all" || (filter === "variants" ? Boolean(family) : filter === "attention" ? type !== "ready" : filter === type));
+  });
+}
+function expandedEntries() {
+  return entries().filter((entry) => {
+    const family = familyOf(tileFor(entry));
+    return !isCollapsed(`folder:${folderForEntry(entry)}`) &&
+      (!family || !isCollapsed(`family:${family.id}`));
   });
 }
 function preview(imageUrl, title) {
@@ -199,17 +261,67 @@ function normalizeTileOrder(categories) {
       .forEach((tile, index) => { tile.order = index; });
   }
 }
-function placeTile(tile, folderName, beforeId = null) {
+function moveFamilyVariant(family, from, to) {
+  if (from === to) return;
+  const [variant] = family.variants.splice(from, 1);
+  family.variants.splice(to, 0, variant);
+  changed();
+}
+function dragHandle(label, payload, row) {
+  const handle = button("↕", () => {});
+  handle.classList.add("drag-handle");
+  handle.draggable = true;
+  handle.title = label;
+  handle.setAttribute("aria-label", label);
+  handle.addEventListener("dragstart", (event) => {
+    event.stopPropagation();
+    dragged = payload;
+    event.dataTransfer.effectAllowed = "move";
+    event.dataTransfer.setData("text/plain", `${payload.type}:${payload.id || payload.name || payload.path}`);
+    row.classList.add("dragging");
+  });
+  handle.addEventListener("dragend", () => { dragged = null; row.classList.remove("dragging"); });
+  handle.addEventListener("click", (event) => event.stopPropagation());
+  return handle;
+}
+function placeTile(tile, folderName, beforeId = null, wholeFamily = false) {
   if (tile.file.toLocaleLowerCase() === "wiese.png" && tile.category === "") return;
   const oldCategory = tile.category;
-  const siblings = state.catalog.tiles.filter((item) => item.category === folderName && item.id !== tile.id)
+  const family = familyOf(tile);
+  if (family && !wholeFamily && folderName === family.category) {
+    const targetIndex = family.variants.findIndex((variant) => variant.tileId === beforeId);
+    if (targetIndex >= 0) {
+      moveFamilyVariant(family, family.variants.findIndex((variant) => variant.tileId === tile.id), targetIndex);
+      return;
+    }
+  }
+  const members = family ? family.variants.map((variant) => state.catalog.tiles.find((item) => item.id === variant.tileId)).filter(Boolean) : [tile];
+  if (members.some((item) => item.id === beforeId)) return;
+  const ids = new Set(members.map((item) => item.id));
+  const siblings = state.catalog.tiles.filter((item) => item.category === folderName && !ids.has(item.id))
     .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
   const index = beforeId ? siblings.findIndex((item) => item.id === beforeId) : -1;
-  siblings.splice(index < 0 ? siblings.length : index, 0, tile);
-  tile.category = folderName;
+  siblings.splice(index < 0 ? siblings.length : index, 0, ...members);
+  members.forEach((item) => { item.category = folderName; });
+  if (family) family.category = folderName;
   siblings.forEach((item, order) => { item.order = order; });
   normalizeTileOrder([oldCategory]);
   changed();
+}
+function dropTile(folderName, beforeId = null) {
+  if (!dragged || !["tile", "family"].includes(dragged.type) || !folderName) return;
+  const entry = state.inventory.find((item) =>
+    dragged.id ? item.previous?.id === dragged.id : item.current?.path === dragged.path);
+  if (!entry) return;
+  let tile = tileFor(entry);
+  if (!tile && entry.status === "new") {
+    makeNew(entry);
+    tile = tileFor(entry);
+  }
+  if (!tile) return;
+  placeTile(tile, folderName, beforeId, dragged.type === "family");
+  dragged = null;
+  render();
 }
 function handleFolderDrop(event, folderName) {
   event.preventDefault();
@@ -227,30 +339,30 @@ function handleFolderDrop(event, folderName) {
     render();
     return;
   }
-  const entry = state.inventory.find((item) => item.previous && item.previous.id === dragged.id);
-  if (!entry || folderName === "") return;
-  let tile = tileFor(entry);
-  if (!tile && entry.status === "new") {
-    makeNew(entry);
-    tile = tileFor(entry);
-  }
-  if (!tile) return;
-  placeTile(tile, folderName);
-  dragged = null;
-  render();
+  dropTile(folderName);
 }
 function renderList() {
   const rows = $("#rows");
   rows.replaceChildren();
+  collapseButtons.clear();
   const visible = entries();
-  $("#count").textContent = `${visible.length} angezeigt · ${state.inventory.filter((entry) => status(entry) !== "ready").length} mit Prüfbedarf`;
+  $("#count").textContent = `${expandedEntries().length} Objekte sichtbar · ${visible.length} gefiltert · ${state.inventory.filter((entry) => status(entry) !== "ready").length} mit Prüfbedarf`;
   folderOrder();
   const groups = [...state.catalog.folders, { name: "", order: Number.MAX_SAFE_INTEGER, icon: null }];
   for (const folder of groups) {
+    const entryOrder = (entry) => {
+      const tile = tileFor(entry);
+      const family = familyOf(tile);
+      return family ? Math.min(...family.variants.map((variant) => state.catalog.tiles.find((item) => item.id === variant.tileId)?.order ?? Number.MAX_SAFE_INTEGER))
+        : tile?.order ?? Number.MAX_SAFE_INTEGER;
+    };
     const folderEntries = visible.filter((entry) => folderForEntry(entry) === folder.name)
       .sort((a, b) => {
         const aTile = tileFor(a); const bTile = tileFor(b);
-        return (aTile?.order ?? Number.MAX_SAFE_INTEGER) - (bTile?.order ?? Number.MAX_SAFE_INTEGER) ||
+        const family = familyOf(aTile);
+        const variantOrder = family && family === familyOf(bTile)
+          ? family.variants.findIndex((variant) => variant.tileId === aTile.id) - family.variants.findIndex((variant) => variant.tileId === bTile.id) : 0;
+        return entryOrder(a) - entryOrder(b) || variantOrder ||
           (a.current || a.previous).path.localeCompare((b.current || b.previous).path, "de");
       });
     if (!folderEntries.length) continue;
@@ -260,19 +372,11 @@ function renderList() {
     headerCell.colSpan = 4;
     const header = node("div", undefined, "folder-heading");
     const label = node("strong", folder.name || "Ohne UI-Ordner");
+    const folderKey = `folder:${folder.name}`;
+    header.append(collapseToggle(folderKey, folder.name || "Ohne UI-Ordner"));
     if (folder.name) {
-      const handle = button("↕", () => {});
+      const handle = dragHandle(`${folder.name} verschieben`, { type: "folder", name: folder.name }, heading);
       handle.classList.add("folder-drag-handle");
-      handle.draggable = true;
-      handle.setAttribute("aria-label", `${folder.name} verschieben`);
-      handle.addEventListener("dragstart", (event) => {
-        event.stopPropagation();
-        dragged = { type: "folder", name: folder.name };
-        event.dataTransfer.effectAllowed = "move";
-        event.dataTransfer.setData("text/plain", `folder:${folder.name}`);
-      });
-      handle.addEventListener("dragend", () => { dragged = null; });
-      handle.addEventListener("click", (event) => event.stopPropagation());
       header.append(handle);
     }
     header.append(label, node("span", `${folderEntries.length} Tiles`, "sub"));
@@ -304,15 +408,43 @@ function renderList() {
     headerCell.append(header);
     heading.append(headerCell);
     rows.append(heading);
+    if (isCollapsed(folderKey)) continue;
+    const shownFamilies = new Set();
     for (const entry of folderEntries) {
       const tile = tileFor(entry);
+      const family = familyOf(tile);
+      if (family && !shownFamilies.has(family.id)) {
+        shownFamilies.add(family.id);
+        const familyRow = node("tr", undefined, "variant-family-row");
+        const cell = node("td");
+        cell.append(
+          collapseToggle(`family:${family.id}`, `Familie ${family.name}`),
+          dragHandle(`Familie ${family.name} verschieben`, { type: "family", id: tile.id }, familyRow),
+          node("span", `${family.name} · Variantenfamilie · ${family.variants.length} Farben`)
+        );
+        cell.colSpan = 4;
+        familyRow.append(cell);
+        familyRow.addEventListener("click", () => { selected = entry; render(); });
+        familyRow.addEventListener("dragover", (event) => { event.preventDefault(); familyRow.classList.add("drop-target"); });
+        familyRow.addEventListener("dragleave", () => familyRow.classList.remove("drop-target"));
+        familyRow.addEventListener("drop", (event) => {
+          event.preventDefault();
+          familyRow.classList.remove("drop-target");
+          const firstMember = state.catalog.tiles.filter((item) => family.variants.some((variant) => variant.tileId === item.id))
+            .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))[0];
+          dropTile(family.category, firstMember.id);
+        });
+        rows.append(familyRow);
+      }
+      if (family && isCollapsed(`family:${family.id}`)) continue;
       const tr = node("tr");
       if (entry === selected) tr.className = "active";
+      if (family) tr.classList.add("variant-member-row");
       tr.draggable = Boolean(tile || entry.status === "new");
       if (tr.draggable) {
         tr.addEventListener("dragstart", (event) => {
           if (!tile && entry.status !== "new") { event.preventDefault(); return; }
-          dragged = { type: "tile", id: tile ? tile.id : entry.previous?.id };
+          dragged = { type: "tile", id: tile?.id, path: entry.current?.path };
           event.dataTransfer.effectAllowed = "move";
           event.dataTransfer.setData("text/plain", `tile:${dragged.id || entry.current.path}`);
           tr.classList.add("dragging");
@@ -323,18 +455,7 @@ function renderList() {
         tr.addEventListener("drop", (event) => {
           tr.classList.remove("drop-target");
           event.preventDefault();
-          if (!dragged || dragged.type !== "tile" || !tile) return;
-          const draggedEntry = state.inventory.find((item) => item.previous && item.previous.id === dragged.id);
-          let draggedTile = draggedEntry && tileFor(draggedEntry);
-          if (!draggedTile && draggedEntry && draggedEntry.status === "new") {
-            makeNew(draggedEntry);
-            draggedTile = tileFor(draggedEntry);
-          }
-          if (draggedTile) {
-            placeTile(draggedTile, tile.category, tile.id);
-            dragged = null;
-            render();
-          }
+          if (tile) dropTile(tile.category, tile.id);
         });
       }
       const selectCell = node("td");
@@ -344,6 +465,12 @@ function renderList() {
       checkbox.addEventListener("click", (event) => event.stopPropagation());
       checkbox.addEventListener("change", () => { if (checkbox.checked) checked.add(tile.id); else checked.delete(tile.id); });
       selectCell.append(checkbox);
+      if (tr.draggable && !(tile?.category === "" && tile.file.toLocaleLowerCase() === "wiese.png")) {
+        selectCell.append(dragHandle(
+          `${tile ? tile.name : entry.current.path} verschieben`,
+          { type: "tile", id: tile?.id, path: entry.current?.path }, tr
+        ));
+      }
       const imageCell = node("td");
       if (entry.current) {
         const image = document.createElement("img");
@@ -358,6 +485,7 @@ function renderList() {
         imageCell.append(image);
       }
       const nameCell = node("td", tile ? tile.name : (entry.current || entry.previous).path.split("/").pop());
+      if (family) nameCell.append(node("span", `Variante von ${family.name} · ${family.variants.find((variant) => variant.tileId === tile.id).label}`, "variant-membership"));
       nameCell.append(node("span", (entry.current || entry.previous).path, "sub"));
       const stateCell = node("td");
       const type = status(entry);
@@ -443,6 +571,119 @@ function selectField(value, values, update) {
   element.addEventListener("change", () => { update(element.value); changed(); render(); });
   return element;
 }
+
+function renderFamilyEditor(container, tile) {
+  const section = collapsibleSection("detail:family", "Variantenfamilie", "variant-editor");
+  const family = familyOf(tile);
+  if (!family) {
+    section.append(node("p", "Farbvarianten erscheinen gemeinsam als ein Objekt in der Spielpalette. Bilder, Tile-IDs und Regeln bleiben einzeln erhalten.", "hint"));
+    if (tile.category) {
+      section.append(button("Farbfamilie anlegen", () => {
+        state.catalog.families = state.catalog.families || [];
+        state.catalog.families.push({
+          id: crypto.randomUUID(), name: tile.name.replace(/_\d+$/, ""), category: tile.category,
+          defaultTileId: tile.id, variants: [{ tileId: tile.id, label: tile.name, color: null }],
+        });
+        changed(); render();
+      }));
+      const choices = (state.catalog.families || []).filter((item) => item?.category === tile.category && Array.isArray(item.variants) &&
+        item.variants.every((variant) => variant && typeof variant.tileId === "string"));
+      if (choices.length) {
+        const join = document.createElement("select");
+        join.append(option("", "Familie auswählen"), ...choices.map((item) => option(item.id, item.name)));
+        field(section, "Bestehender Familie zuordnen", join);
+        section.append(button("Zur Familie hinzufügen", () => {
+          const target = choices.find((item) => item.id === join.value);
+          if (!target) return message("Bitte eine Familie auswählen.", true);
+          const trial = { ...target, variants: [...target.variants, { tileId: tile.id, label: tile.name, color: null }] };
+          const problems = familyErrors(trial, target);
+          if (problems.length) return message(`Zuordnung nicht möglich: ${problems.join(", ")}`, true);
+          target.variants.push({ tileId: tile.id, label: tile.name, color: null });
+          changed(); render();
+        }));
+      }
+    } else section.append(node("p", "Die Wiese kann keiner Variantenfamilie angehören.", "hint"));
+    container.append(section);
+    return;
+  }
+  field(section, "Familienname", input(family.name, (value) => { family.name = value; }));
+  section.append(node("p", `UI-Ordner: ${family.category}. Ziehe in der Übersicht ein Mitglied auf ein anderes derselben Familie, um die Farben umzusortieren. In einen anderen Ordner wird die ganze Familie verschoben.`, "hint"));
+  field(section, "Standardvariante", selectField(family.defaultTileId, family.variants.map((variant) => [variant.tileId, variant.label]), (value) => { family.defaultTileId = value; }));
+  const preview = node("div", undefined, "family-preview");
+  const defaultTile = state.catalog.tiles.find((item) => item.id === family.defaultTileId);
+  if (defaultTile) {
+    const image = document.createElement("img");
+    image.src = assetUrl(pathOf(defaultTile)); image.alt = "";
+    preview.append(image, node("span", `${family.name} · ${family.variants.length} Farben`));
+  }
+  section.append(preview);
+  family.variants.forEach((variant, index) => {
+    const member = state.catalog.tiles.find((item) => item.id === variant.tileId);
+    const row = collapsibleSection(`detail:variant:${variant.tileId}`,
+      member ? member.name : `Fehlendes Tile: ${variant.tileId}`, "family-member-editor");
+    if (member) {
+      const image = document.createElement("img");
+      image.src = assetUrl(pathOf(member)); image.alt = "";
+      row.append(image);
+    }
+    field(row, "Farbname", input(variant.label, (value) => { variant.label = value; }));
+    field(row, "Kennfarbe (optional, z. B. #cc6677)", input(variant.color || "", (value) => { variant.color = value.trim() || null; }));
+    const controls = node("div", undefined, "actions");
+    for (const [direction, caption] of [[-1, "Nach vorn"], [1, "Nach hinten"]]) {
+      const move = button(caption, () => {
+        moveFamilyVariant(family, index, index + direction);
+        render();
+      });
+      move.disabled = index + direction < 0 || index + direction >= family.variants.length;
+      controls.append(move);
+    }
+    controls.append(button("Aus Familie lösen", () => {
+      family.variants.splice(index, 1);
+      if (family.defaultTileId === variant.tileId) family.defaultTileId = family.variants[0]?.tileId || "";
+      if (!family.variants.length) state.catalog.families = state.catalog.families.filter((item) => item !== family);
+      changed(); render();
+    }));
+    row.append(controls);
+    section.append(row);
+  });
+  const search = document.createElement("input");
+  search.type = "search";
+  search.placeholder = "Weitere Tiles suchen";
+  search.setAttribute("aria-label", "Weitere Farbvarianten suchen");
+  const picker = node("div", undefined, "rule-picker");
+  const renderCandidates = () => {
+    picker.replaceChildren();
+    const text = search.value.toLocaleLowerCase();
+    state.catalog.tiles.filter((item) => item.category && !familyOf(item) &&
+      `${item.name} ${item.category} ${item.tags.join(" ")}`.toLocaleLowerCase().includes(text)).forEach((item) => {
+      const card = button("", () => {
+        family.variants.push({ tileId: item.id, label: item.name, color: null });
+        changed(); render();
+      });
+      card.classList.add("rule-card");
+      const image = document.createElement("img");
+      image.src = assetUrl(pathOf(item)); image.alt = "";
+      const trial = { ...family, variants: [...family.variants, { tileId: item.id, label: item.name, color: null }] };
+      const problems = familyErrors(trial, family);
+      card.disabled = problems.length > 0;
+      card.title = problems.join(", ") || "Als Farbvariante hinzufügen";
+      card.append(image, node("span", item.name));
+      picker.append(card);
+    });
+  };
+  search.addEventListener("input", renderCandidates);
+  const candidates = collapsibleSection("detail:family-candidates", "Weitere Farbvarianten hinzufügen");
+  candidates.append(search, picker);
+  section.append(candidates);
+  renderCandidates();
+  section.append(confirmButton("Familie auflösen", "Bestätigen: Familie auflösen", () => {
+    state.catalog.families = state.catalog.families.filter((item) => item !== family);
+    changed(); render();
+  }));
+  section.append(node("p", "Auflösen und Entfernen ändern nur die Palette. Die Tiles und ihre Regeln werden nicht gelöscht. Farbvarianten müssen gleiche Grundflächen, Typen und Regeln haben.", "hint"));
+  container.append(section);
+}
+
 function makeNew(entry) {
   const file = entry.current.path.split("/").pop();
   const tile = {
@@ -556,40 +797,46 @@ function renderDetail() {
   }
   if (!tile) return;
   const form = node("div");
-  field(form, "Anzeigename", input(tile.name, (value) => { tile.name = value; }));
+  const properties = collapsibleSection("detail:properties", "Objekteigenschaften");
+  form.append(properties);
+  field(properties, "Anzeigename", input(tile.name, (value) => { tile.name = value; }));
   const folderValues = [["", "Noch keinem UI-Ordner zugeordnet"], ...state.catalog.folders
     .sort((a, b) => a.order - b.order).map((folder) => [folder.name, folder.name])];
-  field(form, "UI-Ordner", selectField(tile.category, folderValues, (value) => {
-    const oldCategory = tile.category;
-    tile.category = value;
-    normalizeTileOrder([oldCategory, value]);
-    tile.order = state.catalog.tiles.filter((item) => item.category === value && item.id !== tile.id).length;
+  field(properties, "UI-Ordner", selectField(tile.category, folderValues, (value) => {
+    if (familyOf(tile) && !value) {
+      message("Eine Variantenfamilie braucht einen UI-Ordner.", true);
+      return;
+    }
+    placeTile(tile, value);
   }));
-  form.append(node("p", `Bilddatei: ${pathOf(tile)}`, "hint"));
+  properties.append(node("p", `Bilddatei: ${pathOf(tile)}`, "hint"));
   const grid = node("div", undefined, "grid");
   field(grid, "Typ", selectField(tile.type, [["UNDER", "Boden (UNDER)"], ["OVER", "Objekt (OVER)"], ["FULL", "Vollständig (FULL)"]], (value) => { tile.type = value; }));
   field(grid, "Status", selectField(tile.status, [["draft", "Noch prüfen"], ["ready", "Freigegeben"]], (value) => { tile.status = value; }));
   field(grid, "Breite in Zellen", input(tile.w, (value) => { tile.w = Number(value); }, "number"));
   field(grid, "Tiefe in Zellen", input(tile.h, (value) => { tile.h = Number(value); }, "number"));
-  form.append(grid);
-  field(form, "Suchbegriffe (mit Komma trennen)", input(tile.tags.join(", "), (value) => { tile.tags = value.split(",").map((tag) => tag.trim()).filter(Boolean); }));
+  properties.append(grid);
+  field(properties, "Suchbegriffe (mit Komma trennen)", input(tile.tags.join(", "), (value) => { tile.tags = value.split(",").map((tag) => tag.trim()).filter(Boolean); }));
+  renderFamilyEditor(form, tile);
+  const placement = collapsibleSection("detail:placement", "Platzierungsregeln und Vorlagen");
+  form.append(placement);
   const profiles = [["", "Eigene Regeln"], ...state.catalog.profiles.map((profile) => [profile.id, profile.name])];
-  field(form, "Regelvorlage", selectField(tile.profile || "", profiles, (value) => {
+  field(placement, "Regelvorlage", selectField(tile.profile || "", profiles, (value) => {
     tile.profile = value || null;
   }));
-  form.append(node("p", "Beim Wechsel zu eigenen Regeln werden die vorherigen eigenen Regeln wieder verwendet.", "hint"));
-  form.append(confirmButton("Regeln dieses Tiles zurücksetzen", "Bestätigen: Regeln dieses Tiles zurücksetzen", () => {
+  placement.append(node("p", "Beim Wechsel zu eigenen Regeln werden die vorherigen eigenen Regeln wieder verwendet.", "hint"));
+  placement.append(confirmButton("Regeln dieses Tiles zurücksetzen", "Bestätigen: Regeln dieses Tiles zurücksetzen", () => {
     tile.profile = null;
     tile.rules = { half: null, allowed: null, walk: null };
     delete tile.overrides;
     changed();
     render();
   }));
-  form.append(node("p", "Setzt Vorlage, eigene Regeln und Sonderregeln dieses Tiles auf Standard zurück. Geteilte Vorlagen bleiben unverändert.", "hint"));
+  placement.append(node("p", "Setzt Vorlage, eigene Regeln und Sonderregeln dieses Tiles auf Standard zurück. Geteilte Vorlagen bleiben unverändert.", "hint"));
   const profileName = document.createElement("input");
   profileName.placeholder = "z. B. Bäume";
-  field(form, "Name für neue Regelvorlage", profileName);
-  form.append(button("Aktuelle Regeln als Vorlage speichern", () => {
+  field(placement, "Name für neue Regelvorlage", profileName);
+  placement.append(button("Aktuelle Regeln als Vorlage speichern", () => {
     const name = profileName.value.trim();
     if (!name) { message("Bitte zuerst einen Namen für die Regelvorlage eingeben.", true); return; }
     const profile = { id: crypto.randomUUID(), name, rules: structuredClone(baseRulesOf(tile)) };
@@ -598,15 +845,15 @@ function renderDetail() {
   let rules;
   try { rules = baseRulesOf(tile); }
   catch (error) { form.append(node("p", error.message, "notice")); detail.append(form); return; }
-  if (tile.profile) form.append(node("p", "Diese Regeln gehören zur Vorlage. Änderungen gelten für alle zugeordneten Tiles.", "notice"));
+  if (tile.profile) placement.append(node("p", "Diese Regeln gehören zur Vorlage. Änderungen gelten für alle zugeordneten Tiles.", "notice"));
   if (tile.type === "OVER") {
-    field(form, "OVER-Position", selectField(rules.half || "", [["", "Ganzes Overlay"], ["vorn", "Halb: vorn"], ["hinten", "Halb: hinten"]], (value) => { rules.half = value || null; }));
+    field(placement, "OVER-Position", selectField(rules.half || "", [["", "Ganzes Overlay"], ["vorn", "Halb: vorn"], ["hinten", "Halb: hinten"]], (value) => { rules.half = value || null; }));
   }
   if (tile.type === "UNDER") {
-    field(form, "Basisregel für OVERs", selectField(rules.allowed === null ? "all" : "selected", [["all", "Alle erlaubt"], ["selected", "Nur ausgewählte"]], (value) => { rules.allowed = value === "all" ? null : []; }));
+    field(placement, "Basisregel für OVERs", selectField(rules.allowed === null ? "all" : "selected", [["all", "Alle erlaubt"], ["selected", "Nur ausgewählte"]], (value) => { rules.allowed = value === "all" ? null : []; }));
     if (rules.allowed !== null) {
       renderOverPicker(
-        form,
+        placement,
         (item) => rules.allowed.includes(item.id),
         (item) => {
           const index = rules.allowed.indexOf(item.id);
@@ -620,8 +867,7 @@ function renderDetail() {
     }
     const effectiveRules = TileCatalogModel.resolveRules(tile, state.catalog.profiles);
     const baseAllowed = rules.allowed;
-    const specialRules = node("section", undefined, "special-rules");
-    specialRules.append(node("h3", "Sonderregeln für dieses Tile"));
+    const specialRules = collapsibleSection("detail:special", "Sonderregeln für dieses Tile", "special-rules");
     specialRules.append(node("p", "Diese Ausnahmen gelten nur für dieses Tile und ändern keine geteilte Regelvorlage. Klicke Tiles an, um sie zusätzlich zu erlauben oder aus der Basisregel auszuschließen.", "hint"));
     if (tile.overrides && tile.overrides.allowed) {
       specialRules.append(node("p", "Sonderregeln sind aktiv und bleiben auch beim Wechsel der Vorlage bestehen.", "notice"));
@@ -660,18 +906,20 @@ function renderDetail() {
     );
     form.append(specialRules);
   }
-  field(form, "Laufregeln", selectField(rules.walk === null ? "default" : "custom", [["default", "Standard (Boden begehbar, Objekte blockiert)"], ["custom", "Eigene Ebenen und Richtungen"]], (value) => {
+  const walking = collapsibleSection("detail:walking", "Laufregeln");
+  form.append(walking);
+  field(walking, "Laufregeln", selectField(rules.walk === null ? "default" : "custom", [["default", "Standard (Boden begehbar, Objekte blockiert)"], ["custom", "Eigene Ebenen und Richtungen"]], (value) => {
     rules.walk = value === "default" ? null : [{ level: "unten", dirs: { W: "-", A: "-", S: "-", D: "-" } }];
   }));
   if (rules.walk) {
-    form.append(node("p", "Jedes Kästchen beschreibt eine Laufrichtung. Klicke den passenden Zustand: gesperrt, eben, Rampe hinauf oder hinunter. Die Pfeile zeigen die Richtung auf dem isometrischen Spielfeld.", "hint"));
+    walking.append(node("p", "Jedes Kästchen beschreibt eine Laufrichtung. Klicke den passenden Zustand: gesperrt, eben, Rampe hinauf oder hinunter. Die Pfeile zeigen die Richtung auf dem isometrischen Spielfeld.", "hint"));
     const legend = node("div", undefined, "walk-legend");
     WALK_STATES.forEach((stateOption) => {
       const item = node("span", undefined, "walk-legend-item");
       item.append(node("strong", stateOption.icon), node("span", stateOption.name));
       legend.append(item);
     });
-    form.append(legend);
+    walking.append(legend);
     const directions = node("div", undefined, "walk-directions");
     const corner = node("div", undefined, "walk-corner");
     corner.append(node("span", "Ebene"));
@@ -720,8 +968,8 @@ function renderDetail() {
         directions.append(cell);
       });
     });
-    form.append(directions);
-    form.append(button("Ebene hinzufügen", () => { rules.walk.push({ level: "oben", dirs: { W: "-", A: "-", S: "-", D: "-" } }); changed(); render(); }));
+    walking.append(directions);
+    walking.append(button("Ebene hinzufügen", () => { rules.walk.push({ level: "oben", dirs: { W: "-", A: "-", S: "-", D: "-" } }); changed(); render(); }));
   }
   const problems = errors(tile);
   if (problems.length) {
@@ -735,6 +983,8 @@ function render() { renderList(); renderDetail(); }
 
 $("#search").addEventListener("input", renderList);
 $("#filter").addEventListener("change", renderList);
+$("#collapse-all").addEventListener("click", () => setAllCollapsed(true));
+$("#expand-all").addEventListener("click", () => setAllCollapsed(false));
 $("#new-folder").addEventListener("click", () => {
   const name = window.prompt("Name des neuen UI-Ordners");
   if (name === null) return;
@@ -754,7 +1004,13 @@ $("#image-preview").addEventListener("click", (event) => {
   if (event.target === $("#image-preview")) $("#image-preview").close();
 });
 $("#select-all").addEventListener("change", (event) => {
-  entries().forEach((entry) => { const tile = tileFor(entry); if (tile) { if (event.target.checked) checked.add(tile.id); else checked.delete(tile.id); } });
+  expandedEntries().forEach((entry) => {
+    const tile = tileFor(entry);
+    if (tile) {
+      if (event.target.checked) checked.add(tile.id);
+      else checked.delete(tile.id);
+    }
+  });
   renderList();
 });
 $("#apply-profile").addEventListener("click", () => {
@@ -804,6 +1060,10 @@ $("#reload").addEventListener("click", () => {
 });
 $("#save").addEventListener("click", async () => {
   try {
+    for (const family of state.catalog.families || []) {
+      const problems = familyErrors(family);
+      if (problems.length) throw new Error(`Variantenfamilie ${family?.name || "?"}: ${problems.join(", ")}`);
+    }
     const response = await fetch("/api/save", { method: "POST", headers: { "Content-Type": "application/json", "X-Workshop-Token": state.token }, body: JSON.stringify({ catalog: state.catalog, revision: state.revision }) });
     const result = await response.json();
     if (!response.ok) throw new Error(result.error);

@@ -125,7 +125,8 @@ function buildTileDefs(manifest) {
         fixed: /^(fix|fest|ja|1|true)$/i.test(row.fix || ""),
       })).filter((row) => Number.isInteger(row.gx) && Number.isInteger(row.gy));
     } else console.warn(`Startlayout nicht geladen: HTTP ${layoutResponse.status}`);
-    return { root: "Katalog", meadow, categories, layout, issues, profiles: catalog.profiles };
+    const families = TileCatalogModel.resolveFamilies(catalog, valid, issues);
+    return { root: "Katalog", meadow, categories, layout, issues, profiles: catalog.profiles, families };
   }
 
   function installCatalogRules(defs, profiles) {

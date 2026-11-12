@@ -36,7 +36,7 @@ test("Charakterbilder werden netzwerk-first und ohne Browser-Cache geladen", asy
     request: {
       method: "GET",
       mode: "cors",
-      url: "https://example.test/character/char_4/vorn.png",
+      url: "https://example.test/character/char_4/animiert_vorn.gif",
     },
     respondWith(response) {
       responsePromise = response;

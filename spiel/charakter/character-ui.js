@@ -26,10 +26,10 @@ class TouchController {
   init() {
     // Rautenfoermige Anordnung passend zur isometrischen Ansicht
     const buttons = [
-      { dir: "up-left", arrow: "↖", col: 1, row: 1 },
-      { dir: "up-right", arrow: "↗", col: 2, row: 1 },
-      { dir: "down-left", arrow: "↙", col: 1, row: 2 },
-      { dir: "down-right", arrow: "↘", col: 2, row: 2 }
+      { dir: "up-left", arrow: "↖", label: "Links oben", col: 1, row: 1 },
+      { dir: "up-right", arrow: "↗", label: "Rechts oben", col: 2, row: 1 },
+      { dir: "down-left", arrow: "↙", label: "Links unten", col: 1, row: 2 },
+      { dir: "down-right", arrow: "↘", label: "Rechts unten", col: 2, row: 2 }
     ];
     
     this.pad = document.createElement("div");
@@ -39,13 +39,13 @@ class TouchController {
     this.pad.style.width = `${this.width}px`;
     this.pad.style.height = `${this.height}px`;
     
-    for (const { dir, arrow, col, row } of buttons) {
+    for (const { dir, arrow, label, col, row } of buttons) {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.classList.add("touch-controller-button");
       btn.textContent = arrow;
       btn.dataset.dir = dir;
-      btn.setAttribute("aria-label", dir);
+      btn.setAttribute("aria-label", label);
       btn.style.gridColumn = col;
       btn.style.gridRow = row;
       btn.addEventListener("pointerdown", (e) => {
@@ -129,11 +129,11 @@ class ModeSwitch {
 
     const controlsHint = document.createElement("aside");
     controlsHint.classList.add("character-controls-hint");
-    controlsHint.setAttribute("aria-label", "Steuerung im Entdeckermodus: W, A, S und D");
+    controlsHint.setAttribute("aria-label", "Steuerung im Erkunden-Modus: W, A, S und D");
 
     const hintLabel = document.createElement("span");
     hintLabel.classList.add("character-controls-label");
-    hintLabel.textContent = "Steuern mit";
+    hintLabel.textContent = "Bewegen mit";
 
     const keys = document.createElement("span");
     keys.classList.add("character-controls-keys");
@@ -176,7 +176,7 @@ class ModeSwitch {
       this.charBtn.classList.add("active");
       this.buildBtn.classList.remove("active");
     }
-    this.controlsHint.hidden = !isCharacterMode;
+    this.controlsHint.hidden = !isCharacterMode || TouchController.prototype.detectMobile();
   }
   
   onChange(callback) {
@@ -221,7 +221,7 @@ class CharacterSelectionBar {
     
     const text = document.createElement("p");
     text.classList.add("notice-text");
-    text.textContent = "Der Erkunden-Modus ist noch im Aufbau und hat aktuell noch keine Funktion.";
+    text.textContent = "Der Erkunden-Modus ist noch in Arbeit. Es kann Fehler geben.";
     
     const actions = document.createElement("div");
     actions.classList.add("char-select-actions");
@@ -229,12 +229,14 @@ class CharacterSelectionBar {
     const back = document.createElement("button");
     back.type = "button";
     back.classList.add("pixel-button");
+    back.id = "character-notice-back";
     back.textContent = "Zurück";
     back.addEventListener("click", () => this.cancel());
     
     const ok = document.createElement("button");
     ok.type = "button";
     ok.classList.add("pixel-button", "primary");
+    ok.id = "character-notice-continue";
     ok.textContent = "Verstanden";
     ok.addEventListener("click", () => {
       this.hide();
@@ -306,7 +308,7 @@ class CharacterSelectionBar {
       card.setAttribute("aria-label", `Charakter: ${char.name}`);
       
       const img = document.createElement("img");
-      img.src = char.previewImage;
+      if (char.previewImage) img.src = char.previewImage;
       img.alt = "";
       img.draggable = false;
       
@@ -358,6 +360,7 @@ class CharacterSelectionBar {
     const back = document.createElement("button");
     back.type = "button";
     back.classList.add("pixel-button");
+    back.id = "character-select-back";
     back.textContent = "Zurück";
     back.addEventListener("click", () => this.cancel());
     
@@ -366,6 +369,7 @@ class CharacterSelectionBar {
         this.selectCharacter(this.selectedCharacter);
       }
     });
+    confirm.id = "character-select-confirm";
     
     actions.append(back, confirm);
     row.append(prev, list, next);
