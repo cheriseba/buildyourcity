@@ -1646,6 +1646,16 @@
           "tileId": "c8018f67-42c6-43cb-a4a8-dd8a89aeb04a",
           "label": "B_23",
           "color": null
+        },
+        {
+          "tileId": "e1a75c40-d9e8-4f62-90d3-875d153153c1",
+          "label": "B_25",
+          "color": null
+        },
+        {
+          "tileId": "cb8b8348-e87c-4ef8-9548-cfb3a15fadfb",
+          "label": "B_24",
+          "color": null
         }
       ]
     },
@@ -7134,7 +7144,7 @@
         "mülleimer",
         "bird"
       ],
-      "status": "draft",
+      "status": "ready",
       "profile": null,
       "rules": {
         "half": null,
@@ -11418,7 +11428,7 @@
       "hash": "7dd17e0f7f281b066c8146b2943c9a9b23e25196e67a39adee873d007159306c",
       "legacyIds": [],
       "name": "B_10",
-      "type": "FULL",
+      "type": "OVER",
       "w": 1,
       "h": 1,
       "tags": [
@@ -11466,7 +11476,7 @@
       "hash": "766ff9255b171b9d2b597c98c45aba220c64679c7e75cc42c87204438229e7bf",
       "legacyIds": [],
       "name": "B_11",
-      "type": "FULL",
+      "type": "OVER",
       "w": 1,
       "h": 1,
       "tags": [
@@ -11707,7 +11717,7 @@
       "assetPath": "neue_brucken/B_16.png",
       "order": 32,
       "file": "B_16.png",
-      "hash": "f15c5a700e1866cd41b05fddfd2cd8fd02624e15ecb9517b8407b77f8f0d1327",
+      "hash": "6a0f55abc4f1ff2c1cb827dd18dcde722f57cc50af00a988537d8e0417c9c57c",
       "legacyIds": [],
       "name": "B_16",
       "type": "FULL",
@@ -11933,9 +11943,18 @@
             "level": "unten",
             "dirs": {
               "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "-",
               "A": "0>1",
               "S": "-",
-              "D": "0>1"
+              "D": "1>0"
             }
           }
         ]
@@ -12490,6 +12509,86 @@
               "A": "1",
               "S": "1",
               "D": "-"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cb8b8348-e87c-4ef8-9548-cfb3a15fadfb",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_24.png",
+      "order": 37,
+      "file": "B_24.png",
+      "hash": "20cec244b299b27b9a136596cf5be865fa16b3572211b656e1822821b7b81ada",
+      "legacyIds": [],
+      "name": "B_24",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "1",
+              "S": "1",
+              "D": "1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "e1a75c40-d9e8-4f62-90d3-875d153153c1",
+      "category": "14_Brucke",
+      "assetPath": "neue_brucken/B_25.png",
+      "order": 36,
+      "file": "B_25.png",
+      "hash": "9de151a12f1db47241b410d6821360c6dedcc4264c81c8d099d7d5fa2806311e",
+      "legacyIds": [],
+      "name": "B_25",
+      "type": "FULL",
+      "w": 1,
+      "h": 1,
+      "tags": [],
+      "status": "ready",
+      "profile": null,
+      "rules": {
+        "half": null,
+        "allowed": null,
+        "walk": [
+          {
+            "level": "unten",
+            "dirs": {
+              "W": "-",
+              "A": "-",
+              "S": "-",
+              "D": "-"
+            }
+          },
+          {
+            "level": "oben",
+            "dirs": {
+              "W": "1",
+              "A": "1",
+              "S": "1",
+              "D": "1"
             }
           }
         ]
